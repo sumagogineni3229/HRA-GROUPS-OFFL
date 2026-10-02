@@ -238,11 +238,11 @@ export default function BlogPage() {
   }, [selectedService, selectedIndustry, searchQuery, allBlogPosts]);
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-[#172947] font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
       <Navbar />
 
       {/* EXACT 1:1 SDI CENTERED SLATE-BLUE HERO BANNER WITH STICKY PARALLAX */}
-      <section className="sticky top-0 z-0 bg-[#384968] min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] pt-24 pb-36 sm:pt-32 sm:pb-44 lg:pt-36 lg:pb-52 flex items-center justify-center text-center overflow-hidden">
+      <section className="sticky top-0 z-0 bg-[#384968] dark:bg-[#050b17] min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] pt-24 pb-36 sm:pt-32 sm:pb-44 lg:pt-36 lg:pb-52 flex items-center justify-center text-center overflow-hidden">
         {/* Subtle radial glow & dark gradient depth */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.22),transparent_70%)] pointer-events-none" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(15,23,42,0.1),rgba(15,23,42,0.4))] pointer-events-none" />
@@ -318,7 +318,7 @@ export default function BlogPage() {
       {/* MAIN CONTENT AREA WITH ELEVATED SHEET EFFECT (OVERLAPS AND SCROLLS OVER HERO) */}
       <section
         id="posts"
-        className="relative z-10 bg-[#f8fafc] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(15,23,42,0.25)] border-t border-white/80 py-16 sm:py-20 lg:py-24"
+        className="relative z-10 bg-[#f8fafc] dark:bg-[#090e1a] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(15,23,42,0.25)] border-t border-white/80 dark:border-slate-800/80 py-16 sm:py-20 lg:py-24"
       >
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
@@ -332,13 +332,13 @@ export default function BlogPage() {
                   placeholder="Search articles..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-4 pr-9 py-2 rounded-full bg-white border border-slate-200/90 text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#0052cc] focus:ring-2 focus:ring-blue-100 transition-all shadow-xs"
+                  className="w-full pl-4 pr-9 py-2 rounded-full bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 outline-none focus:border-[#0052cc] dark:focus:border-sky-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all shadow-xs"
                 />
                 <Search className="w-4 h-4 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery("")}
-                    className="text-xs font-bold text-slate-400 hover:text-slate-700 absolute right-10 top-1/2 -translate-y-1/2"
+                    className="text-xs font-bold text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 absolute right-10 top-1/2 -translate-y-1/2"
                   >
                     ✕
                   </button>
@@ -346,8 +346,8 @@ export default function BlogPage() {
               </div>
 
               {/* Compact Categories Card */}
-              <div className="bg-white rounded-2xl border border-slate-200/90 p-3.5 sm:p-4 shadow-xs space-y-2.5">
-                <h3 className="text-sm font-bold text-[#14233c] tracking-tight px-1">
+              <div className="bg-white dark:bg-[#0c1427] rounded-2xl border border-slate-200/90 dark:border-slate-800 p-3.5 sm:p-4 shadow-xs space-y-2.5">
+                <h3 className="text-sm font-bold text-[#14233c] dark:text-slate-100 tracking-tight px-1">
                   Categories
                 </h3>
 
@@ -360,8 +360,8 @@ export default function BlogPage() {
                     }}
                     className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between cursor-pointer ${
                       selectedService === "All" && selectedIndustry === "All"
-                        ? "bg-[#0052cc]/10 text-[#0052cc] font-bold"
-                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                        ? "bg-[#0052cc]/10 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-300 font-bold"
+                        : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white"
                     }`}
                   >
                     <span>View all</span>
@@ -369,7 +369,7 @@ export default function BlogPage() {
                       className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
                         selectedService === "All" && selectedIndustry === "All"
                           ? "bg-[#0052cc] text-white"
-                          : "bg-slate-100 text-slate-500"
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
                       }`}
                     >
                       {allBlogPosts.length}
@@ -428,8 +428,8 @@ export default function BlogPage() {
                         }}
                         className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${
                           isActive
-                            ? "bg-[#0052cc]/10 text-[#0052cc] font-bold"
-                            : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                            ? "bg-[#0052cc]/10 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-300 font-bold"
+                            : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white"
                         }`}
                       >
                         <span className="truncate pr-2">{cat.label}</span>
@@ -437,7 +437,7 @@ export default function BlogPage() {
                           className={`px-2 py-0.5 rounded-full text-[11px] font-bold shrink-0 ${
                             isActive
                               ? "bg-[#0052cc] text-white"
-                              : "bg-slate-100 text-slate-500"
+                              : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
                           }`}
                         >
                           {count}
@@ -449,7 +449,7 @@ export default function BlogPage() {
               </div>
 
               {/* Compact Newsletter Card matching HRA Groups Brand Blue (#0052cc) */}
-              <div className="rounded-2xl bg-[#0052cc] p-3.5 sm:p-4 text-white space-y-2.5 shadow-xs">
+              <div className="rounded-2xl bg-[#0052cc] dark:bg-[#031c47] p-3.5 sm:p-4 text-white space-y-2.5 shadow-xs border border-transparent dark:border-blue-500/30">
                 <span className="text-[10px] font-bold tracking-wider text-blue-200 uppercase">
                   NEWSLETTER
                 </span>
@@ -485,9 +485,9 @@ export default function BlogPage() {
             {/* RIGHT COLUMN: BLOG POSTS LISTING */}
             <div className="lg:col-span-9">
               {/* Header Status Bar */}
-              <div className="flex items-center justify-between pb-6 mb-6 border-b border-slate-200">
-                <span className="text-sm font-semibold text-slate-500">
-                  Showing <span className="text-[#0052cc] font-bold">{filteredPosts.length}</span> articles
+              <div className="flex items-center justify-between pb-6 mb-6 border-b border-slate-200 dark:border-slate-800">
+                <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">
+                  Showing <span className="text-[#0052cc] dark:text-sky-400 font-bold">{filteredPosts.length}</span> articles
                 </span>
 
                 {(selectedService !== "All" || searchQuery) && (
@@ -497,7 +497,7 @@ export default function BlogPage() {
                       setSelectedIndustry("All");
                       setSearchQuery("");
                     }}
-                    className="text-xs font-bold text-[#0052cc] hover:underline cursor-pointer"
+                    className="text-xs font-bold text-[#0052cc] dark:text-sky-400 hover:underline cursor-pointer"
                   >
                     Reset all filters
                   </button>
@@ -505,10 +505,10 @@ export default function BlogPage() {
               </div>
 
               {filteredPosts.length === 0 ? (
-                <div className="text-center py-20 bg-white rounded-3xl border border-slate-200/80 p-8">
-                  <BookOpen className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-[#14233c]">No articles found</h3>
-                  <p className="text-sm text-slate-500 mt-2 max-w-md mx-auto">
+                <div className="text-center py-20 bg-white dark:bg-[#0c1427] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8">
+                  <BookOpen className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-[#14233c] dark:text-white">No articles found</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-md mx-auto">
                     No articles matched your search or category selection. Try resetting filters.
                   </p>
                   <button
@@ -536,17 +536,17 @@ export default function BlogPage() {
                       viewport={{ once: true, margin: "-40px" }}
                       transition={{ duration: 0.5, delay: (index % 2) * 0.1 }}
                       whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                      className="group rounded-3xl bg-white border border-slate-200/90 hover:border-blue-300 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 flex flex-col justify-between transition-all duration-300"
+                      className="group rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-500/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 dark:hover:shadow-blue-950/40 flex flex-col justify-between transition-all duration-300"
                     >
                       {/* Article Thumbnail */}
-                      <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                      <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
                         <img
                           src={post.image}
                           alt={post.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
                         />
-                        <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[11px] font-bold tracking-wider text-[#0052cc] uppercase shadow-sm">
+                        <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-[11px] font-bold tracking-wider text-[#0052cc] dark:text-sky-300 uppercase shadow-sm border border-slate-200/50 dark:border-slate-700/50">
                           {post.service}
                         </div>
                       </div>
@@ -555,31 +555,31 @@ export default function BlogPage() {
                       <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                         <div className="space-y-3">
                           {/* Category & Date Tag */}
-                          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#0052cc]">
+                          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#0052cc] dark:text-sky-400">
                             <span>{post.category}</span>
-                            <span className="text-slate-300">•</span>
+                            <span className="text-slate-300 dark:text-slate-700">•</span>
                             <span className="text-slate-400 font-normal">{post.date}</span>
                           </div>
 
                           {/* Title */}
-                          <h3 className="text-base sm:text-lg font-bold text-[#14233c] group-hover:text-[#0052cc] transition-colors leading-[1.35] line-clamp-2">
+                          <h3 className="text-base sm:text-lg font-bold text-[#14233c] dark:text-slate-100 group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors leading-[1.35] line-clamp-2">
                             {post.title}
                           </h3>
 
                           {/* Excerpt */}
-                          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
+                          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
                             {post.excerpt}
                           </p>
                         </div>
 
                         {/* Bottom Action Footer */}
-                        <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
+                        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
                           <span className="flex items-center gap-1.5">
                             <Clock className="w-3.5 h-3.5 text-slate-400" />
                             <span>{post.readTime}</span>
                           </span>
 
-                          <span className="text-[#0052cc] group-hover:text-[#003882] flex items-center gap-1 font-bold group/link">
+                          <span className="text-[#0052cc] dark:text-sky-400 group-hover:text-[#003882] dark:group-hover:text-sky-300 flex items-center gap-1 font-bold group/link">
                             <span>Read Article</span>
                             <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
                           </span>

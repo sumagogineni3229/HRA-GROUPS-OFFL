@@ -272,11 +272,11 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#172947] font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
+    <div className="min-h-screen bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882] transition-colors duration-300">
       <Navbar />
 
       {/* CLEAN MINIMALIST HERO WITH ULTRA-SMOOTH ENLARGED 3D PHOTO SLIDER */}
-      <section className="pt-8 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-white text-center overflow-hidden">
+      <section className="pt-8 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-white dark:bg-[#070c18] text-center overflow-hidden transition-colors duration-300">
         <motion.div
           style={{ y: heroTranslateY }}
           className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-5 sm:space-y-6"
@@ -288,9 +288,9 @@ export default function GalleryPage() {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="max-w-4xl mx-auto"
           >
-            <h1 className="text-[34px] sm:text-[48px] md:text-[56px] lg:text-[64px] font-normal tracking-[-0.035em] leading-[1.08] text-[#001f4d]">
+            <h1 className="text-[34px] sm:text-[48px] md:text-[56px] lg:text-[64px] font-normal tracking-[-0.035em] leading-[1.08] text-[#001f4d] dark:text-white">
               Moments, Media &amp; <br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-[#0052cc] via-[#0284c7] to-[#0052cc] bg-clip-text text-transparent font-semibold">
+              <span className="bg-gradient-to-r from-[#0052cc] via-[#0284c7] to-[#0052cc] dark:from-sky-400 dark:via-blue-400 dark:to-sky-400 bg-clip-text text-transparent font-semibold">
                 Milestones
               </span>
             </h1>
@@ -344,8 +344,8 @@ export default function GalleryPage() {
                       }
                     }}
                     className={`absolute cursor-pointer rounded-3xl sm:rounded-[36px] overflow-hidden will-change-transform ${isCenter
-                        ? "shadow-[0_25px_80px_rgba(0,82,204,0.32)] ring-4 ring-blue-500/40 cursor-zoom-in"
-                        : "shadow-xl ring-1 ring-slate-200/80 hover:ring-blue-400"
+                        ? "shadow-[0_25px_80px_rgba(0,82,204,0.32)] dark:shadow-[0_25px_80px_rgba(0,82,204,0.5)] ring-4 ring-blue-500/40 cursor-zoom-in"
+                        : "shadow-xl ring-1 ring-slate-200/80 dark:ring-slate-800 hover:ring-blue-400"
                       }`}
                     style={{
                       width: typeof window !== "undefined" && window.innerWidth < 640 ? "290px" : "460px",
@@ -387,7 +387,7 @@ export default function GalleryPage() {
             <div className="flex items-center justify-center gap-4 pt-5 sm:pt-6">
               <button
                 onClick={handlePrevSlide}
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-100 hover:bg-[#0052cc] hover:text-white border border-slate-200 text-slate-700 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-100 dark:bg-[#0c1427] hover:bg-[#0052cc] hover:text-white dark:hover:bg-[#0052cc] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
                 aria-label="Previous Slide"
               >
                 <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -398,7 +398,7 @@ export default function GalleryPage() {
                   <button
                     key={i}
                     onClick={() => setSliderIndex(i)}
-                    className={`h-3 rounded-full transition-all duration-300 cursor-pointer ${sliderIndex === i ? "w-10 bg-[#0052cc]" : "w-3 bg-slate-200 hover:bg-slate-300"
+                    className={`h-3 rounded-full transition-all duration-300 cursor-pointer ${sliderIndex === i ? "w-10 bg-[#0052cc]" : "w-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700"
                       }`}
                     aria-label={`Go to slide ${i + 1}`}
                   />
@@ -407,7 +407,7 @@ export default function GalleryPage() {
 
               <button
                 onClick={handleNextSlide}
-                className="w-12 h-12 rounded-full bg-slate-100 hover:bg-[#0052cc] hover:text-white border border-slate-200 text-slate-700 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
+                className="w-12 h-12 rounded-full bg-slate-100 dark:bg-[#0c1427] hover:bg-[#0052cc] hover:text-white dark:hover:bg-[#0052cc] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
                 aria-label="Next Slide"
               >
                 <ChevronRight className="w-6 h-6" />
@@ -418,7 +418,7 @@ export default function GalleryPage() {
       </section>
 
       {/* LEADERSHIP VIDEOS SECTION */}
-      <section id="videos" className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200/80">
+      <section id="videos" className="py-16 sm:py-20 bg-slate-50 dark:bg-[#090e1a] border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
 
           <motion.div
@@ -428,14 +428,14 @@ export default function GalleryPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto space-y-3"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-              <Video className="w-3.5 h-3.5 text-[#0052cc]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+              <Video className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
               <span>Featured Media</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
               Leadership Videos
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               Exclusive interviews, leadership insights, and milestone media highlights from HRA Groups.
             </p>
           </motion.div>
@@ -449,7 +449,7 @@ export default function GalleryPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="group rounded-3xl bg-white border border-slate-200/90 hover:border-blue-400 overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(0,82,204,0.1)] transition-all duration-300 flex flex-col"
+                className="group rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(0,82,204,0.1)] transition-all duration-300 flex flex-col"
               >
                 <div className="relative aspect-video w-full bg-black">
                   <iframe
@@ -460,16 +460,16 @@ export default function GalleryPage() {
                     className="w-full h-full border-0"
                   />
                 </div>
-                <div className="p-6 flex items-center justify-between border-t border-slate-100 bg-white">
+                <div className="p-6 flex items-center justify-between border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-[#0c1427]">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#0052cc] flex items-center justify-center font-bold">
-                      <Play className="w-4 h-4 fill-[#0052cc]" />
+                    <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-400 flex items-center justify-center font-bold">
+                      <Play className="w-4 h-4 fill-[#0052cc] dark:fill-sky-400" />
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-[#001f4d] group-hover:text-[#0052cc] transition-colors">
+                    <h3 className="text-base sm:text-lg font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
                       {video.title}
                     </h3>
                   </div>
-                  <span className="text-xs font-bold text-[#0052cc] uppercase tracking-wider">
+                  <span className="text-xs font-bold text-[#0052cc] dark:text-sky-400 uppercase tracking-wider">
                     Watch
                   </span>
                 </div>
@@ -480,7 +480,7 @@ export default function GalleryPage() {
       </section>
 
       {/* RECOGNITIONS & HIGHLIGHTS - FULL 19 CARDS GALLERY */}
-      <section id="highlights" className="py-20 sm:py-24 bg-white border-b border-slate-200/80">
+      <section id="highlights" className="py-20 sm:py-24 bg-white dark:bg-[#070c18] border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -491,14 +491,14 @@ export default function GalleryPage() {
               transition={{ duration: 0.6 }}
               className="space-y-3 max-w-xl"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-                <Camera className="w-3.5 h-3.5 text-[#0052cc]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+                <Camera className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
                 <span>Gallery &amp; Recognitions</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
                 Recognitions &amp; Highlights
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                 Explore awards, leadership moments, networking events, team collaborations, achievements, and milestones of HRA Groups.
               </p>
             </motion.div>
@@ -513,7 +513,7 @@ export default function GalleryPage() {
                     onClick={() => setActiveCategory(cat)}
                     className={`relative px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer capitalize z-10 whitespace-nowrap ${active
                       ? "text-white"
-                      : "text-slate-600 hover:text-[#0052cc] bg-slate-100 hover:bg-slate-200"
+                      : "text-slate-600 dark:text-slate-300 hover:text-[#0052cc] dark:hover:text-white bg-slate-100 dark:bg-[#0c1427] hover:bg-slate-200 dark:hover:bg-slate-800 border dark:border-slate-800"
                       }`}
                   >
                     {active && (
@@ -545,7 +545,7 @@ export default function GalleryPage() {
                 }}
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
                 onClick={() => setSelectedImage(item)}
-                className="group relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 break-inside-avoid bg-slate-900"
+                className="group relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 break-inside-avoid bg-slate-900 border dark:border-slate-800"
               >
                 {/* 100% Natural Proportion Image with ZERO Cropping */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -565,13 +565,13 @@ export default function GalleryPage() {
 
                 {/* Top Category Badge on Hover */}
                 <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0 z-10">
-                  <span className="px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#0052cc] text-xs font-bold shadow-md">
+                  <span className="px-3.5 py-1.5 rounded-full bg-white/95 dark:bg-slate-900/90 backdrop-blur-md text-[#0052cc] dark:text-sky-400 text-xs font-bold shadow-md border dark:border-slate-700">
                     {item.tag}
                   </span>
                 </div>
 
                 {/* Quick Expand Icon in Corner on Hover */}
-                <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/95 backdrop-blur-md text-[#001f4d] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md z-10">
+                <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/95 dark:bg-slate-900/90 backdrop-blur-md text-[#001f4d] dark:text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md z-10 border dark:border-slate-700">
                   <Maximize2 className="w-4 h-4" />
                 </div>
 
@@ -596,7 +596,7 @@ export default function GalleryPage() {
       </section>
 
       {/* EMPLOYEE VOICES SECTION */}
-      <section className="py-20 bg-slate-50 border-b border-slate-200/80">
+      <section className="py-20 bg-slate-50 dark:bg-[#090e1a] border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
 
           <motion.div
@@ -606,14 +606,14 @@ export default function GalleryPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto space-y-3"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-              <Users className="w-3.5 h-3.5 text-[#0052cc]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+              <Users className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
               <span>Voices of HRA</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
               Employee Voices
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               Stories straight from the people who power HRA Groups.
             </p>
           </motion.div>
@@ -627,7 +627,7 @@ export default function GalleryPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.15 }}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="group rounded-3xl bg-white border border-slate-200/90 hover:border-blue-400 overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(0,82,204,0.1)] transition-all duration-300"
+                className="group rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(0,82,204,0.1)] transition-all duration-300"
               >
                 <div className="relative aspect-video w-full bg-black">
                   <iframe
@@ -639,14 +639,14 @@ export default function GalleryPage() {
                   />
                 </div>
                 <div className="p-6 sm:p-7 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0052cc]">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0052cc] dark:text-sky-400">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>Real Stories</span>
                   </div>
-                  <h3 className="text-xl font-bold text-[#001f4d] group-hover:text-[#0052cc] transition-colors">
+                  <h3 className="text-xl font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
                     {video.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {video.desc}
                   </p>
                 </div>
@@ -658,7 +658,7 @@ export default function GalleryPage() {
       </section>
 
       {/* LEADERSHIP VOICES / QUOTES SECTION */}
-      <section className="py-20 sm:py-24 bg-white">
+      <section className="py-20 sm:py-24 bg-white dark:bg-[#070c18] transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-14">
 
           <motion.div
@@ -668,11 +668,11 @@ export default function GalleryPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto space-y-3"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-              <Quote className="w-3.5 h-3.5 text-[#0052cc]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+              <Quote className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
               <span>Leadership Insights</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
               Leadership Voices
             </h2>
           </motion.div>
@@ -686,20 +686,20 @@ export default function GalleryPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                className="p-8 sm:p-10 rounded-3xl bg-[#f8fafc] border border-slate-200/90 hover:border-blue-400 hover:shadow-[0_20px_45px_rgba(0,82,204,0.08)] transition-all duration-300 flex flex-col justify-between group"
+                className="p-8 sm:p-10 rounded-3xl bg-[#f8fafc] dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-[0_20px_45px_rgba(0,82,204,0.08)] transition-all duration-300 flex flex-col justify-between group"
               >
                 <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 text-[#0052cc] flex items-center justify-center group-hover:bg-[#0052cc] group-hover:text-white transition-colors duration-300">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900/60 text-[#0052cc] dark:text-sky-400 flex items-center justify-center group-hover:bg-[#0052cc] group-hover:text-white transition-colors duration-300">
                     <Quote className="w-6 h-6" />
                   </div>
-                  <p className="text-base sm:text-lg text-slate-700 italic font-medium leading-relaxed">
+                  <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 italic font-medium leading-relaxed">
                     “{item.quote}”
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-slate-200/60">
-                  <div className="font-bold text-[#001f4d] text-base">{item.author}</div>
-                  <div className="text-xs font-semibold text-[#0052cc]">{item.role}</div>
+                <div className="pt-6 mt-6 border-t border-slate-200/60 dark:border-slate-800">
+                  <div className="font-bold text-[#001f4d] dark:text-white text-base">{item.author}</div>
+                  <div className="text-xs font-semibold text-[#0052cc] dark:text-sky-400">{item.role}</div>
                 </div>
               </motion.div>
             ))}
@@ -709,7 +709,7 @@ export default function GalleryPage() {
       </section>
 
       {/* CTA BANNER */}
-      <section className="py-16 sm:py-20 bg-[#001738] text-white relative overflow-hidden">
+      <section className="py-16 sm:py-20 bg-[#001738] dark:bg-[#050b17] text-white relative overflow-hidden border-t dark:border-slate-800">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.15),transparent_70%)] pointer-events-none" />
 
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10 text-center space-y-6">
@@ -726,7 +726,7 @@ export default function GalleryPage() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Be Part of Our Next Milestone
             </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-300 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
               Whether you are an ambitious student, experienced professional, or corporate partner, collaborate with HRA Groups to shape the future.
             </p>
 
@@ -761,7 +761,7 @@ export default function GalleryPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-white/20 relative"
+              className="bg-white dark:bg-[#0c1427] rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-white/20 dark:border-slate-800 relative"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -782,21 +782,21 @@ export default function GalleryPage() {
                   />
                 </div>
 
-                <div className="lg:col-span-5 p-7 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
+                <div className="lg:col-span-5 p-7 sm:p-8 flex flex-col justify-between space-y-6 bg-white dark:bg-[#0c1427]">
                   <div className="space-y-3">
-                    <span className="px-3 py-1 rounded-full bg-blue-50 text-[#0052cc] text-xs font-bold uppercase tracking-wider">
+                    <span className="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-300 text-xs font-bold uppercase tracking-wider border dark:border-blue-800/60">
                       {selectedImage.category || "HRA Groups Milestone"}
                     </span>
-                    <h3 className="text-2xl font-bold text-[#001f4d] leading-snug">
+                    <h3 className="text-2xl font-bold text-[#001f4d] dark:text-white leading-snug">
                       {selectedImage.title}
                     </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed pt-2">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-2">
                       {selectedImage.desc}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-500">
+                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                       HRA Groups Official Media
                     </span>
                     <button

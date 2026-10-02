@@ -251,11 +251,11 @@ export default function MeetTheTeamPage() {
       : teamMembers.filter((m) => m.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-[#172947] font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
       <Navbar />
 
       {/* HERO BANNER WITH IT BUILDING BACKGROUND & STICKY PARALLAX */}
-      <section className="sticky top-0 z-0 bg-[#001738] min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] pt-24 pb-36 sm:pt-32 sm:pb-44 lg:pt-36 lg:pb-52 flex items-center overflow-hidden">
+      <section className="sticky top-0 z-0 bg-[#001738] dark:bg-[#050b17] min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] pt-24 pb-36 sm:pt-32 sm:pb-44 lg:pt-36 lg:pb-52 flex items-center overflow-hidden">
         {/* IT Building background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none scale-105 transform transition-transform duration-1000"
@@ -309,9 +309,9 @@ export default function MeetTheTeamPage() {
       </section>
 
       {/* WRAPPER FOR FILTER AND CONTENT AS AN ELEVATED OVERLAPPING SHEET */}
-      <div className="relative z-10 bg-[#f8fafc] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(0,18,48,0.3)] border-t border-white/80 overflow-hidden">
+      <div className="relative z-10 bg-[#f8fafc] dark:bg-[#090e1a] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(0,18,48,0.3)] border-t border-white/80 dark:border-slate-800/80 overflow-hidden">
         {/* FILTER TABS STRIP */}
-        <section className="bg-white/95 border-b border-slate-200/80 sticky top-[80px] z-30 shadow-xs backdrop-blur-md">
+        <section className="bg-white/95 dark:bg-[#0c1427]/95 border-b border-slate-200/80 dark:border-slate-800/80 sticky top-[80px] z-30 shadow-xs backdrop-blur-md">
           <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-4 sm:py-5">
             <div className="flex items-center justify-between gap-4 overflow-x-auto no-scrollbar">
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -323,12 +323,12 @@ export default function MeetTheTeamPage() {
                       onClick={() => setSelectedCategory(cat.id)}
                       className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2.5 cursor-pointer ${active
                           ? "bg-[#013b9a] text-white shadow-md shadow-blue-900/15 scale-[1.02]"
-                          : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
+                          : "bg-slate-100 dark:bg-slate-800/70 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
                         }`}
                     >
                       <span>{cat.label}</span>
                       <span
-                        className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${active ? "bg-white/20 text-white" : "bg-slate-200/90 text-slate-600"
+                        className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${active ? "bg-white/20 text-white" : "bg-slate-200/90 dark:bg-slate-700/80 text-slate-600 dark:text-slate-300"
                           }`}
                       >
                         {cat.count}
@@ -338,8 +338,8 @@ export default function MeetTheTeamPage() {
                 })}
               </div>
 
-              <span className="hidden xl:inline-block text-xs font-semibold text-slate-400 shrink-0">
-                Showing <span className="text-[#013b9a] font-bold">{filteredMembers.length}</span> professionals
+              <span className="hidden xl:inline-block text-xs font-semibold text-slate-400 dark:text-slate-400 shrink-0">
+                Showing <span className="text-[#013b9a] dark:text-sky-400 font-bold">{filteredMembers.length}</span> professionals
               </span>
             </div>
           </div>
@@ -352,15 +352,15 @@ export default function MeetTheTeamPage() {
             {filteredMembers.map((member) => (
               <div
                 key={member.name}
-                className="group relative rounded-3xl bg-white border border-slate-200/80 hover:border-blue-300 p-6 sm:p-7 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 flex flex-col justify-between overflow-hidden"
+                className="group relative rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/80 dark:border-slate-800/80 hover:border-blue-300 dark:hover:border-blue-500/50 p-6 sm:p-7 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 dark:hover:shadow-blue-950/40 flex flex-col justify-between overflow-hidden"
               >
                 {/* Top Subtle Hover Gradient */}
-                <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-blue-50 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-blue-50 dark:from-blue-600/10 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
                 <div className="relative z-10 flex flex-col items-center text-center space-y-4">
                   {/* Circular Avatar with Gold Accent Border */}
                   <div className="relative w-28 h-28 rounded-full overflow-hidden p-1 bg-gradient-to-tr from-[#dfb76c] via-[#f7d68a] to-[#013b9a] shadow-md group-hover:scale-105 transition-transform duration-300">
-                    <div className="w-full h-full rounded-full overflow-hidden bg-slate-100 relative">
+                    <div className="w-full h-full rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
                       <img
                         src={member.image}
                         alt={member.name}
@@ -375,28 +375,28 @@ export default function MeetTheTeamPage() {
 
                   {/* Info */}
                   <div className="space-y-1.5 w-full">
-                    <h3 className="text-lg font-bold text-[#14233c] group-hover:text-[#0052cc] transition-colors line-clamp-1">
+                    <h3 className="text-lg font-bold text-[#14233c] dark:text-slate-100 group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors line-clamp-1">
                       {member.name}
                     </h3>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[#0052cc] block">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[#0052cc] dark:text-sky-400 block">
                       {member.role}
                     </span>
-                    <p className="text-xs sm:text-[13px] text-[#5c6f84] leading-relaxed pt-1 line-clamp-2">
+                    <p className="text-xs sm:text-[13px] text-[#5c6f84] dark:text-slate-400 leading-relaxed pt-1 line-clamp-2">
                       {member.desc}
                     </p>
                   </div>
                 </div>
 
                 {/* Bottom Gold/Navy Badge */}
-                <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between relative z-10">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-50 text-[#013b9a] border border-blue-100/80">
+                <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between relative z-10">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-[#013b9a] dark:text-sky-300 border border-blue-100/80 dark:border-blue-800/50">
                     <Sparkles className="w-3 h-3 text-[#dfb76c]" />
                     <span>{member.badge}</span>
                   </span>
 
                   <Link
                     href="/contact"
-                    className="text-xs font-semibold text-slate-400 hover:text-[#0052cc] transition-colors flex items-center gap-1 group/btn"
+                    className="text-xs font-semibold text-slate-400 dark:text-slate-400 hover:text-[#0052cc] dark:hover:text-sky-400 transition-colors flex items-center gap-1 group/btn"
                   >
                     <span>Connect</span>
                     <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -407,7 +407,7 @@ export default function MeetTheTeamPage() {
           </div>
 
           {/* Join our team CTA Card */}
-          <div className="mt-16 sm:mt-20 rounded-3xl bg-gradient-to-r from-[#013b9a] via-[#0047ab] to-[#002244] p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="mt-16 sm:mt-20 rounded-3xl bg-gradient-to-r from-[#013b9a] via-[#0047ab] to-[#002244] dark:from-[#031c47] dark:via-[#012768] dark:to-[#02132b] p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 border border-blue-400/20 dark:border-blue-500/20">
             <div className="space-y-3 text-center md:text-left max-w-2xl">
               <span className="text-xs font-bold tracking-widest text-[#fce092] uppercase">
                 WE ARE GROWING

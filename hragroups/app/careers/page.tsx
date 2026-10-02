@@ -257,13 +257,13 @@ export default function CareersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-[#172947] font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882] transition-colors duration-300">
       <Navbar />
 
       {/* STICKY / 1:1 SDI PRESENCE STYLE CAREERS HERO BANNER */}
-      <section className="relative bg-[#384968] min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] pt-24 pb-28 sm:pt-32 sm:pb-36 lg:pt-36 lg:pb-40 flex items-center justify-center text-center overflow-hidden border-b border-slate-700/50">
+      <section className="relative bg-[#384968] dark:bg-[#050b17] min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] pt-24 pb-28 sm:pt-32 sm:pb-36 lg:pt-36 lg:pb-40 flex items-center justify-center text-center overflow-hidden border-b border-slate-700/50 dark:border-slate-800">
         {/* Subtle radial glow & background lighting */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.18),transparent_70%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.18),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.25),transparent_70%)] pointer-events-none" />
 
         <motion.div
           style={{ y: heroContentY }}
@@ -302,7 +302,7 @@ export default function CareersPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.8 }}
-              className="text-[16px] sm:text-[18px] lg:text-[19px] text-slate-200 font-normal leading-[1.65] max-w-2xl mx-auto"
+              className="text-[16px] sm:text-[18px] lg:text-[19px] text-slate-200 dark:text-slate-300 font-normal leading-[1.65] max-w-2xl mx-auto"
             >
               Build a meaningful career with a team focused on technology, growth, and long-term impact. Explore opportunities to grow with{" "}
               <a
@@ -345,7 +345,7 @@ export default function CareersPage() {
       </section>
 
       {/* WHY WORK WITH US SECTION */}
-      <section className="py-16 sm:py-20 bg-white border-b border-slate-200/80">
+      <section className="py-16 sm:py-20 bg-white dark:bg-[#090e1a] border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -354,14 +354,14 @@ export default function CareersPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-14 space-y-3"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-              <Sparkles className="w-3.5 h-3.5 text-[#0052cc]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+              <Sparkles className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
               <span>Why Work With Us</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
               Grow with HRA Groups
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto">
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
               We empower our people with the resources, mentorship, and opportunities they need to reach their highest potential.
             </p>
           </motion.div>
@@ -375,18 +375,18 @@ export default function CareersPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="p-7 sm:p-8 rounded-3xl bg-[#f8fafc] border border-slate-200/90 hover:border-blue-300 hover:bg-white hover:shadow-[0_16px_36px_rgba(0,82,204,0.08)] transition-all duration-300 flex flex-col justify-between group"
+                className="p-7 sm:p-8 rounded-3xl bg-[#f8fafc] dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-white dark:hover:bg-[#0f172a] hover:shadow-[0_16px_36px_rgba(0,82,204,0.08)] transition-all duration-300 flex flex-col justify-between group"
               >
                 <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center group-hover:bg-[#0052cc] group-hover:text-white transition-colors duration-300">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900/60 flex items-center justify-center group-hover:bg-[#0052cc] group-hover:text-white transition-colors duration-300">
                     {React.cloneElement(item.icon, {
-                      className: "w-6 h-6 text-[#0052cc] group-hover:text-white transition-colors",
+                      className: "w-6 h-6 text-[#0052cc] dark:text-sky-400 group-hover:text-white transition-colors",
                     })}
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-[#001f4d] group-hover:text-[#0052cc] transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -397,7 +397,7 @@ export default function CareersPage() {
       </section>
 
       {/* JOB OPENINGS SECTION WITH FILTER TABS */}
-      <section id="openings" className="py-20 sm:py-24">
+      <section id="openings" className="py-20 sm:py-24 bg-[#f8fafc] dark:bg-[#070c18] transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -408,14 +408,14 @@ export default function CareersPage() {
               transition={{ duration: 0.6 }}
               className="space-y-3 max-w-xl"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-                <Briefcase className="w-3.5 h-3.5 text-[#0052cc]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+                <Briefcase className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
                 <span>Current Openings</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
                 Explore Open Positions
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                 Discover active openings and submit your application to join our growing team in Hyderabad or remotely.
               </p>
             </motion.div>
@@ -431,7 +431,7 @@ export default function CareersPage() {
                     className={`relative px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer capitalize z-10 whitespace-nowrap ${
                       active
                         ? "text-white"
-                        : "text-slate-600 hover:text-[#0052cc] bg-white border border-slate-200 hover:bg-slate-50"
+                        : "text-slate-600 dark:text-slate-300 hover:text-[#0052cc] dark:hover:text-white bg-white dark:bg-[#0c1427] border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800"
                     }`}
                   >
                     {active && (
@@ -464,7 +464,7 @@ export default function CareersPage() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                  className="group rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 hover:border-blue-400 p-6 sm:p-7 transition-all duration-300 hover:shadow-[0_16px_36px_rgba(0,82,204,0.07)] flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative overflow-hidden"
+                  className="group rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 p-6 sm:p-7 transition-all duration-300 hover:shadow-[0_16px_36px_rgba(0,82,204,0.07)] flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative overflow-hidden"
                 >
                   {/* Left accent indicator bar */}
                   <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#0052cc] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -473,45 +473,45 @@ export default function CareersPage() {
                   <div className="space-y-3 flex-1">
                     {/* Top badging row */}
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-3 py-1 rounded-full bg-blue-50 text-[#0052cc] text-xs font-bold uppercase tracking-wider border border-blue-100/80">
+                      <span className="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-100/80 dark:border-blue-800/60">
                         {job.dept}
                       </span>
                       {job.isLiveDirect && (
-                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold uppercase tracking-wider">
+                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 text-[11px] font-bold uppercase tracking-wider">
                           Active Role
                         </span>
                       )}
-                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[11px] font-medium">
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[11px] font-medium border dark:border-slate-700/60">
                         {job.type}
                       </span>
                     </div>
 
                     {/* Job Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] group-hover:text-[#0052cc] transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
                       {job.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-4xl">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
                       {job.desc}
                     </p>
 
                     {/* In-line Meta Information (Location, Experience, Tags) */}
-                    <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-600">
-                      <div className="flex items-center gap-1.5 font-medium text-slate-700 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-100">
-                        <MapPin className="w-3.5 h-3.5 text-[#0052cc]" />
+                    <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-600 dark:text-slate-400">
+                      <div className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-100 dark:border-slate-800">
+                        <MapPin className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
                         <span>{job.location}</span>
                       </div>
-                      <div className="flex items-center gap-1.5 font-medium text-slate-700 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-100">
-                        <Briefcase className="w-3.5 h-3.5 text-[#0052cc]" />
+                      <div className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-100 dark:border-slate-800">
+                        <Briefcase className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
                         <span>{job.experience}</span>
                       </div>
 
-                      <div className="hidden sm:flex flex-wrap items-center gap-1.5 pl-2 border-l border-slate-200">
-                        {job.tags.map((tag) => (
+                      <div className="hidden sm:flex flex-wrap items-center gap-1.5 pl-2 border-l border-slate-200 dark:border-slate-700">
+                        {job.tags.map((tag: string) => (
                           <span
                             key={tag}
-                            className="px-2 py-0.5 rounded-md bg-slate-100/80 text-[11px] text-slate-600"
+                            className="px-2 py-0.5 rounded-md bg-slate-100/80 dark:bg-slate-800/80 text-[11px] text-slate-600 dark:text-slate-400 border dark:border-slate-700/50"
                           >
                             {tag}
                           </span>
@@ -521,7 +521,7 @@ export default function CareersPage() {
                   </div>
 
                   {/* Right Side Action Button - Single Clean Apply Button */}
-                  <div className="flex items-center shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100">
+                  <div className="flex items-center shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100 dark:border-slate-800">
                     {job.applyLink ? (
                       <a
                         href={job.applyLink}
@@ -550,7 +550,7 @@ export default function CareersPage() {
       </section>
 
       {/* HOW TO APPLY & ASSISTANCE SECTION */}
-      <section className="py-20 bg-white border-t border-slate-200/80">
+      <section className="py-20 bg-white dark:bg-[#090e1a] border-t border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -559,14 +559,14 @@ export default function CareersPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-14 space-y-3"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-              <FileText className="w-3.5 h-3.5 text-[#0052cc]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+              <FileText className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
               <span>Application Guide</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
               How to Apply
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               Complete our online application form with accurate details. Our HR team will review your profile and connect with shortlisted candidates promptly.
             </p>
           </motion.div>
@@ -579,18 +579,18 @@ export default function CareersPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-7 rounded-3xl bg-[#f8fafc] border border-slate-200/90 p-8 sm:p-10 space-y-6 flex flex-col justify-between"
+              className="lg:col-span-7 rounded-3xl bg-[#f8fafc] dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 p-8 sm:p-10 space-y-6 flex flex-col justify-between"
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0052cc]">
+                  <div className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900/60 flex items-center justify-center text-[#0052cc] dark:text-sky-400">
                     <CheckCircle2 className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d]">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] dark:text-white">
                       Details Required
                     </h3>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       Ensure you have the following information prepared before applying:
                     </p>
                   </div>
@@ -600,16 +600,16 @@ export default function CareersPage() {
                   {applicationDetailsRequired.map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex items-start gap-2.5 p-3.5 rounded-2xl bg-white border border-slate-200/70 text-xs sm:text-sm text-slate-700 font-medium shadow-xs"
+                      className="flex items-start gap-2.5 p-3.5 rounded-2xl bg-white dark:bg-[#090e1a] border border-slate-200/70 dark:border-slate-800 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium shadow-xs"
                     >
-                      <span className="text-[#0052cc] font-bold shrink-0 mt-0.5">✦</span>
+                      <span className="text-[#0052cc] dark:text-sky-400 font-bold shrink-0 mt-0.5">✦</span>
                       <span>{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-200/60 text-xs text-slate-500 flex items-center gap-2">
+              <div className="pt-4 border-t border-slate-200/60 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
                 <span>📁 Applications are reviewed on a rolling basis by our talent team.</span>
               </div>
             </motion.div>
@@ -620,7 +620,7 @@ export default function CareersPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-5 rounded-3xl bg-gradient-to-br from-[#001738] via-[#012354] to-[#001738] p-8 sm:p-10 text-white flex flex-col justify-between shadow-xl relative overflow-hidden"
+              className="lg:col-span-5 rounded-3xl bg-gradient-to-br from-[#001738] via-[#012354] to-[#001738] dark:from-[#050b17] dark:via-[#09152b] dark:to-[#050b17] p-8 sm:p-10 text-white flex flex-col justify-between shadow-xl relative overflow-hidden border dark:border-slate-800"
             >
               {/* Background ambient light */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -678,7 +678,7 @@ export default function CareersPage() {
       </section>
 
       {/* JOIN OUR TEAM CTA BANNER */}
-      <section className="py-16 bg-[#001738] text-white relative overflow-hidden">
+      <section className="py-16 bg-[#001738] dark:bg-[#050b17] text-white relative overflow-hidden border-t dark:border-slate-800">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.15),transparent_70%)] pointer-events-none" />
 
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10 text-center space-y-6">
@@ -695,7 +695,7 @@ export default function CareersPage() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Ready to Shape the Future?
             </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-300 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
               Grow with HRA Groups through purposeful work, collaboration, and continuous innovation.
             </p>
 
@@ -720,40 +720,40 @@ export default function CareersPage() {
       {/* FULL DIRECT APPLICATION MODAL THAT STORES DIRECTLY IN DATABASE */}
       <AnimatePresence>
         {isApplyModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-xs">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto"
+              className="bg-white dark:bg-[#0c1427] rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-800 relative max-h-[90vh] overflow-y-auto"
             >
               <button
                 onClick={() => setIsApplyModalOpen(false)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
+                className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
 
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-wider text-[#0052cc]">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-wider text-[#0052cc] dark:text-sky-300">
                   <Building2 className="w-3.5 h-3.5" />
                   <span>Job Application Submission</span>
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-extrabold text-[#001f4d]">
+                  <h3 className="text-2xl font-extrabold text-[#001f4d] dark:text-white">
                     {selectedJobForModal}
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                     Submit your application directly to the HRA Groups talent acquisition team.
                   </p>
                 </div>
 
                 {appSuccessMsg ? (
-                  <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-2 animate-in fade-in">
-                    <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-                    <h4 className="font-bold text-emerald-900 text-base">Application Received!</h4>
-                    <p className="text-xs text-emerald-700">
+                  <div className="p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-center space-y-2 animate-in fade-in">
+                    <CheckCircle2 className="w-10 h-10 text-emerald-600 dark:text-emerald-400 mx-auto" />
+                    <h4 className="font-bold text-emerald-900 dark:text-emerald-200 text-base">Application Received!</h4>
+                    <p className="text-xs text-emerald-700 dark:text-emerald-300">
                       Thank you for applying. Your profile has been submitted to the Recruitment team for review.
                     </p>
                   </div>
@@ -761,7 +761,7 @@ export default function CareersPage() {
                   <form onSubmit={handleApplicationSubmit} className="space-y-3.5 pt-2">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="text-xs font-bold text-slate-700 block mb-1">
+                        <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
                           Full Name <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -770,12 +770,12 @@ export default function CareersPage() {
                           value={applicantName}
                           onChange={(e) => setApplicantName(e.target.value)}
                           placeholder="Your Full Name"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                         />
                       </div>
 
                       <div>
-                        <label className="text-xs font-bold text-slate-700 block mb-1">
+                        <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
                           Email Address <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -784,14 +784,14 @@ export default function CareersPage() {
                           value={applicantEmail}
                           onChange={(e) => setApplicantEmail(e.target.value)}
                           placeholder="name@example.com"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="text-xs font-bold text-slate-700 block mb-1">
+                        <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
                           Phone Number <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -800,29 +800,29 @@ export default function CareersPage() {
                           value={applicantPhone}
                           onChange={(e) => setApplicantPhone(e.target.value)}
                           placeholder="+91 96762 72283"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                         />
                       </div>
 
                       <div>
-                        <label className="text-xs font-bold text-slate-700 block mb-1">
+                        <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
                           Experience Level
                         </label>
                         <select
                           value={applicantExperience}
                           onChange={(e) => setApplicantExperience(e.target.value)}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                         >
-                          <option value="Fresher / Intern">Fresher / Intern</option>
-                          <option value="1–2 Years">1–2 Years</option>
-                          <option value="3–5 Years">3–5 Years</option>
-                          <option value="5+ Years">5+ Years (Senior)</option>
+                          <option value="Fresher / Intern" className="dark:bg-slate-900 dark:text-white">Fresher / Intern</option>
+                          <option value="1–2 Years" className="dark:bg-slate-900 dark:text-white">1–2 Years</option>
+                          <option value="3–5 Years" className="dark:bg-slate-900 dark:text-white">3–5 Years</option>
+                          <option value="5+ Years" className="dark:bg-slate-900 dark:text-white">5+ Years (Senior)</option>
                         </select>
                       </div>
                     </div>
 
                     <div>
-                      <label className="text-xs font-bold text-slate-700 block mb-1">
+                      <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
                         Current Location / City
                       </label>
                       <input
@@ -830,12 +830,12 @@ export default function CareersPage() {
                         value={applicantLocation}
                         onChange={(e) => setApplicantLocation(e.target.value)}
                         placeholder="e.g. Hyderabad, India / Bengaluru"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                       />
                     </div>
 
                     <div>
-                      <label className="text-xs font-bold text-slate-700 block mb-1">
+                      <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
                         Resume / Portfolio Link (Google Drive, LinkedIn, GitHub)
                       </label>
                       <input
@@ -843,12 +843,12 @@ export default function CareersPage() {
                         value={applicantResumeUrl}
                         onChange={(e) => setApplicantResumeUrl(e.target.value)}
                         placeholder="https://drive.google.com/file/... or LinkedIn URL"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                       />
                     </div>
 
                     <div>
-                      <label className="text-xs font-bold text-slate-700 block mb-1">
+                      <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
                         Key Skills &amp; Qualifications
                       </label>
                       <input
@@ -856,12 +856,12 @@ export default function CareersPage() {
                         value={applicantSkills}
                         onChange={(e) => setApplicantSkills(e.target.value)}
                         placeholder="e.g. React.js, Python, AWS, Communication"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                       />
                     </div>
 
                     <div>
-                      <label className="text-xs font-bold text-slate-700 block mb-1">
+                      <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
                         Brief Cover Note / Why HRA Groups?
                       </label>
                       <textarea
@@ -869,7 +869,7 @@ export default function CareersPage() {
                         value={applicantMessage}
                         onChange={(e) => setApplicantMessage(e.target.value)}
                         placeholder="Share a brief message regarding your background..."
-                        className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc] resize-none"
+                        className="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0052cc] resize-none"
                       />
                     </div>
 
@@ -884,7 +884,7 @@ export default function CareersPage() {
                       <button
                         type="button"
                         onClick={() => setIsApplyModalOpen(false)}
-                        className="px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
+                        className="px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
                       >
                         Cancel
                       </button>

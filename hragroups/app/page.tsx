@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TCSDarkHeroBackground from "@/components/TCSDarkHeroBackground";
 import {
   Search,
   MessageSquare,
@@ -256,18 +257,18 @@ export default function Home() {
       accentBg: "from-blue-500/10 via-sky-400/5 to-transparent",
       graphic: (
         <div className="relative w-full h-48 sm:h-64 flex items-center justify-center">
-          <div className="absolute w-36 h-36 bg-blue-400/20 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute w-36 h-36 bg-blue-400/20 dark:bg-blue-500/30 rounded-full blur-2xl animate-pulse"></div>
           {/* Cloud & Data illustration */}
           <div className="relative flex flex-col items-center">
-            <div className="p-4 bg-gradient-to-b from-white to-blue-50/80 rounded-2xl shadow-xl border border-blue-100 flex items-center justify-center">
-              <Cloud className="w-16 h-16 text-blue-600 stroke-[1.5]" />
+            <div className="p-4 bg-gradient-to-b from-white to-blue-50/80 dark:from-[#111e3b] dark:to-[#0c1427] rounded-2xl shadow-xl border border-blue-100 dark:border-blue-900/60 flex items-center justify-center">
+              <Cloud className="w-16 h-16 text-blue-600 dark:text-sky-400 stroke-[1.5]" />
             </div>
             {/* Animated data lines */}
             <div className="flex gap-2 mt-3">
               {[...Array(5)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-1.5 bg-gradient-to-b from-blue-500 to-transparent rounded-full animate-bounce"
+                  className="w-1.5 bg-gradient-to-b from-blue-500 dark:from-sky-400 to-transparent rounded-full animate-bounce"
                   style={{
                     height: `${20 + (i % 3) * 12}px`,
                     animationDelay: `${i * 0.15}s`,
@@ -289,10 +290,10 @@ export default function Home() {
       accentBg: "from-blue-600/10 via-indigo-400/5 to-transparent",
       graphic: (
         <div className="relative w-full h-36 flex items-center justify-center">
-          <div className="px-6 py-3 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg border border-blue-100 flex items-center gap-3">
+          <div className="px-6 py-3 bg-white/90 dark:bg-[#111e3b]/90 backdrop-blur-md rounded-2xl shadow-lg border border-blue-100 dark:border-blue-900/60 flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
-            <span className="font-semibold text-blue-900 tracking-wide">ServiceNow</span>
-            <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">Elite Partner</span>
+            <span className="font-semibold text-blue-900 dark:text-white tracking-wide">ServiceNow</span>
+            <span className="text-xs bg-blue-100 dark:bg-blue-900/80 text-blue-700 dark:text-sky-300 px-2 py-0.5 rounded-full font-medium">Elite Partner</span>
           </div>
         </div>
       ),
@@ -307,10 +308,10 @@ export default function Home() {
       accentBg: "from-sky-500/10 via-transparent to-transparent",
       graphic: (
         <div className="relative w-full h-32 flex items-center justify-center">
-          <div className="p-3 bg-white rounded-xl shadow-md border border-blue-50 flex items-center gap-2">
-            <div className="w-12 h-6 bg-blue-100 rounded flex items-center justify-center text-[10px] text-blue-800 font-bold">EAM 4.0</div>
-            <div className="w-16 h-2 bg-blue-200 rounded-full overflow-hidden">
-              <div className="w-3/4 h-full bg-blue-600"></div>
+          <div className="p-3 bg-white dark:bg-[#111e3b] rounded-xl shadow-md border border-blue-50 dark:border-slate-800 flex items-center gap-2">
+            <div className="w-12 h-6 bg-blue-100 dark:bg-blue-950/80 rounded flex items-center justify-center text-[10px] text-blue-800 dark:text-sky-300 font-bold">EAM 4.0</div>
+            <div className="w-16 h-2 bg-blue-200 dark:bg-slate-700 rounded-full overflow-hidden">
+              <div className="w-3/4 h-full bg-blue-600 dark:bg-sky-400"></div>
             </div>
           </div>
         </div>
@@ -327,10 +328,10 @@ export default function Home() {
       graphic: (
         <div className="relative w-full h-32 flex items-center justify-center">
           <div className="flex gap-2 items-end h-16">
-            <div className="w-4 h-8 bg-blue-200 rounded-t"></div>
-            <div className="w-4 h-12 bg-blue-400 rounded-t"></div>
-            <div className="w-4 h-16 bg-blue-600 rounded-t"></div>
-            <div className="w-4 h-10 bg-indigo-500 rounded-t"></div>
+            <div className="w-4 h-8 bg-blue-200 dark:bg-blue-900 rounded-t"></div>
+            <div className="w-4 h-12 bg-blue-400 dark:bg-blue-700 rounded-t"></div>
+            <div className="w-4 h-16 bg-blue-600 dark:bg-sky-500 rounded-t"></div>
+            <div className="w-4 h-10 bg-indigo-500 dark:bg-indigo-400 rounded-t"></div>
           </div>
         </div>
       ),
@@ -345,11 +346,11 @@ export default function Home() {
       accentBg: "from-blue-600/10 via-sky-400/5 to-transparent",
       graphic: (
         <div className="relative w-full h-32 flex items-center justify-center">
-          <div className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 shadow-sm flex items-center gap-3">
-            <ShieldCheck className="w-8 h-8 text-blue-600" />
+          <div className="p-4 bg-gradient-to-br from-blue-50 to-white dark:from-[#111e3b] dark:to-[#0c1427] rounded-2xl border border-blue-100 dark:border-blue-900/60 shadow-sm flex items-center gap-3">
+            <ShieldCheck className="w-8 h-8 text-blue-600 dark:text-sky-400" />
             <div className="text-left">
-              <div className="text-xs font-bold text-blue-900">NextGen 911 Ready</div>
-              <div className="text-[11px] text-slate-500">24/7 Redundant Telemetry</div>
+              <div className="text-xs font-bold text-blue-900 dark:text-white">NextGen 911 Ready</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400">24/7 Redundant Telemetry</div>
             </div>
           </div>
         </div>
@@ -365,11 +366,11 @@ export default function Home() {
       accentBg: "from-sky-500/10 via-transparent to-transparent",
       graphic: (
         <div className="relative w-full h-32 flex items-center justify-center">
-          <div className="p-4 bg-white rounded-2xl border border-slate-100 shadow-md flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">30+</div>
+          <div className="p-4 bg-white dark:bg-[#111e3b] rounded-2xl border border-slate-100 dark:border-slate-800 shadow-md flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-blue-600 dark:bg-sky-500 text-white flex items-center justify-center text-xs font-bold">30+</div>
             <div className="text-left">
-              <div className="text-xs font-bold text-slate-900">Years of Executive Advisory</div>
-              <div className="text-[11px] text-slate-500">Proven Playbooks & Governance</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white">Years of Executive Advisory</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400">Proven Playbooks & Governance</div>
             </div>
           </div>
         </div>
@@ -387,31 +388,34 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#172947] font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
+    <div className="min-h-screen bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
       {/* GLOBAL NAVBAR */}
       <Navbar />
 
       {/* EXACT 1:1 STICKY HERO WITH SMOOTH PARALLAX AS IN BLOG PAGE */}
-      <section className="sticky top-0 z-0 bg-white min-h-[calc(100vh-80px)] flex items-center pt-4 pb-12 lg:pt-0 lg:pb-0 overflow-hidden">
+      <section className="sticky top-0 z-0 bg-white dark:bg-[#070c18] min-h-[calc(100vh-80px)] flex items-center pt-4 pb-12 lg:pt-0 lg:pb-0 overflow-hidden relative">
+        {/* Dark theme background - TCS style digital transformation wave & neural network canvas */}
+        <TCSDarkHeroBackground />
+
         <motion.div
           style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
-          className="w-full max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24 relative my-auto"
+          className="w-full max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24 relative my-auto z-10"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0 items-center min-h-[calc(100vh-140px)] relative">
-            {/* Hero Left Content (Layered on top of expanded illustration - Moved to Top) */}
+            {/* Hero Left / Centered Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="lg:col-span-6 xl:col-span-6 space-y-4 lg:space-y-5 relative z-20 pt-0 pb-4 -mt-16 sm:-mt-24 lg:-mt-48 xl:-mt-64"
+              className="lg:col-span-6 xl:col-span-6 dark:col-span-12 dark:lg:col-span-12 dark:xl:col-span-12 space-y-4 lg:space-y-5 relative z-20 pt-0 pb-4 -mt-16 sm:-mt-24 lg:-mt-48 xl:-mt-64 dark:-mt-16 dark:sm:-mt-24 dark:lg:-mt-32 dark:xl:-mt-40 dark:flex dark:flex-col dark:items-center dark:text-center dark:mx-auto dark:max-w-[900px]"
             >
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] uppercase shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/70 border border-blue-200/60 dark:border-blue-800/80 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm dark:hidden"
               >
-                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
                 <span>INNOVATION • RESILIENCE • CONSULTANCY</span>
               </motion.div>
 
@@ -419,7 +423,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.8 }}
-                className="text-[40px] sm:text-[54px] md:text-[62px] lg:text-[66px] xl:text-[76px] font-bold tracking-tight text-slate-900 leading-[1.12]"
+                className="text-[40px] sm:text-[54px] md:text-[62px] lg:text-[66px] xl:text-[76px] font-bold tracking-tight text-slate-900 dark:text-white leading-[1.12]"
               >
                 Welcome to <span className="text-[#657ef8]">H</span><span className="text-[#00bcd4]">R</span><span className="text-[#f58220]">A</span> Groups
               </motion.h1>
@@ -430,14 +434,14 @@ export default function Home() {
                 transition={{ delay: 0.35, duration: 0.8 }}
                 className="text-[22px] sm:text-[26px] lg:text-[30px] font-semibold italic tracking-wide"
               >
-                <span className="text-[#657ef8]">H</span><span className="text-[#657ef8]/90 font-normal">ope</span> <span className="text-slate-400 font-normal">+</span> <span className="text-[#00bcd4]">R</span><span className="text-[#00bcd4]/90 font-normal">esilience</span> <span className="text-slate-400 font-normal">+</span> <span className="text-[#f58220]">A</span><span className="text-[#f58220]/90 font-normal">spire</span>
+                <span className="text-[#657ef8]">H</span><span className="text-[#657ef8]/90 font-normal">ope</span> <span className="text-slate-400 dark:text-slate-500 font-normal">+</span> <span className="text-[#00bcd4]">R</span><span className="text-[#00bcd4]/90 font-normal">esilience</span> <span className="text-slate-400 dark:text-slate-500 font-normal">+</span> <span className="text-[#f58220]">A</span><span className="text-[#f58220]/90 font-normal">spire</span>
               </motion.p>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45, duration: 0.8 }}
-                className="text-[18px] sm:text-[20px] lg:text-[22px] text-slate-700 font-normal leading-[1.65] max-w-[580px]"
+                className="text-[18px] sm:text-[20px] lg:text-[22px] text-slate-700 dark:text-slate-300 font-normal leading-[1.65] max-w-[580px] dark:max-w-[700px]"
               >
                 We specialize in IT Services and Consultancy,<br className="hidden sm:inline" />
                 Driving innovation &amp; excellence
@@ -447,29 +451,33 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55, duration: 0.8 }}
-                className="pt-2"
+                className="pt-2 relative inline-flex justify-center"
               >
+                {/* Blinking / Pulsing Aura Ring */}
+                <span className="absolute inset-0 rounded-full bg-blue-500/30 dark:bg-blue-400/40 animate-ping opacity-75 pointer-events-none" />
+
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center justify-center px-10 py-4 rounded-full bg-white border border-[#447aff]/30 shadow-[0_6px_22px_rgba(68,122,255,0.18)] hover:shadow-[0_10px_30px_rgba(68,122,255,0.28)] transition-all duration-300 hover:scale-[1.02]"
+                  className="group relative inline-flex items-center justify-center px-10 py-4 rounded-full bg-white dark:bg-[#0e172e] border-2 border-[#447aff]/50 dark:border-blue-400/70 shadow-[0_0_20px_rgba(68,122,255,0.4)] dark:shadow-[0_0_28px_rgba(96,165,250,0.6)] hover:shadow-[0_0_35px_rgba(68,122,255,0.7)] transition-all duration-300 hover:scale-[1.05] active:scale-[0.98] animate-pulse"
                 >
-                  <span className="text-[15px] font-semibold bg-gradient-to-r from-[#013b9a] via-[#3866f1] to-[#65acff] bg-clip-text text-transparent group-hover:opacity-90">
+                  <span className="text-[15px] font-bold bg-gradient-to-r from-[#013b9a] via-[#3866f1] to-[#65acff] dark:from-[#60a5fa] dark:via-[#93c5fd] dark:to-white bg-clip-text text-transparent group-hover:opacity-100">
                     Talk to an Expert
                   </span>
                 </Link>
               </motion.div>
             </motion.div>
 
-            {/* Hero Right 3D City Isometric Artwork (Full screen scaling & presence) */}
+            {/* Hero Right 3D City Isometric Artwork - Visible in Light Theme Only */}
             <motion.div
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.2 }}
-              className="lg:col-span-6 xl:col-span-6 relative flex justify-center lg:justify-end z-10 lg:-ml-12 xl:-ml-24"
+              className="lg:col-span-6 xl:col-span-6 relative flex justify-center lg:justify-end z-10 lg:-ml-12 xl:-ml-24 dark:hidden"
             >
               <div className="relative w-full max-w-[850px] lg:max-w-[1050px] xl:max-w-[1300px] lg:scale-115 xl:scale-130 transform-gpu origin-center lg:origin-right">
+                {/* 3D City Architecture Illustration */}
                 <img
-                  src="https://cdn.prod.website-files.com/685c045f09a3dab41aa0d71d/69d7c14dcfa64e1aeab3d642_Picture%20for%20hero%20section.avif"
+                  src="/hero-original-transparent.png"
                   alt="HRA Groups 3D City Architecture"
                   className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-none"
                 />
@@ -480,18 +488,18 @@ export default function Home() {
       </section>
 
       {/* ELEVATED SHEET WRAPPER (OVERLAPS AND SCROLLS SMOOTHLY OVER HERO EXACTLY AS IN BLOG PAGE) */}
-      <div id="experience-sheet" className="relative z-10 bg-white rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(15,23,42,0.15)] border-t border-slate-100/80">
+      <div id="experience-sheet" className="relative z-10 bg-white dark:bg-[#090e1a] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(15,23,42,0.15)] dark:shadow-[0_-25px_60px_rgba(0,0,0,0.8)] border-t border-slate-100/80 dark:border-slate-800/80">
         {/* ========================================================================= */}
         {/* SECTION: OUR EXCELLENCE SLIDER (With Smooth Scroll Reveal & Flip Animation) */}
         {/* ========================================================================= */}
-        <section className="py-20 bg-gradient-to-br from-[#eef3ff] via-[#f8faff] to-white border-b border-blue-100/60 overflow-hidden relative rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px]">
+        <section className="py-20 bg-gradient-to-br from-[#eef3ff] via-[#f8faff] to-white dark:from-[#090e1a] dark:via-[#0c1427] dark:to-[#0f1a36] border-b border-blue-100/60 dark:border-slate-800/60 overflow-hidden relative rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px]">
           <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14 bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-10 lg:p-12 shadow-[0_12px_40px_rgba(0,82,204,0.08)] border border-blue-100/80 hover:shadow-[0_18px_50px_rgba(0,82,204,0.12)] transition-shadow duration-500"
+              className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md rounded-3xl p-6 sm:p-10 lg:p-12 shadow-[0_12px_40px_rgba(0,82,204,0.08)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-blue-100/80 dark:border-slate-800 hover:shadow-[0_18px_50px_rgba(0,82,204,0.12)] transition-shadow duration-500"
             >
               {/* Slider Image Container */}
               <div className="w-full lg:w-1/2 relative h-[320px] sm:h-[400px] rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center shadow-lg group">
@@ -546,8 +554,8 @@ export default function Home() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider border border-blue-200/50">
-                    <Sparkles className="w-3 h-3 text-blue-600" />
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-200/50 dark:border-blue-800/60">
+                    <Sparkles className="w-3 h-3 text-blue-600 dark:text-sky-400" />
                     HRA Excellence &amp; Recognition
                   </span>
                 </motion.div>
@@ -561,15 +569,15 @@ export default function Home() {
                     transition={{ duration: 0.4 }}
                     className="space-y-3"
                   >
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1f3c88] leading-tight min-h-[50px]">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1f3c88] dark:text-sky-300 leading-tight min-h-[50px]">
                       {excellenceSlides[currentExcellenceSlide].title}
                     </h2>
 
-                    <p className="text-slate-700 text-base sm:text-lg leading-relaxed">
+                    <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
                       {excellenceSlides[currentExcellenceSlide].desc}
                     </p>
 
-                    <p className="text-slate-500 text-sm italic">
+                    <p className="text-slate-500 dark:text-slate-400 text-sm italic">
                       {excellenceSlides[currentExcellenceSlide].extra}
                     </p>
                   </motion.div>
@@ -582,9 +590,9 @@ export default function Home() {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: pIdx * 0.08, duration: 0.3 }}
-                      className="flex items-center gap-2 text-sm text-slate-800 font-medium"
+                      className="flex items-center gap-2 text-sm text-slate-800 dark:text-slate-200 font-medium"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-sky-400 shrink-0" />
                       {point}
                     </motion.li>
                   ))}
@@ -598,7 +606,7 @@ export default function Home() {
                       onClick={() => setCurrentExcellenceSlide(i)}
                       className={`h-2.5 rounded-full transition-all duration-300 ${currentExcellenceSlide === i
                         ? "w-8 bg-blue-600 shadow-sm"
-                        : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                        : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400"
                         }`}
                       aria-label={`Go to slide ${i + 1}`}
                     />
@@ -612,7 +620,7 @@ export default function Home() {
         {/* ========================================================================= */}
         {/* SECTION: ABOUT HRA GROUPS (Empowering Digital Innovation & Scalable Growth) */}
         {/* ========================================================================= */}
-        <section id="about" className="py-24 bg-white border-t border-slate-100 overflow-hidden relative">
+        <section id="about" className="py-24 bg-white dark:bg-[#090e1a] border-t border-slate-100 dark:border-slate-800/60 overflow-hidden relative">
           <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <motion.div
@@ -622,21 +630,21 @@ export default function Home() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="lg:col-span-7 space-y-6"
               >
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/50 text-xs font-bold tracking-widest text-[#0052cc] uppercase">
-                  <Sparkles className="w-3 h-3 text-blue-600" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/50 dark:border-blue-800/60 text-xs font-bold tracking-widest text-[#0052cc] dark:text-sky-300 uppercase">
+                  <Sparkles className="w-3 h-3 text-blue-600 dark:text-sky-400" />
                   ABOUT HRA GROUPS
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0f172a] leading-tight">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0f172a] dark:text-white leading-tight">
                   Empowering Digital Innovation &amp; Scalable Business Growth
                 </h2>
-                <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
                   HRA Groups is a leading IT and Business Solutions company delivering technology-driven services across multiple domains. We specialize in building secure, scalable, and modern digital systems tailored for startups, enterprises, and growing organizations.
                 </p>
-                <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
                   With a strong focus on innovation and client success, we provide software development, cloud engineering, consulting, staffing, and digital marketing services. Our expert team combines technical excellence with strategic thinking to help businesses modernize their operations, improve efficiency, and achieve long-term growth.
                 </p>
-                <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
                   At HRA Groups, our mission is to empower companies with cutting-edge IT solutions that drive productivity, accelerate digital adoption, and create sustainable impact in the industry.
                 </p>
               </motion.div>
@@ -651,42 +659,42 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
-                  className="p-7 rounded-3xl bg-gradient-to-br from-blue-50/80 to-indigo-50/40 border border-blue-100/80 shadow-sm flex items-center gap-6"
+                  className="p-7 rounded-3xl bg-gradient-to-br from-blue-50/80 to-indigo-50/40 dark:from-[#111e3b] dark:to-[#172554]/40 border border-blue-100/80 dark:border-blue-900/60 shadow-sm flex items-center gap-6"
                 >
-                  <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-blue-700 to-indigo-600 bg-clip-text text-transparent">
+                  <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-blue-700 to-indigo-600 dark:from-blue-400 dark:to-indigo-300 bg-clip-text text-transparent">
                     35+
                   </div>
                   <div>
-                    <div className="text-base font-bold text-slate-900">Successful Projects</div>
-                    <div className="text-xs text-slate-500">Delivered with high reliability & quality</div>
+                    <div className="text-base font-bold text-slate-900 dark:text-white">Successful Projects</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Delivered with high reliability & quality</div>
                   </div>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
-                  className="p-7 rounded-3xl bg-gradient-to-br from-cyan-50/80 to-blue-50/40 border border-cyan-100/80 shadow-sm flex items-center gap-6"
+                  className="p-7 rounded-3xl bg-gradient-to-br from-cyan-50/80 to-blue-50/40 dark:from-[#0d233a] dark:to-[#0e3b5e]/40 border border-cyan-100/80 dark:border-cyan-900/60 shadow-sm flex items-center gap-6"
                 >
-                  <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                  <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
                     30+
                   </div>
                   <div>
-                    <div className="text-base font-bold text-slate-900">Trusted Clients</div>
-                    <div className="text-xs text-slate-500">Across diverse domestic & global sectors</div>
+                    <div className="text-base font-bold text-slate-900 dark:text-white">Trusted Clients</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Across diverse domestic & global sectors</div>
                   </div>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
-                  className="p-7 rounded-3xl bg-gradient-to-br from-amber-50/80 to-orange-50/40 border border-amber-100/80 shadow-sm flex items-center gap-6"
+                  className="p-7 rounded-3xl bg-gradient-to-br from-amber-50/80 to-orange-50/40 dark:from-[#2e230e] dark:to-[#451a03]/40 border border-amber-100/80 dark:border-amber-900/60 shadow-sm flex items-center gap-6"
                 >
-                  <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                  <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
                     2+
                   </div>
                   <div>
-                    <div className="text-base font-bold text-slate-900">Years of Expertise</div>
-                    <div className="text-xs text-slate-500">Continuous innovation & industry leadership</div>
+                    <div className="text-base font-bold text-slate-900 dark:text-white">Years of Expertise</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Continuous innovation & industry leadership</div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -697,7 +705,7 @@ export default function Home() {
         {/* ========================================================================= */}
         {/* SECTION: OUR CORE SERVICES (Full Natural Visibility with Staggered Scroll Animation) */}
         {/* ========================================================================= */}
-        <section className="py-24 sm:py-28 bg-gradient-to-b from-[#f8faff] via-white to-[#edf3fc] border-t border-slate-100 relative overflow-hidden">
+        <section className="py-24 sm:py-28 bg-gradient-to-b from-[#f8faff] via-white to-[#edf3fc] dark:from-[#090e1a] dark:via-[#0c1427] dark:to-[#090e1a] border-t border-slate-100 dark:border-slate-800/60 relative overflow-hidden">
           <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 pb-8 sm:pb-12">
             <motion.div
               initial={{ opacity: 0, y: 35 }}
@@ -711,9 +719,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] uppercase shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm"
               >
-                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
                 <span>WHAT WE OFFER</span>
               </motion.div>
 
@@ -732,7 +740,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.7 }}
-                className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto"
+                className="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-2xl mx-auto"
               >
                 Comprehensive end-to-end technology and business solutions designed to accelerate your competitive edge.
               </motion.p>
@@ -784,24 +792,24 @@ export default function Home() {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.6, delay: idx * 0.09, ease: "easeOut" }}
                   whileHover={{ y: -8, scale: 1.01 }}
-                  className="group relative bg-white rounded-3xl p-8 sm:p-9 border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(0,82,204,0.12)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  className="group relative bg-white dark:bg-[#0c1427] rounded-3xl p-8 sm:p-9 border border-slate-200/80 dark:border-slate-800 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_16px_40px_rgba(0,82,204,0.12)] dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.7)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
                 >
                   <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl ${service.gradient} rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity`}></div>
 
                   <div className="relative z-10">
-                    <div className="text-4xl mb-6 bg-slate-50 w-16 h-16 rounded-2xl border border-slate-100 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-50 transition-all duration-300 shadow-sm">
+                    <div className="text-4xl mb-6 bg-slate-50 dark:bg-slate-800/80 w-16 h-16 rounded-2xl border border-slate-100 dark:border-slate-700/80 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-50 dark:group-hover:bg-blue-950/60 transition-all duration-300 shadow-sm">
                       {service.icon}
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-3">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                       {service.desc}
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-slate-100/80 relative z-10 flex items-center justify-between">
-                    <span className="text-xs font-bold text-blue-600 uppercase tracking-wider group-hover:translate-x-1 transition-transform flex items-center gap-1.5">
+                  <div className="pt-6 mt-6 border-t border-slate-100/80 dark:border-slate-800/80 relative z-10 flex items-center justify-between">
+                    <span className="text-xs font-bold text-blue-600 dark:text-sky-400 uppercase tracking-wider group-hover:translate-x-1 transition-transform flex items-center gap-1.5">
                       Explore Solution <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
@@ -815,7 +823,7 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* SECTION: OUR SOLUTIONS (Opens as a separate distinct elevated sheet layer) */}
       {/* ========================================================================= */}
-      <div className="relative z-20 -mt-10 sm:-mt-14 lg:-mt-16 bg-white rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(15,23,42,0.22)] border-t border-slate-100/90">
+      <div className="relative z-20 -mt-10 sm:-mt-14 lg:-mt-16 bg-white dark:bg-[#090e1a] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(15,23,42,0.22)] dark:shadow-[0_-25px_60px_rgba(0,0,0,0.85)] border-t border-slate-100/90 dark:border-slate-800/80">
         <section
           id="solutions"
           className="py-24 sm:py-32 overflow-hidden rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px]"
@@ -834,9 +842,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] uppercase shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm"
               >
-                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
                 <span>OUR SOLUTIONS</span>
               </motion.div>
 
@@ -855,7 +863,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.7 }}
-                className="text-slate-500 text-sm sm:text-base max-w-xl"
+                className="text-slate-500 dark:text-slate-400 text-sm sm:text-base max-w-xl"
               >
                 Architected for high reliability, cybersecurity resilience, and agile business modernization.
               </motion.p>
@@ -873,7 +881,7 @@ export default function Home() {
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.6, delay: idx * 0.08, ease: "easeOut" }}
                     whileHover={{ y: -6, scale: 1.01 }}
-                    className={`group relative rounded-3xl bg-slate-50/70 border border-slate-100/80 p-8 shadow-sm hover:shadow-2xl hover:bg-white transition-all duration-300 flex flex-col justify-between overflow-hidden ${item.spanCol}`}
+                    className={`group relative rounded-3xl bg-slate-50/70 dark:bg-[#0f172a]/70 border border-slate-100/80 dark:border-slate-800/80 p-8 shadow-sm hover:shadow-2xl hover:bg-white dark:hover:bg-[#111c38] transition-all duration-300 flex flex-col justify-between overflow-hidden ${item.spanCol}`}
                   >
                     {/* Subtle top-right gradient glow */}
                     <div
@@ -882,20 +890,20 @@ export default function Home() {
 
                     <div>
                       <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 rounded-2xl bg-blue-50/80 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <div className="w-12 h-12 rounded-2xl bg-blue-50/80 dark:bg-blue-950/80 border border-blue-100 dark:border-blue-800 flex items-center justify-center text-blue-600 dark:text-sky-400 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
                           <Icon className="w-6 h-6 stroke-[1.8]" />
                         </div>
                         <div>
-                          <span className="text-[11px] font-bold text-blue-600 tracking-wider uppercase block">
+                          <span className="text-[11px] font-bold text-blue-600 dark:text-sky-400 tracking-wider uppercase block">
                             {item.tag}
                           </span>
-                          <h3 className="text-xl sm:text-2xl font-bold text-[#0a192f] group-hover:text-[#0052cc] transition-colors">
+                          <h3 className="text-xl sm:text-2xl font-bold text-[#0a192f] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
                             {item.title}
                           </h3>
                         </div>
                       </div>
 
-                      <p className="text-slate-500 text-sm sm:text-base leading-relaxed mt-2 max-w-lg">
+                      <p className="text-slate-500 dark:text-slate-300 text-sm sm:text-base leading-relaxed mt-2 max-w-lg">
                         {item.sub}
                       </p>
                     </div>
@@ -910,7 +918,7 @@ export default function Home() {
         </section>
 
         {/* SECTION: CASE STUDIES (Unmatched Technical and Industry Expertise) */}
-        <section id="case-studies" className="py-24 bg-white border-t border-slate-100">
+        <section id="case-studies" className="py-24 bg-white dark:bg-[#070c18] border-t border-slate-100 dark:border-slate-800/60">
           <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             {/* Header */}
             <motion.div
@@ -921,8 +929,8 @@ export default function Home() {
               className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
             >
               <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] uppercase shadow-sm">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm">
+                  <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
                   <span>CASE STUDIES</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold heading-black-blue-gradient">
@@ -936,7 +944,7 @@ export default function Home() {
                   onClick={() =>
                     setCurrentCaseStudy((prev) => (prev > 0 ? prev - 1 : caseStudies.length - 1))
                   }
-                  className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all shadow-sm active:scale-95"
+                  className="w-12 h-12 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all shadow-sm active:scale-95"
                   aria-label="Previous Case Study"
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -945,7 +953,7 @@ export default function Home() {
                   onClick={() =>
                     setCurrentCaseStudy((prev) => (prev < caseStudies.length - 1 ? prev + 1 : 0))
                   }
-                  className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all shadow-sm active:scale-95"
+                  className="w-12 h-12 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all shadow-sm active:scale-95"
                   aria-label="Next Case Study"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -959,24 +967,24 @@ export default function Home() {
                 {[...caseStudies, ...caseStudies].map((study, idx) => (
                   <div
                     key={`${study.title}-${idx}`}
-                    className="w-[320px] sm:w-[480px] md:w-[560px] flex-shrink-0 group rounded-3xl bg-slate-50/95 border border-slate-200/80 p-6 sm:p-7 md:p-8 flex flex-col justify-between hover:bg-white hover:shadow-2xl hover:border-blue-300 transition-all duration-300 shadow-sm"
+                    className="w-[320px] sm:w-[480px] md:w-[560px] flex-shrink-0 group rounded-3xl bg-slate-50/95 dark:bg-[#0c1427]/95 border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-7 md:p-8 flex flex-col justify-between hover:bg-white dark:hover:bg-[#111c38] hover:shadow-2xl hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 shadow-sm"
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-center">
                       <div className="sm:col-span-7 space-y-3 sm:space-y-4">
-                        <span className="inline-block text-xs font-bold text-blue-600 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full uppercase tracking-wider">
+                        <span className="inline-block text-xs font-bold text-blue-600 dark:text-sky-300 bg-blue-50 dark:bg-blue-950/80 border border-blue-100 dark:border-blue-900/60 px-3 py-1 rounded-full uppercase tracking-wider">
                           {study.category}
                         </span>
-                        <h4 className="text-base sm:text-lg font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors line-clamp-2">
+                        <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors line-clamp-2">
                           {study.title}
                         </h4>
-                        <p className="text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-3">
+                        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-300 leading-relaxed line-clamp-3">
                           {study.desc}
                         </p>
 
                         <div className="pt-2">
                           <a
                             href="#contact"
-                            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#172947] hover:bg-blue-600 text-white text-xs font-semibold uppercase tracking-wider transition-all shadow-sm group-hover:shadow"
+                            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#172947] dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-semibold uppercase tracking-wider transition-all shadow-sm group-hover:shadow"
                           >
                             Read more
                             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -984,7 +992,7 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="sm:col-span-5 relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-slate-100 bg-slate-100">
+                      <div className="sm:col-span-5 relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 bg-slate-100 dark:bg-slate-800">
                         <img
                           src={study.image}
                           alt={study.title}
@@ -1007,14 +1015,14 @@ export default function Home() {
                     className={`h-2.5 rounded-full transition-all duration-300 ${
                       currentCaseStudy === i
                         ? "w-8 bg-blue-600 shadow-sm"
-                        : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                        : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400"
                     }`}
                     aria-label={`Go to case study ${i + 1}`}
                   />
                 ))}
               </div>
 
-              <div className="w-full sm:w-64 bg-slate-100 h-1.5 rounded-full overflow-hidden">
+              <div className="w-full sm:w-64 bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
                 <div
                   className="bg-blue-600 h-full transition-all duration-500 rounded-full"
                   style={{
@@ -1027,7 +1035,7 @@ export default function Home() {
         </section>
 
         {/* SECTION: INDUSTRIES WE SERVE (Expertise You Can Trust Across Critical Sectors) */}
-        <section id="industries" className="py-24 bg-slate-50/60 border-t border-slate-200/50">
+        <section id="industries" className="py-24 bg-slate-50/60 dark:bg-[#090e1a] border-t border-slate-200/50 dark:border-slate-800/60">
           <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <motion.div
               initial={{ opacity: 0, y: 35 }}
@@ -1036,8 +1044,8 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="mb-14 space-y-3"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] uppercase shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
                 <span>INDUSTRIES WE SERVE</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold heading-black-blue-gradient">
@@ -1047,14 +1055,14 @@ export default function Home() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Industry Selector List */}
-              <div className="lg:col-span-4 bg-white rounded-3xl p-3 shadow-sm border border-slate-200/80 space-y-1">
+              <div className="lg:col-span-4 bg-white dark:bg-[#0c1427] rounded-3xl p-3 shadow-sm border border-slate-200/80 dark:border-slate-800 space-y-1">
                 {industries.map((ind, idx) => (
                   <button
                     key={ind.name}
                     onClick={() => setActiveIndustry(idx)}
                     className={`w-full text-left px-5 py-3.5 rounded-2xl font-semibold text-sm transition-all flex items-center justify-between ${activeIndustry === idx
                       ? "bg-gradient-to-r from-[#013b9a] to-[#3866f1] text-white shadow-md"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                      : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-white"
                       }`}
                   >
                     <span>{ind.name}</span>
@@ -1064,7 +1072,7 @@ export default function Home() {
               </div>
 
               {/* Active Industry Showcase Card */}
-              <div className="lg:col-span-8 bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-slate-200/80 overflow-hidden">
+              <div className="lg:col-span-8 bg-white dark:bg-[#0c1427] rounded-3xl p-8 sm:p-10 shadow-sm border border-slate-200/80 dark:border-slate-800 overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={industries[activeIndustry].name}
@@ -1075,20 +1083,20 @@ export default function Home() {
                     className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
                   >
                     <div className="md:col-span-7 space-y-5">
-                      <span className="text-xs font-bold text-blue-600 bg-blue-50 px-3.5 py-1.5 rounded-full uppercase">
+                      <span className="text-xs font-bold text-blue-600 dark:text-sky-300 bg-blue-50 dark:bg-blue-950/80 px-3.5 py-1.5 rounded-full uppercase">
                         {industries[activeIndustry].name}
                       </span>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-snug">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug">
                         {industries[activeIndustry].title}
                       </h3>
-                      <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
                         {industries[activeIndustry].desc}
                       </p>
 
                       <div className="pt-3">
                         <a
                           href="#contact"
-                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#172947] hover:bg-blue-600 text-white text-xs font-semibold uppercase tracking-wider transition-colors"
+                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#172947] dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-semibold uppercase tracking-wider transition-colors"
                         >
                           Read more
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -1097,7 +1105,7 @@ export default function Home() {
                     </div>
 
                     <div className="md:col-span-5">
-                      <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                      <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800">
                         <img
                           src={industries[activeIndustry].image}
                           alt={industries[activeIndustry].title}
@@ -1177,7 +1185,7 @@ export default function Home() {
         {/* ========================================================================= */}
         {/* SECTION: CAREER ACCELERATION PROGRAMS (With Staggered Cards Reveal) */}
         {/* ========================================================================= */}
-        <section className="py-24 bg-white border-t border-slate-100 overflow-hidden">
+        <section className="py-24 bg-white dark:bg-[#070c18] border-t border-slate-100 dark:border-slate-800/60 overflow-hidden">
           <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <motion.div
               initial={{ opacity: 0, y: 25 }}
@@ -1186,13 +1194,13 @@ export default function Home() {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="max-w-3xl mb-16"
             >
-              <span className="text-xs font-bold tracking-widest text-[#0052cc] uppercase block mb-3">
+              <span className="text-xs font-bold tracking-widest text-[#0052cc] dark:text-sky-300 uppercase block mb-3">
                 CAREER ACCELERATION PROGRAMS
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight mb-4">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight mb-4">
                 Industry-Focused Career Programs
               </h2>
-              <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
                 Courses, internships, workshops, bootcamps, and career programs designed to prepare students and professionals with practical skills and real-world experience.
               </p>
             </motion.div>
@@ -1204,25 +1212,25 @@ export default function Home() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
                 whileHover={{ y: -6 }}
-                className="p-8 rounded-3xl bg-slate-50/80 border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="p-8 rounded-3xl bg-slate-50/80 dark:bg-[#0c1427]/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl dark:hover:bg-[#111c38] transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="text-sm font-black text-blue-600 mb-4 bg-blue-100/80 w-10 h-10 rounded-xl flex items-center justify-center">01</div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">Technical Courses</h3>
-                  <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+                  <div className="text-sm font-black text-blue-600 dark:text-sky-300 mb-4 bg-blue-100/80 dark:bg-blue-950/80 w-10 h-10 rounded-xl flex items-center justify-center">01</div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Technical Courses</h3>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
                     Advanced technology training programs with practical sessions and project-based learning.
                   </p>
                   <ul className="space-y-2.5">
                     {["AWS DevOps", "AI & ML", "Python Full Stack", "Java Full Stack"].map((c) => (
-                      <li key={c} className="flex items-center gap-2 text-sm text-slate-700 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                      <li key={c} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 font-medium">
+                        <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-sky-400" />
                         {c}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="pt-8">
-                  <Link href="/services/courses" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700">
+                  <Link href="/services/courses" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 dark:text-sky-400 hover:text-blue-700 dark:hover:text-sky-300">
                     Explore Technical Courses <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -1234,25 +1242,25 @@ export default function Home() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 whileHover={{ y: -6 }}
-                className="p-8 rounded-3xl bg-slate-50/80 border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="p-8 rounded-3xl bg-slate-50/80 dark:bg-[#0c1427]/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl dark:hover:bg-[#111c38] transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="text-sm font-black text-indigo-600 mb-4 bg-indigo-100/80 w-10 h-10 rounded-xl flex items-center justify-center">02</div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">Professional Programs</h3>
-                  <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+                  <div className="text-sm font-black text-indigo-600 dark:text-indigo-300 mb-4 bg-indigo-100/80 dark:bg-indigo-950/80 w-10 h-10 rounded-xl flex items-center justify-center">02</div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Professional Programs</h3>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
                     Interactive learning experiences focused on innovation, teamwork, and career readiness.
                   </p>
                   <ul className="space-y-2.5">
                     {["Campus Recruitment Training", "Hackathons", "Bootcamps", "Workshops"].map((c) => (
-                      <li key={c} className="flex items-center gap-2 text-sm text-slate-700 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-indigo-600" />
+                      <li key={c} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 font-medium">
+                        <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                         {c}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="pt-8">
-                  <Link href="/services" className="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-700">
+                  <Link href="/services" className="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
                     View Programs <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -1264,25 +1272,25 @@ export default function Home() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                 whileHover={{ y: -6 }}
-                className="p-8 rounded-3xl bg-slate-50/80 border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="p-8 rounded-3xl bg-slate-50/80 dark:bg-[#0c1427]/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl dark:hover:bg-[#111c38] transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="text-sm font-black text-cyan-600 mb-4 bg-cyan-100/80 w-10 h-10 rounded-xl flex items-center justify-center">03</div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">Internship Opportunities</h3>
-                  <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+                  <div className="text-sm font-black text-cyan-600 dark:text-cyan-300 mb-4 bg-cyan-100/80 dark:bg-cyan-950/80 w-10 h-10 rounded-xl flex items-center justify-center">03</div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Internship Opportunities</h3>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
                     Gain industry exposure through live projects, mentorship, and hands-on practical experience.
                   </p>
                   <ul className="space-y-2.5">
                     {["Web Development", "Human Resources", "Digital Marketing", "Business Development Executive"].map((c) => (
-                      <li key={c} className="flex items-center gap-2 text-sm text-slate-700 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-600" />
+                      <li key={c} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 font-medium">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
                         {c}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="pt-8">
-                  <Link href="/internship" className="inline-flex items-center gap-2 text-sm font-bold text-cyan-600 hover:text-cyan-700">
+                  <Link href="/internship" className="inline-flex items-center gap-2 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300">
                     Apply for Internship <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>

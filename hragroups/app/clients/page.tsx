@@ -169,13 +169,13 @@ export default function ClientsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-[#172947] font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
+    <div className="min-h-screen bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882] transition-colors duration-300">
       <Navbar />
 
       {/* HERO BANNER */}
-      <section className="relative bg-[#384968] min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] pt-24 pb-28 sm:pt-32 sm:pb-36 lg:pt-36 lg:pb-40 flex items-center justify-center text-center overflow-hidden border-b border-slate-700/50">
+      <section className="relative bg-[#384968] dark:bg-[#050b17] min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] pt-24 pb-28 sm:pt-32 sm:pb-36 lg:pt-36 lg:pb-40 flex items-center justify-center text-center overflow-hidden border-b border-slate-700/50 dark:border-slate-800">
         {/* Subtle radial glow & background lighting */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.18),transparent_70%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.18),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.25),transparent_70%)] pointer-events-none" />
 
         <motion.div
           style={{ y: heroTranslateY }}
@@ -214,7 +214,7 @@ export default function ClientsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.8 }}
-              className="text-[16px] sm:text-[18px] lg:text-[19px] text-slate-200 font-normal leading-[1.7] max-w-3xl mx-auto"
+              className="text-[16px] sm:text-[18px] lg:text-[19px] text-slate-200 dark:text-slate-300 font-normal leading-[1.7] max-w-3xl mx-auto"
             >
               Our approach is grounded in clarity, accountability, and measurable outcomes, ensuring every engagement delivers sustained value.
             </motion.p>
@@ -239,33 +239,33 @@ export default function ClientsPage() {
       </section>
 
       {/* INFINITE LOGO MARQUEE SLIDER - ENLARGED & AUTO-SCROLLING */}
-      <section className="py-14 sm:py-16 bg-slate-50/80 border-b border-slate-200/80 overflow-hidden relative">
+      <section className="py-14 sm:py-16 bg-slate-50/80 dark:bg-[#090e1a] border-b border-slate-200/80 dark:border-slate-800/80 overflow-hidden relative transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 mb-8 text-center space-y-2">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-[0.22em] text-[#0052cc]">
-            <Building2 className="w-3.5 h-3.5 text-[#0052cc]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-[0.22em] text-[#0052cc] dark:text-sky-300">
+            <Building2 className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
             <span>Organizations Trusting HRA Groups</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#001f4d] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
             Valued Industry Partners
           </h2>
         </div>
 
         {/* Gradient edge masks for smooth fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-44 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-44 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-44 bg-gradient-to-r from-slate-50 dark:from-[#090e1a] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-44 bg-gradient-to-l from-slate-50 dark:from-[#090e1a] to-transparent z-10 pointer-events-none" />
 
         <div className="relative w-full overflow-x-hidden py-2">
           <div className="animate-marquee flex items-center gap-8 sm:gap-10 whitespace-nowrap">
             {[...clientLogos, ...clientLogos, ...clientLogos].map((client, idx) => (
               <div
                 key={idx}
-                className="h-28 sm:h-36 w-56 sm:w-72 bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-7 flex items-center justify-center shrink-0 shadow-sm hover:shadow-xl hover:border-blue-400 hover:scale-105 transition-all duration-300 group cursor-pointer"
+                className="h-28 sm:h-36 w-56 sm:w-72 bg-white dark:bg-[#0c1427] rounded-3xl border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 flex items-center justify-center shrink-0 shadow-sm hover:shadow-xl hover:border-blue-400 dark:hover:border-blue-500 hover:scale-105 transition-all duration-300 group cursor-pointer"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={client.logo}
                   alt={client.name}
-                  className="max-h-full max-w-full object-contain filter group-hover:scale-110 transition-transform duration-300"
+                  className="max-h-full max-w-full object-contain filter group-hover:scale-110 transition-transform duration-300 rounded-lg dark:bg-white/95 dark:p-1.5"
                   loading="lazy"
                 />
               </div>
@@ -275,7 +275,7 @@ export default function ClientsPage() {
       </section>
 
       {/* ORGANIZATIONS WE WORK WITH - GRID SECTION */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-white">
+      <section className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-[#070c18] transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
           
           <motion.div
@@ -285,14 +285,14 @@ export default function ClientsPage() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl space-y-3"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-              <Building2 className="w-3.5 h-3.5 text-[#0052cc]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+              <Building2 className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
               <span>Client Portfolio</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
               Organizations We Work With
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
               We collaborate with a diverse portfolio of organizations ranging from emerging enterprises to established industry leaders. Each partnership reflects our commitment to quality execution and consistent delivery.
             </p>
           </motion.div>
@@ -307,19 +307,19 @@ export default function ClientsPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.04 }}
                 whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.2 } }}
-                className="group rounded-3xl bg-[#f8fafc] border border-slate-200/90 hover:border-blue-400 p-6 sm:p-8 flex flex-col items-center justify-center text-center gap-4 transition-all duration-300 hover:shadow-[0_16px_36px_rgba(0,82,204,0.08)] cursor-pointer"
+                className="group rounded-3xl bg-[#f8fafc] dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 p-6 sm:p-8 flex flex-col items-center justify-center text-center gap-4 transition-all duration-300 hover:shadow-[0_16px_36px_rgba(0,82,204,0.08)] cursor-pointer"
               >
                 <div className="h-24 w-full flex items-center justify-center p-2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300"
+                    className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300 rounded-lg dark:bg-white/95 dark:p-1.5"
                     loading="lazy"
                   />
                 </div>
-                <div className="pt-2 border-t border-slate-200/60 w-full">
-                  <h3 className="text-xs sm:text-sm font-bold text-[#001f4d] group-hover:text-[#0052cc] transition-colors truncate">
+                <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800 w-full">
+                  <h3 className="text-xs sm:text-sm font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors truncate">
                     {client.name}
                   </h3>
                 </div>
@@ -330,7 +330,7 @@ export default function ClientsPage() {
       </section>
 
       {/* RELATIONSHIPS PROMISE STRIP */}
-      <section className="py-16 sm:py-20 bg-[#001738] text-white relative overflow-hidden">
+      <section className="py-16 sm:py-20 bg-[#001738] dark:bg-[#050b17] text-white relative overflow-hidden border-t dark:border-slate-800">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.15),transparent_70%)] pointer-events-none" />
 
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10">
@@ -359,7 +359,7 @@ export default function ClientsPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.15 }}
-              className="lg:col-span-6 space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed"
+              className="lg:col-span-6 space-y-4 text-slate-300 dark:text-slate-400 text-sm sm:text-base leading-relaxed"
             >
               <p>
                 At HRA Groups, our client relationships are built on trust, transparency, and consistent delivery. We invest time in understanding organizational challenges, industry context, and long-term objectives.
@@ -374,7 +374,7 @@ export default function ClientsPage() {
       </section>
 
       {/* CLIENT COLLABORATIONS SECTION */}
-      <section id="partnerships" className="py-20 sm:py-24 bg-white border-b border-slate-200/80">
+      <section id="partnerships" className="py-20 sm:py-24 bg-white dark:bg-[#090e1a] border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
           
           <motion.div
@@ -385,15 +385,15 @@ export default function ClientsPage() {
             className="flex flex-col md:flex-row md:items-end justify-between gap-6"
           >
             <div className="space-y-3 max-w-xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-                <Layers className="w-3.5 h-3.5 text-[#0052cc]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+                <Layers className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
                 <span>Strategic Engagements</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
                 Client Collaborations
               </h2>
             </div>
-            <p className="text-sm sm:text-base text-slate-600 max-w-md leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
               We deliver technology, recruitment, digital marketing, and business solutions through trusted partnerships that drive innovation and sustainable growth.
             </p>
           </motion.div>
@@ -408,31 +408,31 @@ export default function ClientsPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: idx * 0.05 }}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="group rounded-3xl bg-[#f8fafc] border border-slate-200/90 hover:border-blue-400 p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_45px_rgba(0,82,204,0.08)] cursor-pointer relative overflow-hidden"
+                className="group rounded-3xl bg-[#f8fafc] dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_45px_rgba(0,82,204,0.08)] cursor-pointer relative overflow-hidden"
               >
                 {/* Top glow accent */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#0052cc] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-100/80 text-xs font-bold uppercase tracking-wider text-[#0052cc]">
+                    <span className="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100/80 dark:border-blue-800/60 text-xs font-bold uppercase tracking-wider text-[#0052cc] dark:text-sky-300">
                       {collab.category}
                     </span>
-                    <div className="w-10 h-10 rounded-2xl bg-white border border-slate-200/80 flex items-center justify-center text-slate-500 group-hover:bg-[#0052cc] group-hover:text-white transition-colors shadow-xs">
+                    <div className="w-10 h-10 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-300 group-hover:bg-[#0052cc] group-hover:text-white transition-colors shadow-xs">
                       {collab.icon}
                     </div>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] group-hover:text-[#0052cc] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
                     {collab.name}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {collab.desc}
                   </p>
                 </div>
 
-                <div className="pt-5 mt-5 border-t border-slate-200/60 flex items-center justify-between text-xs font-bold text-[#0052cc]">
+                <div className="pt-5 mt-5 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-[#0052cc] dark:text-sky-400">
                   <span>Partner Engagement</span>
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </div>
@@ -444,7 +444,7 @@ export default function ClientsPage() {
       </section>
 
       {/* CORE VALUE & SERVICES SECTION */}
-      <section className="py-20 sm:py-24 bg-[#f8fafc]">
+      <section className="py-20 sm:py-24 bg-[#f8fafc] dark:bg-[#070c18] transition-colors duration-300">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-14">
           
           <motion.div
@@ -454,14 +454,14 @@ export default function ClientsPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto space-y-3"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0052cc]">
-              <Sparkles className="w-3.5 h-3.5 text-[#0052cc]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
+              <Sparkles className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
               <span>Core Value Offerings</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
               Comprehensive Partner Capabilities
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               Empowering organizations with high-impact talent enablement, operations excellence, and strategic consulting.
             </p>
           </motion.div>
@@ -475,23 +475,23 @@ export default function ClientsPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 hover:border-blue-400 hover:shadow-[0_20px_45px_rgba(0,82,204,0.08)] transition-all duration-300 flex flex-col justify-between group"
+                className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-[0_20px_45px_rgba(0,82,204,0.08)] transition-all duration-300 flex flex-col justify-between group"
               >
                 <div className="space-y-5">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center group-hover:bg-[#0052cc] group-hover:text-white transition-colors duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900/60 flex items-center justify-center group-hover:bg-[#0052cc] group-hover:text-white transition-colors duration-300">
                     {React.cloneElement(pillar.icon, {
-                      className: "w-7 h-7 text-[#0052cc] group-hover:text-white transition-colors",
+                      className: "w-7 h-7 text-[#0052cc] dark:text-sky-400 group-hover:text-white transition-colors",
                     })}
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] group-hover:text-[#0052cc] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {pillar.desc}
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-[#0052cc]">
+                <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2 text-xs font-bold text-[#0052cc] dark:text-sky-400">
                   <span>Discover Solutions</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -503,7 +503,7 @@ export default function ClientsPage() {
       </section>
 
       {/* CTA SECTION: PARTNER WITH US */}
-      <section className="py-16 sm:py-20 bg-[#001738] text-white relative overflow-hidden">
+      <section className="py-16 sm:py-20 bg-[#001738] dark:bg-[#050b17] text-white relative overflow-hidden border-t dark:border-slate-800">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.15),transparent_70%)] pointer-events-none" />
 
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10 text-center space-y-6">
@@ -520,7 +520,7 @@ export default function ClientsPage() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Ready to Accelerate Your Business?
             </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-300 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
               Partner with HRA Groups for cutting-edge software development, talent acquisition, and digital transformation.
             </p>
 

@@ -26,6 +26,8 @@ export const metadata: Metadata = {
     "We are a future-driven organization delivering premium technology solutions, workforce management, branding excellence, and corporate services designed to empower businesses in the digital era.",
 };
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: {
@@ -36,8 +38,10 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakarta.variable} ${inter.variable} ${playfair.variable} antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-white text-[#172947] selection:bg-[#0052cc]/20 selection:text-[#003882]">
-        {children}
+      <body className="min-h-full flex flex-col font-sans bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 selection:bg-[#0052cc]/20 selection:text-[#003882] transition-colors duration-300">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

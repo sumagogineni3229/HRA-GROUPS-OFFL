@@ -260,18 +260,29 @@ export default function CoursesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#172947] font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
+    <div className="min-h-screen bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
       <Navbar />
 
       {/* EXACT 1:1 SDI ENTERPRISE DATA & AI HERO DESIGN WITH INVISIBLE IMAGE BACKGROUND */}
-      <section className="sticky top-0 z-0 bg-white min-h-[500px] sm:min-h-[560px] lg:min-h-[620px] pt-24 pb-36 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-44 flex items-center overflow-hidden">
+      <section className="sticky top-0 z-0 bg-white dark:bg-[#050b17] min-h-[500px] sm:min-h-[560px] lg:min-h-[620px] pt-24 pb-36 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-44 flex items-center overflow-hidden transition-colors duration-300">
         
-        {/* Transparent 3D AI Graphic without any background artifact or line */}
+        {/* Dark Mode Background Radial Ambient Glow */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 dark:bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Dedicated Dark Mode & Light Mode 3D Tech Graphic */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-[55%] xl:w-[50%] pointer-events-none z-0 flex items-center justify-end overflow-hidden">
+          {/* Light Theme Graphic */}
           <img
-            src="/ai-hero-clean.webp"
+            src="/courses-hero-transparent.png"
             alt="Enterprise Data and AI - HRA Groups"
-            className="w-full max-w-[620px] xl:max-w-[720px] 2xl:max-w-[800px] h-auto object-contain transform translate-x-4 lg:translate-x-10 select-none pointer-events-none"
+            className="w-full max-w-[620px] xl:max-w-[720px] 2xl:max-w-[800px] h-auto object-contain transform translate-x-4 lg:translate-x-10 select-none pointer-events-none drop-shadow-[0_10px_35px_rgba(0,82,204,0.15)] block dark:hidden"
+            loading="eager"
+          />
+          {/* Dark Theme Futuristic AI & Cloud DevOps Graphic */}
+          <img
+            src="/courses-dark-hero-ai.png"
+            alt="Enterprise AI, Cloud DevOps and Full Stack - HRA Groups"
+            className="w-full max-w-[620px] xl:max-w-[700px] 2xl:max-w-[760px] h-auto object-contain transform translate-x-4 lg:translate-x-10 select-none pointer-events-none drop-shadow-[0_20px_50px_rgba(0,180,255,0.35)] hidden dark:block"
             loading="eager"
           />
         </div>
@@ -282,20 +293,20 @@ export default function CoursesPage() {
         >
           <div className="max-w-2xl space-y-5 sm:space-y-6">
             {/* Category Pill / Subtitle */}
-            <div className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#0052cc] uppercase">
+            <div className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-400 uppercase">
               SKILL DEVELOPMENT • HANDS-ON TRAINING
             </div>
 
             {/* Heading */}
-            <h1 className="text-[32px] sm:text-[42px] md:text-[50px] lg:text-[56px] xl:text-[62px] font-bold tracking-[-0.03em] leading-[1.12] text-[#081528]">
+            <h1 className="text-[32px] sm:text-[42px] md:text-[50px] lg:text-[56px] xl:text-[62px] font-bold tracking-[-0.03em] leading-[1.12] text-[#081528] dark:text-white">
               Become Industry Ready in <br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-[#003882] via-[#0052cc] to-[#0284c7] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#003882] via-[#0052cc] to-[#0284c7] dark:from-sky-300 dark:via-blue-400 dark:to-indigo-300 bg-clip-text text-transparent">
                 AIML, AWS DevOps & Full Stack
               </span>
             </h1>
 
             {/* Subtext */}
-            <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-[#475569] font-normal leading-[1.65] max-w-xl">
+            <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-[#475569] dark:text-slate-300 font-normal leading-[1.65] max-w-xl">
               Transform your career with job-ready training programs designed by industry experts. HRA Groups provides real-time projects, mentorship, and placement support to help you succeed in tech careers.
             </p>
 
@@ -310,7 +321,7 @@ export default function CoursesPage() {
               </button>
               <a
                 href="#courses-list"
-                className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-white hover:bg-slate-50 border border-slate-300/90 text-[#0f172a] hover:text-[#0052cc] font-bold text-sm shadow-xs transition-all duration-300 hover:scale-[1.02]"
+                className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-white dark:bg-slate-900/80 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-300/90 dark:border-slate-700 text-[#0f172a] dark:text-slate-100 hover:text-[#0052cc] dark:hover:text-sky-400 font-bold text-sm shadow-xs transition-all duration-300 hover:scale-[1.02]"
               >
                 <span>Explore Courses</span>
               </a>
@@ -320,7 +331,7 @@ export default function CoursesPage() {
       </section>
 
       {/* OVERLAPPING SHEET SECTION */}
-      <div className="relative z-10 bg-[#f8fafc] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] overflow-hidden">
+      <div className="relative z-10 bg-[#f8fafc] dark:bg-[#090e1a] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] border-t border-slate-200/80 dark:border-slate-800/80 overflow-hidden shadow-[0_-25px_60px_rgba(0,18,48,0.3)]">
 
         {/* COURSES SECTION */}
         <section id="courses-list" className="py-16 sm:py-20 lg:py-24">
@@ -328,14 +339,14 @@ export default function CoursesPage() {
 
             {/* Section Header */}
             <div className="text-center max-w-3xl mx-auto space-y-4">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#0052cc] bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">
-                <GraduationCap className="w-4 h-4 text-[#0052cc]" />
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300 bg-blue-50 dark:bg-blue-950/60 px-4 py-1.5 rounded-full border border-blue-100 dark:border-blue-800/60">
+                <GraduationCap className="w-4 h-4 text-[#0052cc] dark:text-sky-400" />
                 <span>Specialized Industry Programs</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-slate-100 tracking-tight">
                 Master In-Demand Technologies
               </h2>
-              <p className="text-slate-600 text-base sm:text-lg">
+              <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg">
                 Practical, project-centric curriculum tailored for university students, career changers, and tech professionals looking to level up.
               </p>
             </div>
@@ -349,7 +360,7 @@ export default function CoursesPage() {
                 return (
                   <div
                     key={course.id}
-                    className="rounded-3xl bg-white border border-slate-200/90 hover:border-blue-300 p-8 sm:p-10 lg:p-12 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-all duration-300"
+                    className="rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800/80 hover:border-blue-300 dark:hover:border-blue-500/50 p-8 sm:p-10 lg:p-12 shadow-xl shadow-slate-200/50 dark:shadow-blue-950/20 hover:shadow-2xl transition-all duration-300"
                   >
                     <div
                       className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${isEven ? "lg:grid-flow-dense" : ""
@@ -395,27 +406,27 @@ export default function CoursesPage() {
                       {/* Course Details Content */}
                       <div className={`lg:col-span-6 space-y-6 ${isEven ? "lg:col-start-1" : ""}`}>
                         <div className="space-y-3">
-                          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0052cc] bg-blue-50 px-3 py-1 rounded-md">
+                          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0052cc] dark:text-sky-300 bg-blue-50 dark:bg-blue-950/60 px-3 py-1 rounded-md border border-blue-100/50 dark:border-blue-800/40">
                             {course.icon}
                             <span>{course.badge}</span>
                           </div>
-                          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#001f4d] leading-snug">
+                          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#001f4d] dark:text-slate-100 leading-snug">
                             {course.title}
                           </h3>
-                          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                             {course.description}
                           </p>
                         </div>
 
                         {/* Syllabus Checklist */}
                         <div className="space-y-2.5">
-                          <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                          <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-400">
                             Course Highlights & Syllabus
                           </h4>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                             {course.syllabus.map((item, i) => (
-                              <div key={i} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-slate-700">
-                                <CheckCircle2 className="w-4 h-4 text-[#0052cc] shrink-0 mt-0.5" />
+                              <div key={i} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-slate-700 dark:text-slate-300">
+                                <CheckCircle2 className="w-4 h-4 text-[#0052cc] dark:text-sky-400 shrink-0 mt-0.5" />
                                 <span>{item}</span>
                               </div>
                             ))}
@@ -432,9 +443,9 @@ export default function CoursesPage() {
                           </button>
                           <a
                             href="tel:9676272283"
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-all"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm transition-all"
                           >
-                            <Phone className="w-4 h-4 text-[#0052cc]" />
+                            <Phone className="w-4 h-4 text-[#0052cc] dark:text-sky-400" />
                             <span>Quick Call</span>
                           </a>
                         </div>
@@ -446,7 +457,7 @@ export default function CoursesPage() {
             </div>
 
             {/* TALK TO ADVISOR FORM SECTION */}
-            <div className="rounded-3xl bg-gradient-to-br from-[#001738] via-[#012768] to-[#001738] p-8 sm:p-12 lg:p-16 text-white shadow-2xl relative overflow-hidden">
+            <div className="rounded-3xl bg-gradient-to-br from-[#001738] via-[#012768] to-[#001738] dark:from-[#031c47] dark:via-[#012768] dark:to-[#02132b] p-8 sm:p-12 lg:p-16 text-white shadow-2xl relative overflow-hidden border border-blue-400/20 dark:border-blue-500/20">
               {/* Background Glow */}
               <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
 
@@ -475,24 +486,24 @@ export default function CoursesPage() {
 
                 {/* Advisor Right Form Box */}
                 <div className="lg:col-span-6">
-                  <div className="bg-white rounded-3xl p-8 sm:p-10 text-slate-800 shadow-2xl">
-                    <h4 className="text-2xl font-bold text-[#001f4d] mb-2">
+                  <div className="bg-white dark:bg-[#0c1427] rounded-3xl p-8 sm:p-10 text-slate-800 dark:text-slate-100 shadow-2xl border border-transparent dark:border-slate-800">
+                    <h4 className="text-2xl font-bold text-[#001f4d] dark:text-white mb-2">
                       Schedule a Callback
                     </h4>
-                    <p className="text-xs sm:text-sm text-slate-500 mb-6">
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6">
                       Fill out your details below and our team will get back to you shortly.
                     </p>
 
                     {advisorSubmitted ? (
-                      <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-2">
-                        <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-                        <h5 className="font-bold text-emerald-900 text-base">Inquiry Submitted!</h5>
-                        <p className="text-xs text-emerald-700">Your callback request has been received. Our team will contact you shortly.</p>
+                      <div className="p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-center space-y-2">
+                        <CheckCircle2 className="w-10 h-10 text-emerald-600 dark:text-emerald-400 mx-auto" />
+                        <h5 className="font-bold text-emerald-900 dark:text-emerald-200 text-base">Inquiry Submitted!</h5>
+                        <p className="text-xs text-emerald-700 dark:text-emerald-300">Your callback request has been received. Our team will contact you shortly.</p>
                       </div>
                     ) : (
                       <form onSubmit={handleAdvisorSubmit} className="space-y-4">
                         <div>
-                          <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
                             Full Name
                           </label>
                           <div className="relative">
@@ -502,14 +513,14 @@ export default function CoursesPage() {
                               value={advisorName}
                               onChange={(e) => setAdvisorName(e.target.value)}
                               placeholder="Enter your name"
-                              className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc] focus:border-transparent transition-all"
+                              className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0052cc] focus:border-transparent transition-all"
                             />
                             <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                           </div>
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
                             Email Address
                           </label>
                           <div className="relative">
@@ -519,14 +530,14 @@ export default function CoursesPage() {
                               value={advisorEmail}
                               onChange={(e) => setAdvisorEmail(e.target.value)}
                               placeholder="you@example.com"
-                              className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc] focus:border-transparent transition-all"
+                              className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0052cc] focus:border-transparent transition-all"
                             />
                             <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                           </div>
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
                             Phone / WhatsApp Number
                           </label>
                           <div className="relative">
@@ -536,20 +547,20 @@ export default function CoursesPage() {
                               value={advisorPhone}
                               onChange={(e) => setAdvisorPhone(e.target.value)}
                               placeholder="+91 96762 72283"
-                              className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc] focus:border-transparent transition-all"
+                              className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0052cc] focus:border-transparent transition-all"
                             />
                             <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                           </div>
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
                             Interested Specialization
                           </label>
                           <select
                             value={advisorCourse}
                             onChange={(e) => setAdvisorCourse(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc] focus:border-transparent transition-all cursor-pointer"
+                            className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0052cc] focus:border-transparent transition-all cursor-pointer"
                           >
                             <option value="AIML (AI & Machine Learning)">AIML (AI & Machine Learning)</option>
                             <option value="Python Full Stack Development">Python Full Stack Development</option>
@@ -585,71 +596,71 @@ export default function CoursesPage() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative border border-slate-200"
+              className="bg-white dark:bg-[#0c1427] rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative border border-slate-200 dark:border-slate-800"
             >
               <button
                 onClick={() => setModalOpen(false)}
-                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors"
+                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-500 hover:text-slate-800 dark:hover:text-white transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
 
               <div className="space-y-2 mb-6">
-                <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#0052cc] bg-blue-50 px-2.5 py-0.5 rounded-full">
-                  <Sparkles className="w-3 h-3 text-[#0052cc]" />
+                <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#0052cc] dark:text-sky-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-0.5 rounded-full">
+                  <Sparkles className="w-3 h-3 text-[#0052cc] dark:text-sky-400" />
                   <span>Quick Enrollment</span>
                 </div>
-                <h3 className="text-xl font-extrabold text-[#001f4d]">
+                <h3 className="text-xl font-extrabold text-[#001f4d] dark:text-white">
                   Register for Course
                 </h3>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Fill in your details below to register your seat with HRA Groups.
                 </p>
               </div>
 
               <form onSubmit={handleModalSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1">Full Name</label>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">Full Name</label>
                   <input
                     type="text"
                     required
                     value={modalName}
                     onChange={(e) => setModalName(e.target.value)}
                     placeholder="Your Name"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1">Email</label>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">Email</label>
                   <input
                     type="email"
                     required
                     value={modalEmail}
                     onChange={(e) => setModalEmail(e.target.value)}
                     placeholder="you@example.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1">Phone Number</label>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">Phone Number</label>
                   <input
                     type="tel"
                     required
                     value={modalPhone}
                     onChange={(e) => setModalPhone(e.target.value)}
                     placeholder="+91 96762 72283"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0052cc]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1">Course</label>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">Course</label>
                   <select
                     value={selectedCourseForModal}
                     onChange={(e) => setSelectedCourseForModal(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0052cc] cursor-pointer"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0052cc] cursor-pointer"
                   >
                     <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning (AIML)</option>
                     <option value="Python Full Stack Development">Python Full Stack Development</option>
@@ -668,7 +679,7 @@ export default function CoursesPage() {
                   <button
                     type="button"
                     onClick={() => setModalOpen(false)}
-                    className="px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+                    className="px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs sm:text-sm transition-colors cursor-pointer"
                   >
                     Cancel
                   </button>

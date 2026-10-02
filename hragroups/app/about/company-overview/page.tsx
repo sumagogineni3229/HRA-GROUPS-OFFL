@@ -108,22 +108,22 @@ export default function CompanyOverviewPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-[#172947] font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
+    <div className="min-h-screen bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
       {/* Global Navbar */}
       <Navbar />
 
       {/* HERO SECTION (Exact 1:1 Layout, Typography, and 3D Server/Laptop Image from the Reference Screenshot) */}
-      <section className="relative bg-white pt-6 pb-20 lg:pt-10 lg:pb-28 overflow-hidden border-b border-slate-100">
+      <section className="relative bg-white dark:bg-[#070c18] pt-6 pb-20 lg:pt-10 lg:pb-28 overflow-hidden border-b border-slate-100 dark:border-slate-800/60">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center min-h-[580px]">
             {/* Hero Left Content */}
             <div className="lg:col-span-6 xl:col-span-6 space-y-6 lg:space-y-8 z-10">
               {/* Pill Tag / Subtitle */}
-              <div className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] uppercase">
+              <div className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase">
                 <span>INNOVATE</span>
-                <span className="text-blue-300">•</span>
+                <span className="text-blue-300 dark:text-blue-600">•</span>
                 <span>TRANSFORM</span>
-                <span className="text-blue-300">•</span>
+                <span className="text-blue-300 dark:text-blue-600">•</span>
                 <span>GROW</span>
               </div>
 
@@ -133,7 +133,7 @@ export default function CompanyOverviewPage() {
               </h1>
 
               {/* Exact Description text */}
-              <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-[#5c6f84] font-normal leading-[1.65] max-w-[540px]">
+              <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-[#5c6f84] dark:text-slate-300 font-normal leading-[1.65] max-w-[540px]">
                 We are a future-driven organization delivering premium technology solutions, workforce management,
                 branding excellence, and corporate services designed to empower businesses in the digital era. Our
                 mission is to combine innovation, strategy, and execution to build scalable business success.
@@ -143,9 +143,9 @@ export default function CompanyOverviewPage() {
               <div className="pt-2">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-9 py-3.5 rounded-full bg-white border border-blue-200/90 shadow-[0_4px_24px_rgba(0,82,204,0.14)] hover:shadow-[0_8px_32px_rgba(0,82,204,0.22)] text-[#0052cc] hover:text-[#003882] font-semibold text-[15px] transition-all duration-300 hover:scale-[1.02] group"
+                  className="inline-flex items-center justify-center px-9 py-3.5 rounded-full bg-white dark:bg-[#0e172e] border border-blue-200/90 dark:border-blue-500/40 shadow-[0_4px_24px_rgba(0,82,204,0.14)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:shadow-[0_8px_32px_rgba(0,82,204,0.22)] text-[#0052cc] dark:text-sky-300 hover:text-[#003882] dark:hover:text-white font-semibold text-[15px] transition-all duration-300 hover:scale-[1.02] group"
                 >
-                  <span className="text-[#0052cc] group-hover:text-[#003882]">Talk to an Expert</span>
+                  <span className="text-[#0052cc] dark:text-sky-300 group-hover:text-[#003882] dark:group-hover:text-white">Talk to an Expert</span>
                 </Link>
               </div>
             </div>
@@ -154,9 +154,9 @@ export default function CompanyOverviewPage() {
             <div className="lg:col-span-6 xl:col-span-6 flex items-center justify-center lg:justify-end relative">
               <div className="relative w-full max-w-[640px] lg:max-w-[740px] xl:max-w-[820px]">
                 <img
-                  src="https://cdn.prod.website-files.com/685c045f09a3dab41aa0d71d/696e51ec501b766860e7df16_servicenow-hero-generic.webp"
+                  src="/company-overview-hero-transparent.png"
                   alt="HRA Groups 3D Digital Architecture & Systems"
-                  className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-none"
+                  className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-none dark:drop-shadow-[0_15px_45px_rgba(0,140,255,0.25)]"
                 />
               </div>
             </div>
@@ -165,11 +165,11 @@ export default function CompanyOverviewPage() {
       </section>
 
       {/* SECTION 2: THE 4 PILLARS (Clean Bento Grid matching Landing Page Solutions) */}
-      <section className="py-20 lg:py-24 bg-gradient-to-b from-white via-slate-50/50 to-white">
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-white via-slate-50/50 to-white dark:from-[#070c18] dark:via-[#090e1a] dark:to-[#070c18]">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           {/* Section Heading */}
           <div className="mb-14">
-            <span className="text-xs font-bold tracking-widest text-[#0052cc] uppercase block mb-3">
+            <span className="text-xs font-bold tracking-widest text-[#0052cc] dark:text-sky-300 uppercase block mb-3">
               CORE CAPABILITIES
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold heading-black-blue-gradient">
@@ -184,7 +184,7 @@ export default function CompanyOverviewPage() {
               return (
                 <div
                   key={pillar.id}
-                  className="group relative rounded-3xl bg-white border border-slate-200/80 p-8 sm:p-10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  className="group relative rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/80 dark:border-slate-800 p-8 sm:p-10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
                 >
                   {/* Subtle corner glow */}
                   <div
@@ -192,35 +192,35 @@ export default function CompanyOverviewPage() {
                   />
 
                   {/* Large clean numeral badge in background */}
-                  <span className="absolute top-6 right-8 text-5xl sm:text-6xl font-extrabold text-slate-100 select-none pointer-events-none group-hover:text-blue-50 transition-colors">
+                  <span className="absolute top-6 right-8 text-5xl sm:text-6xl font-extrabold text-slate-100 dark:text-slate-800/60 select-none pointer-events-none group-hover:text-blue-50 dark:group-hover:text-slate-700 transition-colors">
                     {pillar.id}
                   </span>
 
                   <div className="relative z-10 space-y-5">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-[#0052cc] group-hover:text-white transition-all duration-300 shadow-sm">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/80 border border-blue-100 dark:border-blue-800 flex items-center justify-center text-blue-600 dark:text-sky-400 group-hover:bg-[#0052cc] group-hover:text-white transition-all duration-300 shadow-sm">
                         <Icon className="w-6 h-6 stroke-[1.8]" />
                       </div>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-[#172947] group-hover:text-[#0052cc] transition-colors">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-[#172947] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
                         {pillar.title}
                       </h3>
                     </div>
 
-                    <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl">
+                    <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
                       {pillar.desc}
                     </p>
 
                     <div className="pt-2">
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3">
                         Key Service Offerings
                       </h4>
                       <ul className="space-y-2.5">
                         {pillar.items.map((item) => (
                           <li
                             key={item}
-                            className="flex items-center gap-3 text-sm text-slate-700 font-medium"
+                            className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300 font-medium"
                           >
-                            <span className="w-2 h-2 rounded-full bg-[#0052cc] shrink-0" />
+                            <span className="w-2 h-2 rounded-full bg-[#0052cc] dark:bg-sky-400 shrink-0" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -235,7 +235,7 @@ export default function CompanyOverviewPage() {
       </section>
 
       {/* SECTION 3: BUILDING PREMIUM BUSINESS SOLUTIONS */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-[#070c18]">
         <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#013b9a] via-[#0047ab] to-[#002244] p-8 sm:p-12 lg:p-16 text-white shadow-2xl overflow-hidden">
             {/* Background concentric glowing rings */}
