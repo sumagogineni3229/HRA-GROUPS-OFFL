@@ -46,120 +46,49 @@ export default function CareersPage() {
   const [submittingApp, setSubmittingApp] = useState(false);
   const [appSuccessMsg, setAppSuccessMsg] = useState(false);
 
-  // Dynamic database roles
+  // Dynamic database roles loaded from DB
   const [dbRoles, setDbRoles] = useState<any[]>([]);
+  const [loadingRoles, setLoadingRoles] = useState<boolean>(true);
 
   useEffect(() => {
+    setLoadingRoles(true);
     fetch("/api/careers/roles")
       .then((res) => res.json())
       .then((data) => {
         if (data.success && data.roles) {
-          const formatted = data.roles.map((r: any) => ({
-            id: r.id,
-            title: r.title,
-            dept: r.dept || "Engineering",
-            location: r.location || "Hyderabad, India",
-            type: r.type || "Full-Time",
-            experience: r.experience || "1–3 Years",
-            desc: r.desc,
-            applyLink: r.applyLink,
-            isLiveDirect: true,
-            tags: r.tags && r.tags.length > 0 ? r.tags : [r.dept, r.type, r.location],
-          }));
+          const formatted = data.roles
+            .filter((r: any) => r.isActive !== false)
+            .map((r: any) => ({
+              id: r.id,
+              title: r.title,
+              dept: r.dept || "Engineering",
+              location: r.location || "Hyderabad, India",
+              type: r.type || "Full-Time",
+              experience: r.experience || "1–3 Years",
+              desc: r.desc,
+              applyLink: r.applyLink,
+              isLiveDirect: Boolean(r.applyLink),
+              tags: r.tags && r.tags.length > 0 ? r.tags : [r.dept, r.type, r.location].filter(Boolean),
+            }));
           setDbRoles(formatted);
         }
       })
-      .catch((err) => console.error("Error loading career roles:", err));
+      .catch((err) => console.error("Error loading career roles:", err))
+      .finally(() => setLoadingRoles(false));
   }, []);
 
   const { scrollY } = useScroll();
   const heroContentY = useTransform(scrollY, [0, 500], [0, -35]);
 
-  // Authentic live openings from hragroups.com/careers + expanded enterprise roles
-  const openings = [
-    {
-      id: "live-1",
-      title: "HR Intern (Unpaid)",
-      dept: "Human Resources",
-      location: "Hyderabad, India",
-      type: "Internship / Full-Time",
-      experience: "Fresher",
-      desc: "Support HR operations, talent sourcing, campus hiring coordination, employee engagement, and onboarding documentation.",
-      applyLink: "https://docs.google.com/forms/d/e/1FAIpQLSdb5fBsLQF_kGLuLkqHWBO54fL30a0YoXoWrX3cV_mnKFBEFg/viewform?usp=dialog",
-      isLiveDirect: true,
-      tags: ["HR Operations", "Talent Sourcing", "Fresher", "Hyderabad"],
-    },
-    {
-      id: "live-2",
-      title: "Soft Skills Trainer",
-      dept: "Education & Training",
-      location: "Hyderabad, India",
-      type: "Full-Time",
-      experience: "0–1 Year",
-      desc: "Deliver interactive soft skills, communication, corporate etiquette, and interview preparation workshops for candidates and students.",
-      applyLink: "https://docs.google.com/forms/d/e/1FAIpQLSfpNZbKUWrMI_3TJ1mSYkyl1M8JVMqyZUt3r2F5T5kXa_ffXg/viewform?usp=publish-editor",
-      isLiveDirect: true,
-      tags: ["Soft Skills", "Corporate Training", "Communication", "0–1 Year"],
-    },
-    {
-      id: "eng-1",
-      title: "Senior Full-Stack Engineer (Next.js & Cloud)",
-      dept: "Engineering",
-      location: "Hyderabad, India / Hybrid",
-      type: "Full-Time",
-      experience: "3-5 Years",
-      desc: "Lead the development of scalable client portals, high-performance web platforms, and automated workflow pipelines.",
-      applyLink: "https://docs.google.com/forms/d/e/1FAIpQLSfAlELtcrSzsXxs8Cw87uaeFriCPEYQG3qkxjUZx4OC9FND3g/viewform?usp=header",
-      isLiveDirect: false,
-      tags: ["Next.js", "React", "TypeScript", "Cloud APIs"],
-    },
-    {
-      id: "tc-1",
-      title: "Enterprise ServiceNow Developer & Architect",
-      dept: "Technology Consulting",
-      location: "Hyderabad, India / Remote",
-      type: "Full-Time",
-      experience: "4+ Years",
-      desc: "Implement ITSM, ITOM, and custom workflow automations for large enterprise and government clients.",
-      applyLink: "https://docs.google.com/forms/d/e/1FAIpQLSfAlELtcrSzsXxs8Cw87uaeFriCPEYQG3qkxjUZx4OC9FND3g/viewform?usp=header",
-      isLiveDirect: false,
-      tags: ["ServiceNow", "ITSM", "Workflows", "Integration"],
-    },
-    {
-      id: "mkt-1",
-      title: "Performance & SEO Digital Marketing Manager",
-      dept: "Digital Strategy",
-      location: "Hyderabad, India / Hybrid",
-      type: "Full-Time",
-      experience: "2-4 Years",
-      desc: "Drive multi-channel digital campaigns, organic search growth, branding, and conversion rate optimization.",
-      applyLink: "https://docs.google.com/forms/d/e/1FAIpQLSfAlELtcrSzsXxs8Cw87uaeFriCPEYQG3qkxjUZx4OC9FND3g/viewform?usp=header",
-      isLiveDirect: false,
-      tags: ["SEO", "Google Ads", "SEM", "Growth"],
-    },
-    {
-      id: "sales-1",
-      title: "Business Development & Client Relations Executive",
-      dept: "Sales & Growth",
-      location: "Hyderabad, India / Onsite",
-      type: "Full-Time",
-      experience: "2+ Years",
-      desc: "Build long-term partnerships with corporate clients for workforce solutions, web development, and digital marketing.",
-      applyLink: "https://docs.google.com/forms/d/e/1FAIpQLSfAlELtcrSzsXxs8Cw87uaeFriCPEYQG3qkxjUZx4OC9FND3g/viewform?usp=header",
-      isLiveDirect: false,
-      tags: ["B2B Sales", "Client Relations", "Strategy", "Partnerships"],
-    },
-  ];
-
-  const departments = [
-    "All",
-    "Human Resources",
-    "Education & Training",
-    "Engineering",
-    "Technology Consulting",
-    "Digital Strategy",
-    "Sales & Growth",
-  ];
+  const departments = useMemo(() => {
+    const list = ["All"];
+    dbRoles.forEach((role) => {
+      if (role.dept && !list.includes(role.dept)) {
+        list.push(role.dept);
+      }
+    });
+    return list;
+  }, [dbRoles]);
 
   const whyWorkItems = [
     {
@@ -195,14 +124,10 @@ export default function CareersPage() {
     "Updated resume / portfolio (PDF format)",
   ];
 
-  const allOpenings = useMemo(() => {
-    return [...dbRoles, ...openings];
-  }, [dbRoles, openings]);
-
-  const filteredOpenings =
-    selectedDept === "All"
-      ? allOpenings
-      : allOpenings.filter((job) => job.dept === selectedDept);
+  const filteredOpenings = useMemo(() => {
+    if (selectedDept === "All") return dbRoles;
+    return dbRoles.filter((job) => job.dept === selectedDept);
+  }, [dbRoles, selectedDept]);
 
   const handleOpenModal = (jobTitle: string, jobId?: string) => {
     setSelectedJobForModal(jobTitle);
@@ -448,103 +373,133 @@ export default function CareersPage() {
             </div>
           </div>
 
-          {/* Job Openings List - In-Line Wide Row Layout */}
+          {/* Job Openings List - In-Line Wide Row Layout or Empty State */}
           <motion.div layout className="flex flex-col gap-4 sm:gap-5">
-            <AnimatePresence mode="popLayout">
-              {filteredOpenings.map((job, index) => (
-                <motion.div
-                  layout
-                  key={job.id}
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.2 } }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.05,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                  className="group rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 p-6 sm:p-7 transition-all duration-300 hover:shadow-[0_16px_36px_rgba(0,82,204,0.07)] flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative overflow-hidden"
-                >
-                  {/* Left accent indicator bar */}
-                  <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#0052cc] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {loadingRoles ? (
+              <div className="py-16 text-center rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 p-8 space-y-3">
+                <div className="w-8 h-8 border-3 border-[#0052cc] border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+                <p className="text-slate-600 dark:text-slate-400 font-medium">Checking active career openings...</p>
+              </div>
+            ) : filteredOpenings.length === 0 ? (
+              <div className="py-20 px-6 text-center rounded-3xl bg-white dark:bg-[#0c1427] border border-dashed border-slate-300 dark:border-slate-700/80 p-8 space-y-4">
+                <div className="w-16 h-16 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900/60 flex items-center justify-center mx-auto text-[#0052cc] dark:text-sky-400">
+                  <Briefcase className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] dark:text-white">
+                  No Current Openings {selectedDept !== "All" ? `in ${selectedDept}` : ""}
+                </h3>
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-lg mx-auto">
+                  We are not actively recruiting for this category at the moment. New job positions added by the admin will appear here in real time.
+                </p>
+                <div className="pt-2">
+                  <button
+                    onClick={() => handleOpenModal("General Career Application")}
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#0052cc] hover:bg-[#003882] text-white font-bold text-xs sm:text-sm shadow-md transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                  >
+                    <span>Submit General Application</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <AnimatePresence mode="popLayout">
+                {filteredOpenings.map((job, index) => (
+                  <motion.div
+                    layout
+                    key={job.id}
+                    initial={{ opacity: 0, y: 25 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.2 } }}
+                    transition={{
+                      duration: 0.4,
+                      delay: index * 0.05,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                    className="group rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 p-6 sm:p-7 transition-all duration-300 hover:shadow-[0_16px_36px_rgba(0,82,204,0.07)] flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative overflow-hidden"
+                  >
+                    {/* Left accent indicator bar */}
+                    <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#0052cc] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                  {/* Job Details Main Area */}
-                  <div className="space-y-3 flex-1">
-                    {/* Top badging row */}
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-100/80 dark:border-blue-800/60">
-                        {job.dept}
-                      </span>
-                      {job.isLiveDirect && (
-                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 text-[11px] font-bold uppercase tracking-wider">
-                          Active Role
+                    {/* Job Details Main Area */}
+                    <div className="space-y-3 flex-1">
+                      {/* Top badging row */}
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-100/80 dark:border-blue-800/60">
+                          {job.dept}
                         </span>
-                      )}
-                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[11px] font-medium border dark:border-slate-700/60">
-                        {job.type}
-                      </span>
-                    </div>
-
-                    {/* Job Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
-                      {job.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
-                      {job.desc}
-                    </p>
-
-                    {/* In-line Meta Information (Location, Experience, Tags) */}
-                    <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-600 dark:text-slate-400">
-                      <div className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-100 dark:border-slate-800">
-                        <MapPin className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
-                        <span>{job.location}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-100 dark:border-slate-800">
-                        <Briefcase className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
-                        <span>{job.experience}</span>
-                      </div>
-
-                      <div className="hidden sm:flex flex-wrap items-center gap-1.5 pl-2 border-l border-slate-200 dark:border-slate-700">
-                        {job.tags.map((tag: string) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-0.5 rounded-md bg-slate-100/80 dark:bg-slate-800/80 text-[11px] text-slate-600 dark:text-slate-400 border dark:border-slate-700/50"
-                          >
-                            {tag}
+                        {job.isLiveDirect && (
+                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 text-[11px] font-bold uppercase tracking-wider">
+                            Active Role
                           </span>
-                        ))}
+                        )}
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[11px] font-medium border dark:border-slate-700/60">
+                          {job.type}
+                        </span>
+                      </div>
+
+                      {/* Job Title */}
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
+                        {job.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+                        {job.desc}
+                      </p>
+
+                      {/* In-line Meta Information (Location, Experience, Tags) */}
+                      <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-600 dark:text-slate-400">
+                        <div className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-100 dark:border-slate-800">
+                          <MapPin className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
+                          <span>{job.location}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-100 dark:border-slate-800">
+                          <Briefcase className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
+                          <span>{job.experience}</span>
+                        </div>
+
+                        {job.tags && job.tags.length > 0 && (
+                          <div className="hidden sm:flex flex-wrap items-center gap-1.5 pl-2 border-l border-slate-200 dark:border-slate-700">
+                            {job.tags.map((tag: string) => (
+                              <span
+                                key={tag}
+                                className="px-2 py-0.5 rounded-md bg-slate-100/80 dark:bg-slate-800/80 text-[11px] text-slate-600 dark:text-slate-400 border dark:border-slate-700/50"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
 
-                  {/* Right Side Action Button - Single Clean Apply Button */}
-                  <div className="flex items-center shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100 dark:border-slate-800">
-                    {job.applyLink ? (
-                      <a
-                        href={job.applyLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#0052cc] hover:bg-[#003882] text-white font-bold text-xs sm:text-sm shadow-md transition-all duration-200 hover:scale-[1.02] cursor-pointer whitespace-nowrap w-full sm:w-auto"
-                      >
-                        <span>Apply</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </a>
-                    ) : (
-                      <button
-                        onClick={() => handleOpenModal(job.title, job.id)}
-                        className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#0052cc] hover:bg-[#003882] text-white font-bold text-xs sm:text-sm shadow-md transition-all duration-200 hover:scale-[1.02] cursor-pointer whitespace-nowrap w-full sm:w-auto"
-                      >
-                        <span>Apply</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                    {/* Right Side Action Button - Single Clean Apply Button */}
+                    <div className="flex items-center shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100 dark:border-slate-800">
+                      {job.applyLink ? (
+                        <a
+                          href={job.applyLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#0052cc] hover:bg-[#003882] text-white font-bold text-xs sm:text-sm shadow-md transition-all duration-200 hover:scale-[1.02] cursor-pointer whitespace-nowrap w-full sm:w-auto"
+                        >
+                          <span>Apply</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </a>
+                      ) : (
+                        <button
+                          onClick={() => handleOpenModal(job.title, job.id)}
+                          className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#0052cc] hover:bg-[#003882] text-white font-bold text-xs sm:text-sm shadow-md transition-all duration-200 hover:scale-[1.02] cursor-pointer whitespace-nowrap w-full sm:w-auto"
+                        >
+                          <span>Apply</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            )}
           </motion.div>
         </div>
       </section>
