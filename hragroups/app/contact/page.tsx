@@ -196,8 +196,8 @@ export default function ContactPage() {
             </div>
 
             {/* Right Column: Contact Form */}
-            <div className="lg:col-span-7">
-              <div className="rounded-3xl bg-white border border-slate-200/90 p-8 sm:p-12 shadow-xl relative">
+            <div id="contact-form" className="lg:col-span-7">
+              <div id="form" className="rounded-3xl bg-white border border-slate-200/90 p-8 sm:p-12 shadow-xl relative">
                 {submitted ? (
                   <div className="text-center py-16 space-y-4">
                     <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">

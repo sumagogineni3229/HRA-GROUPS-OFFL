@@ -449,14 +449,14 @@ export default function Home() {
                 transition={{ delay: 0.55, duration: 0.8 }}
                 className="pt-2"
               >
-                <a
-                  href="#experience-sheet"
+                <Link
+                  href="/contact"
                   className="group inline-flex items-center justify-center px-10 py-4 rounded-full bg-white border border-[#447aff]/30 shadow-[0_6px_22px_rgba(68,122,255,0.18)] hover:shadow-[0_10px_30px_rgba(68,122,255,0.28)] transition-all duration-300 hover:scale-[1.02]"
                 >
                   <span className="text-[15px] font-semibold bg-gradient-to-r from-[#013b9a] via-[#3866f1] to-[#65acff] bg-clip-text text-transparent group-hover:opacity-90">
                     Talk to an Expert
                   </span>
-                </a>
+                </Link>
               </motion.div>
             </motion.div>
 
