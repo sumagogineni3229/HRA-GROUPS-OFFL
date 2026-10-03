@@ -318,7 +318,7 @@ export default function ExamPortalPage() {
 
       {/* STATE 1: LOGIN / CANDIDATE ACCESS FORM (50-50 FULLSCREEN HERO LAYOUT) */}
       {!currentExam && !result && (
-        <main className="flex-1 w-full pt-0 flex flex-col">
+        <main className="flex-1 w-full pt-[80px] flex flex-col min-h-screen">
           <div className="flex-1 w-full grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-80px)]">
             
             {/* LEFT 50%: FULL-BLEED COVER ART PANEL */}
@@ -523,7 +523,7 @@ export default function ExamPortalPage() {
 
       {/* STATE 2: PRE-EXAM BRIEFING & START SCREEN */}
       {currentExam && !isExamStarted && !result && (
-        <main className="flex-1 py-12 sm:py-16 bg-[#f8fafc] dark:bg-[#070c18]">
+        <main className="flex-1 pt-28 sm:pt-32 pb-12 sm:pb-16 bg-[#f8fafc] dark:bg-[#070c18]">
           <div className="w-full max-w-4xl mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -823,7 +823,7 @@ export default function ExamPortalPage() {
 
       {/* STATE 4: RESULT SCREEN */}
       {result && (
-        <main className="flex-1 w-full min-h-[calc(100vh-80px)] py-12 sm:py-16 bg-[#f8fafc] dark:bg-[#070c18] flex items-center justify-center">
+        <main className="flex-1 w-full min-h-[calc(100vh-80px)] pt-28 sm:pt-32 pb-12 sm:pb-16 bg-[#f8fafc] dark:bg-[#070c18] flex items-center justify-center">
           <div className="w-full max-w-3xl mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BigPolygonBackground from "@/components/BigPolygonBackground";
 import {
   Search,
   ChevronDown,
@@ -14,9 +15,6 @@ import {
   Clock,
   Sparkles,
   BookOpen,
-  Filter,
-  CheckCircle2,
-  Share2,
 } from "lucide-react";
 
 interface BlogPost {
@@ -32,17 +30,55 @@ interface BlogPost {
   featured?: boolean;
 }
 
+const BLOG_HERO_PHRASES = [
+  "HRA Groups Blog & Insights.",
+  "Perspectives & Industry Trends.",
+  "Ideas, Systems & Innovation.",
+  "Knowledge Sharing & Solutions.",
+];
+
 export default function BlogPage() {
   const [selectedService, setSelectedService] = useState<string>("All");
   const [selectedIndustry, setSelectedIndustry] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
-  const [industryDropdownOpen, setIndustryDropdownOpen] = useState(false);
 
+  // Typewriter text animation state (identical to Work page)
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(70);
+
+  useEffect(() => {
+    const fullText = BLOG_HERO_PHRASES[phraseIndex];
+
+    const handleTyping = () => {
+      if (!isDeleting) {
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        setTypingSpeed(60);
+
+        if (currentText.length + 1 === fullText.length) {
+          setTimeout(() => setIsDeleting(true), 2200);
+        }
+      } else {
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        setTypingSpeed(35);
+
+        if (currentText.length === 0) {
+          setIsDeleting(false);
+          setPhraseIndex((prev) => (prev + 1) % BLOG_HERO_PHRASES.length);
+        }
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, phraseIndex, typingSpeed]);
+
+  // Smooth scroll animations for hero banner
   const { scrollY } = useScroll();
-  const heroImageY = useTransform(scrollY, [0, 500], [0, 100]);
-  const heroScale = useTransform(scrollY, [0, 500], [1, 0.94]);
-  const heroOpacity = useTransform(scrollY, [0, 450], [1, 0.35]);
+  const heroImageY = useTransform(scrollY, [0, 600], [0, 140]);
+  const heroScale = useTransform(scrollY, [0, 600], [1, 0.92]);
+  const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.25]);
 
   const blogPosts: BlogPost[] = [
     {
@@ -185,25 +221,7 @@ export default function BlogPage() {
   // Merged blog posts: dynamic posts published via admin first, plus all original posts preserved
   const allBlogPosts = useMemo(() => {
     return [...dbPosts, ...blogPosts];
-  }, [dbPosts]);
-
-  const servicesList = [
-    "All",
-    "IT Managed Services",
-    "Enterprise Data & AI",
-    "ServiceNow",
-    "Enterprise Asset Management",
-  ];
-
-  const industriesList = [
-    "All",
-    "Government",
-    "Utilities",
-    "Banking, Financial Services & Insurance",
-    "Transportation",
-    "Public Safety",
-    "Manufacturing",
-  ];
+  }, [dbPosts, blogPosts]);
 
   const categoryAliases: Record<string, string[]> = {
     "IT Managed Services": ["IT Managed Services"],
@@ -219,9 +237,10 @@ export default function BlogPage() {
       let matchService = true;
       if (selectedService !== "All") {
         const allowed = categoryAliases[selectedService] || [selectedService];
-        matchService = allowed.some((alias) =>
-          post.service.toLowerCase().includes(alias.toLowerCase()) ||
-          post.category.toLowerCase().includes(alias.toLowerCase())
+        matchService = allowed.some(
+          (alias) =>
+            post.service.toLowerCase().includes(alias.toLowerCase()) ||
+            post.category.toLowerCase().includes(alias.toLowerCase())
         );
       }
 
@@ -237,186 +256,191 @@ export default function BlogPage() {
     });
   }, [selectedService, selectedIndustry, searchQuery, allBlogPosts]);
 
+  const scrollToPosts = () => {
+    const el = document.getElementById("posts");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
+    <div className="ibase-landing-bg text-white min-h-screen selection:bg-[#00c9ff]/30 selection:text-[#00c9ff] relative overflow-x-hidden font-sans">
       <Navbar />
 
-      {/* EXACT 1:1 SDI CENTERED SLATE-BLUE HERO BANNER WITH STICKY PARALLAX */}
-      <section className="sticky top-0 z-0 bg-[#384968] dark:bg-[#050b17] min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] pt-24 pb-36 sm:pt-32 sm:pb-44 lg:pt-36 lg:pb-52 flex items-center justify-center text-center overflow-hidden">
-        {/* Subtle radial glow & dark gradient depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.22),transparent_70%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(15,23,42,0.1),rgba(15,23,42,0.4))] pointer-events-none" />
-        
-        {/* Subtle dot mesh texture */}
-        <div 
-          className="absolute inset-0 opacity-[0.05] pointer-events-none"
-          style={{
-            backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
-            backgroundSize: "24px 24px",
-          }}
-        />
+      {/* Global Background Layer with Big Polygons (Exact match to Work & Founder Program pages) */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-black">
+        <BigPolygonBackground opacityClass="opacity-75" />
+        <div className="absolute top-[10%] -left-[10%] w-[650px] h-[650px] bg-[#00c9ff]/[0.035] rounded-full blur-[220px]" />
+        <div className="absolute top-[50%] -right-[15%] w-[800px] h-[800px] bg-[#1e1cb0]/[0.05] rounded-full blur-[250px]" />
+      </div>
 
-        <motion.div
-          style={{ y: heroImageY, opacity: heroOpacity, scale: heroScale }}
-          className="w-full max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24 relative z-10"
-        >
+      <main className="relative z-20">
+        {/* ===================== FIRST SCREEN (EXACT FULL VIEWPORT HERO WITH STICKY PARALLAX & TYPEWRITER ANIMATION) ===================== */}
+        <section className="sticky top-0 z-0 h-screen w-full flex items-center justify-center text-center px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-4xl mx-auto space-y-6 sm:space-y-8"
+            style={{ y: heroImageY, opacity: heroOpacity, scale: heroScale }}
+            className="w-full max-w-4xl mx-auto space-y-8 flex flex-col items-center justify-center"
           >
-            {/* Pill Tag (Exact SDI Style) */}
+            {/* Eyebrow Pill Tag */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs sm:text-sm font-bold tracking-[0.25em] text-[#b8d7ff] uppercase shadow-sm"
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs sm:text-sm font-mono tracking-[0.25em] text-[#00c9ff] uppercase shadow-sm"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#93c5fd]" />
+              <Sparkles className="w-4 h-4 text-[#00c9ff] animate-pulse" />
               <span>PERSPECTIVES • INSIGHTS • TRENDS</span>
             </motion.div>
 
-            {/* Exact SDI Style Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-[44px] sm:text-[60px] md:text-[70px] lg:text-[80px] xl:text-[88px] font-normal tracking-[-0.03em] leading-[1.08] text-white drop-shadow-sm"
-            >
-              HRA Groups Blog
-            </motion.h1>
+            {/* Typewriter Animated Display Headline (Like Work page) */}
+            <div className="min-h-[110px] sm:min-h-[140px] md:min-h-[160px] flex items-center justify-center w-full px-2">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-light text-white tracking-[-0.03em] leading-[1.08] text-center font-serif">
+                <span className="text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.2)]">
+                  {currentText}
+                </span>
+                <span className="text-[#00c9ff] ml-1.5 font-light animate-[pulse_1s_infinite]">|</span>
+              </h1>
+            </div>
 
-            {/* Exact Subtext from user */}
+            {/* Subtext */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.8 }}
-              className="text-[16px] sm:text-[18px] lg:text-[20px] text-slate-200 font-normal leading-[1.65] max-w-3xl mx-auto"
+              className="text-base sm:text-lg lg:text-xl text-white/70 font-light leading-[1.7] max-w-3xl mx-auto"
             >
               The HRA blog is our perspective on IT industry insights, best practices, and technology trends — we are all about knowledge sharing and problem-solving.
             </motion.p>
 
-            {/* View Articles Pill Button (Exact SDI Style) */}
+            {/* View Articles Pill Button (Glowing/Blinking Indicator to Scroll Down) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="pt-2"
+              className="pt-2 relative flex flex-col items-center"
             >
-              <a
-                href="#posts"
-                className="inline-flex items-center justify-center px-10 py-3.5 rounded-full bg-white text-[#0052cc] hover:text-[#002f80] hover:bg-sky-50 font-bold text-[15px] shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+              {/* Outer pulsing ring radar indicator */}
+              <span className="absolute -inset-1 rounded-full bg-[#00c9ff]/40 blur-md animate-ping pointer-events-none opacity-75" />
+              
+              <button
+                onClick={scrollToPosts}
+                className="relative inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-sm tracking-wide shadow-[0_0_35px_rgba(0,201,255,0.6)] hover:shadow-[0_0_50px_rgba(0,201,255,0.9)] animate-pulse transition-all duration-300 hover:scale-[1.05] active:scale-[0.98] cursor-pointer"
               >
                 <span>Explore All Articles</span>
-              </a>
+                <ChevronDown className="w-4 h-4 animate-bounce text-black" />
+              </button>
+
+              {/* Scroll down indicator prompt */}
+              <span className="text-[11px] font-mono uppercase tracking-widest text-[#00c9ff]/80 mt-3 animate-pulse">
+                ↓ Scroll to explore
+              </span>
             </motion.div>
           </motion.div>
-        </motion.div>
-      </section>
+        </section>
 
-      {/* MAIN CONTENT AREA WITH ELEVATED SHEET EFFECT (OVERLAPS AND SCROLLS OVER HERO) */}
-      <section
-        id="posts"
-        className="relative z-10 bg-[#f8fafc] dark:bg-[#090e1a] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(15,23,42,0.25)] border-t border-white/80 dark:border-slate-800/80 py-16 sm:py-20 lg:py-24"
-      >
-        <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-            
-            {/* LEFT SIDEBAR (SEARCH + CATEGORIES PANEL - COMPACT & BRAND ALIGNED) */}
-            <div className="lg:col-span-3 space-y-3.5 lg:sticky lg:top-28">
-              {/* Compact Rounded Search Bar */}
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search articles..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-4 pr-9 py-2 rounded-full bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 outline-none focus:border-[#0052cc] dark:focus:border-sky-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all shadow-xs"
-                />
-                <Search className="w-4 h-4 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    className="text-xs font-bold text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 absolute right-10 top-1/2 -translate-y-1/2"
-                  >
-                    ✕
-                  </button>
-                )}
-              </div>
+        {/* ===================== SECOND PART: ELEVATED SEPARATE SHEET OVERLAYING AS YOU SCROLL ===================== */}
+        <section
+          id="posts"
+          className="relative z-10 bg-[#000000]/95 backdrop-blur-3xl rounded-t-[40px] sm:rounded-t-[56px] lg:rounded-t-[72px] border-t border-white/15 shadow-[0_-30px_90px_rgba(0,0,0,0.95)] py-20 sm:py-24"
+        >
+          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+              
+              {/* LEFT SIDEBAR (SEARCH + CATEGORIES PANEL + NEWSLETTER) */}
+              <div className="lg:col-span-3 space-y-4 lg:sticky lg:top-28">
+                {/* Rounded Search Bar */}
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search articles..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-4 pr-9 py-2.5 rounded-full bg-white/5 border border-white/15 text-xs text-white placeholder-white/40 outline-none focus:border-[#00c9ff] focus:bg-white/10 transition-all backdrop-blur-md"
+                  />
+                  <Search className="w-4 h-4 text-white/40 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="text-xs font-bold text-white/50 hover:text-white absolute right-10 top-1/2 -translate-y-1/2 cursor-pointer"
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
 
-              {/* Compact Categories Card */}
-              <div className="bg-white dark:bg-[#0c1427] rounded-2xl border border-slate-200/90 dark:border-slate-800 p-3.5 sm:p-4 shadow-xs space-y-2.5">
-                <h3 className="text-sm font-bold text-[#14233c] dark:text-slate-100 tracking-tight px-1">
-                  Categories
-                </h3>
+                {/* Categories Card */}
+                <div className="bg-white/[0.03] rounded-2xl border border-white/10 p-4 space-y-3 backdrop-blur-md">
+                  <h3 className="text-xs font-mono tracking-widest uppercase text-white/60 px-1">
+                    Categories
+                  </h3>
 
-                <div className="space-y-1">
-                  {/* View all */}
-                  <button
-                    onClick={() => {
-                      setSelectedService("All");
-                      setSelectedIndustry("All");
-                    }}
-                    className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between cursor-pointer ${
-                      selectedService === "All" && selectedIndustry === "All"
-                        ? "bg-[#0052cc]/10 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-300 font-bold"
-                        : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white"
-                    }`}
-                  >
-                    <span>View all</span>
-                    <span
-                      className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                  <div className="space-y-1">
+                    {/* View all */}
+                    <button
+                      onClick={() => {
+                        setSelectedService("All");
+                        setSelectedIndustry("All");
+                      }}
+                      className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${
                         selectedService === "All" && selectedIndustry === "All"
-                          ? "bg-[#0052cc] text-white"
-                          : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
+                          ? "bg-[#00c9ff]/20 text-[#00c9ff] font-semibold border border-[#00c9ff]/40"
+                          : "text-white/70 hover:bg-white/5 hover:text-white"
                       }`}
                     >
-                      {allBlogPosts.length}
-                    </span>
-                  </button>
+                      <span>View all</span>
+                      <span
+                        className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${
+                          selectedService === "All" && selectedIndustry === "All"
+                            ? "bg-[#00c9ff] text-black font-bold"
+                            : "bg-white/10 text-white/60"
+                        }`}
+                      >
+                        {allBlogPosts.length}
+                      </span>
+                    </button>
 
-                  {/* Individual Categories matching requested list and dynamic live counts */}
-                  {[
-                    {
-                      id: "IT Managed Services",
-                      label: "IT Managed Services",
-                      aliases: ["IT Managed Services"],
-                    },
-                    {
-                      id: "Enterprise Data & AI",
-                      label: "AI & Technologies",
-                      aliases: ["Enterprise Data & AI", "AI & Technologies"],
-                    },
-                    {
-                      id: "ServiceNow",
-                      label: "ServiceNow & Workflow",
-                      aliases: ["ServiceNow", "ServiceNow & Workflow"],
-                    },
-                    {
-                      id: "Enterprise Asset Management",
-                      label: "Asset Management & IoT",
-                      aliases: ["Enterprise Asset Management", "Asset Management & IoT"],
-                    },
-                    {
-                      id: "Cybersecurity & Cloud",
-                      label: "Cybersecurity & Cloud",
-                      aliases: ["Cybersecurity & Cloud", "Cybersecurity"],
-                    },
-                    {
-                      id: "Content Marketing & SEO",
-                      label: "Content Marketing & SEO",
-                      aliases: ["Content Marketing & SEO", "Digital Strategy"],
-                    },
-                  ].map((cat) => {
-                    const isActive =
-                      selectedService === cat.id ||
-                      cat.aliases.includes(selectedService);
+                    {/* Individual Categories matching requested list and dynamic live counts */}
+                    {[
+                      {
+                        id: "IT Managed Services",
+                        label: "IT Managed Services",
+                        aliases: ["IT Managed Services"],
+                      },
+                      {
+                        id: "Enterprise Data & AI",
+                        label: "AI & Technologies",
+                        aliases: ["Enterprise Data & AI", "AI & Technologies"],
+                      },
+                      {
+                        id: "ServiceNow",
+                        label: "ServiceNow & Workflow",
+                        aliases: ["ServiceNow", "ServiceNow & Workflow"],
+                      },
+                      {
+                        id: "Enterprise Asset Management",
+                        label: "Asset Management & IoT",
+                        aliases: ["Enterprise Asset Management", "Asset Management & IoT"],
+                      },
+                      {
+                        id: "Cybersecurity & Cloud",
+                        label: "Cybersecurity & Cloud",
+                        aliases: ["Cybersecurity & Cloud", "Cybersecurity"],
+                      },
+                      {
+                        id: "Content Marketing & SEO",
+                        label: "Content Marketing & SEO",
+                        aliases: ["Content Marketing & SEO", "Digital Strategy"],
+                      },
+                    ].map((cat) => {
+                      const isActive =
+                        selectedService === cat.id ||
+                        cat.aliases.includes(selectedService);
 
-                    const count = allBlogPosts.filter((p) =>
-                      cat.aliases.some((a) =>
-                        p.service.toLowerCase().includes(a.toLowerCase()) ||
-                        p.category.toLowerCase().includes(a.toLowerCase())
+                      const count = allBlogPosts.filter((p) =>
+                        cat.aliases.some(
+                          (a) =>
+                            p.service.toLowerCase().includes(a.toLowerCase()) ||
+                            p.category.toLowerCase().includes(a.toLowerCase())
                       )
                     ).length;
 
@@ -428,16 +452,16 @@ export default function BlogPage() {
                         }}
                         className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${
                           isActive
-                            ? "bg-[#0052cc]/10 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-300 font-bold"
-                            : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white"
+                            ? "bg-[#00c9ff]/20 text-[#00c9ff] font-semibold border border-[#00c9ff]/40"
+                            : "text-white/70 hover:bg-white/5 hover:text-white"
                         }`}
                       >
                         <span className="truncate pr-2">{cat.label}</span>
                         <span
-                          className={`px-2 py-0.5 rounded-full text-[11px] font-bold shrink-0 ${
+                          className={`px-2 py-0.5 rounded-full text-[11px] font-mono shrink-0 ${
                             isActive
-                              ? "bg-[#0052cc] text-white"
-                              : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
+                              ? "bg-[#00c9ff] text-black font-bold"
+                              : "bg-white/10 text-white/60"
                           }`}
                         >
                           {count}
@@ -448,15 +472,15 @@ export default function BlogPage() {
                 </div>
               </div>
 
-              {/* Compact Newsletter Card matching HRA Groups Brand Blue (#0052cc) */}
-              <div className="rounded-2xl bg-[#0052cc] dark:bg-[#031c47] p-3.5 sm:p-4 text-white space-y-2.5 shadow-xs border border-transparent dark:border-blue-500/30">
-                <span className="text-[10px] font-bold tracking-wider text-blue-200 uppercase">
+              {/* Newsletter Card */}
+              <div className="rounded-2xl bg-gradient-to-b from-[#08172a] to-[#030b16] p-4 text-white space-y-2.5 border border-white/15 backdrop-blur-md">
+                <span className="text-[10px] font-mono font-bold tracking-widest text-[#00c9ff] uppercase">
                   NEWSLETTER
                 </span>
-                <h4 className="text-xs sm:text-sm font-bold leading-snug">
+                <h4 className="text-xs sm:text-sm font-semibold leading-snug">
                   Get Weekly Tech &amp; Workforce Insights
                 </h4>
-                <p className="text-[11px] text-blue-100 leading-relaxed">
+                <p className="text-[11px] text-white/60 leading-relaxed">
                   Join 5,000+ tech leaders reading our monthly digest.
                 </p>
                 <form
@@ -470,11 +494,11 @@ export default function BlogPage() {
                     type="email"
                     required
                     placeholder="Enter email..."
-                    className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-200 text-xs outline-none focus:bg-white focus:text-slate-900 transition-all"
+                    className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/15 text-white placeholder-white/40 text-xs outline-none focus:border-[#00c9ff] transition-all"
                   />
                   <button
                     type="submit"
-                    className="w-full py-2 rounded-lg bg-white text-[#0052cc] font-bold text-xs hover:bg-blue-50 shadow-sm transition-all cursor-pointer"
+                    className="w-full py-2 rounded-lg bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-xs hover:shadow-[0_0_20px_rgba(0,201,255,0.4)] transition-all cursor-pointer"
                   >
                     Subscribe
                   </button>
@@ -485,9 +509,9 @@ export default function BlogPage() {
             {/* RIGHT COLUMN: BLOG POSTS LISTING */}
             <div className="lg:col-span-9">
               {/* Header Status Bar */}
-              <div className="flex items-center justify-between pb-6 mb-6 border-b border-slate-200 dark:border-slate-800">
-                <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-                  Showing <span className="text-[#0052cc] dark:text-sky-400 font-bold">{filteredPosts.length}</span> articles
+              <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10 text-xs font-mono text-white/60">
+                <span>
+                  Showing <span className="text-[#00c9ff] font-bold">{filteredPosts.length}</span> articles
                 </span>
 
                 {(selectedService !== "All" || searchQuery) && (
@@ -497,7 +521,7 @@ export default function BlogPage() {
                       setSelectedIndustry("All");
                       setSearchQuery("");
                     }}
-                    className="text-xs font-bold text-[#0052cc] dark:text-sky-400 hover:underline cursor-pointer"
+                    className="text-[#00c9ff] hover:underline cursor-pointer"
                   >
                     Reset all filters
                   </button>
@@ -505,10 +529,10 @@ export default function BlogPage() {
               </div>
 
               {filteredPosts.length === 0 ? (
-                <div className="text-center py-20 bg-white dark:bg-[#0c1427] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8">
-                  <BookOpen className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-[#14233c] dark:text-white">No articles found</h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-md mx-auto">
+                <div className="text-center py-20 bg-white/[0.02] rounded-3xl border border-white/10 p-8 backdrop-blur-md">
+                  <BookOpen className="w-12 h-12 text-white/30 mx-auto mb-4" />
+                  <h3 className="text-xl font-light font-serif text-white">No articles found</h3>
+                  <p className="text-sm text-white/50 mt-2 max-w-md mx-auto font-light">
                     No articles matched your search or category selection. Try resetting filters.
                   </p>
                   <button
@@ -517,36 +541,32 @@ export default function BlogPage() {
                       setSelectedIndustry("All");
                       setSearchQuery("");
                     }}
-                    className="mt-6 px-6 py-2.5 rounded-full bg-[#0052cc] text-white text-xs font-bold shadow-md hover:bg-[#003882] transition-colors cursor-pointer"
+                    className="mt-6 px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-mono transition-colors cursor-pointer"
                   >
                     Reset Filters
                   </button>
                 </div>
               ) : (
-                <motion.div
-                  layout
-                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
-                >
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {filteredPosts.map((post, index) => (
                     <motion.article
                       key={post.id}
-                      layout
-                      initial={{ opacity: 0, y: 30 }}
+                      initial={{ opacity: 0, y: 24 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-40px" }}
-                      transition={{ duration: 0.5, delay: (index % 2) * 0.1 }}
+                      viewport={{ once: true, margin: "-30px" }}
+                      transition={{ duration: 0.45, delay: (index % 3) * 0.08 }}
                       whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                      className="group rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-500/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 dark:hover:shadow-blue-950/40 flex flex-col justify-between transition-all duration-300"
+                      className="group rounded-3xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 overflow-hidden backdrop-blur-md hover:bg-white/[0.04] flex flex-col justify-between transition-all duration-300 relative shadow-sm hover:shadow-[0_15px_40px_rgba(0,201,255,0.12)]"
                     >
                       {/* Article Thumbnail */}
-                      <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
+                      <div className="relative aspect-[16/10] overflow-hidden bg-black/40">
                         <img
                           src={post.image}
                           alt={post.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
                         />
-                        <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-[11px] font-bold tracking-wider text-[#0052cc] dark:text-sky-300 uppercase shadow-sm border border-slate-200/50 dark:border-slate-700/50">
+                        <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[10px] font-mono tracking-wider text-[#00c9ff] uppercase border border-white/15">
                           {post.service}
                         </div>
                       </div>
@@ -555,47 +575,47 @@ export default function BlogPage() {
                       <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                         <div className="space-y-3">
                           {/* Category & Date Tag */}
-                          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#0052cc] dark:text-sky-400">
-                            <span>{post.category}</span>
-                            <span className="text-slate-300 dark:text-slate-700">•</span>
-                            <span className="text-slate-400 font-normal">{post.date}</span>
+                          <div className="flex items-center gap-2 text-xs font-mono text-white/50">
+                            <span className="text-[#00c9ff]">{post.category}</span>
+                            <span>•</span>
+                            <span>{post.date}</span>
                           </div>
 
                           {/* Title */}
-                          <h3 className="text-base sm:text-lg font-bold text-[#14233c] dark:text-slate-100 group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors leading-[1.35] line-clamp-2">
+                          <h3 className="text-base sm:text-lg font-light font-serif text-white group-hover:text-[#73bbff] transition-colors leading-[1.35] line-clamp-2">
                             {post.title}
                           </h3>
 
                           {/* Excerpt */}
-                          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+                          <p className="text-xs sm:text-sm text-white/60 font-light leading-relaxed line-clamp-3">
                             {post.excerpt}
                           </p>
                         </div>
 
                         {/* Bottom Action Footer */}
-                        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                        <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-white/50">
                           <span className="flex items-center gap-1.5">
-                            <Clock className="w-3.5 h-3.5 text-slate-400" />
+                            <Clock className="w-3.5 h-3.5 text-white/40" />
                             <span>{post.readTime}</span>
                           </span>
 
-                          <span className="text-[#0052cc] dark:text-sky-400 group-hover:text-[#003882] dark:group-hover:text-sky-300 flex items-center gap-1 font-bold group/link">
+                          <span className="text-[#00c9ff] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                             <span>Read Article</span>
-                            <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                            <ArrowRight className="w-3.5 h-3.5" />
                           </span>
                         </div>
                       </div>
                     </motion.article>
                   ))}
-                </motion.div>
+                </div>
               )}
             </div>
           </div>
         </div>
       </section>
+    </main>
 
-      <Footer />
-    </div>
-  );
+    <Footer />
+  </div>
+);
 }
-

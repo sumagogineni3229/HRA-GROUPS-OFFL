@@ -13,24 +13,16 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("light");
+  const [theme, setThemeState] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check localStorage or system preference on mount
-    const savedTheme = localStorage.getItem("hra-theme") as Theme | null;
-    if (savedTheme === "dark" || savedTheme === "light") {
-      setThemeState(savedTheme);
-      if (savedTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      // Default to light unless user explicitly saved dark, or respect if preferred
-      // Keep default light if no saved theme to maintain 100% current light look initially
-      document.documentElement.classList.remove("dark");
-    }
+    // Set and enforce dark mode by default
+    setThemeState("dark");
+    document.documentElement.classList.add("dark");
+    try {
+      localStorage.setItem("hra-theme", "dark");
+    } catch (e) {}
     setMounted(true);
   }, []);
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BigPolygonBackground from "@/components/BigPolygonBackground";
 import {
   Sparkles,
   Camera,
@@ -23,6 +24,13 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+const GALLERY_HERO_PHRASES = [
+  "Moments, Media & Milestones",
+  "Leadership & Visionary Awards",
+  "Celebrations & Team Culture",
+  "Milestones That Define Our Journey",
+];
+
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [selectedImage, setSelectedImage] = useState<{
@@ -34,6 +42,38 @@ export default function GalleryPage() {
 
   const { scrollY } = useScroll();
   const heroTranslateY = useTransform(scrollY, [0, 500], [0, -35]);
+
+  // Typewriter text animation state (matching Work, Founder Program & Careers pages)
+  const [phraseIndex, setPhraseIndex] = React.useState(0);
+  const [currentText, setCurrentText] = React.useState("");
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  const [typingSpeed, setTypingSpeed] = React.useState(70);
+
+  React.useEffect(() => {
+    const fullText = GALLERY_HERO_PHRASES[phraseIndex];
+
+    const handleTyping = () => {
+      if (!isDeleting) {
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        setTypingSpeed(60);
+
+        if (currentText.length + 1 === fullText.length) {
+          setTimeout(() => setIsDeleting(true), 2200);
+        }
+      } else {
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        setTypingSpeed(35);
+
+        if (currentText.length === 0) {
+          setIsDeleting(false);
+          setPhraseIndex((prev) => (prev + 1) % GALLERY_HERO_PHRASES.length);
+        }
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, phraseIndex, typingSpeed]);
 
   // Authentic 19 gallery items from hragroups.com/gallery
   const galleryItems = [
@@ -243,17 +283,43 @@ export default function GalleryPage() {
     },
   ];
 
+  const [dbItems, setDbItems] = useState<any[]>([]);
+
+  // Fetch dynamic gallery items from database while preserving all original 19 items
+  React.useEffect(() => {
+    fetch("/api/gallery")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.items) {
+          const mapped = data.items.map((it: any) => ({
+            id: it.id,
+            title: it.title,
+            desc: it.desc || "",
+            src: it.src,
+            category: it.category || "Awards & Recognition",
+            tag: it.tag || "Gallery Feature",
+          }));
+          setDbItems(mapped);
+        }
+      })
+      .catch((err) => console.error("Error fetching gallery items:", err));
+  }, []);
+
+  const allGalleryItems = React.useMemo(() => {
+    return [...dbItems, ...galleryItems];
+  }, [dbItems]);
+
   const categories = ["All", "Awards & Recognition", "Leadership & Vision", "Team & Culture"];
 
   const filteredItems =
     activeCategory === "All"
-      ? galleryItems
-      : galleryItems.filter((item) => item.category === activeCategory);
+      ? allGalleryItems
+      : allGalleryItems.filter((item) => item.category === activeCategory);
 
   // Auto slider state for Hero 3D Visual Diary Carousel
   const [sliderIndex, setSliderIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
-  const heroSliderImages = galleryItems.slice(0, 7);
+  const heroSliderImages = allGalleryItems.slice(0, 7);
 
   React.useEffect(() => {
     if (isPaused) return;
@@ -272,29 +338,39 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882] transition-colors duration-300">
+    <div className="ibase-landing-bg text-white min-h-screen selection:bg-[#00c9ff]/30 selection:text-[#00c9ff] relative overflow-hidden font-sans">
       <Navbar />
 
-      {/* CLEAN MINIMALIST HERO WITH ULTRA-SMOOTH ENLARGED 3D PHOTO SLIDER */}
-      <section className="pt-8 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-white dark:bg-[#070c18] text-center overflow-hidden transition-colors duration-300">
-        <motion.div
-          style={{ y: heroTranslateY }}
-          className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-5 sm:space-y-6"
-        >
-          {/* Clean Main Title Moved to Top */}
+      {/* Global Background Atmospheric Layer (Large Architectural Polygonal Structures - Exact Match to Work & Founder Program) */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-black">
+        <BigPolygonBackground opacityClass="opacity-80" />
+        <div className="absolute top-[15%] -left-[10%] w-[650px] h-[650px] bg-[#00c9ff]/[0.035] rounded-full blur-[200px]" />
+        <div className="absolute top-[55%] -right-[15%] w-[750px] h-[750px] bg-[#1e1cb0]/[0.045] rounded-full blur-[220px]" />
+      </div>
+
+      <main className="relative z-20">
+        {/* CLEAN MINIMALIST HERO WITH ULTRA-SMOOTH ENLARGED 3D PHOTO SLIDER */}
+        <section className="pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-12 text-center overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="max-w-4xl mx-auto"
+            style={{ y: heroTranslateY }}
+            className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-4 sm:space-y-6"
           >
-            <h1 className="text-[34px] sm:text-[48px] md:text-[56px] lg:text-[64px] font-normal tracking-[-0.035em] leading-[1.08] text-[#001f4d] dark:text-white">
-              Moments, Media &amp; <br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-[#0052cc] via-[#0284c7] to-[#0052cc] dark:from-sky-400 dark:via-blue-400 dark:to-sky-400 bg-clip-text text-transparent font-semibold">
-                Milestones
-              </span>
-            </h1>
-          </motion.div>
+            {/* Animated Headline with Typewriter effect */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="min-h-[80px] sm:min-h-[110px] md:min-h-[130px] flex items-center justify-center w-full px-2">
+                <h1 className="text-[34px] sm:text-[48px] md:text-[56px] lg:text-[66px] font-normal tracking-[-0.035em] leading-[1.08] text-white font-serif">
+                  <span className="bg-gradient-to-r from-white via-slate-100 to-[#00c9ff] bg-clip-text text-transparent drop-shadow-[0_2px_20px_rgba(255,255,255,0.2)]">
+                    {currentText}
+                  </span>
+                  <span className="text-[#00c9ff] ml-1.5 font-light animate-[pulse_1s_infinite]">|</span>
+                </h1>
+              </div>
+            </motion.div>
 
           {/* ENLARGED 3D PHOTO SLIDER */}
           <div
@@ -321,433 +397,434 @@ export default function GalleryPage() {
                 const opacity = isVisible ? (isCenter ? 1 : Math.max(0.35, 0.75 - absOffset * 0.15)) : 0;
 
                 return (
-                  <motion.div
-                    key={item.id}
-                    animate={{
-                      x: xOffset,
-                      scale: scale,
-                      rotateY: rotateY,
-                      opacity: opacity,
-                      zIndex: zIndex,
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 26,
-                      mass: 0.65,
-                    }}
-                    onClick={() => {
-                      if (isCenter) {
-                        setSelectedImage(item);
-                      } else {
-                        setSliderIndex(index);
-                      }
-                    }}
-                    className={`absolute cursor-pointer rounded-3xl sm:rounded-[36px] overflow-hidden will-change-transform ${isCenter
-                        ? "shadow-[0_25px_80px_rgba(0,82,204,0.32)] dark:shadow-[0_25px_80px_rgba(0,82,204,0.5)] ring-4 ring-blue-500/40 cursor-zoom-in"
-                        : "shadow-xl ring-1 ring-slate-200/80 dark:ring-slate-800 hover:ring-blue-400"
-                      }`}
-                    style={{
-                      width: typeof window !== "undefined" && window.innerWidth < 640 ? "290px" : "460px",
-                      height: typeof window !== "undefined" && window.innerWidth < 640 ? "370px" : "540px",
-                      transformStyle: "preserve-3d",
-                    }}
-                  >
-                    {/* Uncropped Full Image */}
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={item.src}
-                      alt={item.title}
-                      className="w-full h-full object-cover object-center pointer-events-none"
-                      loading="lazy"
-                    />
-
-                    {/* Gradient overlay on active card */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8 text-left text-white transition-opacity duration-300 ${isCenter ? "opacity-100" : "opacity-0 hover:opacity-100"
+                    <motion.div
+                      key={item.id}
+                      animate={{
+                        x: xOffset,
+                        scale: scale,
+                        rotateY: rotateY,
+                        opacity: opacity,
+                        zIndex: zIndex,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 26,
+                        mass: 0.65,
+                      }}
+                      onClick={() => {
+                        if (isCenter) {
+                          setSelectedImage(item);
+                        } else {
+                          setSliderIndex(index);
+                        }
+                      }}
+                      className={`absolute cursor-pointer rounded-3xl sm:rounded-[36px] overflow-hidden will-change-transform ${isCenter
+                        ? "shadow-[0_25px_80px_rgba(0,201,255,0.35)] ring-4 ring-[#00c9ff]/50 cursor-zoom-in"
+                        : "shadow-xl ring-1 ring-white/10 hover:ring-[#00c9ff]/40"
                         }`}
+                      style={{
+                        width: typeof window !== "undefined" && window.innerWidth < 640 ? "290px" : "460px",
+                        height: typeof window !== "undefined" && window.innerWidth < 640 ? "370px" : "540px",
+                        transformStyle: "preserve-3d",
+                      }}
                     >
-                      <span className="px-3.5 py-1 rounded-full bg-[#0052cc] text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider w-max mb-2 shadow-sm">
-                        {item.tag}
-                      </span>
-                      <h3 className="text-lg sm:text-2xl font-bold leading-snug line-clamp-2 text-white">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-sky-200 pt-1.5 font-medium flex items-center gap-1.5">
-                        <span>Click to view in full resolution</span>
-                        <span>→</span>
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+                      {/* Uncropped Full Image */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.src}
+                        alt={item.title}
+                        className="w-full h-full object-cover object-center pointer-events-none"
+                        loading="lazy"
+                      />
 
-            {/* Slider Navigation Controls */}
-            <div className="flex items-center justify-center gap-4 pt-5 sm:pt-6">
-              <button
-                onClick={handlePrevSlide}
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-100 dark:bg-[#0c1427] hover:bg-[#0052cc] hover:text-white dark:hover:bg-[#0052cc] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
-                aria-label="Previous Slide"
-              >
-                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-
-              <div className="flex items-center gap-2.5">
-                {heroSliderImages.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setSliderIndex(i)}
-                    className={`h-3 rounded-full transition-all duration-300 cursor-pointer ${sliderIndex === i ? "w-10 bg-[#0052cc]" : "w-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700"
-                      }`}
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
+                      {/* Gradient overlay on active card */}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8 text-left text-white transition-opacity duration-300 ${isCenter ? "opacity-100" : "opacity-0 hover:opacity-100"
+                          }`}
+                      >
+                        <span className="px-3.5 py-1 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black text-[11px] sm:text-xs font-bold uppercase tracking-wider w-max mb-2 shadow-sm">
+                          {item.tag}
+                        </span>
+                        <h3 className="text-lg sm:text-2xl font-light font-serif leading-snug line-clamp-2 text-white">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#00c9ff] pt-1.5 font-mono flex items-center gap-1.5">
+                          <span>Click to view in full resolution</span>
+                          <span>→</span>
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
-              <button
-                onClick={handleNextSlide}
-                className="w-12 h-12 rounded-full bg-slate-100 dark:bg-[#0c1427] hover:bg-[#0052cc] hover:text-white dark:hover:bg-[#0052cc] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
-                aria-label="Next Slide"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+              {/* Slider Navigation Controls */}
+              <div className="flex items-center justify-center gap-4 pt-5 sm:pt-6">
+                <button
+                  onClick={handlePrevSlide}
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/5 hover:bg-[#00c9ff] hover:text-black border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
+                  aria-label="Previous Slide"
+                >
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
 
-      {/* LEADERSHIP VIDEOS SECTION */}
-      <section id="videos" className="py-16 sm:py-20 bg-slate-50 dark:bg-[#090e1a] border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
-        <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
+                <div className="flex items-center gap-2.5">
+                  {heroSliderImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setSliderIndex(i)}
+                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${sliderIndex === i ? "w-8 bg-[#00c9ff]" : "w-2.5 bg-white/20 hover:bg-white/40"
+                        }`}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
-              <Video className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
-              <span>Featured Media</span>
+                <button
+                  onClick={handleNextSlide}
+                  className="w-12 h-12 rounded-full bg-white/5 hover:bg-[#00c9ff] hover:text-black border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
+                  aria-label="Next Slide"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
-              Leadership Videos
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              Exclusive interviews, leadership insights, and milestone media highlights from HRA Groups.
-            </p>
           </motion.div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {leadershipVideos.map((video, idx) => (
-              <motion.div
-                key={video.id}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="group rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(0,82,204,0.1)] transition-all duration-300 flex flex-col"
-              >
-                <div className="relative aspect-video w-full bg-black">
-                  <iframe
-                    src={video.embedUrl}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full border-0"
-                  />
-                </div>
-                <div className="p-6 flex items-center justify-between border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-[#0c1427]">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-[#0052cc] dark:text-sky-400 flex items-center justify-center font-bold">
-                      <Play className="w-4 h-4 fill-[#0052cc] dark:fill-sky-400" />
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
-                      {video.title}
-                    </h3>
-                  </div>
-                  <span className="text-xs font-bold text-[#0052cc] dark:text-sky-400 uppercase tracking-wider">
-                    Watch
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* LEADERSHIP VIDEOS SECTION */}
+        <section id="videos" className="py-16 sm:py-20 border-b border-white/10 transition-colors duration-300">
+          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
 
-      {/* RECOGNITIONS & HIGHLIGHTS - FULL 19 CARDS GALLERY */}
-      <section id="highlights" className="py-20 sm:py-24 bg-white dark:bg-[#070c18] border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
-        <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
-
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="space-y-3 max-w-xl"
+              className="text-center max-w-3xl mx-auto space-y-3"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
-                <Camera className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
-                <span>Gallery &amp; Recognitions</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-widest text-[#00c9ff] uppercase">
+                <Video className="w-3.5 h-3.5 text-[#00c9ff]" />
+                <span>Featured Media</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
-                Recognitions &amp; Highlights
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight font-serif">
+                Leadership Videos
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                Explore awards, leadership moments, networking events, team collaborations, achievements, and milestones of HRA Groups.
+              <p className="text-white/60 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+                Exclusive interviews, leadership insights, and milestone media highlights from HRA Groups.
               </p>
             </motion.div>
 
-            {/* Filter Tabs */}
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
-              {categories.map((cat) => {
-                const active = activeCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveCategory(cat)}
-                    className={`relative px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer capitalize z-10 whitespace-nowrap ${active
-                      ? "text-white"
-                      : "text-slate-600 dark:text-slate-300 hover:text-[#0052cc] dark:hover:text-white bg-slate-100 dark:bg-[#0c1427] hover:bg-slate-200 dark:hover:bg-slate-800 border dark:border-slate-800"
-                      }`}
-                  >
-                    {active && (
-                      <motion.div
-                        layoutId="activeGalleryFilter"
-                        className="absolute inset-0 bg-[#0052cc] rounded-full shadow-md shadow-blue-600/30 -z-10"
-                        transition={{ type: "spring", stiffness: 450, damping: 35 }}
-                      />
-                    )}
-                    <span>{cat}</span>
-                  </button>
-                );
-              })}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {leadershipVideos.map((video, idx) => (
+                <motion.div
+                  key={video.id}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                  className="group rounded-3xl bg-white/[0.03] backdrop-blur-md border border-white/10 hover:border-[#00c9ff]/50 overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(0,201,255,0.15)] transition-all duration-300 flex flex-col"
+                >
+                  <div className="relative aspect-video w-full bg-black">
+                    <iframe
+                      src={video.embedUrl}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                    />
+                  </div>
+                  <div className="p-6 flex items-center justify-between border-t border-white/10 bg-black/40">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-white/5 text-[#00c9ff] flex items-center justify-center font-bold">
+                        <Play className="w-4 h-4 fill-[#00c9ff]" />
+                      </div>
+                      <h3 className="text-base sm:text-lg font-light text-white group-hover:text-[#00c9ff] transition-colors">
+                        {video.title}
+                      </h3>
+                    </div>
+                    <span className="text-xs font-mono text-[#00c9ff] uppercase tracking-wider">
+                      Watch
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
+        </section>
 
-          {/* Pure Full-Image Natural Masonry Grid (Preserves 100% true proportions without any cropping) */}
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            {filteredItems.map((item, idx) => (
+        {/* RECOGNITIONS & HIGHLIGHTS - FULL 19 CARDS GALLERY */}
+        <section id="highlights" className="py-20 sm:py-24 border-b border-white/10 transition-colors duration-300">
+          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
+
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  duration: 0.45,
-                  delay: idx * 0.03,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                onClick={() => setSelectedImage(item)}
-                className="group relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 break-inside-avoid bg-slate-900 border dark:border-slate-800"
+                transition={{ duration: 0.6 }}
+                className="space-y-3 max-w-xl"
               >
-                {/* 100% Natural Proportion Image with ZERO Cropping */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  className="w-full h-auto block rounded-2xl sm:rounded-3xl transition-transform duration-700 group-hover:scale-[1.02]"
-                  loading="lazy"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80";
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-widest text-[#00c9ff] uppercase">
+                  <Camera className="w-3.5 h-3.5 text-[#00c9ff]" />
+                  <span>Gallery &amp; Recognitions</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight font-serif">
+                  Recognitions &amp; Highlights
+                </h2>
+                <p className="text-sm sm:text-base text-white/60 leading-relaxed">
+                  Explore awards, leadership moments, networking events, team collaborations, achievements, and milestones of HRA Groups.
+                </p>
+              </motion.div>
+
+              {/* Filter Tabs */}
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
+                {categories.map((cat) => {
+                  const active = activeCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveCategory(cat)}
+                      className={`relative px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer capitalize z-10 whitespace-nowrap ${active
+                        ? "text-black font-semibold"
+                        : "text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10"
+                        }`}
+                    >
+                      {active && (
+                        <motion.div
+                          layoutId="activeGalleryFilter"
+                          className="absolute inset-0 bg-[#00c9ff] rounded-full shadow-md shadow-[#00c9ff]/30 -z-10"
+                          transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                        />
+                      )}
+                      <span>{cat}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Pure Full-Image Natural Masonry Grid (Preserves 100% true proportions without any cropping) */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+              {filteredItems.map((item, idx) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.45,
+                    delay: idx * 0.03,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
-                />
-
-                {/* Dark Glassmorphism Gradient Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl sm:rounded-3xl" />
-
-                {/* Top Category Badge on Hover */}
-                <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0 z-10">
-                  <span className="px-3.5 py-1.5 rounded-full bg-white/95 dark:bg-slate-900/90 backdrop-blur-md text-[#0052cc] dark:text-sky-400 text-xs font-bold shadow-md border dark:border-slate-700">
-                    {item.tag}
-                  </span>
-                </div>
-
-                {/* Quick Expand Icon in Corner on Hover */}
-                <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/95 dark:bg-slate-900/90 backdrop-blur-md text-[#001f4d] dark:text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md z-10 border dark:border-slate-700">
-                  <Maximize2 className="w-4 h-4" />
-                </div>
-
-                {/* Bottom Title & Click Prompt on Hover */}
-                <div className="absolute bottom-4 left-4 right-4 space-y-1 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-3 group-hover:translate-y-0 z-10">
-                  <div className="text-[11px] font-bold text-sky-300 uppercase tracking-wider">
-                    {item.category}
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold leading-snug line-clamp-2 text-white">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-300 pt-1 font-medium flex items-center gap-1.5">
-                    <span>Click to view full story &amp; details</span>
-                    <span>→</span>
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* EMPLOYEE VOICES SECTION */}
-      <section className="py-20 bg-slate-50 dark:bg-[#090e1a] border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
-        <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
-              <Users className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
-              <span>Voices of HRA</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
-              Employee Voices
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              Stories straight from the people who power HRA Groups.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {employeeVideos.map((video, idx) => (
-              <motion.div
-                key={video.id}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.15 }}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="group rounded-3xl bg-white dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(0,82,204,0.1)] transition-all duration-300"
-              >
-                <div className="relative aspect-video w-full bg-black">
-                  <iframe
-                    src={video.embedUrl}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full border-0"
+                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                  onClick={() => setSelectedImage(item)}
+                  className="group relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 break-inside-avoid bg-black/50 border border-white/10 hover:border-[#00c9ff]/50"
+                >
+                  {/* 100% Natural Proportion Image with ZERO Cropping */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-auto block rounded-2xl sm:rounded-3xl transition-transform duration-700 group-hover:scale-[1.02]"
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80";
+                    }}
                   />
-                </div>
-                <div className="p-6 sm:p-7 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0052cc] dark:text-sky-400">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>Real Stories</span>
+
+                  {/* Dark Glassmorphism Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl sm:rounded-3xl" />
+
+                  {/* Top Category Badge on Hover */}
+                  <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0 z-10">
+                    <span className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[#00c9ff] text-xs font-mono border border-white/15">
+                      {item.tag}
+                    </span>
                   </div>
-                  <h3 className="text-xl font-bold text-[#001f4d] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
-                    {video.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {video.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
 
-        </div>
-      </section>
-
-      {/* LEADERSHIP VOICES / QUOTES SECTION */}
-      <section className="py-20 sm:py-24 bg-white dark:bg-[#070c18] transition-colors duration-300">
-        <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-14">
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800/60 text-xs font-bold uppercase tracking-widest text-[#0052cc] dark:text-sky-300">
-              <Quote className="w-3.5 h-3.5 text-[#0052cc] dark:text-sky-400" />
-              <span>Leadership Insights</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-white tracking-tight">
-              Leadership Voices
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {leadershipQuotes.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                className="p-8 sm:p-10 rounded-3xl bg-[#f8fafc] dark:bg-[#0c1427] border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-[0_20px_45px_rgba(0,82,204,0.08)] transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900/60 text-[#0052cc] dark:text-sky-400 flex items-center justify-center group-hover:bg-[#0052cc] group-hover:text-white transition-colors duration-300">
-                    <Quote className="w-6 h-6" />
+                  {/* Quick Expand Icon in Corner on Hover */}
+                  <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/80 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md z-10 border border-white/15">
+                    <Maximize2 className="w-4 h-4" />
                   </div>
-                  <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 italic font-medium leading-relaxed">
-                    “{item.quote}”
-                  </p>
-                </div>
 
-                <div className="pt-6 mt-6 border-t border-slate-200/60 dark:border-slate-800">
-                  <div className="font-bold text-[#001f4d] dark:text-white text-base">{item.author}</div>
-                  <div className="text-xs font-semibold text-[#0052cc] dark:text-sky-400">{item.role}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* CTA BANNER */}
-      <section className="py-16 sm:py-20 bg-[#001738] dark:bg-[#050b17] text-white relative overflow-hidden border-t dark:border-slate-800">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,102,241,0.15),transparent_70%)] pointer-events-none" />
-
-        <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10 text-center space-y-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl mx-auto space-y-4"
-          >
-            <span className="text-xs font-bold uppercase tracking-widest text-[#8dc2ff]">
-              Join the Movement
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Be Part of Our Next Milestone
-            </h2>
-            <p className="text-slate-300 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
-              Whether you are an ambitious student, experienced professional, or corporate partner, collaborate with HRA Groups to shape the future.
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-              <Link
-                href="/careers"
-                className="px-9 py-3.5 rounded-full bg-[#0052cc] hover:bg-[#003882] text-white font-bold text-sm shadow-[0_8px_30px_rgba(0,82,204,0.35)] transition-all duration-200 hover:scale-[1.03]"
-              >
-                Explore Careers
-                <ArrowRight className="w-4 h-4 inline-block ml-2" />
-              </Link>
-              <Link
-                href="/internship"
-                className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold text-sm backdrop-blur-sm transition-all duration-200"
-              >
-                Apply for Internships
-              </Link>
+                  {/* Bottom Title & Click Prompt on Hover */}
+                  <div className="absolute bottom-4 left-4 right-4 space-y-1 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-3 group-hover:translate-y-0 z-10">
+                    <div className="text-[11px] font-mono text-[#00c9ff] uppercase tracking-wider">
+                      {item.category}
+                    </div>
+                    <h3 className="text-base sm:text-lg font-light font-serif leading-snug line-clamp-2 text-white">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-[#00c9ff] pt-1 font-mono flex items-center gap-1.5">
+                      <span>Click to view full story &amp; details</span>
+                      <span>→</span>
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
+
+          </div>
+        </section>
+
+        {/* EMPLOYEE VOICES SECTION */}
+        <section className="py-20 border-b border-white/10 transition-colors duration-300">
+          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-12">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center max-w-3xl mx-auto space-y-3"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-widest text-[#00c9ff] uppercase">
+                <Users className="w-3.5 h-3.5 text-[#00c9ff]" />
+                <span>Voices of HRA</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight font-serif">
+                Employee Voices
+              </h2>
+              <p className="text-white/60 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+                Stories straight from the people who power HRA Groups.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {employeeVideos.map((video, idx) => (
+                <motion.div
+                  key={video.id}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.15 }}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                  className="group rounded-3xl bg-white/[0.03] backdrop-blur-md border border-white/10 hover:border-[#00c9ff]/50 overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(0,201,255,0.15)] transition-all duration-300"
+                >
+                  <div className="relative aspect-video w-full bg-black">
+                    <iframe
+                      src={video.embedUrl}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                    />
+                  </div>
+                  <div className="p-6 sm:p-7 space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#00c9ff]">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Real Stories</span>
+                    </div>
+                    <h3 className="text-xl font-light text-white group-hover:text-[#00c9ff] transition-colors font-serif">
+                      {video.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
+                      {video.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        {/* LEADERSHIP VOICES / QUOTES SECTION */}
+        <section className="py-20 sm:py-24 border-b border-white/10 transition-colors duration-300">
+          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 space-y-14">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center max-w-3xl mx-auto space-y-3"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-widest text-[#00c9ff] uppercase">
+                <Quote className="w-3.5 h-3.5 text-[#00c9ff]" />
+                <span>Leadership Insights</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight font-serif">
+                Leadership Voices
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {leadershipQuotes.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ y: -8, transition: { duration: 0.25 } }}
+                  className="p-8 sm:p-10 rounded-3xl bg-white/[0.03] backdrop-blur-md border border-white/10 hover:border-[#00c9ff]/50 hover:shadow-[0_20px_45px_rgba(0,201,255,0.12)] transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div className="space-y-4">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 text-[#00c9ff] flex items-center justify-center group-hover:bg-[#00c9ff] group-hover:text-black transition-colors duration-300">
+                      <Quote className="w-6 h-6" />
+                    </div>
+                    <p className="text-base sm:text-lg text-white/80 italic font-light leading-relaxed font-serif">
+                      “{item.quote}”
+                    </p>
+                  </div>
+
+                  <div className="pt-6 mt-6 border-t border-white/10">
+                    <div className="font-medium text-white text-base">{item.author}</div>
+                    <div className="text-xs font-mono text-[#00c9ff]">{item.role}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        {/* CTA BANNER */}
+        <section className="py-16 sm:py-20 bg-black/60 text-white relative overflow-hidden border-t border-white/10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,201,255,0.12),transparent_70%)] pointer-events-none" />
+
+          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10 text-center space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-2xl mx-auto space-y-4"
+            >
+              <span className="text-xs font-mono tracking-widest text-[#00c9ff] uppercase">
+                Join the Movement
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight font-serif">
+                Be Part of Our Next Milestone
+              </h2>
+              <p className="text-white/60 text-sm sm:text-base leading-relaxed">
+                Whether you are an ambitious student, experienced professional, or corporate partner, collaborate with HRA Groups to shape the future.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+                <Link
+                  href="/careers"
+                  className="px-9 py-3.5 rounded-full bg-[#00c9ff] hover:bg-[#0070f3] text-black font-semibold text-sm shadow-[0_8px_30px_rgba(0,201,255,0.35)] transition-all duration-200 hover:scale-[1.03]"
+                >
+                  Explore Careers
+                  <ArrowRight className="w-4 h-4 inline-block ml-2" />
+                </Link>
+                <Link
+                  href="/internship"
+                  className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 text-white font-medium text-sm backdrop-blur-sm transition-all duration-200"
+                >
+                  Apply for Internships
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      </main>
 
       {/* FULLSCREEN LIGHTBOX MODAL */}
       <AnimatePresence>

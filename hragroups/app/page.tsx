@@ -1,1350 +1,1463 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TCSDarkHeroBackground from "@/components/TCSDarkHeroBackground";
+import IBasePolygonBackground from "@/components/IBasePolygonBackground";
 import {
-  Search,
-  MessageSquare,
-  ChevronDown,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Menu,
-  X,
-  Server,
-  Cloud,
-  ShieldCheck,
-  Cpu,
-  BarChart3,
-  Layers,
-  PhoneCall,
-  CheckCircle2,
-  Users,
-  Building2,
-  Star,
   ExternalLink,
   Sparkles,
+  CheckCircle2,
+  Building,
+  HeartPulse,
+  Flame,
+  Cpu,
+  Factory,
+  Shield,
+  Truck,
+  Globe2,
 } from "lucide-react";
 
+// Rotating typewriter phrases for HRA Groups
+const TYPEWRITER_PHRASES = [
+  "Welcome to HRA Groups",
+  "Hope + Resilience + Aspire",
+  "We specialize in IT Services & Consultancy",
+  "Driving Innovation & Excellence",
+  "Empowering Businesses in the Digital Era",
+  "Next-Gen Digital & AI Solutions",
+];
+
+const CAPABILITIES = [
+  {
+    num: "01",
+    title: "AI & Intelligent Automation",
+    desc: "Agentic systems, workflow automation, custom models, and LLM integrations across enterprise operations.",
+    bullets: ["Multi-agent solutions", "Custom LLM fine-tuning", "Workflow automation"],
+  },
+  {
+    num: "02",
+    title: "Cloud & Infrastructure",
+    desc: "Edge-to-cloud infrastructure, MLOps pipelines, and data orchestration built to scale with AI ambition.",
+    bullets: ["MLOps pipelines", "Edge / multi-cloud", "Data orchestration"],
+  },
+  {
+    num: "03",
+    title: "Product Engineering",
+    desc: "Full lifecycle development, digital strategy, and AI-infused product builds — concept to production.",
+    bullets: ["Zero-to-one builds", "Digital strategy", "Quality engineering"],
+  },
+  {
+    num: "04",
+    title: "Data & Insights",
+    desc: "Pipelines, governance, decision intelligence — the foundation every AI initiative actually rests on.",
+    bullets: ["Data pipelines", "Governance", "Decision intelligence"],
+  },
+  {
+    num: "05",
+    title: "AI Strategy & Roadmap",
+    desc: "Readiness assessment, adoption strategy, responsible-AI guardrails — and a sequenced ROI roadmap.",
+    bullets: ["Readiness audits", "Adoption strategy", "Responsible AI"],
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    initials: "BO",
+    company: "Boursa Kuwait",
+    author: "Shakeel Haider",
+    role: "Delivery Director IT Services, Boursa Kuwait",
+    linkedin: "https://www.linkedin.com/",
+    featured: true,
+    quote:
+      "IBaseIT's Quality Engineering services have been a game-changer for Boursa Kuwait. It helped to evolve the core by Automation, scaled Agile, and cloud platforms to evaluate application development, testing, and infrastructure. Their tailored solutions and rigorous testing boosted efficiency and client satisfaction. QATTS' automation features like data-driven testing, Multi Branch Support and CI/CD capabilities further enhanced our financial gains.",
+  },
+  {
+    initials: "AR",
+    company: "ArrowStream",
+    author: "Matt Heckroth",
+    role: "Sr. Director of Product Management, ArrowStream",
+    linkedin: "https://www.linkedin.com/",
+    featured: false,
+    quote:
+      "At ArrowStream, we prioritize supply chain optimization. IBaseIT mobile app integration was crucial, delivering a secure, feature-rich solution that empowers clients on-the-go. Their expertise and agile approach ensured timely delivery and adaptability, showcasing our commitment to quality.",
+  },
+  {
+    initials: "EN",
+    company: "Envoy Global",
+    author: "Mahi Inampudi",
+    role: "CTO & President, Envoy Global",
+    linkedin: "https://www.linkedin.com/",
+    featured: false,
+    quote:
+      "As the CTO of Envoy Global, Inc., I am excited to endorse IBaseIT for their exceptional expertise in developing process automation software using Microsoft PowerApps and Power Automate. Their tailored solutions, including an internal automation technology for processing large PDFs seamlessly, have significantly improved our efficiency and productivity.",
+  },
+  {
+    initials: "WI",
+    company: "Wilco Source",
+    author: "Suresh Kankanala",
+    role: "Chief Technology Officer, Wilco Source",
+    linkedin: "https://www.linkedin.com/",
+    featured: false,
+    quote:
+      "IBaseIT has been a reliable partner in supporting our healthcare and pharmaceutical clients through their expertise in Application Development, Mobile Development, and Testing services. Their team consistently demonstrates strong technical capability, responsiveness, and a strong commitment to quality delivery.",
+  },
+  {
+    initials: "KI",
+    company: "Kidde Global Solutions",
+    author: "Kiran Anamolu",
+    role: "Site Leader, Director Engineering",
+    linkedin: "https://www.linkedin.com/",
+    featured: false,
+    quote:
+      "Since 2022, IBaseIT has been a valuable partner in supporting our Digital Transformation initiatives. Their team has contributed across Product Engineering, Mobile Development, Testing, and AWS Cloud Solutions & Development, consistently delivering high-quality solutions & demonstrating strong technical expertise.",
+  },
+];
+
+// Authentic verified client brand logos from /clients page
+const CLIENT_LOGOS = [
+  {
+    name: "ABH IT Solutions",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/abhitsolutions-YX4xMrgxxVulNQ5z.jpg",
+  },
+  {
+    name: "RN Innovation Technologies",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/rninnovation-Y4Lv1ZXv5XuMxnDW.jpg",
+  },
+  {
+    name: "Vectura Earthmoving Pvt. Ltd.",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/vectura-voDSefIB5Jsiyex0.jpg",
+  },
+  {
+    name: "Madhurams Malikipuram",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/madhurams-Y4Lv1ZXvPEsB5qWZ.jpg",
+  },
+  {
+    name: "TheCconnects",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/thecconnects_logo-ncUALeZwo63vmLgH.jpg",
+  },
+  {
+    name: "HCL",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/hcl-A0xjM8XjWVFaZeRL.png",
+  },
+  {
+    name: "Wipro",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/wipro-mnlJwrKJnohe9w2o.png",
+  },
+  {
+    name: "Tombest Mining",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/logo-urDNMS5El0aAyQDq.png",
+  },
+  {
+    name: "SyncPedia",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/sync-crVbaCLObzJvgYYZ.webp",
+  },
+  {
+    name: "Gayathri Infra Pvt. Ltd.",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/gayathri-logo-wagZAeYtR4L21PHp.jpg",
+  },
+  {
+    name: "K-Learn World",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/klearnworld-removebg-preview-1-IqhmGHxpOobd1AaG.png",
+  },
+  {
+    name: "Shield Workz",
+    logo: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/shield-workz-gZFp9ZzZCR8yMimX.png",
+  },
+];
+
+// The Collection moments with authentic video assets from hragroupswebsite-psi.vercel.app
+const COLLECTION_ITEMS = [
+  {
+    id: 1,
+    number: "01",
+    title: "Internship Experience",
+    category: "INTERNSHIPS",
+    type: "video",
+    media: "https://hragroupswebsite-psi.vercel.app/assets/internexpreince-DqsfGd7X.mp4",
+    description: "Real learning, practical exposure and experiences that help emerging talent move closer to the professional world.",
+  },
+  {
+    id: 2,
+    number: "02",
+    title: "Founder Program",
+    category: "FOUNDER PROGRAM",
+    type: "video",
+    media: "https://hragroupswebsite-psi.vercel.app/assets/founderconnect-B-kGXUm9.mp4",
+    description: "Ideas, conversations and connections that help aspiring founders move from possibility toward action.",
+  },
+  {
+    id: 3,
+    number: "03",
+    title: "Technology Workshop",
+    category: "WORKSHOPS",
+    type: "video",
+    media: "https://hragroupswebsite-psi.vercel.app/assets/Technology%20Workshop-DhA_BgOM.mp4",
+    description: "Hands-on technology learning designed around practical skills, experimentation and real-world thinking.",
+  },
+  {
+    id: 4,
+    number: "04",
+    title: "HRA Hackathon",
+    category: "HACKATHON",
+    type: "video",
+    media: "https://hragroupswebsite-psi.vercel.app/assets/hAC-Ddg1rOEo.mp4",
+    description: "A high-energy environment where ideas, technology and teamwork come together to create something meaningful.",
+  },
+  {
+    id: 5,
+    number: "05",
+    title: "Team HRA",
+    category: "TEAM",
+    type: "video",
+    media: "https://hragroupswebsite-psi.vercel.app/assets/EEMO-B-yefoGI.mp4",
+    description: "The people behind the ideas, products, programs and everyday work that shape the HRA ecosystem.",
+  },
+  {
+    id: 6,
+    number: "06",
+    title: "Achievements",
+    category: "ACHIEVEMENTS",
+    type: "video",
+    media: "https://hragroupswebsite-psi.vercel.app/assets/V-2%20(1)-ZmECZi53.mp4",
+    description: "A look at milestones, recognition and moments that reflect the progress of the HRA community.",
+  },
+];
+
+const COLLECTION_CATEGORIES = [
+  "ALL",
+  "INTERNSHIPS",
+  "FOUNDER PROGRAM",
+  "WORKSHOPS",
+  "HACKATHON",
+  "TEAM",
+  "ACHIEVEMENTS",
+];
+
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeIndustry, setActiveIndustry] = useState(0);
-  const [currentCaseStudy, setCurrentCaseStudy] = useState(0);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
-  const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [activeNavDropdown, setActiveNavDropdown] = useState<string | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [currentExcellenceSlide, setCurrentExcellenceSlide] = useState(0);
-  const [isHoveredCaseStudy, setIsHoveredCaseStudy] = useState(false);
+  // Typewriter Animation State
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(70);
 
-  // Excellence slides from live site
-  const excellenceSlides = [
-    {
-      image: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/1st-bzgvbiCndwULoKQT.jpeg",
-      title: "Corporate Excellence Award",
-      desc: "Honored for outstanding corporate excellence and innovation across multiple business domains.",
-      extra: "Reflects leadership strength, governance discipline, and enterprise-grade execution.",
-      points: ["Corporate excellence", "Innovation-driven delivery", "High-impact execution", "Quality governance"],
-    },
-    {
-      image: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/2nd-7LE56fFGyLZYeJTC.jpeg",
-      title: "Leadership & Vision Award",
-      desc: "Recognized for visionary leadership enabling sustainable growth and long-term success.",
-      extra: "Acknowledges strategic foresight and people-centric leadership.",
-      points: ["Visionary leadership", "Strategic growth", "Trusted partnerships", "Long-term vision"],
-    },
-    {
-      image: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-55-iwGtvjzqnUhOIowd.jpg",
-      title: "Project Delivery Excellence",
-      desc: "Awarded for consistent, secure, and high-quality project delivery.",
-      extra: "Demonstrates commitment to timelines and scalable systems.",
-      points: ["On-time delivery", "Secure systems", "Scalable architecture", "Industry standards"],
-    },
-    {
-      image: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/5th-ENaP3cssCd60dQxr.jpeg",
-      title: "Innovation-Led Growth Award",
-      desc: "Awarded for driving measurable business growth through continuous innovation.",
-      extra: "Transforms ideas into reliable, scalable digital solutions.",
-      points: ["Innovation-led growth", "Scalable solutions", "Business impact", "Industry recognition"],
-    },
-    {
-      image: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/speech-FKw85a5LrJj4HdRc.jpeg",
-      title: "Leadership Address & Recognition",
-      desc: "Honored for leadership presence and industry influence.",
-      extra: "Highlights thought leadership and strategic communication.",
-      points: ["Leadership address", "Industry presence", "Stakeholder trust", "Recognition"],
-    },
-    {
-      image: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-23-VEjOHz2zOG4PEi4W.jpg",
-      title: "Corporate Achievement Recognition",
-      desc: "Recognized for maintaining operational excellence.",
-      extra: "Represents disciplined execution and professionalism.",
-      points: ["Operational excellence", "Professional standards", "Process maturity", "Corporate trust"],
-    },
-    {
-      image: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/vice-president-mv0Jg69MKJCD4l7q.jpg",
-      title: "Executive Leadership Recognition",
-      desc: "Received recognition for executive leadership.",
-      extra: "Acknowledges accountability and strategic direction.",
-      points: ["Executive leadership", "Strategic governance", "Corporate recognition", "Leadership trust"],
-    },
-    {
-      image: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/6th-DmIMSc5GPntYvZy8.jpeg",
-      title: "Milestone Achievement",
-      desc: "Acknowledged for achieving key organizational milestones.",
-      extra: "Marks significant progress toward long-term excellence.",
-      points: ["Key milestones", "Growth journey", "Future vision", "Achievement"],
-    },
-  ];
+  // Gallery Collection State
+  const [collectionCategory, setCollectionCategory] = useState("ALL");
+  const [activeMoment, setActiveMoment] = useState<typeof COLLECTION_ITEMS[0] | null>(null);
+  const [isAudioMuted, setIsAudioMuted] = useState(true);
 
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 80]);
-  const heroScale = useTransform(scrollY, [0, 500], [1, 0.95]);
-  const heroOpacity = useTransform(scrollY, [0, 450], [1, 0.3]);
+  // Capability rail scroll ref
+  const railRef = React.useRef<HTMLDivElement>(null);
 
-  // Case studies data
-  const caseStudies = [
-    {
-      title: "IT Managed Services for Large Midwest City",
-      desc: "Modernizing core city infrastructure, providing round-the-clock proactive monitoring, and slashing ticketing resolution turnaround by 45%.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/69c55ee836da2f16acf071b9_Chicago%201.avif",
-      category: "Government",
-    },
-    {
-      title: "ServiceNow for One of Nation's Largest Port Authorities",
-      desc: "Streamlined multi-agency workflows and automated cross-department logistics for continuous marine and land operations.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/69c54dbff8dd16043703b2f1_Sea%20Port.avif",
-      category: "Transportation",
-    },
-    {
-      title: "Large Midwest Utility Company - EAM & GIS",
-      desc: "Enterprise asset tracking and precision spatial GIS mapping to enhance pipeline security and preventative maintenance.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/69c553b8ef72025e41e410f9_Gas%20Lines.avif",
-      category: "Utilities",
-    },
-    {
-      title: "Large West Coast City - Data Strategy",
-      desc: "Architecting a unified, scalable municipal data lakehouse for real-time analytics, dashboards, and AI policy decisions.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/69c554b70e1e15aea82ce672_Sacramento%202.avif",
-      category: "Government",
-    },
-    {
-      title: "West Coast Community College System – IT Strategic Plan",
-      desc: "Digital campus roadmap bridging modern LMS integrations, cybersecurity safeguards, and hybrid cloud agility.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/69c43e92d4da2117b1b6a218_Community%20College.avif",
-      category: "Education",
-    },
-    {
-      title: "Large Midwest Energy Provider - Network Engineering Services",
-      desc: "Mission-critical high-bandwidth SCADA network engineering ensuring 99.999% substation uptime across four states.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/69c537b8d3971172f86b6ff4_Gas%20Utility.avif",
-      category: "Energy",
-    },
-  ];
-
-  // Auto slide for excellence section
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentExcellenceSlide((prev) => (prev + 1) % excellenceSlides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [excellenceSlides.length]);
-
-  // Auto slide for Case Studies section (with pause on hover) - high speed
-  useEffect(() => {
-    if (isHoveredCaseStudy) return;
-    const timer = setInterval(() => {
-      setCurrentCaseStudy((prev) => (prev + 1) % caseStudies.length);
-    }, 1200);
-    return () => clearInterval(timer);
-  }, [isHoveredCaseStudy, caseStudies.length]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Industries list
-  const industries = [
-    {
-      name: "Government",
-      title: "Helping Government Work Smarter for the People It Serves",
-      desc: "Modern government relies on technology to deliver secure services, enable data-driven policy, and operate more efficiently in service of the public.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/688a2821f82609ee0bf3ddbe_industries-1.avif",
-    },
-    {
-      name: "Utilities",
-      title: "IT Services & Consulting for Utility Organizations",
-      desc: "Utility companies rely on advanced technology to manage complex networks, strengthen grid resilience, and ensure reliable, safe service in an increasingly data-driven environment.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/68cd5d15f8df338f0c6d44f7_utilities-hero.avif",
-    },
-    {
-      name: "Aviation",
-      title: "IT Services & Consulting for Aviation Safety and Security",
-      desc: "Aviation depends on advanced technology to ensure safety, optimize operations, and support real-time coordination across complex air travel systems.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/688b5467f59b1147601759d4_indust-2.avif",
-    },
-    {
-      name: "Transportation",
-      title: "Transforming City Operations with ServiceNow",
-      desc: "Information technology is critical to public transit, enabling real-time tracking, efficient operations, and data-driven planning that improve reliability and rider experience.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/68cd5dd51e5d223642754afb_transportation-hero.avif",
-    },
-    {
-      name: "Public Safety Managed Services",
-      title: "Public Safety Managed Services",
-      desc: "Advanced technology solutions designed to recognize, respond, and recover from an incident or emergency swiftly and effectively.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/688b5444b1e5447e507df849_indust-6.avif",
-    },
-    {
-      name: "Commercial Real Estate",
-      title: "Commercial Real Estate",
-      desc: "Real estate data services to maximize revenue, valuation & safety with smart building technologies.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/688b543568ea9de47bf6c70c_indust-4.avif",
-    },
-    {
-      name: "Banking, Financial Services & Insurance",
-      title: "Solutions for Banking, Financial Services, and Insurance",
-      desc: "Streamlining operations, modernizing legacy systems, and improving service delivery while keeping full regulatory compliance.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/68cd5f2493afb621532c175b_banking-hero.avif",
-    },
-    {
-      name: "Manufacturing",
-      title: "IT Services & Manufacturing",
-      desc: "Information technology is critical to modern manufacturing, enabling automation and data-driven decisions that improve efficiency, quality, and resilience.",
-      image:
-        "https://cdn.prod.website-files.com/685c045f09a3dab41aa0d72a/688a2821f82609ee0bf3ddbe_industries-1.avif",
-    },
-  ];
-
-  // Solutions data
-  const solutions = [
-    {
-      id: "managed-services",
-      title: "IT Managed Services",
-      tag: "Comprehensive IT Solutions",
-      sub: "for Organizations of All Sizes",
-      spanCol: "md:col-span-12 lg:col-span-4 lg:row-span-2",
-      icon: Server,
-      accentBg: "from-blue-500/10 via-sky-400/5 to-transparent",
-      graphic: (
-        <div className="relative w-full h-48 sm:h-64 flex items-center justify-center">
-          <div className="absolute w-36 h-36 bg-blue-400/20 dark:bg-blue-500/30 rounded-full blur-2xl animate-pulse"></div>
-          {/* Cloud & Data illustration */}
-          <div className="relative flex flex-col items-center">
-            <div className="p-4 bg-gradient-to-b from-white to-blue-50/80 dark:from-[#111e3b] dark:to-[#0c1427] rounded-2xl shadow-xl border border-blue-100 dark:border-blue-900/60 flex items-center justify-center">
-              <Cloud className="w-16 h-16 text-blue-600 dark:text-sky-400 stroke-[1.5]" />
-            </div>
-            {/* Animated data lines */}
-            <div className="flex gap-2 mt-3">
-              {[...Array(5)].map((_, i) => (
-                <div
-                  key={i}
-                  className="w-1.5 bg-gradient-to-b from-blue-500 dark:from-sky-400 to-transparent rounded-full animate-bounce"
-                  style={{
-                    height: `${20 + (i % 3) * 12}px`,
-                    animationDelay: `${i * 0.15}s`,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: "servicenow",
-      title: "ServiceNow Integration",
-      tag: "Workflow Automation",
-      sub: "Transform workflows, reduce costs, and drive efficiency with SDI Presence – your Elite ServiceNow partner",
-      spanCol: "md:col-span-12 lg:col-span-8",
-      icon: Cpu,
-      accentBg: "from-blue-600/10 via-indigo-400/5 to-transparent",
-      graphic: (
-        <div className="relative w-full h-36 flex items-center justify-center">
-          <div className="px-6 py-3 bg-white/90 dark:bg-[#111e3b]/90 backdrop-blur-md rounded-2xl shadow-lg border border-blue-100 dark:border-blue-900/60 flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
-            <span className="font-semibold text-blue-900 dark:text-white tracking-wide">ServiceNow</span>
-            <span className="text-xs bg-blue-100 dark:bg-blue-900/80 text-blue-700 dark:text-sky-300 px-2 py-0.5 rounded-full font-medium">Elite Partner</span>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: "eam",
-      title: "Enterprise Asset Management",
-      tag: "Asset Optimization",
-      sub: "Maximize Asset Performance. Enhance Operational Efficiency.",
-      spanCol: "md:col-span-6 lg:col-span-4",
-      icon: Layers,
-      accentBg: "from-sky-500/10 via-transparent to-transparent",
-      graphic: (
-        <div className="relative w-full h-32 flex items-center justify-center">
-          <div className="p-3 bg-white dark:bg-[#111e3b] rounded-xl shadow-md border border-blue-50 dark:border-slate-800 flex items-center gap-2">
-            <div className="w-12 h-6 bg-blue-100 dark:bg-blue-950/80 rounded flex items-center justify-center text-[10px] text-blue-800 dark:text-sky-300 font-bold">EAM 4.0</div>
-            <div className="w-16 h-2 bg-blue-200 dark:bg-slate-700 rounded-full overflow-hidden">
-              <div className="w-3/4 h-full bg-blue-600 dark:bg-sky-400"></div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: "data-ai",
-      title: "Enterprise Data & AI",
-      tag: "Intelligent Insights",
-      sub: "Transforming Data Disorder into Business Insight",
-      spanCol: "md:col-span-6 lg:col-span-4",
-      icon: BarChart3,
-      accentBg: "from-indigo-500/10 via-transparent to-transparent",
-      graphic: (
-        <div className="relative w-full h-32 flex items-center justify-center">
-          <div className="flex gap-2 items-end h-16">
-            <div className="w-4 h-8 bg-blue-200 dark:bg-blue-900 rounded-t"></div>
-            <div className="w-4 h-12 bg-blue-400 dark:bg-blue-700 rounded-t"></div>
-            <div className="w-4 h-16 bg-blue-600 dark:bg-sky-500 rounded-t"></div>
-            <div className="w-4 h-10 bg-indigo-500 dark:bg-indigo-400 rounded-t"></div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: "public-safety",
-      title: "Public Safety Technology",
-      tag: "Community Protection",
-      sub: "Protecting Communities with Connected, Reliable, and Secure Technology.",
-      spanCol: "md:col-span-6 lg:col-span-6",
-      icon: ShieldCheck,
-      accentBg: "from-blue-600/10 via-sky-400/5 to-transparent",
-      graphic: (
-        <div className="relative w-full h-32 flex items-center justify-center">
-          <div className="p-4 bg-gradient-to-br from-blue-50 to-white dark:from-[#111e3b] dark:to-[#0c1427] rounded-2xl border border-blue-100 dark:border-blue-900/60 shadow-sm flex items-center gap-3">
-            <ShieldCheck className="w-8 h-8 text-blue-600 dark:text-sky-400" />
-            <div className="text-left">
-              <div className="text-xs font-bold text-blue-900 dark:text-white">NextGen 911 Ready</div>
-              <div className="text-[11px] text-slate-500 dark:text-slate-400">24/7 Redundant Telemetry</div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: "advisory",
-      title: "Advisory & Consulting",
-      tag: "Strategic Roadmaps",
-      sub: "Turning Complex Challenges into Strategic Opportunities",
-      spanCol: "md:col-span-6 lg:col-span-6",
-      icon: CheckCircle2,
-      accentBg: "from-sky-500/10 via-transparent to-transparent",
-      graphic: (
-        <div className="relative w-full h-32 flex items-center justify-center">
-          <div className="p-4 bg-white dark:bg-[#111e3b] rounded-2xl border border-slate-100 dark:border-slate-800 shadow-md flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-blue-600 dark:bg-sky-500 text-white flex items-center justify-center text-xs font-bold">30+</div>
-            <div className="text-left">
-              <div className="text-xs font-bold text-slate-900 dark:text-white">Years of Executive Advisory</div>
-              <div className="text-[11px] text-slate-500 dark:text-slate-400">Proven Playbooks & Governance</div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-  ];
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newsletterEmail) {
-      setEmailSubmitted(true);
-      setTimeout(() => setEmailSubmitted(false), 5000);
-      setNewsletterEmail("");
+  const scrollRail = (direction: "left" | "right") => {
+    if (railRef.current) {
+      const scrollAmount = 360;
+      railRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
     }
   };
 
+  useEffect(() => {
+    const fullText = TYPEWRITER_PHRASES[phraseIndex];
+
+    const handleTyping = () => {
+      if (!isDeleting) {
+        // Typing forward
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        setTypingSpeed(60);
+
+        if (currentText.length + 1 === fullText.length) {
+          // Pause when word is completely typed
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting backward
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        setTypingSpeed(35);
+
+        if (currentText.length === 0) {
+          setIsDeleting(false);
+          setPhraseIndex((prev) => (prev + 1) % TYPEWRITER_PHRASES.length);
+        }
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, phraseIndex, typingSpeed]);
+
   return (
-    <div className="min-h-screen bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
-      {/* GLOBAL NAVBAR */}
+    <div className="ibase-landing-bg text-white min-h-screen selection:bg-[#00c9ff]/30 selection:text-[#00c9ff] relative overflow-hidden font-sans">
       <Navbar />
 
-      {/* EXACT 1:1 STICKY HERO WITH SMOOTH PARALLAX AS IN BLOG PAGE */}
-      <section className="sticky top-0 z-0 bg-white dark:bg-[#070c18] min-h-[calc(100vh-80px)] flex items-center pt-4 pb-12 lg:pt-0 lg:pb-0 overflow-hidden relative">
-        {/* Dark theme background - TCS style digital transformation wave & neural network canvas */}
-        <TCSDarkHeroBackground />
+      {/* Global Background Atmospheric Grids, Moving Polygon Constellation Lines matching screenshot */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-black">
+        {/* Exact IBaseIT Large Polygon Constellation Lines on pitch black */}
+        <IBasePolygonBackground />
 
-        <motion.div
-          style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
-          className="w-full max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24 relative my-auto z-10"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0 items-center min-h-[calc(100vh-140px)] relative">
-            {/* Hero Left / Centered Content */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="lg:col-span-6 xl:col-span-6 dark:col-span-12 dark:lg:col-span-12 dark:xl:col-span-12 space-y-4 lg:space-y-5 relative z-20 pt-0 pb-4 -mt-16 sm:-mt-24 lg:-mt-48 xl:-mt-64 dark:-mt-16 dark:sm:-mt-24 dark:lg:-mt-32 dark:xl:-mt-40 dark:flex dark:flex-col dark:items-center dark:text-center dark:mx-auto dark:max-w-[900px]"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/70 border border-blue-200/60 dark:border-blue-800/80 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm dark:hidden"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
-                <span>INNOVATION • RESILIENCE • CONSULTANCY</span>
-              </motion.div>
+        {/* Subtle Cyber Glowing Orbs (Toned down for true black focus) */}
+        <div className="absolute top-[20%] -left-[10%] w-[600px] h-[600px] bg-[#00c9ff]/[0.02] rounded-full blur-[200px] ibase-orb-cyan" />
+        <div className="absolute top-[40%] -right-[15%] w-[700px] h-[700px] bg-[#1e1cb0]/[0.04] rounded-full blur-[220px] ibase-orb-violet" />
+        <div className="absolute top-[65%] left-[5%] w-[600px] h-[600px] bg-[#00c9ff]/[0.02] rounded-full blur-[200px] ibase-orb-cyan" />
+        <div className="absolute top-[85%] right-[10%] w-[700px] h-[700px] bg-[#1e1cb0]/[0.04] rounded-full blur-[220px] ibase-orb-violet" />
+      </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25, duration: 0.8 }}
-                className="text-[40px] sm:text-[54px] md:text-[62px] lg:text-[66px] xl:text-[76px] font-bold tracking-tight text-slate-900 dark:text-white leading-[1.12]"
-              >
-                Welcome to <span className="text-[#657ef8]">H</span><span className="text-[#00bcd4]">R</span><span className="text-[#f58220]">A</span> Groups
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.8 }}
-                className="text-[22px] sm:text-[26px] lg:text-[30px] font-semibold italic tracking-wide"
-              >
-                <span className="text-[#657ef8]">H</span><span className="text-[#657ef8]/90 font-normal">ope</span> <span className="text-slate-400 dark:text-slate-500 font-normal">+</span> <span className="text-[#00bcd4]">R</span><span className="text-[#00bcd4]/90 font-normal">esilience</span> <span className="text-slate-400 dark:text-slate-500 font-normal">+</span> <span className="text-[#f58220]">A</span><span className="text-[#f58220]/90 font-normal">spire</span>
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.8 }}
-                className="text-[18px] sm:text-[20px] lg:text-[22px] text-slate-700 dark:text-slate-300 font-normal leading-[1.65] max-w-[580px] dark:max-w-[700px]"
-              >
-                We specialize in IT Services and Consultancy,<br className="hidden sm:inline" />
-                Driving innovation &amp; excellence
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55, duration: 0.8 }}
-                className="pt-2 relative inline-flex justify-center"
-              >
-                {/* Blinking / Pulsing Aura Ring */}
-                <span className="absolute inset-0 rounded-full bg-blue-500/30 dark:bg-blue-400/40 animate-ping opacity-75 pointer-events-none" />
-
-                <Link
-                  href="/contact"
-                  className="group relative inline-flex items-center justify-center px-10 py-4 rounded-full bg-white dark:bg-[#0e172e] border-2 border-[#447aff]/50 dark:border-blue-400/70 shadow-[0_0_20px_rgba(68,122,255,0.4)] dark:shadow-[0_0_28px_rgba(96,165,250,0.6)] hover:shadow-[0_0_35px_rgba(68,122,255,0.7)] transition-all duration-300 hover:scale-[1.05] active:scale-[0.98] animate-pulse"
-                >
-                  <span className="text-[15px] font-bold bg-gradient-to-r from-[#013b9a] via-[#3866f1] to-[#65acff] dark:from-[#60a5fa] dark:via-[#93c5fd] dark:to-white bg-clip-text text-transparent group-hover:opacity-100">
-                    Talk to an Expert
-                  </span>
-                </Link>
-              </motion.div>
-            </motion.div>
-
-            {/* Hero Right 3D City Isometric Artwork - Visible in Light Theme Only */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.9, delay: 0.2 }}
-              className="lg:col-span-6 xl:col-span-6 relative flex justify-center lg:justify-end z-10 lg:-ml-12 xl:-ml-24 dark:hidden"
-            >
-              <div className="relative w-full max-w-[850px] lg:max-w-[1050px] xl:max-w-[1300px] lg:scale-115 xl:scale-130 transform-gpu origin-center lg:origin-right">
-                {/* 3D City Architecture Illustration */}
-                <img
-                  src="/hero-original-transparent.png"
-                  alt="HRA Groups 3D City Architecture"
-                  className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-none"
-                />
-              </div>
-            </motion.div>
+      <main className="relative z-20">
+        {/* ===================== HERO SECTION ===================== */}
+        <section className="relative w-full min-h-screen flex flex-col items-center justify-between pt-36 pb-20 overflow-hidden">
+          {/* Full-bleed Full Screen Background Animation & Canvas */}
+          <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+            <TCSDarkHeroBackground />
           </div>
-        </motion.div>
-      </section>
 
-      {/* ELEVATED SHEET WRAPPER (OVERLAPS AND SCROLLS SMOOTHLY OVER HERO EXACTLY AS IN BLOG PAGE) */}
-      <div id="experience-sheet" className="relative z-10 bg-white dark:bg-[#090e1a] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(15,23,42,0.15)] dark:shadow-[0_-25px_60px_rgba(0,0,0,0.8)] border-t border-slate-100/80 dark:border-slate-800/80">
-        {/* ========================================================================= */}
-        {/* SECTION: OUR EXCELLENCE SLIDER (With Smooth Scroll Reveal & Flip Animation) */}
-        {/* ========================================================================= */}
-        <section className="py-20 bg-gradient-to-br from-[#eef3ff] via-[#f8faff] to-white dark:from-[#090e1a] dark:via-[#0c1427] dark:to-[#0f1a36] border-b border-blue-100/60 dark:border-slate-800/60 overflow-hidden relative rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px]">
-          <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md rounded-3xl p-6 sm:p-10 lg:p-12 shadow-[0_12px_40px_rgba(0,82,204,0.08)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-blue-100/80 dark:border-slate-800 hover:shadow-[0_18px_50px_rgba(0,82,204,0.12)] transition-shadow duration-500"
-            >
-              {/* Slider Image Container */}
-              <div className="w-full lg:w-1/2 relative h-[320px] sm:h-[400px] rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center shadow-lg group">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={excellenceSlides[currentExcellenceSlide].image}
-                    src={excellenceSlides[currentExcellenceSlide].image}
-                    alt={excellenceSlides[currentExcellenceSlide].title}
-                    initial={{ opacity: 0, scale: 0.92, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 1.05, y: -20 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="w-full h-full object-contain p-3"
-                  />
-                </AnimatePresence>
+          {/* IBaseIT SVG Network Cyber Grid Overlay */}
+          <div
+            className="absolute inset-0 z-0 pointer-events-none opacity-25"
+            style={{
+              backgroundImage: `radial-gradient(circle at 50% 50%, rgba(0, 201, 255, 0.15) 0%, transparent 70%)`
+            }}
+          />
 
-                {/* Prev / Next Arrows */}
-                <button
-                  onClick={() =>
-                    setCurrentExcellenceSlide((prev) =>
-                      prev > 0 ? prev - 1 : excellenceSlides.length - 1
-                    )
-                  }
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-blue-600 text-white flex items-center justify-center transition-all shadow-md active:scale-90 z-20"
-                  aria-label="Previous Slide"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() =>
-                    setCurrentExcellenceSlide((prev) =>
-                      (prev + 1) % excellenceSlides.length
-                    )
-                  }
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-blue-600 text-white flex items-center justify-center transition-all shadow-md active:scale-90 z-20"
-                  aria-label="Next Slide"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
+          {/* Hero Content Container (Max width centered) */}
+          <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col items-center justify-between flex-1 text-center">
+            <div className="max-w-4xl mx-auto flex flex-col items-center space-y-8 mt-6">
+              {/* Pill Tag */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#0a0c12]/80 border border-white/15 backdrop-blur-md shadow-lg group hover:border-[#00c9ff]/40 transition-colors"
+              >
+                <span className="text-xs sm:text-[13px] font-medium text-white/80">
+                  We Engineer AI That Performs in Real World
+                </span>
+                <span className="text-white/40 text-sm group-hover:translate-x-0.5 transition-transform text-[#00c9ff]">
+                  ›
+                </span>
+              </motion.div>
 
-                {/* Slide Counter Indicator */}
-                <div className="absolute bottom-3 right-4 px-3.5 py-1 rounded-full bg-black/70 text-white text-xs font-semibold backdrop-blur-sm z-20">
-                  {currentExcellenceSlide + 1} / {excellenceSlides.length}
-                </div>
+              {/* Typewriter Display Headline with Exact IBaseIT Geometric Typography */}
+              <div className="h-[90px] sm:h-[130px] md:h-[150px] flex items-center justify-center w-full px-2">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[72px] font-semibold text-white tracking-[-0.03em] leading-[1.08] text-center" style={{ fontFamily: 'var(--font-manrope), "Plus Jakarta Sans", sans-serif' }}>
+                  <span className="text-white drop-shadow-[0_2px_18px_rgba(255,255,255,0.2)]">{currentText}</span>
+                  <span className="text-[#00c9ff] ml-1.5 font-light animate-[pulse_1s_infinite]">|</span>
+                </h1>
               </div>
 
-              {/* Slider Content */}
-              <div className="w-full lg:w-1/2 space-y-4 lg:pl-6 lg:border-l-4 lg:border-blue-500 relative">
-                <motion.div
-                  key={`badge-${currentExcellenceSlide}`}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-200/50 dark:border-blue-800/60">
-                    <Sparkles className="w-3 h-3 text-blue-600 dark:text-sky-400" />
-                    HRA Excellence &amp; Recognition
-                  </span>
-                </motion.div>
+              <p className="text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed">
+                Proprietary engineering methodologies connecting AI, multi-cloud platforms, and autonomous systems into measurable business performance.
+              </p>
+            </div>
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`content-${currentExcellenceSlide}`}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.4 }}
-                    className="space-y-3"
+            {/* Hero 2-Column Action Cards */}
+            <div className="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 pt-16 border-t border-white/10 mt-12 text-center">
+              <div className="flex flex-col items-center space-y-3">
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  Scale Enterprise Technology with HRA
+                </h3>
+                <p className="text-sm text-white/60 max-w-sm">
+                  Build reliable software, cloud systems, and AI.
+                </p>
+                <div className="pt-2">
+                  <Link
+                    href="/contact"
+                    className="ibase-btn-ghost text-sm font-medium px-6 py-2.5"
                   >
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1f3c88] dark:text-sky-300 leading-tight min-h-[50px]">
-                      {excellenceSlides[currentExcellenceSlide].title}
-                    </h2>
-
-                    <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
-                      {excellenceSlides[currentExcellenceSlide].desc}
-                    </p>
-
-                    <p className="text-slate-500 dark:text-slate-400 text-sm italic">
-                      {excellenceSlides[currentExcellenceSlide].extra}
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
-
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-                  {excellenceSlides[currentExcellenceSlide].points.map((point, pIdx) => (
-                    <motion.li
-                      key={`${point}-${currentExcellenceSlide}`}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: pIdx * 0.08, duration: 0.3 }}
-                      className="flex items-center gap-2 text-sm text-slate-800 dark:text-slate-200 font-medium"
-                    >
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-sky-400 shrink-0" />
-                      {point}
-                    </motion.li>
-                  ))}
-                </ul>
-
-                {/* Dots navigation */}
-                <div className="flex items-center gap-2 pt-4">
-                  {excellenceSlides.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setCurrentExcellenceSlide(i)}
-                      className={`h-2.5 rounded-full transition-all duration-300 ${currentExcellenceSlide === i
-                        ? "w-8 bg-blue-600 shadow-sm"
-                        : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400"
-                        }`}
-                      aria-label={`Go to slide ${i + 1}`}
-                    />
-                  ))}
+                    Talk to Us
+                  </Link>
                 </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* ========================================================================= */}
-        {/* SECTION: ABOUT HRA GROUPS (Empowering Digital Innovation & Scalable Growth) */}
-        {/* ========================================================================= */}
-        <section id="about" className="py-24 bg-white dark:bg-[#090e1a] border-t border-slate-100 dark:border-slate-800/60 overflow-hidden relative">
-          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="lg:col-span-7 space-y-6"
-              >
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/50 dark:border-blue-800/60 text-xs font-bold tracking-widest text-[#0052cc] dark:text-sky-300 uppercase">
-                  <Sparkles className="w-3 h-3 text-blue-600 dark:text-sky-400" />
-                  ABOUT HRA GROUPS
+              <div className="flex flex-col items-center space-y-3">
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  Launch Your Tech Career &amp; Training
+                </h3>
+                <p className="text-sm text-white/60 max-w-sm">
+                  Join verified internships, courses, and hackathons.
+                </p>
+                <div className="pt-2">
+                  <Link
+                    href="/internship"
+                    className="ibase-btn-ghost text-sm font-medium px-6 py-2.5"
+                  >
+                    Explore Programs
+                  </Link>
                 </div>
-
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0f172a] dark:text-white leading-tight">
-                  Empowering Digital Innovation &amp; Scalable Business Growth
-                </h2>
-                <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
-                  HRA Groups is a leading IT and Business Solutions company delivering technology-driven services across multiple domains. We specialize in building secure, scalable, and modern digital systems tailored for startups, enterprises, and growing organizations.
-                </p>
-                <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
-                  With a strong focus on innovation and client success, we provide software development, cloud engineering, consulting, staffing, and digital marketing services. Our expert team combines technical excellence with strategic thinking to help businesses modernize their operations, improve efficiency, and achieve long-term growth.
-                </p>
-                <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
-                  At HRA Groups, our mission is to empower companies with cutting-edge IT solutions that drive productivity, accelerate digital adoption, and create sustainable impact in the industry.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-5"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-7 rounded-3xl bg-gradient-to-br from-blue-50/80 to-indigo-50/40 dark:from-[#111e3b] dark:to-[#172554]/40 border border-blue-100/80 dark:border-blue-900/60 shadow-sm flex items-center gap-6"
-                >
-                  <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-blue-700 to-indigo-600 dark:from-blue-400 dark:to-indigo-300 bg-clip-text text-transparent">
-                    35+
-                  </div>
-                  <div>
-                    <div className="text-base font-bold text-slate-900 dark:text-white">Successful Projects</div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">Delivered with high reliability & quality</div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-7 rounded-3xl bg-gradient-to-br from-cyan-50/80 to-blue-50/40 dark:from-[#0d233a] dark:to-[#0e3b5e]/40 border border-cyan-100/80 dark:border-cyan-900/60 shadow-sm flex items-center gap-6"
-                >
-                  <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
-                    30+
-                  </div>
-                  <div>
-                    <div className="text-base font-bold text-slate-900 dark:text-white">Trusted Clients</div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">Across diverse domestic & global sectors</div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-7 rounded-3xl bg-gradient-to-br from-amber-50/80 to-orange-50/40 dark:from-[#2e230e] dark:to-[#451a03]/40 border border-amber-100/80 dark:border-amber-900/60 shadow-sm flex items-center gap-6"
-                >
-                  <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
-                    2+
-                  </div>
-                  <div>
-                    <div className="text-base font-bold text-slate-900 dark:text-white">Years of Expertise</div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">Continuous innovation & industry leadership</div>
-                  </div>
-                </motion.div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ========================================================================= */}
-        {/* SECTION: OUR CORE SERVICES (Full Natural Visibility with Staggered Scroll Animation) */}
-        {/* ========================================================================= */}
-        <section className="py-24 sm:py-28 bg-gradient-to-b from-[#f8faff] via-white to-[#edf3fc] dark:from-[#090e1a] dark:via-[#0c1427] dark:to-[#090e1a] border-t border-slate-100 dark:border-slate-800/60 relative overflow-hidden">
-          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 pb-8 sm:pb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-center max-w-3xl mx-auto mb-16 space-y-4"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
-                <span>WHAT WE OFFER</span>
-              </motion.div>
+        {/* ===================== BRANDS AUTO MOVE SLIDER SECTION ===================== */}
+        <section className="relative py-16 sm:py-20 w-full overflow-hidden ibase-section-divider">
+          {/* Subtle ambient lighting */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[250px] bg-[#00c9ff]/5 rounded-full blur-[140px] pointer-events-none" />
 
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.7 }}
-                className="text-3xl sm:text-4xl lg:text-5xl font-extrabold heading-black-blue-gradient"
-              >
-                Our Core Services
-              </motion.h2>
+          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 text-center space-y-3 mb-10 relative z-10">
+            <div className="inline-flex items-center gap-2">
+              <span className="w-6 h-[1px] bg-gradient-to-r from-transparent to-[#00c9ff]" />
+              <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-white/50 font-medium">
+                TRUSTED PARTNERSHIPS
+              </span>
+              <span className="w-6 h-[1px] bg-gradient-to-l from-transparent to-[#00c9ff]" />
+            </div>
+            <p className="text-sm sm:text-base text-white/70 font-normal">
+              Forward-thinking companies scaling with HRA Groups
+            </p>
+          </div>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.7 }}
-                className="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-2xl mx-auto"
-              >
-                Comprehensive end-to-end technology and business solutions designed to accelerate your competitive edge.
-              </motion.p>
-            </motion.div>
+          {/* Left & Right gradient edge masks for seamless fade out like the screenshot */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-r from-[#06070b] via-[#06070b]/80 to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-l from-[#06070b] via-[#06070b]/80 to-transparent z-20 pointer-events-none" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: "💡",
-                  title: "Custom Software Development",
-                  desc: "We build scalable web applications, ERP tools, and internal management systems with clean architecture.",
-                  gradient: "from-blue-500/10 to-transparent",
-                },
-                {
-                  icon: "📱",
-                  title: "Mobile App Development",
-                  desc: "High-performance Android & iOS apps with modern UI/UX, API integrations, and cloud sync features.",
-                  gradient: "from-cyan-500/10 to-transparent",
-                },
-                {
-                  icon: "☁️",
-                  title: "Cloud & DevOps Engineering",
-                  desc: "Deployment, automation, CI/CD pipelines, server optimization, and secure infrastructure setups.",
-                  gradient: "from-indigo-500/10 to-transparent",
-                },
-                {
-                  icon: "🧑‍💼",
-                  title: "IT Staffing & Recruitment",
-                  desc: "Recruitment for IT & non-IT roles, bulk hiring, contract staffing, and complete lifecycle hiring support.",
-                  gradient: "from-purple-500/10 to-transparent",
-                },
-                {
-                  icon: "📈",
-                  title: "Digital Marketing & SEO",
-                  desc: "SEO, paid ads, branding, social media growth, lead generation, and content marketing services.",
-                  gradient: "from-emerald-500/10 to-transparent",
-                },
-                {
-                  icon: "🤝",
-                  title: "Business & Technology Consulting",
-                  desc: "Technology roadmap, automation, workflow optimization, and digital growth strategies.",
-                  gradient: "from-amber-500/10 to-transparent",
-                },
-              ].map((service, idx) => (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.6, delay: idx * 0.09, ease: "easeOut" }}
-                  whileHover={{ y: -8, scale: 1.01 }}
-                  className="group relative bg-white dark:bg-[#0c1427] rounded-3xl p-8 sm:p-9 border border-slate-200/80 dark:border-slate-800 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_16px_40px_rgba(0,82,204,0.12)] dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.7)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+          {/* Infinite Marquee Strip */}
+          <div className="relative w-full overflow-x-hidden py-3 z-10">
+            <div className="animate-marquee flex items-center gap-6 sm:gap-8 whitespace-nowrap">
+              {[...CLIENT_LOGOS, ...CLIENT_LOGOS, ...CLIENT_LOGOS].map((client, idx) => (
+                <div
+                  key={idx}
+                  className="h-20 sm:h-24 w-48 sm:w-60 bg-white rounded-2xl border border-white/20 p-4 sm:p-5 flex items-center justify-center shrink-0 shadow-lg hover:shadow-[0_0_25px_rgba(0,201,255,0.3)] hover:border-[#00c9ff]/60 hover:scale-105 transition-all duration-300 group cursor-pointer"
                 >
-                  <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl ${service.gradient} rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity`}></div>
-
-                  <div className="relative z-10">
-                    <div className="text-4xl mb-6 bg-slate-50 dark:bg-slate-800/80 w-16 h-16 rounded-2xl border border-slate-100 dark:border-slate-700/80 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-50 dark:group-hover:bg-blue-950/60 transition-all duration-300 shadow-sm">
-                      {service.icon}
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-                      {service.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-6 mt-6 border-t border-slate-100/80 dark:border-slate-800/80 relative z-10 flex items-center justify-between">
-                    <span className="text-xs font-bold text-blue-600 dark:text-sky-400 uppercase tracking-wider group-hover:translate-x-1 transition-transform flex items-center gap-1.5">
-                      Explore Solution <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
-                </motion.div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="max-h-full max-w-full object-contain filter group-hover:scale-108 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
               ))}
             </div>
           </div>
         </section>
-      </div>
 
-      {/* ========================================================================= */}
-      {/* SECTION: OUR SOLUTIONS (Opens as a separate distinct elevated sheet layer) */}
-      {/* ========================================================================= */}
-      <div className="relative z-20 -mt-10 sm:-mt-14 lg:-mt-16 bg-white dark:bg-[#090e1a] rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px] shadow-[0_-25px_60px_rgba(15,23,42,0.22)] dark:shadow-[0_-25px_60px_rgba(0,0,0,0.85)] border-t border-slate-100/90 dark:border-slate-800/80">
-        <section
-          id="solutions"
-          className="py-24 sm:py-32 overflow-hidden rounded-t-[36px] sm:rounded-t-[48px] lg:rounded-t-[60px]"
-        >
-          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-            {/* Section Header with Staggered Scroll Animations */}
-            <motion.div
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="mb-14 sm:mb-16 space-y-3 text-center sm:text-left"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm"
+        {/* ===================== HRA SERVICES SECTION ===================== */}
+        <section id="services" className="relative py-28 px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto ibase-section-divider">
+          {/* Ambient Glow */}
+          <div className="absolute top-1/3 -left-20 w-[600px] h-[400px] bg-[#00c9ff]/10 rounded-full blur-[160px] pointer-events-none" />
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 relative z-10">
+            <div>
+              <div className="ibase-eyebrow">WHAT WE BUILD</div>
+              <h2 className="ibase-h-display">
+                Services designed for <em>growth & scale.</em>
+              </h2>
+            </div>
+            <p className="text-sm text-white/50 max-w-sm">
+              We design and engineer digital systems, intelligent platforms, and modern experiences for ambitious businesses.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+            {[
+              {
+                number: "01",
+                category: "ENGINEERING",
+                title: "Software Development",
+                short: "Scalable digital products engineered around your business goals.",
+                description: "From idea to deployment, we design and develop reliable software that is fast, secure, scalable, and built for long-term growth.",
+                technologies: ["React", "Node.js", "Python", "Java", "Next.js", "PostgreSQL"],
+                solutions: ["Web Applications", "Custom Software", "SaaS Platforms", "Business Applications", "API Development", "Cloud Applications"],
+                link: "/services/software-development",
+                symbol: "⌘"
+              },
+              {
+                number: "02",
+                category: "STRATEGY",
+                title: "IT Consultancy",
+                short: "Clear technology decisions that move your business forward.",
+                description: "We help organizations identify technology opportunities, solve complex challenges, modernize systems, and create practical digital strategies.",
+                technologies: ["Cloud", "DevOps", "Cybersecurity", "Architecture", "Databases", "Automation"],
+                solutions: ["Technology Consulting", "Digital Transformation", "Cloud Strategy", "System Architecture", "Technology Audits", "Process Optimization"],
+                link: "/services/it-consultancy",
+                symbol: "◈"
+              },
+              {
+                number: "03",
+                category: "INTELLIGENCE",
+                title: "AI & Automation",
+                short: "Intelligent systems that automate work and unlock new possibilities.",
+                description: "We build practical AI solutions that help businesses automate repetitive processes, understand data, improve decisions, and create better customer experiences.",
+                technologies: ["Python", "Machine Learning", "Generative AI", "LLMs", "APIs", "Data Analytics"],
+                solutions: ["AI Assistants", "Workflow Automation", "Predictive Analytics", "AI Integrations", "Document Intelligence", "Business Intelligence"],
+                link: "/services/ai-solutions",
+                symbol: "✦"
+              },
+              {
+                number: "04",
+                category: "EXPERIENCE",
+                title: "Digital Experiences",
+                short: "Modern interfaces designed to make technology feel effortless.",
+                description: "We create polished digital experiences that combine thoughtful UX, strong visual systems, accessibility, and high-performance technology.",
+                technologies: ["Figma", "React", "Next.js", "UI/UX", "Motion", "Design Systems"],
+                solutions: ["Website Development", "UI/UX Design", "Product Design", "Design Systems", "Landing Pages", "Digital Platforms"],
+                link: "/services/digital-experiences",
+                symbol: "↗"
+              }
+            ].map((srv) => (
+              <Link
+                key={srv.title}
+                href={srv.link}
+                className="p-10 rounded-2xl bg-[#0a0c12]/80 backdrop-blur-md border border-white/10 hover:bg-[#0d1018] hover:border-[#00c9ff]/40 transition-all duration-300 flex flex-col justify-between group relative min-h-[380px]"
               >
-                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
-                <span>OUR SOLUTIONS</span>
-              </motion.div>
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-mono tracking-widest uppercase text-white/40">
+                      SERVICE <b className="text-[#00c9ff]">{srv.number}</b> · {srv.category}
+                    </span>
+                    <span className="text-xl text-[#00c9ff] group-hover:scale-125 transition-transform">
+                      {srv.symbol}
+                    </span>
+                  </div>
 
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.7 }}
-                className="text-3xl sm:text-4xl lg:text-5xl font-extrabold heading-black-blue-gradient"
-              >
-                Your Priorities, Our Solutions
-              </motion.h2>
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#00c9ff] transition-colors">
+                    {srv.title}
+                  </h3>
+                  <p className="text-sm text-white/70 font-medium mb-3">
+                    {srv.short}
+                  </p>
+                  <p className="text-xs text-white/50 leading-relaxed">
+                    {srv.description}
+                  </p>
+                </div>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.7 }}
-                className="text-slate-500 dark:text-slate-400 text-sm sm:text-base max-w-xl"
-              >
-                Architected for high reliability, cybersecurity resilience, and agile business modernization.
-              </motion.p>
-            </motion.div>
-
-            {/* Solutions Bento Grid with Staggered Lifts */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-              {solutions.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 35 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.6, delay: idx * 0.08, ease: "easeOut" }}
-                    whileHover={{ y: -6, scale: 1.01 }}
-                    className={`group relative rounded-3xl bg-slate-50/70 dark:bg-[#0f172a]/70 border border-slate-100/80 dark:border-slate-800/80 p-8 shadow-sm hover:shadow-2xl hover:bg-white dark:hover:bg-[#111c38] transition-all duration-300 flex flex-col justify-between overflow-hidden ${item.spanCol}`}
-                  >
-                    {/* Subtle top-right gradient glow */}
-                    <div
-                      className={`absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl ${item.accentBg} rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity`}
-                    ></div>
-
-                    <div>
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 rounded-2xl bg-blue-50/80 dark:bg-blue-950/80 border border-blue-100 dark:border-blue-800 flex items-center justify-center text-blue-600 dark:text-sky-400 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
-                          <Icon className="w-6 h-6 stroke-[1.8]" />
-                        </div>
-                        <div>
-                          <span className="text-[11px] font-bold text-blue-600 dark:text-sky-400 tracking-wider uppercase block">
-                            {item.tag}
-                          </span>
-                          <h3 className="text-xl sm:text-2xl font-bold text-[#0a192f] dark:text-white group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
-                            {item.title}
-                          </h3>
-                        </div>
-                      </div>
-
-                      <p className="text-slate-500 dark:text-slate-300 text-sm sm:text-base leading-relaxed mt-2 max-w-lg">
-                        {item.sub}
-                      </p>
+                <div className="mt-8 space-y-4">
+                  <div className="flex flex-wrap gap-2">
+                    {srv.solutions.slice(0, 3).map((sol) => (
+                      <span key={sol} className="text-xs px-3 py-1 rounded-full border border-white/15 text-white/70">
+                        {sol}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="pt-4 border-t border-white/10 text-xs text-white/60 flex items-center justify-between group-hover:text-white transition-colors">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#00c9ff]" />
+                      <span>{srv.technologies.slice(0, 4).join(" · ")}</span>
                     </div>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#00c9ff] group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-                    {/* Graphic or interactive preview */}
-                    <div className="mt-8 pt-4">{item.graphic}</div>
-                  </motion.div>
+        {/* ===================== SELECTED WORK / CASE STUDIES ===================== */}
+        <section id="work" className="relative py-28 px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto ibase-section-divider">
+          {/* Ambient Glow */}
+          <div className="absolute top-1/4 right-0 w-[500px] h-[350px] bg-[#1e1cb0]/15 rounded-full blur-[140px] pointer-events-none" />
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 relative z-10">
+            <div>
+              <div className="ibase-eyebrow">SELECTED WORK</div>
+              <h2 className="ibase-h-display">
+                Ideas in <em>action.</em>
+              </h2>
+            </div>
+            <p className="text-sm text-white/50 max-w-sm">
+              We turn ambitious ideas into useful digital products, intelligent systems and experiences that create meaningful value.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
+            {[
+              {
+                id: 1,
+                number: "01",
+                title: "MediaHub",
+                category: "WEB PLATFORM",
+                type: "SOFTWARE",
+                description: "A modern digital platform designed to bring content, users and business operations together through one seamless digital experience.",
+                image: "https://hragroupswebsite-psi.vercel.app/assets/mediahubPic-C7zqN69E.png",
+                tags: ["React", "Node.js", "Database"],
+                link: "/services/software-development"
+              },
+              {
+                id: 2,
+                number: "02",
+                title: "HRA Internship Platform",
+                category: "EDUCATION",
+                type: "SOFTWARE",
+                description: "A structured digital platform connecting students, internships, projects and program operations in one connected environment.",
+                image: "https://hragroupswebsite-psi.vercel.app/assets/HRA%20Internship%20Platform-CEce0vXc.png",
+                tags: ["React", "Platform", "Automation"],
+                link: "/internship"
+              },
+              {
+                id: 3,
+                number: "03",
+                title: "Business Management System",
+                category: "BUSINESS",
+                type: "SOFTWARE",
+                description: "A centralized business system created to simplify workflows, organize information and improve operational visibility.",
+                image: "https://hragroupswebsite-psi.vercel.app/assets/Business%20Management%20System-yEUPX7Gh.png",
+                tags: ["Web App", "Dashboard", "Database"],
+                link: "/services/software-development"
+              },
+              {
+                id: 4,
+                number: "04",
+                title: "AI Business Assistant",
+                category: "AI & AUTOMATION",
+                type: "AI",
+                description: "An intelligent assistant concept designed to help businesses automate repetitive tasks, access information and work more efficiently.",
+                image: "https://hragroupswebsite-psi.vercel.app/assets/Business%20Assistant-CR4vqKpm.png",
+                tags: ["AI", "Python", "Automation"],
+                link: "/services/ai-solutions"
+              }
+            ].map((work) => (
+              <Link
+                key={work.title}
+                href={work.link}
+                className="rounded-2xl bg-[#0a0c12]/80 backdrop-blur-md border border-white/10 hover:border-[#00c9ff]/40 hover:bg-[#0d1018] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="h-48 bg-[#0c0e16] border-b border-white/10 relative flex items-center justify-center overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={work.image}
+                      alt={work.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-transparent to-transparent opacity-80" />
+                    <span className="absolute bottom-3 left-4 text-[10px] font-mono tracking-widest text-[#00c9ff] uppercase bg-black/60 px-2 py-0.5 rounded backdrop-blur-xs">
+                      {work.number} / {work.category}
+                    </span>
+                  </div>
+
+                  <div className="p-6 space-y-2">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-[#00c9ff]">
+                      {work.type}
+                    </span>
+                    <h4 className="text-base font-bold text-white group-hover:text-[#00c9ff] transition-colors">
+                      {work.title}
+                    </h4>
+                    <p className="text-xs text-white/60 line-clamp-3 leading-relaxed">
+                      {work.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-6 pt-0 mt-4">
+                  <div className="pt-4 border-t border-white/10 text-xs text-white/60 flex items-center justify-between">
+                    <span>{work.tags.join(" · ")}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#00c9ff] group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* ===================== WHY HRA (APPROACH) ===================== */}
+        <section className="relative py-28 px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto ibase-section-divider">
+          {/* Ambient Glow */}
+          <div className="absolute top-1/3 left-10 w-[500px] h-[350px] bg-[#00c9ff]/10 rounded-full blur-[150px] pointer-events-none" />
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 relative z-10">
+            <div>
+              <div className="ibase-eyebrow">THE HRA APPROACH</div>
+              <h2 className="ibase-h-display">
+                Technology. Talent.<br />
+                <em>Entrepreneurship.</em>
+              </h2>
+            </div>
+            <p className="text-sm text-white/50 max-w-sm">
+              HRA Groups brings technology, people and entrepreneurship together to create meaningful digital possibilities.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            {[
+              {
+                number: "01",
+                code: "BUILD / SYSTEMS",
+                title: "Build",
+                description: "We turn real business challenges into focused digital products, intelligent systems and technology that works.",
+                accent: "Technology",
+                icon: "⌘"
+              },
+              {
+                number: "02",
+                code: "DEVELOP / TALENT",
+                title: "Develop",
+                description: "We create practical environments where people learn technology by working with real tools, real projects and real outcomes.",
+                accent: "Talent",
+                icon: "◈"
+              },
+              {
+                number: "03",
+                code: "CREATE / FOUNDERS",
+                title: "Create",
+                description: "We help aspiring entrepreneurs move from an idea to a clearer direction through technology, guidance and execution.",
+                accent: "Entrepreneurship",
+                icon: "✦"
+              }
+            ].map((item) => (
+              <div
+                key={item.number}
+                className="p-8 rounded-2xl bg-[#0a0c12]/80 backdrop-blur-md border border-white/10 hover:border-[#00c9ff]/40 hover:bg-[#0d1018] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-mono tracking-widest text-[#00c9ff]">
+                      {item.number} / {item.code}
+                    </span>
+                    <span className="text-lg text-white/40">{item.icon}</span>
+                  </div>
+
+                  <span className="text-xs font-medium text-white/50 uppercase tracking-wider block mb-1">
+                    {item.accent}
+                  </span>
+                  <h3 className="text-2xl font-bold text-white mb-3">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between text-xs text-white/50">
+                  <span>HRA Ecosystem</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#00c9ff]" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ===================== PROGRAMS (INTERNSHIP & FOUNDER) ===================== */}
+        <section id="programs" className="relative py-28 px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto ibase-section-divider">
+          {/* Ambient Glow */}
+          <div className="absolute top-1/4 right-1/4 w-[600px] h-[400px] bg-[#1e1cb0]/15 rounded-full blur-[160px] pointer-events-none" />
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 relative z-10">
+            <div>
+              <div className="ibase-eyebrow">ECOSYSTEM INITIATIVES</div>
+              <h2 className="ibase-h-display">
+                Talent &amp; Founder <em>Programs.</em>
+              </h2>
+            </div>
+            <p className="text-sm text-white/50 max-w-sm">
+              Empowering next-generation builders with practical exposure, mentorship, and launchpad infrastructure.
+            </p>
+          </div>
+
+          {/* Full-width Internship Program Showcase matching Cybernetic layout */}
+          <div className="rounded-3xl bg-gradient-to-br from-[#06101c]/90 via-[#060a14]/90 to-[#04060c]/90 border border-white/10 backdrop-blur-2xl overflow-hidden relative p-8 sm:p-12 lg:p-16 mb-12">
+            {/* Ambient Lighting */}
+            <div className="absolute top-1/2 -left-20 w-[500px] h-[500px] bg-[#00c9ff]/10 rounded-full blur-[160px] pointer-events-none" />
+            <div className="absolute top-1/2 -right-20 w-[500px] h-[500px] bg-[#3b82f6]/10 rounded-full blur-[160px] pointer-events-none" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
+              {/* Left Column: Text & Content */}
+              <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="w-8 h-[2px] bg-[#00c9ff]" />
+                    <span className="text-xs font-mono tracking-widest uppercase text-white/70">
+                      TALENT ACCELERATION
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-[#00c9ff] animate-pulse" />
+                  </div>
+
+                  <h3 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1] mb-6">
+                    Learn by <span className="italic font-serif text-[#00c9ff]">building.</span><br />
+                    Grow with real<br />
+                    projects.
+                  </h3>
+
+                  <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl mb-8">
+                    Structured hands-on opportunities for students and early career professionals to gain practical industry exposure by building real-world digital applications, cloud platforms, and AI pipelines.
+                  </p>
+
+                  <div className="flex flex-wrap gap-2.5 mb-8">
+                    {["Software Engineering", "AI / ML Solutions", "Cloud & DevOps", "UI/UX Design"].map((pill) => (
+                      <span
+                        key={pill}
+                        className="text-xs font-mono px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80"
+                      >
+                        {pill}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-5">
+                    <Link
+                      href="/internship"
+                      className="ibase-btn-primary px-8 py-3.5 text-sm font-semibold flex items-center gap-2 group"
+                    >
+                      <span>Explore Internships</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
+                    </Link>
+                    <Link
+                      href="/services/courses"
+                      className="text-xs font-mono tracking-wider uppercase text-white/50 hover:text-white transition-colors flex items-center gap-1.5"
+                    >
+                      <span>View Training Tracks</span>
+                      <span className="text-xs">↓</span>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Micro Meta Footer */}
+                <div className="pt-8 border-t border-white/10 flex items-center gap-6 sm:gap-10 text-[11px] font-mono tracking-wider uppercase text-white/40">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00c9ff] font-bold">01</span>
+                    <span>HANDS-ON PROJECTS</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00c9ff] font-bold">02</span>
+                    <span>MENTORSHIP</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00c9ff] font-bold">03</span>
+                    <span>VERIFIED CERTIFICATES</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Hackathon Winners Image with HUD Cyber Frame */}
+              <div className="lg:col-span-6 flex items-center justify-center">
+                <div className="relative w-full max-w-[540px] aspect-[4/3] sm:aspect-[1/1] rounded-2xl overflow-hidden border border-white/20 bg-[#080b14] shadow-2xl group flex items-center justify-center">
+                  {/* Top HUD Frame labels */}
+                  <div className="absolute top-2.5 left-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/50">
+                    HRA / INTERNSHIP / 01
+                  </div>
+                  <div className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-md px-1.5 py-0.5 rounded text-[8px] font-mono text-white/70 border border-white/10">
+                    01
+                  </div>
+
+                  {/* Image */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://hragroupswebsite-psi.vercel.app/assets/Hacakthon1winners-BIE5bY7A.png"
+                    alt="HRA Internship Programs"
+                    className="w-full h-full object-cover object-center filter contrast-[1.03] group-hover:scale-102 transition-transform duration-700"
+                  />
+
+                  {/* HUD Corner Elements & Overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060913]/80 via-transparent to-transparent opacity-60 pointer-events-none" />
+
+                  {/* Bottom HUD Frame labels */}
+                  <div className="absolute bottom-3 left-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/40">
+                    TALENT ACCELERATION × INDUSTRY READY
+                  </div>
+                  <div className="absolute bottom-3 right-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/40">
+                    SYSTEM / 2026
+                  </div>
+
+                  {/* Side Vertical HUD label */}
+                  <div className="hidden sm:block absolute right-2 top-1/2 -translate-y-1/2 rotate-90 origin-right text-[8px] font-mono tracking-[0.2em] uppercase text-white/30 pointer-events-none">
+                    LEARN — BUILD — ACCELERATE
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Full-width Founder Program Showcase matching reference */}
+          <div className="mt-12 rounded-3xl bg-gradient-to-br from-[#0a0d18]/90 via-[#060913]/90 to-[#04060c]/90 border border-white/10 backdrop-blur-2xl overflow-hidden relative p-8 sm:p-12 lg:p-16">
+            {/* Ambient Lighting */}
+            <div className="absolute top-1/2 -left-20 w-[500px] h-[500px] bg-[#00c9ff]/10 rounded-full blur-[160px] pointer-events-none" />
+            <div className="absolute top-1/2 -right-20 w-[500px] h-[500px] bg-[#3b82f6]/10 rounded-full blur-[160px] pointer-events-none" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
+              {/* Left Column: Text & Content */}
+              <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="w-8 h-[2px] bg-[#00c9ff]" />
+                    <span className="text-xs font-mono tracking-widest uppercase text-white/70">
+                      HRA FOUNDER PROGRAM
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-[#00c9ff] animate-pulse" />
+                  </div>
+
+                  <h3 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1] mb-6">
+                    Don't just have<br />
+                    an <span className="italic font-serif text-[#00c9ff]">idea.</span><br />
+                    Build it.
+                  </h3>
+
+                  <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl mb-8">
+                    A focused ecosystem for ambitious founders who want to transform ideas into meaningful products, businesses, and impact through technology, mentorship, and execution.
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-5">
+                    <Link
+                      href="/contact"
+                      className="ibase-btn-primary px-8 py-3.5 text-sm font-semibold flex items-center gap-2 group"
+                    >
+                      <span>Apply to the Program</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
+                    </Link>
+                    <Link
+                      href="/about"
+                      className="text-xs font-mono tracking-wider uppercase text-white/50 hover:text-white transition-colors flex items-center gap-1.5"
+                    >
+                      <span>Discover the program</span>
+                      <span className="text-xs">↓</span>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Micro Meta Footer */}
+                <div className="pt-8 border-t border-white/10 flex items-center gap-6 sm:gap-10 text-[11px] font-mono tracking-wider uppercase text-white/40">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00c9ff] font-bold">01</span>
+                    <span>BUILD</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00c9ff] font-bold">02</span>
+                    <span>LEARN</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00c9ff] font-bold">03</span>
+                    <span>GROW</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Founder Image with HUD Cyber Frame */}
+              <div className="lg:col-span-6 flex items-center justify-center">
+                <div className="relative w-full max-w-[540px] aspect-[4/3] sm:aspect-[1/1] rounded-2xl overflow-hidden border border-white/20 bg-[#080b14] shadow-2xl group">
+                  {/* Top HUD Frame labels */}
+                  <div className="absolute top-2.5 left-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/50">
+                    HRA / FOUNDER / 01
+                  </div>
+                  <div className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-md px-1.5 py-0.5 rounded text-[8px] font-mono text-white/70 border border-white/10">
+                    01
+                  </div>
+
+                  {/* Founder Image */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://hragroupswebsite-psi.vercel.app/assets/founder-QHSHMDvt.png"
+                    alt="HRA Founder"
+                    className="w-full h-full object-cover object-top filter contrast-[1.03] group-hover:scale-102 transition-transform duration-700"
+                  />
+
+                  {/* HUD Corner Elements & Overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060913]/80 via-transparent to-transparent opacity-60 pointer-events-none" />
+
+                  {/* Bottom HUD Frame labels */}
+                  <div className="absolute bottom-3 left-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/40">
+                    TECHNOLOGY × ENTREPRENEURSHIP
+                  </div>
+                  <div className="absolute bottom-3 right-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/40">
+                    SYSTEM / 2026
+                  </div>
+
+                  {/* Side Vertical HUD label */}
+                  <div className="hidden sm:block absolute right-2 top-1/2 -translate-y-1/2 rotate-90 origin-right text-[8px] font-mono tracking-[0.2em] uppercase text-white/30 pointer-events-none">
+                    IDEATION — EXECUTION — IMPACT
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== 02 THE COLLECTION / INSIDE HRA (VIDEOS & MOMENTS) ===================== */}
+        <section id="collection" className="relative py-28 px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto ibase-section-divider">
+          {/* Ambient Glows */}
+          <div className="absolute top-1/4 -left-20 w-[600px] h-[450px] bg-[#00c9ff]/10 rounded-full blur-[170px] pointer-events-none" />
+          <div className="absolute bottom-1/4 -right-20 w-[600px] h-[450px] bg-[#8b5cf6]/10 rounded-full blur-[170px] pointer-events-none" />
+
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 relative z-10">
+            <div>
+              <div className="flex items-center gap-2 mb-3 text-xs font-mono tracking-widest text-[#00c9ff] uppercase">
+                <span>02</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff]" />
+                <span>THE COLLECTION</span>
+              </div>
+              <h2 className="ibase-h-display text-4xl sm:text-5xl lg:text-6xl font-light">
+                Inside<br />
+                <em>HRA.</em>
+              </h2>
+            </div>
+            <div className="flex items-start gap-4 max-w-md lg:border-l lg:border-white/10 lg:pl-6">
+              <span className="w-1 h-12 bg-[#00c9ff] rounded-full hidden sm:block shrink-0" />
+              <p className="text-sm text-white/60 leading-relaxed">
+                A moving archive of our internships, founder community, workshops, hackathons, people and achievements.
+              </p>
+            </div>
+          </div>
+
+          {/* Filter Bar */}
+          <div className="relative z-10 mb-12 flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-white/10 pb-6">
+            <div className="flex items-center gap-4 text-xs font-mono tracking-wider">
+              <span className="text-white/40 uppercase">EXPLORE BY EXPERIENCE</span>
+              <span className="text-[#00c9ff] bg-[#00c9ff]/10 px-2.5 py-1 rounded border border-[#00c9ff]/20">
+                {String(
+                  collectionCategory === "ALL"
+                    ? COLLECTION_ITEMS.length
+                    : COLLECTION_ITEMS.filter((item) => item.category === collectionCategory).length
+                ).padStart(2, "0")}{" "}
+                MOMENTS
+              </span>
+            </div>
+
+            {/* Filter Pills */}
+            <div className="flex flex-wrap gap-2">
+              {COLLECTION_CATEGORIES.map((cat) => {
+                const isActive = collectionCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setCollectionCategory(cat)}
+                    className={`text-[11px] font-mono tracking-wider px-3.5 py-1.5 rounded-full transition-all duration-300 uppercase cursor-pointer ${isActive
+                        ? "bg-[#00c9ff] text-black font-semibold shadow-[0_0_15px_rgba(0,201,255,0.4)]"
+                        : "bg-white/5 border border-white/10 text-white/60 hover:text-white hover:border-white/30"
+                      }`}
+                  >
+                    {cat}
+                  </button>
                 );
               })}
             </div>
           </div>
-        </section>
 
-        {/* SECTION: CASE STUDIES (Unmatched Technical and Industry Expertise) */}
-        <section id="case-studies" className="py-24 bg-white dark:bg-[#070c18] border-t border-slate-100 dark:border-slate-800/60">
-          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-            {/* Header */}
-            <motion.div
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
-            >
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
-                  <span>CASE STUDIES</span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold heading-black-blue-gradient">
-                  Unmatched Technical and Industry Expertise
-                </h2>
-              </div>
+          {/* Video Moments Layout: 2 featured items in first row, then 3-per-row grid below */}
+          <div className="relative z-10 space-y-10">
+            {collectionCategory === "ALL" ? (
+              <>
+                {/* Row 1: 2 Big Featured Moments (Internship Experience & Founder Program) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+                  {COLLECTION_ITEMS.slice(0, 2).map((moment) => (
+                    <div
+                      key={moment.id}
+                      onClick={() => setActiveMoment(moment)}
+                      className="group relative flex flex-col justify-between cursor-pointer"
+                    >
+                      {/* Cinematic Video Box */}
+                      <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#06080e] border border-white/15 group-hover:border-[#00c9ff]/60 transition-all duration-500 shadow-2xl group-hover:shadow-[0_15px_40px_rgba(0,201,255,0.2)]">
+                        <video
+                          src={moment.media}
+                          autoPlay
+                          muted={isAudioMuted}
+                          loop
+                          playsInline
+                          preload="metadata"
+                          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                        />
 
-              {/* Slider Navigation Buttons */}
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() =>
-                    setCurrentCaseStudy((prev) => (prev > 0 ? prev - 1 : caseStudies.length - 1))
-                  }
-                  className="w-12 h-12 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all shadow-sm active:scale-95"
-                  aria-label="Previous Case Study"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() =>
-                    setCurrentCaseStudy((prev) => (prev < caseStudies.length - 1 ? prev + 1 : 0))
-                  }
-                  className="w-12 h-12 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all shadow-sm active:scale-95"
-                  aria-label="Next Case Study"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </motion.div>
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
 
-            {/* Continuous Smooth Infinite Moving Track */}
-            <div className="relative overflow-hidden w-full py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-              <div className="flex gap-6 animate-marquee hover:[animation-play-state:paused] [animation-duration:22s]">
-                {[...caseStudies, ...caseStudies].map((study, idx) => (
-                  <div
-                    key={`${study.title}-${idx}`}
-                    className="w-[320px] sm:w-[480px] md:w-[560px] flex-shrink-0 group rounded-3xl bg-slate-50/95 dark:bg-[#0c1427]/95 border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-7 md:p-8 flex flex-col justify-between hover:bg-white dark:hover:bg-[#111c38] hover:shadow-2xl hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 shadow-sm"
-                  >
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-center">
-                      <div className="sm:col-span-7 space-y-3 sm:space-y-4">
-                        <span className="inline-block text-xs font-bold text-blue-600 dark:text-sky-300 bg-blue-50 dark:bg-blue-950/80 border border-blue-100 dark:border-blue-900/60 px-3 py-1 rounded-full uppercase tracking-wider">
-                          {study.category}
-                        </span>
-                        <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors line-clamp-2">
-                          {study.title}
-                        </h4>
-                        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-300 leading-relaxed line-clamp-3">
-                          {study.desc}
-                        </p>
+                        {/* Top Overlay HUD Bar */}
+                        <div className="absolute top-5 left-6 right-6 flex items-center justify-between z-20 pointer-events-none">
+                          <span className="text-xs font-mono font-medium tracking-widest text-white/70">
+                            {moment.number}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
+                            <span className="text-[10px] font-mono tracking-widest uppercase text-white/70">
+                              SHORT FILM
+                            </span>
+                          </div>
+                        </div>
 
-                        <div className="pt-2">
-                          <a
-                            href="#contact"
-                            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#172947] dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-semibold uppercase tracking-wider transition-all shadow-sm group-hover:shadow"
-                          >
-                            Read more
-                            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                          </a>
+                        {/* Play Button Icon on Hover */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+                          <div className="w-16 h-16 rounded-full bg-[#00c9ff]/90 text-black flex items-center justify-center shadow-[0_0_30px_rgba(0,201,255,0.6)] transform group-hover:scale-110 transition-transform">
+                            <span className="text-xl ml-1">▶</span>
+                          </div>
+                        </div>
+
+                        {/* In-Video Bottom Typography */}
+                        <div className="absolute bottom-6 left-6 right-6 z-20 pointer-events-none">
+                          <span className="text-[10px] font-mono tracking-[0.2em] text-[#00c9ff] uppercase block mb-1.5 font-semibold">
+                            {moment.category}
+                          </span>
+                          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight font-serif drop-shadow-md">
+                            {moment.title}
+                          </h3>
                         </div>
                       </div>
 
-                      <div className="sm:col-span-5 relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 bg-slate-100 dark:bg-slate-800">
-                        <img
-                          src={study.image}
-                          alt={study.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      {/* Bottom External Meta Strip */}
+                      <div className="pt-4 px-1 flex items-center justify-between gap-4 text-xs">
+                        <p className="text-white/50 leading-relaxed max-w-sm line-clamp-2">
+                          {moment.description}
+                        </p>
+                        <div className="flex items-center gap-1 font-mono text-[11px] tracking-wider uppercase text-white/60 group-hover:text-[#00c9ff] shrink-0 transition-colors">
+                          <span>VIEW</span>
+                          <span className="text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Row 2: 3 Moments in Next Line (Technology Workshop, HRA Hackathon, Team HRA) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                  {COLLECTION_ITEMS.slice(2, 5).map((moment) => (
+                    <div
+                      key={moment.id}
+                      onClick={() => setActiveMoment(moment)}
+                      className="group relative flex flex-col justify-between cursor-pointer"
+                    >
+                      {/* Cinematic Video Box */}
+                      <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#06080e] border border-white/15 group-hover:border-[#00c9ff]/60 transition-all duration-500 shadow-2xl group-hover:shadow-[0_15px_40px_rgba(0,201,255,0.2)]">
+                        <video
+                          src={moment.media}
+                          autoPlay
+                          muted={isAudioMuted}
+                          loop
+                          playsInline
+                          preload="metadata"
+                          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                         />
+
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
+
+                        {/* Top Overlay HUD Bar */}
+                        <div className="absolute top-4 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
+                          <span className="text-xs font-mono font-medium tracking-widest text-white/70">
+                            {moment.number}
+                          </span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
+                            <span className="text-[9px] font-mono tracking-widest uppercase text-white/70">
+                              SHORT FILM
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Play Button Icon on Hover */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+                          <div className="w-14 h-14 rounded-full bg-[#00c9ff]/90 text-black flex items-center justify-center shadow-[0_0_25px_rgba(0,201,255,0.6)] transform group-hover:scale-110 transition-transform">
+                            <span className="text-lg ml-0.5">▶</span>
+                          </div>
+                        </div>
+
+                        {/* In-Video Bottom Typography */}
+                        <div className="absolute bottom-5 left-5 right-5 z-20 pointer-events-none">
+                          <span className="text-[9px] font-mono tracking-[0.2em] text-[#00c9ff] uppercase block mb-1 font-semibold">
+                            {moment.category}
+                          </span>
+                          <h3 className="text-2xl sm:text-3xl font-light text-white tracking-tight leading-tight font-serif drop-shadow-md">
+                            {moment.title}
+                          </h3>
+                        </div>
+                      </div>
+
+                      {/* Bottom External Meta Strip */}
+                      <div className="pt-3 px-1 flex items-center justify-between gap-3 text-xs">
+                        <p className="text-white/50 leading-relaxed line-clamp-2 text-[11px]">
+                          {moment.description}
+                        </p>
+                        <div className="flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase text-white/60 group-hover:text-[#00c9ff] shrink-0 transition-colors">
+                          <span>VIEW</span>
+                          <span className="text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Row 3 (Remaining items if any, like Achievements): 3-column grid */}
+                {COLLECTION_ITEMS.length > 5 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    {COLLECTION_ITEMS.slice(5).map((moment) => (
+                      <div
+                        key={moment.id}
+                        onClick={() => setActiveMoment(moment)}
+                        className="group relative flex flex-col justify-between cursor-pointer"
+                      >
+                        <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#06080e] border border-white/15 group-hover:border-[#00c9ff]/60 transition-all duration-500 shadow-2xl group-hover:shadow-[0_15px_40px_rgba(0,201,255,0.2)]">
+                          <video
+                            src={moment.media}
+                            autoPlay
+                            muted={isAudioMuted}
+                            loop
+                            playsInline
+                            preload="metadata"
+                            className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
+
+                          <div className="absolute top-4 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
+                            <span className="text-xs font-mono font-medium tracking-widest text-white/70">
+                              {moment.number}
+                            </span>
+                            <div className="flex items-center gap-1.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
+                              <span className="text-[9px] font-mono tracking-widest uppercase text-white/70">
+                                SHORT FILM
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+                            <div className="w-14 h-14 rounded-full bg-[#00c9ff]/90 text-black flex items-center justify-center shadow-[0_0_25px_rgba(0,201,255,0.6)] transform group-hover:scale-110 transition-transform">
+                              <span className="text-lg ml-0.5">▶</span>
+                            </div>
+                          </div>
+
+                          <div className="absolute bottom-5 left-5 right-5 z-20 pointer-events-none">
+                            <span className="text-[9px] font-mono tracking-[0.2em] text-[#00c9ff] uppercase block mb-1 font-semibold">
+                              {moment.category}
+                            </span>
+                            <h3 className="text-2xl sm:text-3xl font-light text-white tracking-tight leading-tight font-serif drop-shadow-md">
+                              {moment.title}
+                            </h3>
+                          </div>
+                        </div>
+
+                        <div className="pt-3 px-1 flex items-center justify-between gap-3 text-xs">
+                          <p className="text-white/50 leading-relaxed line-clamp-2 text-[11px]">
+                            {moment.description}
+                          </p>
+                          <div className="flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase text-white/60 group-hover:text-[#00c9ff] shrink-0 transition-colors">
+                            <span>VIEW</span>
+                            <span className="text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              /* Filtered Results: Dynamic 2 or 3 column grid */
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                {COLLECTION_ITEMS.filter((item) => item.category === collectionCategory).map((moment) => (
+                  <div
+                    key={moment.id}
+                    onClick={() => setActiveMoment(moment)}
+                    className="group relative flex flex-col justify-between cursor-pointer"
+                  >
+                    <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#06080e] border border-white/15 group-hover:border-[#00c9ff]/60 transition-all duration-500 shadow-2xl group-hover:shadow-[0_15px_40px_rgba(0,201,255,0.2)]">
+                      <video
+                        src={moment.media}
+                        autoPlay
+                        muted={isAudioMuted}
+                        loop
+                        playsInline
+                        preload="metadata"
+                        className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
+
+                      <div className="absolute top-4 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
+                        <span className="text-xs font-mono font-medium tracking-widest text-white/70">
+                          {moment.number}
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
+                          <span className="text-[9px] font-mono tracking-widest uppercase text-white/70">
+                            SHORT FILM
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+                        <div className="w-14 h-14 rounded-full bg-[#00c9ff]/90 text-black flex items-center justify-center shadow-[0_0_25px_rgba(0,201,255,0.6)] transform group-hover:scale-110 transition-transform">
+                          <span className="text-lg ml-0.5">▶</span>
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-5 left-5 right-5 z-20 pointer-events-none">
+                        <span className="text-[9px] font-mono tracking-[0.2em] text-[#00c9ff] uppercase block mb-1 font-semibold">
+                          {moment.category}
+                        </span>
+                        <h3 className="text-2xl sm:text-3xl font-light text-white tracking-tight leading-tight font-serif drop-shadow-md">
+                          {moment.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <div className="pt-3 px-1 flex items-center justify-between gap-3 text-xs">
+                      <p className="text-white/50 leading-relaxed line-clamp-2 text-[11px]">
+                        {moment.description}
+                      </p>
+                      <div className="flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase text-white/60 group-hover:text-[#00c9ff] shrink-0 transition-colors">
+                        <span>VIEW</span>
+                        <span className="text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Navigation Dots & Progress Bar */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
-              <div className="flex items-center gap-2">
-                {caseStudies.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentCaseStudy(i)}
-                    className={`h-2.5 rounded-full transition-all duration-300 ${
-                      currentCaseStudy === i
-                        ? "w-8 bg-blue-600 shadow-sm"
-                        : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400"
-                    }`}
-                    aria-label={`Go to case study ${i + 1}`}
-                  />
-                ))}
-              </div>
-
-              <div className="w-full sm:w-64 bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                <div
-                  className="bg-blue-600 h-full transition-all duration-500 rounded-full"
-                  style={{
-                    width: `${((currentCaseStudy + 1) / caseStudies.length) * 100}%`,
-                  }}
-                ></div>
-              </div>
-            </div>
+            )}
           </div>
-        </section>
 
-        {/* SECTION: INDUSTRIES WE SERVE (Expertise You Can Trust Across Critical Sectors) */}
-        <section id="industries" className="py-24 bg-slate-50/60 dark:bg-[#090e1a] border-t border-slate-200/50 dark:border-slate-800/60">
-          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-            <motion.div
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="mb-14 space-y-3"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0052cc] dark:text-sky-300 uppercase shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
-                <span>INDUSTRIES WE SERVE</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold heading-black-blue-gradient">
-                Expertise You Can Trust Across Critical Sectors
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Industry Selector List */}
-              <div className="lg:col-span-4 bg-white dark:bg-[#0c1427] rounded-3xl p-3 shadow-sm border border-slate-200/80 dark:border-slate-800 space-y-1">
-                {industries.map((ind, idx) => (
-                  <button
-                    key={ind.name}
-                    onClick={() => setActiveIndustry(idx)}
-                    className={`w-full text-left px-5 py-3.5 rounded-2xl font-semibold text-sm transition-all flex items-center justify-between ${activeIndustry === idx
-                      ? "bg-gradient-to-r from-[#013b9a] to-[#3866f1] text-white shadow-md"
-                      : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-white"
-                      }`}
-                  >
-                    <span>{ind.name}</span>
-                    {activeIndustry === idx && <ArrowRight className="w-4 h-4" />}
-                  </button>
-                ))}
-              </div>
-
-              {/* Active Industry Showcase Card */}
-              <div className="lg:col-span-8 bg-white dark:bg-[#0c1427] rounded-3xl p-8 sm:p-10 shadow-sm border border-slate-200/80 dark:border-slate-800 overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={industries[activeIndustry].name}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.3 }}
-                    className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
-                  >
-                    <div className="md:col-span-7 space-y-5">
-                      <span className="text-xs font-bold text-blue-600 dark:text-sky-300 bg-blue-50 dark:bg-blue-950/80 px-3.5 py-1.5 rounded-full uppercase">
-                        {industries[activeIndustry].name}
-                      </span>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug">
-                        {industries[activeIndustry].title}
-                      </h3>
-                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
-                        {industries[activeIndustry].desc}
-                      </p>
-
-                      <div className="pt-3">
-                        <a
-                          href="#contact"
-                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#172947] dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-semibold uppercase tracking-wider transition-colors"
-                        >
-                          Read more
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="md:col-span-5">
-                      <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800">
-                        <img
-                          src={industries[activeIndustry].image}
-                          alt={industries[activeIndustry].title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* SECTION: HOW WE ADD VALUE (With Dynamic Scroll Cards Animation) */}
-        {/* ========================================================================= */}
-        <section className="py-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px] opacity-15"></div>
-          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="text-center max-w-2xl mx-auto mb-14"
-            >
-              <span className="text-xs font-bold tracking-widest text-cyan-400 uppercase block mb-3">
-                THE HRA DIFFERENCE
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">
-                How We Add Value
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  badge: "⭐",
-                  title: "Expert Team",
-                  desc: "Experienced professionals delivering high-quality technology solutions.",
-                },
-                {
-                  badge: "⚡",
-                  title: "Quick Execution",
-                  desc: "Agile approach ensuring faster delivery and transparent communication.",
-                },
-                {
-                  badge: "🔐",
-                  title: "Secure Solutions",
-                  desc: "Enterprise-grade data security and compliance in every project.",
-                },
-                {
-                  badge: "📞",
-                  title: "Dedicated Support",
-                  desc: "24/7 support, project maintenance, and customer assistance.",
-                },
-              ].map((v, idx) => (
+          {/* Interactive Lightbox Modal */}
+          <AnimatePresence>
+            {activeMoment && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setActiveMoment(null)}
+                className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+              >
                 <motion.div
-                  key={v.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
-                  whileHover={{ y: -6 }}
-                  className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 hover:bg-white/15 transition-all shadow-lg"
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="relative w-full max-w-4xl bg-[#0a0d18] border border-white/20 rounded-3xl overflow-hidden shadow-2xl"
                 >
-                  <div className="text-2xl mb-3">{v.badge}</div>
-                  <h4 className="text-lg font-bold text-white mb-2">{v.title}</h4>
-                  <p className="text-sm text-slate-300 leading-relaxed">{v.desc}</p>
+                  {/* Close & Sound Buttons */}
+                  <div className="absolute top-4 right-4 z-30 flex items-center gap-3">
+                    <button
+                      onClick={() => setIsAudioMuted(!isAudioMuted)}
+                      className="px-3 py-1.5 rounded-full bg-black/60 border border-white/20 text-xs font-mono text-white/80 hover:text-white hover:border-[#00c9ff] transition-colors"
+                    >
+                      {isAudioMuted ? "UNMUTE 🔇" : "MUTED 🔊"}
+                    </button>
+                    <button
+                      onClick={() => setActiveMoment(null)}
+                      className="w-8 h-8 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  {/* Video Player */}
+                  <div className="w-full aspect-[16/9] bg-black">
+                    <video
+                      src={activeMoment.media}
+                      autoPlay
+                      muted={isAudioMuted}
+                      loop
+                      controls
+                      playsInline
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Details */}
+                  <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/10 bg-[#060913]">
+                    <div>
+                      <div className="flex items-center gap-3 mb-1.5 text-xs font-mono text-[#00c9ff]">
+                        <span>MOMENT {activeMoment.number}</span>
+                        <span>·</span>
+                        <span>{activeMoment.category}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white">{activeMoment.title}</h3>
+                      <p className="text-xs sm:text-sm text-white/60 mt-1 max-w-xl">
+                        {activeMoment.description}
+                      </p>
+                    </div>
+
+                    <Link
+                      href="/gallery"
+                      className="ibase-btn-primary text-xs px-5 py-2.5 whitespace-nowrap"
+                    >
+                      View Full Archive
+                    </Link>
+                  </div>
                 </motion.div>
-              ))}
-            </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </section>
+
+        {/* ===================== CLIENT PERSPECTIVE (TESTIMONIALS) ===================== */}
+        <section className="relative py-28 px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto ibase-section-divider">
+          {/* Ambient Glow */}
+          <div className="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-[#00c9ff]/10 rounded-full blur-[150px] pointer-events-none" />
+
+          <div className="mb-14 relative z-10">
+            <div className="ibase-eyebrow">CLIENT PERSPECTIVE</div>
+            <h2 className="ibase-h-display">
+              Built together. <em>Trusted together.</em>
+            </h2>
+            <p className="text-sm text-white/50 max-w-sm mt-3">
+              Strong digital products come from strong collaboration. Here's what our partners say about working with HRA Groups.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            {[
+              {
+                quote: "HRA Groups understood what we wanted and turned the idea into a practical digital solution. The team was responsive, professional, and focused on delivering quality.",
+                name: "Client Feedback",
+                role: "Business Client",
+                company: "HRA Partner",
+                initials: "CF"
+              },
+              {
+                quote: "The experience with the HRA team was smooth from planning to execution. They were open to feedback and consistently looked for better ways to solve the problem.",
+                name: "Client Feedback",
+                role: "Project Partner",
+                company: "Enterprise Client",
+                initials: "PP"
+              },
+              {
+                quote: "What stood out was the team's willingness to understand the business requirement before jumping into development. That made the entire process much easier.",
+                name: "Client Feedback",
+                role: "Technology Partner",
+                company: "Digital Partner",
+                initials: "TP"
+              }
+            ].map((t) => (
+              <div
+                key={t.quote}
+                className="p-8 rounded-3xl border border-white/10 backdrop-blur-xl relative overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-[#00c9ff]/30 bg-[#0c0e14]/80"
+              >
+                <div>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-bold text-xs text-[#00c9ff]">
+                      {t.initials}
+                    </div>
+                    <div>
+                      <div className="text-lg font-bold text-white">{t.name}</div>
+                      <div className="text-xs text-white/50">{t.role} · {t.company}</div>
+                    </div>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-white/80 leading-relaxed italic mb-8">
+                    "{t.quote}"
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/40">
+                  <span>Verified Outcome</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#00c9ff]" />
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* ========================================================================= */}
-        {/* SECTION: CAREER ACCELERATION PROGRAMS (With Staggered Cards Reveal) */}
-        {/* ========================================================================= */}
-        <section className="py-24 bg-white dark:bg-[#070c18] border-t border-slate-100 dark:border-slate-800/60 overflow-hidden">
-          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="max-w-3xl mb-16"
-            >
-              <span className="text-xs font-bold tracking-widest text-[#0052cc] dark:text-sky-300 uppercase block mb-3">
-                CAREER ACCELERATION PROGRAMS
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight mb-4">
-                Industry-Focused Career Programs
-              </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
-                Courses, internships, workshops, bootcamps, and career programs designed to prepare students and professionals with practical skills and real-world experience.
-              </p>
-            </motion.div>
+        {/* ===================== CTA BAND ===================== */}
+        <section className="relative py-32 px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto text-center ibase-section-divider overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#00c9ff]/5 via-transparent to-[#1e1cb0]/15 pointer-events-none" />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <motion.div
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                whileHover={{ y: -6 }}
-                className="p-8 rounded-3xl bg-slate-50/80 dark:bg-[#0c1427]/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl dark:hover:bg-[#111c38] transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="text-sm font-black text-blue-600 dark:text-sky-300 mb-4 bg-blue-100/80 dark:bg-blue-950/80 w-10 h-10 rounded-xl flex items-center justify-center">01</div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Technical Courses</h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
-                    Advanced technology training programs with practical sessions and project-based learning.
-                  </p>
-                  <ul className="space-y-2.5">
-                    {["AWS DevOps", "AI & ML", "Python Full Stack", "Java Full Stack"].map((c) => (
-                      <li key={c} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-sky-400" />
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="pt-8">
-                  <Link href="/services/courses" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 dark:text-sky-400 hover:text-blue-700 dark:hover:text-sky-300">
-                    Explore Technical Courses <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                whileHover={{ y: -6 }}
-                className="p-8 rounded-3xl bg-slate-50/80 dark:bg-[#0c1427]/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl dark:hover:bg-[#111c38] transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="text-sm font-black text-indigo-600 dark:text-indigo-300 mb-4 bg-indigo-100/80 dark:bg-indigo-950/80 w-10 h-10 rounded-xl flex items-center justify-center">02</div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Professional Programs</h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
-                    Interactive learning experiences focused on innovation, teamwork, and career readiness.
-                  </p>
-                  <ul className="space-y-2.5">
-                    {["Campus Recruitment Training", "Hackathons", "Bootcamps", "Workshops"].map((c) => (
-                      <li key={c} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="pt-8">
-                  <Link href="/services" className="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
-                    View Programs <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-                whileHover={{ y: -6 }}
-                className="p-8 rounded-3xl bg-slate-50/80 dark:bg-[#0c1427]/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl dark:hover:bg-[#111c38] transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="text-sm font-black text-cyan-600 dark:text-cyan-300 mb-4 bg-cyan-100/80 dark:bg-cyan-950/80 w-10 h-10 rounded-xl flex items-center justify-center">03</div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Internship Opportunities</h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
-                    Gain industry exposure through live projects, mentorship, and hands-on practical experience.
-                  </p>
-                  <ul className="space-y-2.5">
-                    {["Web Development", "Human Resources", "Digital Marketing", "Business Development Executive"].map((c) => (
-                      <li key={c} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="pt-8">
-                  <Link href="/internship" className="inline-flex items-center gap-2 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300">
-                    Apply for Internship <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </motion.div>
+          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+              Have an idea or requirement?<br />
+              <em className="bg-gradient-to-r from-[#00c9ff] to-[#1e1cb0] text-transparent bg-clip-text not-italic">
+                Let's build it together.
+              </em>
+            </h2>
+            <p className="text-sm sm:text-base text-white/70 max-w-xl mx-auto leading-relaxed">
+              Whether you need custom software development, IT consultancy, AI solutions, or ecosystem talent collaboration, our team is ready to help.
+            </p>
+            <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+              <Link href="/contact" className="ibase-btn-primary">
+                Let's Connect
+              </Link>
+              <Link href="/services/software-development" className="ibase-btn-ghost">
+                Explore Services
+              </Link>
             </div>
           </div>
         </section>
+      </main>
 
-        {/* ========================================================================= */}
-        {/* SECTION: CLIENT TESTIMONIAL & QUOTE (With Smooth Scroll Entrance) */}
-        {/* ========================================================================= */}
-        <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
-          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="lg:col-span-6 space-y-4"
-              >
-                <span className="text-xs font-bold tracking-widest text-cyan-400 uppercase block">
-                  WHAT OUR CLIENTS SAY
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
-                  Client Testimonial
-                </h3>
-                <p className="text-slate-300 text-base sm:text-lg leading-relaxed italic">
-                  “We’ve had great experiences working with HRA Groups for our web development projects. Their team is highly skilled and always delivers high-quality work. They also offer excellent training programs for IT professionals, which have greatly benefitted our team. Highly recommend their services!”
-                </p>
-                <div className="text-cyan-400 font-bold text-lg pt-2">— Ajay</div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="lg:col-span-6 bg-slate-800/80 rounded-3xl p-8 sm:p-10 border border-slate-700 shadow-xl"
-              >
-                <span className="text-xs font-bold tracking-widest text-indigo-400 uppercase block mb-3">
-                  FOUNDER &amp; LEADERSHIP
-                </span>
-                <blockquote className="text-lg sm:text-xl font-medium text-slate-100 leading-snug italic mb-4">
-                  “When we match the right talent with the right opportunity, we’re not just filling roles, we’re shaping careers.”
-                </blockquote>
-                <div className="text-slate-400 font-semibold">— Hemanth Pulavarthi, Founder / Leadership</div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      {/* GLOBAL FOOTER */}
       <Footer />
     </div>
   );

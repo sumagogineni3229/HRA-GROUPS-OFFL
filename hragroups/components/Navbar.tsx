@@ -1,22 +1,46 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, MessageSquare, Menu, X, Moon, Sun } from "lucide-react";
-import { useTheme } from "@/components/ThemeProvider";
+import {
+  ChevronDown,
+  ArrowRight,
+  Code2,
+  Compass,
+  BrainCircuit,
+  Palette,
+  Newspaper,
+  BookOpen,
+  GraduationCap,
+  Award,
+  Building2,
+  Users,
+  Briefcase,
+  Layers,
+  Sparkles,
+  ExternalLink,
+  Shield,
+  HeartPulse,
+  Flame,
+  Cpu,
+  Factory,
+  Truck,
+  Globe2,
+} from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeNavDropdown, setActiveNavDropdown] = useState<string | null>(null);
+  const [activeMega, setActiveMega] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileExpandedGroup, setMobileExpandedGroup] = useState<string | null>(null);
+  const megaTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 30) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -27,164 +51,194 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (path: string) => {
-    if (path === "/") return pathname === "/";
-    return pathname === path || pathname.startsWith(`${path}/`);
+  const handleMouseEnter = (menu: string) => {
+    if (megaTimeoutRef.current) clearTimeout(megaTimeoutRef.current);
+    setActiveMega(menu);
   };
 
-  const isAboutActive = pathname.startsWith("/about");
-  const isServicesActive = pathname.startsWith("/services");
+  const handleMouseLeave = () => {
+    megaTimeoutRef.current = setTimeout(() => {
+      setActiveMega(null);
+    }, 150);
+  };
+
+  const toggleMobileGroup = (group: string) => {
+    setMobileExpandedGroup(mobileExpandedGroup === group ? null : group);
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full py-3 px-4 sm:px-8 lg:px-12 pointer-events-none transition-all duration-300">
-      <div className={`w-full max-w-[1560px] mx-auto bg-white/90 dark:bg-[#0c1427]/95 backdrop-blur-2xl border transition-all duration-300 rounded-full px-5 sm:px-7 py-2.5 pointer-events-auto ${
-        isScrolled
-          ? "border-blue-500/30 dark:border-blue-500/40 shadow-[0_10px_35px_rgba(0,82,204,0.12)] dark:shadow-[0_10px_35px_rgba(0,0,0,0.6)] ring-1 ring-blue-500/10"
-          : "border-slate-200/80 dark:border-slate-800/90 shadow-[0_8px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
-      }`}>
-        <div className="flex items-center justify-between w-full">
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 pointer-events-auto ${
+          isScrolled ? "py-2 px-4 sm:px-8" : "py-3.5 px-4 sm:px-8 lg:px-16"
+        } ${activeMega ? "is-mega-open" : ""}`}
+      >
+        <div
+          className={`w-full max-w-[1600px] rounded-2xl flex items-center justify-between gap-4 transition-all duration-300 ${
+            isScrolled || activeMega
+              ? "bg-[#080a10]/95 backdrop-blur-xl border border-white/10 px-5 sm:px-6 py-2.5 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.8)]"
+              : "bg-transparent border border-transparent px-4 sm:px-6 py-2"
+          }`}
+          onMouseLeave={handleMouseLeave}
+        >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group shrink-0">
             <img
-              src="/logo-transparent.png"
+              src="/logo-white.png"
               alt="HRA Groups Logo"
-              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105 duration-300"
+              className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105 duration-300"
             />
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-2 xl:gap-3">
+          {/* Desktop Nav Items (Exact IBaseIT Design & Animations with HRA Groups Pages) */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
             {/* Home */}
             <Link
               href="/"
-              className={`px-3.5 py-1.5 rounded-full text-[15px] font-medium transition-all ${
+              className={`text-[14px] font-medium transition-all duration-150 rounded-lg px-3.5 py-2 flex items-center gap-1.5 ${
                 pathname === "/"
-                  ? "bg-blue-50 text-[#0052cc] dark:bg-blue-500/15 dark:text-[#65acff] font-semibold shadow-xs"
-                  : "text-[#172947] dark:text-slate-200 hover:text-[#0052cc] dark:hover:text-[#65acff] hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
+                  ? "text-white bg-white/10 font-semibold"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
               }`}
             >
               Home
             </Link>
 
-            {/* About Dropdown */}
-            <div
-              className="relative group py-1"
-              onMouseEnter={() => setActiveNavDropdown("about")}
-              onMouseLeave={() => setActiveNavDropdown(null)}
-            >
-              <button
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[15px] font-medium transition-all ${
-                  isAboutActive
-                    ? "bg-blue-50 text-[#0052cc] dark:bg-blue-500/15 dark:text-[#65acff] font-semibold shadow-xs"
-                    : "text-[#172947] dark:text-slate-200 hover:text-[#0052cc] dark:hover:text-[#65acff] hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
-                }`}
-              >
-                About
-                <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180 duration-200 opacity-75" />
-              </button>
-              <AnimatePresence>
-                {activeNavDropdown === "about" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white/95 dark:bg-[#0c1427]/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 p-2.5 grid gap-1 z-50"
-                  >
-                    {[
-                      { title: "Company Overview", href: "/about/company-overview" },
-                      { title: "Meet the HRA team.", href: "/about/team" },
-                    ].map((item) => {
-                      const itemActive = pathname === item.href;
-                      return (
-                        <Link
-                          key={item.title}
-                          href={item.href}
-                          className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-colors ${
-                            itemActive
-                              ? "bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-sky-300 font-semibold"
-                              : "text-slate-700 dark:text-slate-200 hover:text-blue-700 dark:hover:text-sky-300 hover:bg-blue-50/80 dark:hover:bg-blue-900/30"
-                          }`}
-                        >
-                          {item.title}
-                        </Link>
-                      );
-                    })}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             {/* Services Dropdown */}
-            <div
-              className="relative group py-1"
-              onMouseEnter={() => setActiveNavDropdown("services")}
-              onMouseLeave={() => setActiveNavDropdown(null)}
-            >
-              <button
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[15px] font-medium transition-all ${
-                  isServicesActive
-                    ? "bg-blue-50 text-[#0052cc] dark:bg-blue-500/15 dark:text-[#65acff] font-semibold shadow-xs"
-                    : "text-[#172947] dark:text-slate-200 hover:text-[#0052cc] dark:hover:text-[#65acff] hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
-                }`}
-              >
-                Services
-                <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180 duration-200 opacity-75" />
-              </button>
-              <AnimatePresence>
-                {activeNavDropdown === "services" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white/95 dark:bg-[#0c1427]/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 p-2.5 grid gap-1 z-50"
-                  >
-                    {[
-                      { title: "Blog", href: "/services/blog" },
-                      { title: "courses", href: "/services/courses" },
-                      { title: "HRA Exam Portal", href: "/services/exam-portal" },
-                      { title: "HRA Cirtificate Portal.", href: "/services/certificate-portal" },
-                    ].map((item) => {
-                      const itemActive = pathname === item.href;
-                      return (
-                        <Link
-                          key={item.title}
-                          href={item.href}
-                          className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-colors ${
-                            itemActive
-                              ? "bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-sky-300 font-semibold"
-                              : "text-slate-700 dark:text-slate-200 hover:text-blue-700 dark:hover:text-sky-300 hover:bg-blue-50/80 dark:hover:bg-blue-900/30"
-                          }`}
-                        >
-                          {item.title}
-                        </Link>
-                      );
-                    })}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Internship */}
-            <Link
-              href="/internship"
-              className={`px-3.5 py-1.5 rounded-full text-[15px] font-medium transition-all ${
-                isActive("/internship")
-                  ? "bg-blue-50 text-[#0052cc] dark:bg-blue-500/15 dark:text-[#65acff] font-semibold shadow-xs"
-                  : "text-[#172947] dark:text-slate-200 hover:text-[#0052cc] dark:hover:text-[#65acff] hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
+            <button
+              type="button"
+              onMouseEnter={() => handleMouseEnter("services")}
+              onClick={() => setActiveMega(activeMega === "services" ? null : "services")}
+              className={`text-[14px] font-medium transition-all duration-150 rounded-lg px-3.5 py-2 flex items-center gap-1.5 cursor-pointer relative group ${
+                activeMega === "services" || pathname.startsWith("/services")
+                  ? "text-white bg-white/10"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
               }`}
             >
-              Internship
+              <span>Services</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-250 opacity-60 group-hover:opacity-100 ${
+                  activeMega === "services" ? "rotate-180 text-[#00c9ff] opacity-100" : ""
+                }`}
+              />
+              <span
+                className={`absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-[#00c9ff] to-[#1e1cb0] transition-all duration-250 ${
+                  activeMega === "services"
+                    ? "opacity-100 scale-x-100"
+                    : "opacity-0 scale-x-50 group-hover:opacity-40 group-hover:scale-x-75"
+                }`}
+              />
+            </button>
+
+            {/* Work */}
+            <Link
+              href="/work"
+              className={`text-[14px] font-medium transition-all duration-150 rounded-lg px-3.5 py-2 flex items-center gap-1.5 ${
+                pathname === "/work"
+                  ? "text-white bg-white/10 font-semibold"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              Work
             </Link>
+
+            {/* Founder Program */}
+            <Link
+              href="/founder-program"
+              className={`text-[14px] font-medium transition-all duration-150 rounded-lg px-3.5 py-2 flex items-center gap-1.5 whitespace-nowrap ${
+                pathname === "/founder-program"
+                  ? "text-white bg-white/10 font-semibold"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              Founder Program
+            </Link>
+
+            {/* About Dropdown */}
+            <button
+              type="button"
+              onMouseEnter={() => handleMouseEnter("about")}
+              onClick={() => setActiveMega(activeMega === "about" ? null : "about")}
+              className={`text-[14px] font-medium transition-all duration-150 rounded-lg px-3.5 py-2 flex items-center gap-1.5 cursor-pointer relative group ${
+                activeMega === "about" || pathname.startsWith("/about")
+                  ? "text-white bg-white/10"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <span>About</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-250 opacity-60 group-hover:opacity-100 ${
+                  activeMega === "about" ? "rotate-180 text-[#00c9ff] opacity-100" : ""
+                }`}
+              />
+              <span
+                className={`absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-[#00c9ff] to-[#1e1cb0] transition-all duration-250 ${
+                  activeMega === "about"
+                    ? "opacity-100 scale-x-100"
+                    : "opacity-0 scale-x-50 group-hover:opacity-40 group-hover:scale-x-75"
+                }`}
+              />
+            </button>
+
+            {/* Internship Dropdown */}
+            <button
+              type="button"
+              onMouseEnter={() => handleMouseEnter("internship")}
+              onClick={() => setActiveMega(activeMega === "internship" ? null : "internship")}
+              className={`text-[14px] font-medium transition-all duration-150 rounded-lg px-3.5 py-2 flex items-center gap-1.5 cursor-pointer relative group ${
+                activeMega === "internship" || pathname.startsWith("/internship") || pathname.startsWith("/services/courses")
+                  ? "text-white bg-white/10"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <span>Internship</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-250 opacity-60 group-hover:opacity-100 ${
+                  activeMega === "internship" ? "rotate-180 text-[#00c9ff] opacity-100" : ""
+                }`}
+              />
+              <span
+                className={`absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-[#00c9ff] to-[#1e1cb0] transition-all duration-250 ${
+                  activeMega === "internship"
+                    ? "opacity-100 scale-x-100"
+                    : "opacity-0 scale-x-50 group-hover:opacity-40 group-hover:scale-x-75"
+                }`}
+              />
+            </button>
+
+            {/* Inside HRA Dropdown */}
+            <button
+              type="button"
+              onMouseEnter={() => handleMouseEnter("inside-hra")}
+              onClick={() => setActiveMega(activeMega === "inside-hra" ? null : "inside-hra")}
+              className={`text-[14px] font-medium transition-all duration-150 rounded-lg px-3.5 py-2 flex items-center gap-1.5 cursor-pointer relative group ${
+                activeMega === "inside-hra" || pathname === "/gallery"
+                  ? "text-white bg-white/10"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <span className="whitespace-nowrap">Inside HRA</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-250 opacity-60 group-hover:opacity-100 ${
+                  activeMega === "inside-hra" ? "rotate-180 text-[#00c9ff] opacity-100" : ""
+                }`}
+              />
+              <span
+                className={`absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-[#00c9ff] to-[#1e1cb0] transition-all duration-250 ${
+                  activeMega === "inside-hra"
+                    ? "opacity-100 scale-x-100"
+                    : "opacity-0 scale-x-50 group-hover:opacity-40 group-hover:scale-x-75"
+                }`}
+              />
+            </button>
 
             {/* Careers */}
             <Link
               href="/careers"
-              className={`px-3.5 py-1.5 rounded-full text-[15px] font-medium transition-all ${
-                isActive("/careers")
-                  ? "bg-blue-50 text-[#0052cc] dark:bg-blue-500/15 dark:text-[#65acff] font-semibold shadow-xs"
-                  : "text-[#172947] dark:text-slate-200 hover:text-[#0052cc] dark:hover:text-[#65acff] hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
+              className={`text-[14px] font-medium transition-all duration-150 rounded-lg px-3.5 py-2 flex items-center gap-1.5 ${
+                pathname === "/careers"
+                  ? "text-white bg-white/10 font-semibold"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
               }`}
             >
               Careers
@@ -193,245 +247,753 @@ export default function Navbar() {
             {/* Our Clients */}
             <Link
               href="/clients"
-              className={`px-3.5 py-1.5 rounded-full text-[15px] font-medium transition-all ${
-                isActive("/clients")
-                  ? "bg-blue-50 text-[#0052cc] dark:bg-blue-500/15 dark:text-[#65acff] font-semibold shadow-xs"
-                  : "text-[#172947] dark:text-slate-200 hover:text-[#0052cc] dark:hover:text-[#65acff] hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
+              className={`text-[14px] font-medium transition-all duration-150 rounded-lg px-3.5 py-2 flex items-center gap-1.5 ${
+                pathname === "/clients"
+                  ? "text-white bg-white/10 font-semibold"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
               }`}
             >
               Our Clients
             </Link>
-
-            {/* Galary */}
-            <Link
-              href="/gallery"
-              className={`px-3.5 py-1.5 rounded-full text-[15px] font-medium transition-all ${
-                isActive("/gallery")
-                  ? "bg-blue-50 text-[#0052cc] dark:bg-blue-500/15 dark:text-[#65acff] font-semibold shadow-xs"
-                  : "text-[#172947] dark:text-slate-200 hover:text-[#0052cc] dark:hover:text-[#65acff] hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
-              }`}
-            >
-              Galary
-            </Link>
           </nav>
 
-          {/* Right Header Actions */}
-          <div className="flex items-center gap-2.5">
-            {/* Dark / Light Mode Toggle Button */}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="p-2.5 rounded-full text-slate-700 dark:text-amber-400 hover:text-[#0052cc] dark:hover:text-amber-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all duration-200 border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95"
-              aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {theme === "dark" ? (
-                <Sun className="w-4 h-4 text-amber-400 animate-[spin_10s_linear_infinite]" />
-              ) : (
-                <Moon className="w-4 h-4 text-slate-700" />
-              )}
-            </button>
-
-            {/* Navy Contact Us Pill */}
+          {/* Right Action Buttons */}
+          <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className={`inline-flex items-center gap-3 px-6 py-2.5 rounded-full text-white text-[15px] font-semibold tracking-wide transition-all shadow-[0_4px_14px_rgba(27,45,107,0.35)] hover:shadow-[0_6px_20px_rgba(27,45,107,0.45)] hover:scale-[1.02] active:scale-[0.98] ${
-                pathname === "/contact"
-                  ? "bg-[#0052cc] ring-2 ring-[#0052cc]/40 ring-offset-2 dark:ring-offset-[#0c1427]"
-                  : "bg-[#1b2d6b] hover:bg-[#152355]"
-              }`}
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-[#06070b] bg-white hover:bg-slate-100 transition-all duration-200 shadow-[0_0_20px_rgba(0,201,255,0.2)] hover:shadow-[0_0_25px_rgba(0,201,255,0.4),0_8px_25px_rgba(30,28,176,0.3)] hover:-translate-y-0.5 group"
             >
-              {/* Double Chat Bubble Outline Icon */}
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-[20px] h-[20px] text-white stroke-current stroke-[2] stroke-linecap-round stroke-linejoin-round shrink-0"
-              >
-                <path d="M12 4C7.58 4 4 7.13 4 11c0 1.63.63 3.12 1.71 4.29L4.5 19.5l4.5-1.29c.92.37 1.93.59 3 .59 4.42 0 8-3.13 8-7s-3.58-7-8-7z" strokeWidth="1.9" />
-                <path d="M9.5 19.5c1.8 1.4 4.1 2 6.5 1.5l3.5 1-1-3.2c.9-1.2 1.5-2.6 1.5-4.2" strokeWidth="1.9" />
-              </svg>
-              <span>Contact Us</span>
+              <span>Say Hello</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </Link>
 
-            {/* Mobile Burger */}
+            {/* Mobile Hamburger */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-              aria-label="Toggle Menu"
+              className="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+              aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <div className="w-5 h-4 flex flex-col justify-between">
+                <span
+                  className={`h-0.5 w-full bg-white rounded transition-transform ${
+                    mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""
+                  }`}
+                />
+                <span
+                  className={`h-0.5 w-full bg-white rounded transition-opacity ${
+                    mobileMenuOpen ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+                <span
+                  className={`h-0.5 w-full bg-white rounded transition-transform ${
+                    mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                  }`}
+                />
+              </div>
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile menu dropdown */}
+      {/* Mega Menus Overlay */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {activeMega && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden border border-slate-200/80 dark:border-slate-800 bg-white/95 dark:bg-[#0c1427]/95 backdrop-blur-2xl px-6 pt-2 pb-6 space-y-3 rounded-3xl mt-2 shadow-xl dark:shadow-2xl overflow-hidden pointer-events-auto"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            onMouseEnter={() => {
+              if (megaTimeoutRef.current) clearTimeout(megaTimeoutRef.current);
+            }}
+            onMouseLeave={handleMouseLeave}
+            className="fixed top-[74px] left-1/2 -translate-x-1/2 w-[calc(100vw-32px)] max-w-[1520px] z-40"
           >
-            <div className="space-y-1">
-              <Link
-                href="/"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2 rounded-lg font-medium transition-colors ${
-                  pathname === "/"
-                    ? "bg-blue-50 text-[#0052cc] dark:bg-blue-900/30 dark:text-[#65acff] font-semibold"
-                    : "text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/60"
-                }`}
-              >
-                Home
-              </Link>
+            <div className="bg-[#080a10]/98 backdrop-blur-2xl border border-white/15 rounded-2xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] overflow-hidden relative">
+              {/* Cyan top gradient trace */}
+              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-[#00c9ff] to-transparent opacity-70" />
 
-              {/* About Mobile Group */}
-              <div className="px-3 py-1">
-                <div className="font-semibold text-xs tracking-wider uppercase text-slate-400 dark:text-slate-500 mb-1">About</div>
-                <div className="pl-2 space-y-1 border-l-2 border-slate-100 dark:border-slate-800">
-                  <Link
-                    href="/about/company-overview"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block py-1 text-sm font-medium transition-colors ${
-                      pathname === "/about/company-overview"
-                        ? "text-blue-600 dark:text-sky-400 font-semibold"
-                        : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-sky-400"
-                    }`}
-                  >
-                    Company Overview
-                  </Link>
-                  <Link
-                    href="/about/team"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block py-1 text-sm font-medium transition-colors ${
-                      pathname === "/about/team"
-                        ? "text-blue-600 dark:text-sky-400 font-semibold"
-                        : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-sky-400"
-                    }`}
-                  >
-                    Meet the HRA team.
-                  </Link>
+              {/* Mega Content: Services */}
+              {activeMega === "services" && (
+                <div className="p-8">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6 border-b border-white/10">
+                    {/* Col 1: Engineering & Enterprise Tech */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00c9ff]">
+                        <span className="w-4 h-[1px] bg-[#00c9ff]" />
+                        Digital Engineering
+                      </div>
+                      <div className="space-y-1.5">
+                        <Link
+                          href="/services/software-development"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          Software Development
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Custom web apps, microservices & scalable systems
+                          </span>
+                        </Link>
+                        <Link
+                          href="/services/it-consultancy"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          IT Consultancy
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Cloud modernization, system audit & strategy
+                          </span>
+                        </Link>
+                        <Link
+                          href="/services/digital-experiences"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          Digital Experience
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Premium human-centered UI/UX & motion systems
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Col 2: AI Solutions & Automation */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00c9ff]">
+                        <span className="w-4 h-[1px] bg-[#00c9ff]" />
+                        AI & Insights
+                      </div>
+                      <div className="space-y-1.5">
+                        <Link
+                          href="/services/ai-solutions"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          AI Solutions
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Generative AI, Agentic workflows & custom LLMs
+                          </span>
+                        </Link>
+                        <Link
+                          href="/services/blog"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          Blog &amp; Insights
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Tech articles, enterprise updates &amp; architecture notes
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Col 3: Examination & Certification Portals */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00c9ff]">
+                        <span className="w-4 h-[1px] bg-[#00c9ff]" />
+                        HRA Portals
+                      </div>
+                      <div className="space-y-1.5">
+                        <Link
+                          href="/services/exam-portal"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          HRA Exam Portal
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Online candidate evaluations & timed assessments
+                          </span>
+                        </Link>
+                        <Link
+                          href="/services/certificate-portal"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          Certificate Portal
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Instant verification & official credentials download
+                          </span>
+                        </Link>
+                        <Link
+                          href="/services"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          All Services Overview
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Browse full portfolio of enterprise solutions
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mega Foot */}
+                  <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p className="text-xs sm:text-sm text-white/70">
+                      Need custom development or workforce solutions?
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <Link
+                        href="/contact"
+                        onClick={() => setActiveMega(null)}
+                        className="ibase-btn-ghost text-xs py-2 px-4"
+                      >
+                        Schedule Consultation
+                      </Link>
+                      <Link
+                        href="/services"
+                        onClick={() => setActiveMega(null)}
+                        className="ibase-btn-primary text-xs py-2 px-4"
+                      >
+                        Explore All Offerings
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* Services Mobile Group */}
-              <div className="px-3 py-1">
-                <div className="font-semibold text-xs tracking-wider uppercase text-slate-400 dark:text-slate-500 mb-1">Services</div>
-                <div className="pl-2 space-y-1 border-l-2 border-slate-100 dark:border-slate-800">
-                  <Link
-                    href="/services/blog"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block py-1 text-sm font-medium transition-colors ${
-                      pathname === "/services/blog"
-                        ? "text-blue-600 dark:text-sky-400 font-semibold"
-                        : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-sky-400"
-                    }`}
-                  >
-                    Blog
-                  </Link>
-                  <Link
-                    href="/services/courses"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block py-1 text-sm font-medium transition-colors ${
-                      pathname === "/services/courses"
-                        ? "text-blue-600 dark:text-sky-400 font-semibold"
-                        : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-sky-400"
-                    }`}
-                  >
-                    courses
-                  </Link>
-                  <Link
-                    href="/services/exam-portal"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block py-1 text-sm font-medium transition-colors ${
-                      pathname === "/services/exam-portal"
-                        ? "text-blue-600 dark:text-sky-400 font-semibold"
-                        : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-sky-400"
-                    }`}
-                  >
-                    HRA Exam Portal
-                  </Link>
-                  <Link
-                    href="/services/certificate-portal"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block py-1 text-sm font-medium transition-colors ${
-                      pathname === "/services/certificate-portal"
-                        ? "text-blue-600 dark:text-sky-400 font-semibold"
-                        : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-sky-400"
-                    }`}
-                  >
-                    HRA Cirtificate Portal.
-                  </Link>
+              {/* Mega Content: About */}
+              {activeMega === "about" && (
+                <div className="p-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-6 border-b border-white/10">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00c9ff]">
+                        <span className="w-4 h-[1px] bg-[#00c9ff]" />
+                        Organization
+                      </div>
+                      <div className="space-y-2">
+                        <Link
+                          href="/about/company-overview"
+                          onClick={() => setActiveMega(null)}
+                          className="block p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 hover:bg-white/5 transition-all"
+                        >
+                          <div className="text-sm font-semibold text-white">Company Overview</div>
+                          <div className="text-xs text-white/50 mt-0.5">
+                            Learn about our journey, vision, mission and corporate values.
+                          </div>
+                        </Link>
+                        <Link
+                          href="/about/team"
+                          onClick={() => setActiveMega(null)}
+                          className="block p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 hover:bg-white/5 transition-all"
+                        >
+                          <div className="text-sm font-semibold text-white">Meet the HRA Team</div>
+                          <div className="text-xs text-white/50 mt-0.5">
+                            Our leadership, executives and passionate engineering team.
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="p-6 rounded-2xl bg-gradient-to-b from-[#00c9ff]/10 via-[#1e1cb0]/10 to-[#0c0e16] border border-white/15 flex flex-col justify-between">
+                      <div>
+                        <span className="text-[10px] uppercase font-mono tracking-widest text-[#00c9ff]">
+                          Who We Are
+                        </span>
+                        <h4 className="text-lg font-bold text-white mt-2">
+                          Transforming Businesses Globally
+                        </h4>
+                        <p className="text-xs text-white/70 mt-2 leading-relaxed">
+                          We are a future-driven organization delivering premium technology solutions, workforce management, and enterprise-grade execution.
+                        </p>
+                      </div>
+                      <Link
+                        href="/about/company-overview"
+                        onClick={() => setActiveMega(null)}
+                        className="inline-flex items-center gap-2 text-xs font-semibold text-white hover:text-[#00c9ff] transition-colors mt-4"
+                      >
+                        <span>Learn more about HRA Groups</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 flex items-center justify-between">
+                    <p className="text-xs sm:text-sm text-white/70">
+                      Want to collaborate with our leadership team?
+                    </p>
+                    <div className="flex gap-3">
+                      <Link href="/contact" onClick={() => setActiveMega(null)} className="ibase-btn-ghost text-xs py-2 px-4">
+                        Contact Us
+                      </Link>
+                      <Link href="/about/team" onClick={() => setActiveMega(null)} className="ibase-btn-primary text-xs py-2 px-4">
+                        View Team
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <Link
-                href="/internship"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2 rounded-lg font-medium transition-colors ${
-                  isActive("/internship")
-                    ? "bg-blue-50 text-[#0052cc] dark:bg-blue-900/30 dark:text-[#65acff] font-semibold"
-                    : "text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/60"
-                }`}
-              >
-                Internship
-              </Link>
-              <Link
-                href="/careers"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2 rounded-lg font-medium transition-colors ${
-                  isActive("/careers")
-                    ? "bg-blue-50 text-[#0052cc] dark:bg-blue-900/30 dark:text-[#65acff] font-semibold"
-                    : "text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/60"
-                }`}
-              >
-                Careers
-              </Link>
-              <Link
-                href="/clients"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2 rounded-lg font-medium transition-colors ${
-                  isActive("/clients")
-                    ? "bg-blue-50 text-[#0052cc] dark:bg-blue-900/30 dark:text-[#65acff] font-semibold"
-                    : "text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/60"
-                }`}
-              >
-                Our Clients
-              </Link>
-              <Link
-                href="/gallery"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2 rounded-lg font-medium transition-colors ${
-                  isActive("/gallery")
-                    ? "bg-blue-50 text-[#0052cc] dark:bg-blue-900/30 dark:text-[#65acff] font-semibold"
-                    : "text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/60"
-                }`}
-              >
-                Galary
-              </Link>
+              {/* Mega Dropdown: Internship */}
+              {activeMega === "internship" && (
+                <div className="p-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-6 border-b border-white/10">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00c9ff]">
+                        <span className="w-4 h-[1px] bg-[#00c9ff]" />
+                        Talent & Learning Programs
+                      </div>
+                      <div className="space-y-2">
+                        <Link
+                          href="/internship"
+                          onClick={() => setActiveMega(null)}
+                          className="block p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 hover:bg-white/5 transition-all"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="text-sm font-semibold text-white">Internship</div>
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#00c9ff]/10 text-[#00c9ff] border border-[#00c9ff]/20">Active</span>
+                          </div>
+                          <div className="text-xs text-white/50 mt-0.5">
+                            Industry-grade real projects, corporate mentorship and practical software engineering.
+                          </div>
+                        </Link>
+                        <Link
+                          href="/services/courses"
+                          onClick={() => setActiveMega(null)}
+                          className="block p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 hover:bg-white/5 transition-all"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="text-sm font-semibold text-white">Training &amp; Courses</div>
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-white/70">Certified</span>
+                          </div>
+                          <div className="text-xs text-white/50 mt-0.5">
+                            Structured modules in Full-Stack, AI, Cloud, Python, and Enterprise IT Systems.
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="p-6 rounded-2xl bg-gradient-to-b from-[#00c9ff]/10 via-[#1e1cb0]/10 to-[#0c0e16] border border-white/15 flex flex-col justify-between">
+                      <div>
+                        <span className="text-[10px] uppercase font-mono tracking-widest text-[#00c9ff]">
+                          Student & Professional Portals
+                        </span>
+                        <h4 className="text-lg font-bold text-white mt-2">
+                          HRA Assessment &amp; Verification
+                        </h4>
+                        <div className="mt-4 space-y-2 text-xs">
+                          <Link
+                            href="/services/exam-portal"
+                            onClick={() => setActiveMega(null)}
+                            className="flex items-center justify-between p-2.5 rounded-lg bg-black/40 border border-white/10 text-white hover:text-[#00c9ff] hover:border-[#00c9ff]/40 transition-all"
+                          >
+                            <span>HRA Exam &amp; Assessment Portal</span>
+                            <span>↗</span>
+                          </Link>
+                          <Link
+                            href="/services/certificate-portal"
+                            onClick={() => setActiveMega(null)}
+                            className="flex items-center justify-between p-2.5 rounded-lg bg-black/40 border border-white/10 text-white hover:text-[#00c9ff] hover:border-[#00c9ff]/40 transition-all"
+                          >
+                            <span>Verify HRA Credentials &amp; Certificate</span>
+                            <span>↗</span>
+                          </Link>
+                        </div>
+                      </div>
+                      <Link
+                        href="/internship"
+                        onClick={() => setActiveMega(null)}
+                        className="inline-flex items-center gap-2 text-xs font-semibold text-white hover:text-[#00c9ff] transition-colors mt-4"
+                      >
+                        <span>Explore all Internship Programs</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 flex items-center justify-between">
+                    <p className="text-xs sm:text-sm text-white/70">
+                      Ready to launch your career with practical engineering?
+                    </p>
+                    <div className="flex gap-3">
+                      <Link href="/services/courses" onClick={() => setActiveMega(null)} className="ibase-btn-ghost text-xs py-2 px-4">
+                        Browse Courses
+                      </Link>
+                      <Link href="/internship" onClick={() => setActiveMega(null)} className="ibase-btn-primary text-xs py-2 px-4">
+                        Apply for Internship
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Mega Dropdown: Inside HRA */}
+              {activeMega === "inside-hra" && (
+                <div className="p-8">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6 border-b border-white/10">
+                    {/* Link 1: Gallery */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00c9ff]">
+                        <span className="w-4 h-[1px] bg-[#00c9ff]" />
+                        Media & Culture
+                      </div>
+                      <Link
+                        href="/gallery"
+                        onClick={() => setActiveMega(null)}
+                        className="block p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 hover:bg-white/5 transition-all group"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm font-semibold text-white group-hover:text-[#00c9ff] transition-colors">Gallery</div>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#00c9ff]/10 text-[#00c9ff] border border-[#00c9ff]/20">Featured</span>
+                        </div>
+                        <div className="text-xs text-white/50 mt-1">
+                          Photos, celebrations, media features and office life at HRA Groups.
+                        </div>
+                      </Link>
+                    </div>
+
+                    {/* Link 2: Events */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00c9ff]">
+                        <span className="w-4 h-[1px] bg-[#00c9ff]" />
+                        Summits & Gatherings
+                      </div>
+                      <Link
+                        href="/inside-hra/events"
+                        onClick={() => setActiveMega(null)}
+                        className="block p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 hover:bg-white/5 transition-all group"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm font-semibold text-white group-hover:text-[#00c9ff] transition-colors">Events</div>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-white/70">Summits</span>
+                        </div>
+                        <div className="text-xs text-white/50 mt-1">
+                          Industry conferences, keynotes, leadership talks and corporate meets.
+                        </div>
+                      </Link>
+                    </div>
+
+                    {/* Link 3: Achievements */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00c9ff]">
+                        <span className="w-4 h-[1px] bg-[#00c9ff]" />
+                        Awards & Milestones
+                      </div>
+                      <Link
+                        href="/inside-hra/achievements"
+                        onClick={() => setActiveMega(null)}
+                        className="block p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 hover:bg-white/5 transition-all group"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm font-semibold text-white group-hover:text-[#00c9ff] transition-colors">Achievements</div>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#00c9ff]/10 text-[#00c9ff] border border-[#00c9ff]/20">Awards</span>
+                        </div>
+                        <div className="text-xs text-white/50 mt-1">
+                          National leadership recognitions, honors and corporate excellence milestones.
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 flex items-center justify-between">
+                    <p className="text-xs sm:text-sm text-white/70">
+                      Discover the journey, stories, and recognitions behind HRA Groups.
+                    </p>
+                    <div className="flex gap-3">
+                      <Link href="/gallery" onClick={() => setActiveMega(null)} className="ibase-btn-primary text-xs py-2 px-4">
+                        Explore Gallery
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-            <Link
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-3 w-full py-3 rounded-full bg-[#1b2d6b] text-white text-[15px] font-semibold shadow-md active:scale-98"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-[20px] h-[20px] text-white stroke-current stroke-[2] stroke-linecap-round stroke-linejoin-round shrink-0"
-              >
-                <path d="M12 4C7.58 4 4 7.13 4 11c0 1.63.63 3.12 1.71 4.29L4.5 19.5l4.5-1.29c.92.37 1.93.59 3 .59 4.42 0 8-3.13 8-7s-3.58-7-8-7z" strokeWidth="1.9" />
-                <path d="M9.5 19.5c1.8 1.4 4.1 2 6.5 1.5l3.5 1-1-3.2c.9-1.2 1.5-2.6 1.5-4.2" strokeWidth="1.9" />
-              </svg>
-              <span>Contact Us</span>
-            </Link>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+
+      {/* Mobile Drawer Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-50 lg:hidden flex justify-end">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="absolute inset-0 bg-[#04060c]/80 backdrop-blur-sm"
+            />
+
+            {/* Slide-in Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.28 }}
+              className="relative w-full max-w-[360px] bg-[#080a10] border-l border-white/10 h-full flex flex-col justify-between z-10 shadow-2xl overflow-y-auto"
+            >
+              <div>
+                <div className="p-5 border-b border-white/10 flex items-center justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-white/50 font-mono">
+                    Navigation
+                  </span>
+                  <button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-2 rounded-lg bg-white/5 text-white/80 hover:text-white"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <div className="p-4 space-y-2">
+                  <Link
+                    href="/"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                      pathname === "/" ? "bg-[#00c9ff]/10 text-[#00c9ff]" : "text-white hover:bg-white/5"
+                    }`}
+                  >
+                    Home
+                  </Link>
+
+                  {/* Group: Services */}
+                  <div className="border-b border-white/5 pb-2">
+                    <button
+                      onClick={() => toggleMobileGroup("services")}
+                      className="w-full flex items-center justify-between py-2 text-sm font-semibold text-white px-3"
+                    >
+                      <span>Services</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${
+                          mobileExpandedGroup === "services" ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {mobileExpandedGroup === "services" && (
+                      <div className="pl-5 py-2 space-y-2 text-xs text-white/70">
+                        <Link
+                          href="/services/software-development"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Software Development
+                        </Link>
+                        <Link
+                          href="/services/it-consultancy"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          IT Consultancy
+                        </Link>
+                        <Link
+                          href="/services/ai-solutions"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          AI Solutions
+                        </Link>
+                        <Link
+                          href="/services/digital-experiences"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Digital Experience
+                        </Link>
+                        <Link
+                          href="/services/blog"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Blog
+                        </Link>
+                        <Link
+                          href="/services/exam-portal"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-[#00c9ff] font-medium"
+                        >
+                          HRA Exam Portal
+                        </Link>
+                        <Link
+                          href="/services/certificate-portal"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-[#00c9ff] font-medium"
+                        >
+                          HRA Certificate Portal
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+
+                  <Link
+                    href="/work"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                      pathname === "/work" ? "bg-[#00c9ff]/10 text-[#00c9ff]" : "text-white hover:bg-white/5"
+                    }`}
+                  >
+                    Work
+                  </Link>
+
+                  <Link
+                    href="/founder-program"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                      pathname === "/founder-program"
+                        ? "bg-[#00c9ff]/10 text-[#00c9ff]"
+                        : "text-white hover:bg-white/5"
+                    }`}
+                  >
+                    Founder Program
+                  </Link>
+
+                  {/* Group: About */}
+                  <div className="border-b border-white/5 pb-2">
+                    <button
+                      onClick={() => toggleMobileGroup("about")}
+                      className="w-full flex items-center justify-between py-2 text-sm font-semibold text-white px-3"
+                    >
+                      <span>About</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${
+                          mobileExpandedGroup === "about" ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {mobileExpandedGroup === "about" && (
+                      <div className="pl-5 py-2 space-y-2 text-xs text-white/70">
+                        <Link
+                          href="/about/company-overview"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Company Overview
+                        </Link>
+                        <Link
+                          href="/about/team"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Meet the HRA Team
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Group: Internship & Learning */}
+                  <div className="border-b border-white/5 pb-2">
+                    <button
+                      onClick={() => toggleMobileGroup("internship")}
+                      className="w-full flex items-center justify-between py-2 text-sm font-semibold text-white px-3"
+                    >
+                      <span>Internship</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${
+                          mobileExpandedGroup === "internship" ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {mobileExpandedGroup === "internship" && (
+                      <div className="pl-5 py-2 space-y-2 text-xs text-white/70">
+                        <Link
+                          href="/internship"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Internship
+                        </Link>
+                        <Link
+                          href="/services/courses"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Training &amp; Courses
+                        </Link>
+                        <Link
+                          href="/services/exam-portal"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-[#00c9ff] font-medium"
+                        >
+                          HRA Exam Portal
+                        </Link>
+                        <Link
+                          href="/services/certificate-portal"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-[#00c9ff] font-medium"
+                        >
+                          HRA Certificate Verification
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Group: Inside HRA */}
+                  <div className="border-b border-white/5 pb-2">
+                    <button
+                      onClick={() => toggleMobileGroup("inside-hra")}
+                      className="w-full flex items-center justify-between py-2 text-sm font-semibold text-white px-3"
+                    >
+                      <span>Inside HRA</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${
+                          mobileExpandedGroup === "inside-hra" ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {mobileExpandedGroup === "inside-hra" && (
+                      <div className="pl-5 py-2 space-y-2 text-xs text-white/70">
+                        <Link
+                          href="/gallery"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Gallery
+                        </Link>
+                        <Link
+                          href="/inside-hra/events"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Events
+                        </Link>
+                        <Link
+                          href="/inside-hra/achievements"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Achievements
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+
+                  <Link
+                    href="/careers"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                      pathname === "/careers" ? "bg-[#00c9ff]/10 text-[#00c9ff]" : "text-white hover:bg-white/5"
+                    }`}
+                  >
+                    Careers
+                  </Link>
+
+                  <Link
+                    href="/clients"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                      pathname === "/clients" ? "bg-[#00c9ff]/10 text-[#00c9ff]" : "text-white hover:bg-white/5"
+                    }`}
+                  >
+                    Our Clients
+                  </Link>
+                </div>
+              </div>
+
+              <div className="p-5 border-t border-white/10 space-y-3">
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full ibase-btn-primary justify-center text-center text-xs py-3"
+                >
+                  Say Hello
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

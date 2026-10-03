@@ -63,8 +63,8 @@ export default function CertificatePortalPage() {
     <div className="min-h-screen bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882] flex flex-col justify-between">
       <Navbar />
 
-      {/* 50-50 FULLSCREEN SECTION (ATTACHED DIRECTLY WITH NAV) */}
-      <main className="flex-1 w-full pt-0 flex flex-col">
+      {/* 50-50 FULLSCREEN SECTION (WITH CLEAN NAVBAR SPACE) */}
+      <main className="flex-1 w-full pt-[80px] flex flex-col min-h-screen">
         <div className="flex-1 w-full grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-80px)]">
           
           {/* LEFT 50%: FULL-BLEED FULLSCREEN COVER IMAGE PANEL */}

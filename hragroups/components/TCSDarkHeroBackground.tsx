@@ -180,28 +180,33 @@ export default function TCSDarkHeroBackground() {
   }, []);
 
   return (
-    <div className="hidden dark:block absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
+    <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
       {/* Background dynamic canvas (TCS digital glow & neural wave network) */}
       <canvas
         ref={canvasRef}
-        className="w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
       />
 
       {/* Cybernetic Tech Grid pattern overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.07]" 
+      <div
+        className="absolute inset-0 opacity-[0.12]"
         style={{
-          backgroundImage: `radial-gradient(rgba(147, 197, 253, 0.6) 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-        }} 
+          backgroundImage: `
+            linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+            radial-gradient(rgba(0, 201, 255, 0.35) 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px, 60px 60px, 30px 30px",
+        }}
       />
 
-      {/* Ambient gradient lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[500px] h-[300px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Ambient gradient lighting covering full edges */}
+      <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[1200px] max-w-full h-[600px] bg-[#00c9ff]/15 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/4 -right-20 w-[600px] h-[500px] bg-[#1e1cb0]/25 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 -left-20 w-[600px] h-[500px] bg-[#00c9ff]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Subtle depth vignette overlay (ensures perfect text contrast without affecting light mode) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#070c18]/60 via-transparent to-[#070c18]/80 pointer-events-none" />
+      {/* Subtle depth vignette overlay (ensures crisp text readability) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#06070b]/40 via-transparent to-[#06070b] pointer-events-none" />
     </div>
   );
 }

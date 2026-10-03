@@ -196,5 +196,20 @@ model CourseInquiry {
   updatedAt   DateTime @updatedAt
 }
 
-
-
+model FounderApplication {
+  id          String   @id @default(uuid())
+  fullName    String
+  email       String
+  phone       String
+  location    String?
+  designation String?
+  company     String?
+  industry    String?
+  website     String?
+  business    String
+  goals       String?
+  interests   String[]
+  status      String   @default("New") // New | Under Review | Connected | Archived
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
