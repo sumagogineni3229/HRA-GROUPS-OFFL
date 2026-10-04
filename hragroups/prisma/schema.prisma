@@ -213,3 +213,13 @@ model FounderApplication {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+model Subscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  source    String?  @default("Website")
+  status    String   @default("Active") // Active | Unsubscribed
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+

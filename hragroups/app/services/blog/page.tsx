@@ -43,6 +43,94 @@ const BLOG_HERO_PHRASES = [
   "Knowledge Sharing & Solutions.",
 ];
 
+function NewsletterCard() {
+  const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [feedbackMsg, setFeedbackMsg] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes("@")) return;
+
+    try {
+      setSubmitting(true);
+      setStatus("idle");
+      const res = await fetch("/api/inquiries/subscribers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), source: "Blog Page Newsletter" }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setStatus("success");
+        setFeedbackMsg(data.message || "Thank you for subscribing to HRA Insights!");
+        setEmail("");
+      } else {
+        setStatus("error");
+        setFeedbackMsg(data.error || "Failed to subscribe. Please try again.");
+      }
+    } catch (err) {
+      setStatus("error");
+      setFeedbackMsg("An error occurred. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="rounded-2xl bg-gradient-to-b from-[#08172a] to-[#030b16] p-4 text-white space-y-2.5 border border-white/15 backdrop-blur-md">
+      <span className="text-[10px] font-mono font-bold tracking-widest text-[#00c9ff] uppercase">
+        NEWSLETTER
+      </span>
+      <h4 className="text-xs sm:text-sm font-semibold leading-snug">
+        Get Weekly Tech &amp; Workforce Insights
+      </h4>
+      <p className="text-[11px] text-white/60 leading-relaxed">
+        Join 5,000+ tech leaders reading our monthly digest.
+      </p>
+
+      {status === "success" ? (
+        <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2">
+          <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+          <span>{feedbackMsg}</span>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-2 pt-1">
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email..."
+            className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/15 text-white placeholder-white/40 text-xs outline-none focus:border-[#00c9ff] transition-all"
+            disabled={submitting}
+          />
+          {status === "error" && (
+            <p className="text-[11px] text-rose-400">{feedbackMsg}</p>
+          )}
+          <button
+            type="submit"
+            disabled={submitting}
+            className="w-full py-2 rounded-lg bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-xs hover:shadow-[0_0_20px_rgba(0,201,255,0.4)] transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2"
+          >
+            {submitting ? (
+              <>
+                <div className="w-3.5 h-3.5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                <span>Subscribing...</span>
+              </>
+            ) : (
+              <span>Subscribe</span>
+            )}
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
+
+
 export default function BlogPage() {
   const [selectedService, setSelectedService] = useState<string>("All");
   const [selectedIndustry, setSelectedIndustry] = useState<string>("All");
@@ -739,37 +827,7 @@ Deploying dual-active multi-region cloud topologies with automated BGP anycast r
                 </div>
 
                 {/* Newsletter Card */}
-                <div className="rounded-2xl bg-gradient-to-b from-[#08172a] to-[#030b16] p-4 text-white space-y-2.5 border border-white/15 backdrop-blur-md">
-                  <span className="text-[10px] font-mono font-bold tracking-widest text-[#00c9ff] uppercase">
-                    NEWSLETTER
-                  </span>
-                  <h4 className="text-xs sm:text-sm font-semibold leading-snug">
-                    Get Weekly Tech &amp; Workforce Insights
-                  </h4>
-                  <p className="text-[11px] text-white/60 leading-relaxed">
-                    Join 5,000+ tech leaders reading our monthly digest.
-                  </p>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      alert("Thank you for subscribing to HRA Insights!");
-                    }}
-                    className="space-y-2 pt-1"
-                  >
-                    <input
-                      type="email"
-                      required
-                      placeholder="Enter email..."
-                      className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/15 text-white placeholder-white/40 text-xs outline-none focus:border-[#00c9ff] transition-all"
-                    />
-                    <button
-                      type="submit"
-                      className="w-full py-2 rounded-lg bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-xs hover:shadow-[0_0_20px_rgba(0,201,255,0.4)] transition-all cursor-pointer"
-                    >
-                      Subscribe
-                    </button>
-                  </form>
-                </div>
+                <NewsletterCard />
               </div>
 
               {/* RIGHT COLUMN: BLOG POSTS LISTING */}
