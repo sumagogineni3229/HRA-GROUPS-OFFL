@@ -19,9 +19,9 @@ export default function Footer() {
           <div className="lg:col-span-3 space-y-6">
             <Link href="/" className="inline-block group">
               <img
-                src="/logo-white.png"
+                src="/logo2.png"
                 alt="HRA Groups Logo"
-                className="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 duration-300"
+                className="h-9 sm:h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-105 duration-300"
               />
             </Link>
 

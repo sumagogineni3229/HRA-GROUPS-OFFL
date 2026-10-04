@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import BigPolygonBackground from "@/components/BigPolygonBackground";
 import {
   ArrowRight,
+  ArrowLeft,
   MapPin,
   Briefcase,
   Sparkles,
@@ -17,16 +18,10 @@ import {
   Phone,
   FileText,
   Building2,
-  ExternalLink,
-  ChevronRight,
+  ChevronDown,
   GraduationCap,
   Users2,
-  HelpCircle,
-  X,
-  Send,
-  UserCheck,
-  Mail,
-  User,
+  UploadCloud,
 } from "lucide-react";
 
 const CAREER_HERO_PHRASES = [
@@ -38,11 +33,13 @@ const CAREER_HERO_PHRASES = [
 
 export default function CareersPage() {
   const [selectedDept, setSelectedDept] = useState<string>("All");
-  const [isApplyModalOpen, setIsApplyModalOpen] = useState<boolean>(false);
-  const [selectedJobForModal, setSelectedJobForModal] = useState<string>("General Application");
-  const [selectedJobIdForModal, setSelectedJobIdForModal] = useState<string | null>(null);
+  
+  // Fullscreen Job Application Form State
+  const [isJobFormFullscreen, setIsJobFormFullscreen] = useState<boolean>(false);
+  const [selectedJobTitle, setSelectedJobTitle] = useState<string>("General Application");
+  const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
 
-  // Typewriter text animation state (identical to Work page)
+  // Typewriter text animation state
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -74,7 +71,7 @@ export default function CareersPage() {
     return () => clearTimeout(timer);
   }, [currentText, isDeleting, phraseIndex, typingSpeed]);
 
-  // Application form fields
+  // Job Application form fields
   const [applicantName, setApplicantName] = useState("");
   const [applicantEmail, setApplicantEmail] = useState("");
   const [applicantPhone, setApplicantPhone] = useState("");
@@ -86,7 +83,6 @@ export default function CareersPage() {
   const [applicantMessage, setApplicantMessage] = useState("");
   const [submittingApp, setSubmittingApp] = useState(false);
   const [appSuccessMsg, setAppSuccessMsg] = useState(false);
-  const [applicationId, setApplicationId] = useState<string>("");
 
   // Dynamic database roles loaded from DB
   const [dbRoles, setDbRoles] = useState<any[]>([]);
@@ -118,6 +114,24 @@ export default function CareersPage() {
       .catch((err) => console.error("Error loading career roles:", err))
       .finally(() => setLoadingRoles(false));
   }, []);
+
+  // Scroll to top when opening fullscreen form
+  useEffect(() => {
+    if (isJobFormFullscreen) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [isJobFormFullscreen]);
+
+  // Handle ESC key to exit fullscreen form
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isJobFormFullscreen) {
+        setIsJobFormFullscreen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isJobFormFullscreen]);
 
   const { scrollY } = useScroll();
   const heroContentY = useTransform(scrollY, [0, 500], [0, -35]);
@@ -160,7 +174,7 @@ export default function CareersPage() {
     "Email ID and residential address",
     "Location preference (Hyderabad / Remote / Hybrid)",
     "Educational background and academic qualifications",
-    "Work experience / Internship history (if any)",
+    "Work experience / employment history (if any)",
     "Skills and relevant certifications",
     "Expected CTC and notice period",
     "Updated resume / portfolio (PDF format)",
@@ -171,14 +185,14 @@ export default function CareersPage() {
     return dbRoles.filter((job) => job.dept === selectedDept);
   }, [dbRoles, selectedDept]);
 
-  const handleOpenModal = (jobTitle: string, jobId?: string) => {
-    setSelectedJobForModal(jobTitle);
-    setSelectedJobIdForModal(jobId || null);
-    setIsApplyModalOpen(true);
+  const handleOpenJobForm = (jobTitle: string, jobId?: string) => {
+    setSelectedJobTitle(jobTitle);
+    setSelectedJobId(jobId || null);
+    setIsJobFormFullscreen(true);
     setAppSuccessMsg(false);
   };
 
-  const handleApplicationSubmit = async (e: React.FormEvent) => {
+  const handleJobFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmittingApp(true);
 
@@ -203,8 +217,8 @@ export default function CareersPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          careerRoleId: selectedJobIdForModal,
-          roleTitle: selectedJobForModal,
+          careerRoleId: selectedJobId,
+          roleTitle: selectedJobTitle,
           fullName: applicantName,
           email: applicantEmail,
           phone: applicantPhone,
@@ -218,19 +232,7 @@ export default function CareersPage() {
 
       const data = await res.json();
       if (res.ok && data.success) {
-        setApplicationId(data.application?.id?.slice(0, 8) || "HRA-APP");
         setAppSuccessMsg(true);
-        setTimeout(() => {
-          setIsApplyModalOpen(false);
-          setApplicantName("");
-          setApplicantEmail("");
-          setApplicantPhone("");
-          setApplicantSkills("");
-          setApplicantResumeUrl("");
-          setApplicantResumeFile(null);
-          setApplicantMessage("");
-          setAppSuccessMsg(false);
-        }, 3500);
       } else {
         alert(data.error || "Failed to submit application");
       }
@@ -241,6 +243,297 @@ export default function CareersPage() {
     }
   };
 
+  // ===================== FULLSCREEN JOB APPLICATION FORM VIEW =====================
+  if (isJobFormFullscreen) {
+    return (
+      <div className="ibase-landing-bg text-white min-h-screen selection:bg-[#00c9ff]/30 selection:text-[#00c9ff] relative overflow-x-hidden font-sans">
+        <Navbar />
+
+        {/* Global Background Layer with Big Polygons */}
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-black">
+          <BigPolygonBackground opacityClass="opacity-75" />
+          <div className="absolute top-[10%] -left-[10%] w-[650px] h-[650px] bg-[#00c9ff]/[0.035] rounded-full blur-[220px]" />
+          <div className="absolute top-[50%] -right-[15%] w-[800px] h-[800px] bg-[#1e1cb0]/[0.05] rounded-full blur-[250px]" />
+        </div>
+
+        <main className="relative z-20 pt-28 sm:pt-36 pb-24 px-6 sm:px-10 lg:px-16 xl:px-24 max-w-[1200px] mx-auto">
+          {/* Top Bar / Return */}
+          <div className="flex items-center justify-between pb-8 mb-10 border-b border-white/10">
+            <button
+              onClick={() => {
+                setIsJobFormFullscreen(false);
+                setAppSuccessMsg(false);
+              }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/15 hover:border-[#00c9ff]/50 text-xs sm:text-sm font-mono text-white/80 hover:text-[#00c9ff] transition-all cursor-pointer backdrop-blur-md hover:bg-white/10"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Careers Overview</span>
+            </button>
+
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-[#00c9ff]">
+              <Briefcase className="w-3.5 h-3.5" />
+              <span>JOB APPLICATION</span>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-8"
+          >
+            {/* Header */}
+            <div className="space-y-4 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00c9ff]/15 border border-[#00c9ff]/30 text-[#00c9ff] text-xs font-mono uppercase tracking-widest">
+                <Building2 className="w-4 h-4" />
+                <span>Position: {selectedJobTitle}</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-light font-serif text-white tracking-tight leading-[1.12]">
+                Apply for {selectedJobTitle}
+              </h1>
+
+              <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
+                Submit your credentials directly to the HRA Groups talent acquisition team for review.
+              </p>
+            </div>
+
+            {appSuccessMsg ? (
+              <div className="rounded-3xl bg-[#071225]/90 border border-emerald-500/30 p-10 sm:p-16 text-center space-y-6 backdrop-blur-2xl shadow-[0_0_80px_rgba(16,185,129,0.2)]">
+                <div className="w-20 h-20 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center mx-auto text-emerald-400">
+                  <CheckCircle2 className="w-10 h-10" />
+                </div>
+
+                <div className="space-y-2 max-w-xl mx-auto">
+                  <h2 className="text-2xl sm:text-3xl font-light font-serif text-white">
+                    Application Received Successfully!
+                  </h2>
+                  <p className="text-sm sm:text-base text-emerald-300 font-light leading-relaxed">
+                    Thank you for applying to HRA Groups. Our HR recruitment team will review your qualifications and contact you regarding the next interview stages.
+                  </p>
+                </div>
+
+                <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+                  <button
+                    onClick={() => {
+                      setAppSuccessMsg(false);
+                      setIsJobFormFullscreen(false);
+                    }}
+                    className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-xs sm:text-sm tracking-wide shadow-lg cursor-pointer"
+                  >
+                    Return to Careers Page
+                  </button>
+                  <Link
+                    href="/about/company-overview"
+                    className="px-8 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-medium text-xs sm:text-sm backdrop-blur-md"
+                  >
+                    Learn About HRA Culture
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-3xl bg-white/[0.02] border border-white/10 p-6 sm:p-12 backdrop-blur-2xl shadow-2xl space-y-8">
+                <form onSubmit={handleJobFormSubmit} className="space-y-8">
+                  {/* Step 1: Personal & Contact */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#00c9ff] uppercase pb-2 border-b border-white/10">
+                      <span className="w-5 h-5 rounded-full bg-[#00c9ff]/20 text-[#00c9ff] flex items-center justify-center text-[10px] font-bold">01</span>
+                      <span>Candidate Identification</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                      <div>
+                        <label className="text-xs font-mono text-white/70 block mb-2">
+                          Full Name <span className="text-[#00c9ff]">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={applicantName}
+                          onChange={(e) => setApplicantName(e.target.value)}
+                          placeholder="Your full name"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#00c9ff] transition-all"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-mono text-white/70 block mb-2">
+                          Email Address <span className="text-[#00c9ff]">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={applicantEmail}
+                          onChange={(e) => setApplicantEmail(e.target.value)}
+                          placeholder="name@example.com"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#00c9ff] transition-all"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-mono text-white/70 block mb-2">
+                          Phone Number <span className="text-[#00c9ff]">*</span>
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          value={applicantPhone}
+                          onChange={(e) => setApplicantPhone(e.target.value)}
+                          placeholder="+91 96762 72283"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#00c9ff] transition-all"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Step 2: Experience & Location */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#00c9ff] uppercase pb-2 border-b border-white/10">
+                      <span className="w-5 h-5 rounded-full bg-[#00c9ff]/20 text-[#00c9ff] flex items-center justify-center text-[10px] font-bold">02</span>
+                      <span>Experience &amp; Work Location</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                      <div>
+                        <label className="text-xs font-mono text-white/70 block mb-2">
+                          Experience Level
+                        </label>
+                        <select
+                          value={applicantExperience}
+                          onChange={(e) => setApplicantExperience(e.target.value)}
+                          className="w-full px-4 py-3 rounded-xl bg-[#040e1c] border border-white/15 text-sm text-white focus:outline-none focus:border-[#00c9ff] transition-all cursor-pointer"
+                        >
+                          <option value="Fresher / Entry Level">Fresher / Entry Level</option>
+                          <option value="1–2 Years">1–2 Years</option>
+                          <option value="3–5 Years">3–5 Years</option>
+                          <option value="5–8 Years">5–8 Years (Senior)</option>
+                          <option value="8+ Years">8+ Years (Lead / Principal)</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-mono text-white/70 block mb-2">
+                          Current Location / City
+                        </label>
+                        <input
+                          type="text"
+                          value={applicantLocation}
+                          onChange={(e) => setApplicantLocation(e.target.value)}
+                          placeholder="e.g. Hyderabad, India / Bengaluru / Remote"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#00c9ff] transition-all"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-mono text-white/70 block mb-2">
+                          Key Technical Skills / Stack
+                        </label>
+                        <input
+                          type="text"
+                          value={applicantSkills}
+                          onChange={(e) => setApplicantSkills(e.target.value)}
+                          placeholder="e.g. React, Next.js, Node.js, Python, AWS"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#00c9ff] transition-all"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Step 3: Resume Upload */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#00c9ff] uppercase pb-2 border-b border-white/10">
+                      <span className="w-5 h-5 rounded-full bg-[#00c9ff]/20 text-[#00c9ff] flex items-center justify-center text-[10px] font-bold">03</span>
+                      <span>Resume &amp; Cover Note</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="text-xs font-mono text-white/70 block mb-2">
+                          Upload Resume File (PDF / DOCX) <span className="text-[#00c9ff]">*</span>
+                        </label>
+                        <div className="border border-dashed border-white/20 rounded-xl p-3.5 bg-white/5 text-center relative hover:border-[#00c9ff] transition-colors cursor-pointer flex items-center justify-center gap-2">
+                          <input
+                            type="file"
+                            accept=".pdf,.doc,.docx"
+                            onChange={(e) => {
+                              if (e.target.files && e.target.files[0]) {
+                                setApplicantResumeFile(e.target.files[0]);
+                              }
+                            }}
+                            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                          />
+                          <UploadCloud className="w-4 h-4 text-[#00c9ff]" />
+                          <span className="text-xs font-mono text-white/80 truncate">
+                            {applicantResumeFile ? applicantResumeFile.name : "📁 Choose Resume PDF File"}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-mono text-white/70 block mb-2">
+                          Or Provide Link (LinkedIn / Google Drive / GitHub)
+                        </label>
+                        <input
+                          type="url"
+                          value={applicantResumeUrl}
+                          onChange={(e) => setApplicantResumeUrl(e.target.value)}
+                          placeholder="https://linkedin.com/in/username or drive link"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#00c9ff] transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-mono text-white/70 block mb-2">
+                        Brief Cover Note / Why HRA Groups?
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={applicantMessage}
+                        onChange={(e) => setApplicantMessage(e.target.value)}
+                        placeholder="Tell us about your background, achievements, and why you are excited for this role..."
+                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#00c9ff] transition-all resize-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10">
+                    <p className="text-xs text-white/50 font-mono">
+                      ✦ All applications are kept confidential and reviewed directly by our recruitment department.
+                    </p>
+
+                    <div className="flex items-center gap-4 w-full sm:w-auto">
+                      <button
+                        type="button"
+                        onClick={() => setIsJobFormFullscreen(false)}
+                        className="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+
+                      <button
+                        type="submit"
+                        disabled={submittingApp}
+                        className="px-10 py-3.5 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-xs sm:text-sm tracking-wide shadow-[0_0_30px_rgba(0,201,255,0.4)] hover:shadow-[0_0_45px_rgba(0,201,255,0.7)] transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2"
+                      >
+                        <span>{submittingApp ? "Submitting Application..." : "Submit Direct Application"}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            )}
+          </motion.div>
+        </main>
+
+        <Footer />
+      </div>
+    );
+  }
+
+  // ===================== STANDARD CAREERS PAGE VIEW =====================
   return (
     <div className="ibase-landing-bg text-white min-h-screen selection:bg-[#00c9ff]/30 selection:text-[#00c9ff] relative overflow-hidden font-sans">
       <Navbar />
@@ -253,49 +546,44 @@ export default function CareersPage() {
       </div>
 
       <main className="relative z-20">
-        {/* CAREERS HERO BANNER */}
-        <section className="relative pt-36 pb-24 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-32 flex items-center justify-center text-center overflow-hidden">
+        {/* HERO SECTION - EXACT VERTICAL & HORIZONTAL CENTERING WITH TYPEWRITER ANIMATION */}
+        <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-6 sm:px-10 lg:px-16 pt-20 pb-20 text-center">
           <motion.div
             style={{ y: heroContentY }}
-            className="w-full max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24 relative z-10"
+            className="w-full max-w-4xl mx-auto space-y-8 flex flex-col items-center justify-center"
           >
+            {/* Eyebrow Pill Tag */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="max-w-4xl mx-auto space-y-6 sm:space-y-8"
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs sm:text-sm font-mono tracking-[0.25em] text-[#00c9ff] uppercase shadow-sm"
             >
-              {/* Pill Tag */}
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm font-mono tracking-[0.25em] text-[#00c9ff] uppercase backdrop-blur-md shadow-sm"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-[#00c9ff] animate-pulse" />
-                <span>Careers at HRA Groups</span>
-              </motion.div>
+              <Sparkles className="w-4 h-4 text-[#00c9ff] animate-pulse" />
+              <span>CAREERS &amp; CULTURE</span>
+            </motion.div>
 
-              {/* Typewriter Animated Display Headline (Matching Work page) */}
-              <div className="min-h-[110px] sm:min-h-[140px] md:min-h-[160px] flex items-center justify-center w-full px-2">
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-light text-white tracking-[-0.03em] leading-[1.08] text-center font-serif">
-                  <span className="text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.2)]">
-                    {currentText}
-                  </span>
-                  <span className="text-[#00c9ff] ml-1.5 font-light animate-[pulse_1s_infinite]">|</span>
-                </h1>
-              </div>
+            {/* Typewriter Animated Display Headline */}
+            <div className="min-h-[110px] sm:min-h-[140px] md:min-h-[160px] flex items-center justify-center w-full px-2">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.03em] leading-[1.08] text-center font-serif">
+                <span className="text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.2)]">
+                  {currentText}
+                </span>
+                <span className="text-[#00c9ff] ml-1.5 font-light animate-[pulse_1s_infinite]">|</span>
+              </h1>
+            </div>
 
-              {/* Description Subtext */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.8 }}
-                className="text-[16px] sm:text-[18px] lg:text-[19px] text-white/70 font-light leading-[1.65] max-w-2xl mx-auto"
-              >
-                Build a meaningful career with a team focused on technology, growth, and long-term impact. Explore opportunities to grow with{" "}
+            {/* Subtext */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 0.8 }}
+              className="space-y-4 max-w-2xl mx-auto"
+            >
+              <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
+                Join a dynamic, fast-growing company where your ideas are valued, your skills are sharpened, and your career takes off with{" "}
                 <a
-                  href="https://www.linkedin.com/company/hragroups/"
+                  href="https://www.linkedin.com/company/hragroups"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#00c9ff] underline underline-offset-4 font-normal hover:text-white transition-colors"
@@ -303,7 +591,7 @@ export default function CareersPage() {
                   HRA Groups
                 </a>
                 .
-              </motion.p>
+              </p>
 
               {/* Action Buttons */}
               <motion.div
@@ -320,21 +608,37 @@ export default function CareersPage() {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </a>
 
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSfAlELtcrSzsXxs8Cw87uaeFriCPEYQG3qkxjUZx4OC9FND3g/viewform?usp=header"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-medium text-sm backdrop-blur-md transition-all duration-300"
+                <button
+                  onClick={() => handleOpenJobForm("General Application")}
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-medium text-sm backdrop-blur-md transition-all duration-300 cursor-pointer hover:border-[#00c9ff]/50"
                 >
-                  <span>General Application Form ↗</span>
-                </a>
+                  <span>Apply Directly ↗</span>
+                </button>
               </motion.div>
             </motion.div>
           </motion.div>
+
+          {/* Bottom Animated Scroll Indicator */}
+          <button
+            onClick={() => {
+              const el = document.getElementById("why-work-with-us");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/40 hover:text-[#00c9ff] transition-colors duration-300 cursor-pointer group"
+            aria-label="Scroll to explore career opportunities"
+          >
+            <span className="text-[10px] font-mono tracking-[0.25em] uppercase group-hover:tracking-[0.3em] transition-all">
+              Scroll to explore
+            </span>
+            <div className="w-5 h-8 rounded-full border border-white/20 group-hover:border-[#00c9ff]/60 flex items-start justify-center p-1 transition-colors">
+              <div className="w-1 h-2 bg-[#00c9ff] rounded-full animate-bounce" />
+            </div>
+            <ChevronDown className="w-4 h-4 -mt-1 text-[#00c9ff] animate-pulse" />
+          </button>
         </section>
 
         {/* WHY WORK WITH US SECTION */}
-        <section className="py-20 sm:py-24 border-t border-white/10">
+        <section id="why-work-with-us" className="py-20 sm:py-24 border-t border-white/10 relative">
           <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -359,20 +663,17 @@ export default function CareersPage() {
               {whyWorkItems.map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 25 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                  className="p-7 sm:p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 hover:bg-white/[0.04] backdrop-blur-md hover:shadow-[0_15px_40px_rgba(0,201,255,0.1)] transition-all duration-300 flex flex-col justify-between group"
+                  className="rounded-3xl bg-white/[0.02] border border-white/10 p-8 space-y-4 hover:border-[#00c9ff]/40 transition-all duration-300 flex flex-col justify-between backdrop-blur-md hover:bg-white/[0.04]"
                 >
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#00c9ff] group-hover:text-black transition-colors duration-300">
-                      {React.cloneElement(item.icon, {
-                        className: "w-6 h-6 text-[#00c9ff] group-hover:text-black transition-colors",
-                      })}
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-light font-serif text-white group-hover:text-[#73bbff] transition-colors">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                    {item.icon}
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-light font-serif text-white">
                       {item.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-white/60 font-light leading-relaxed">
@@ -450,7 +751,7 @@ export default function CareersPage() {
                   </p>
                   <div className="pt-2">
                     <button
-                      onClick={() => handleOpenModal("General Career Application")}
+                      onClick={() => handleOpenJobForm("General Career Application")}
                       className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-xs sm:text-sm shadow-md transition-all duration-200 hover:scale-[1.02] cursor-pointer"
                     >
                       <span>Submit General Application</span>
@@ -460,24 +761,16 @@ export default function CareersPage() {
                 </div>
               ) : (
                 <AnimatePresence mode="popLayout">
-                  {filteredOpenings.map((job, index) => (
+                  {filteredOpenings.map((job) => (
                     <motion.div
                       layout
                       key={job.id}
-                      initial={{ opacity: 0, y: 25 }}
+                      initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.2 } }}
-                      transition={{
-                        duration: 0.4,
-                        delay: index * 0.05,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                      whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                      className="group rounded-2xl sm:rounded-3xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 p-6 sm:p-7 backdrop-blur-md transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,201,255,0.1)] flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative overflow-hidden"
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      className="rounded-3xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-all duration-300 backdrop-blur-md hover:bg-white/[0.04] group"
                     >
-                      {/* Left accent indicator bar */}
-                      <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00c9ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
                       {/* Job Details Main Area */}
                       <div className="space-y-3 flex-1">
                         {/* Top badging row */}
@@ -545,7 +838,7 @@ export default function CareersPage() {
                           </a>
                         ) : (
                           <button
-                            onClick={() => handleOpenModal(job.title, job.id)}
+                            onClick={() => handleOpenJobForm(job.title, job.id)}
                             className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-xs sm:text-sm shadow-md transition-all duration-200 hover:scale-[1.02] cursor-pointer whitespace-nowrap w-full sm:w-auto"
                           >
                             <span>Apply</span>
@@ -667,7 +960,7 @@ export default function CareersPage() {
 
                 <div className="space-y-3 pt-6 relative z-10">
                   <button
-                    onClick={() => handleOpenModal("General Corporate Application")}
+                    onClick={() => handleOpenJobForm("General Corporate Application")}
                     className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-sm shadow-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer"
                   >
                     <span>Direct In-App Application</span>
@@ -710,7 +1003,7 @@ export default function CareersPage() {
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
                 <button
-                  onClick={() => handleOpenModal("General Application")}
+                  onClick={() => handleOpenJobForm("General Application")}
                   className="px-9 py-4 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-sm shadow-[0_0_30px_rgba(0,201,255,0.35)] transition-all duration-200 hover:scale-[1.03] cursor-pointer"
                 >
                   Apply for Jobs Now ↗
@@ -726,205 +1019,6 @@ export default function CareersPage() {
           </div>
         </section>
       </main>
-
-      {/* FULL DIRECT APPLICATION MODAL THAT STORES DIRECTLY IN DATABASE */}
-      <AnimatePresence>
-        {isApplyModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-[#071225] text-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-white/15 relative max-h-[90vh] overflow-y-auto"
-            >
-              <button
-                onClick={() => setIsApplyModalOpen(false)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-wider text-[#00c9ff]">
-                  <Building2 className="w-3.5 h-3.5" />
-                  <span>Job Application Submission</span>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-light font-serif text-white">
-                    {selectedJobForModal}
-                  </h3>
-                  <p className="text-xs text-white/60 font-light mt-1">
-                    Submit your application directly to the HRA Groups talent acquisition team.
-                  </p>
-                </div>
-
-                {appSuccessMsg ? (
-                  <div className="p-6 rounded-2xl bg-emerald-950/60 border border-emerald-800 text-center space-y-2 animate-in fade-in">
-                    <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-                    <h4 className="font-bold text-emerald-200 text-base">Application Received!</h4>
-                    <p className="text-xs text-emerald-300 font-light">
-                      Thank you for applying. Your profile has been submitted to the Recruitment team for review.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleApplicationSubmit} className="space-y-3.5 pt-2">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="text-xs font-mono text-white/70 block mb-1">
-                          Full Name <span className="text-[#00c9ff]">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={applicantName}
-                          onChange={(e) => setApplicantName(e.target.value)}
-                          placeholder="Your Full Name"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-[#00c9ff]"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="text-xs font-mono text-white/70 block mb-1">
-                          Email Address <span className="text-[#00c9ff]">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={applicantEmail}
-                          onChange={(e) => setApplicantEmail(e.target.value)}
-                          placeholder="name@example.com"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-[#00c9ff]"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="text-xs font-mono text-white/70 block mb-1">
-                          Phone Number <span className="text-[#00c9ff]">*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          value={applicantPhone}
-                          onChange={(e) => setApplicantPhone(e.target.value)}
-                          placeholder="+91 96762 72283"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-[#00c9ff]"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="text-xs font-mono text-white/70 block mb-1">
-                          Experience Level
-                        </label>
-                        <select
-                          value={applicantExperience}
-                          onChange={(e) => setApplicantExperience(e.target.value)}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#040e1c] border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-[#00c9ff]"
-                        >
-                          <option value="Fresher / Intern">Fresher / Intern</option>
-                          <option value="1–2 Years">1–2 Years</option>
-                          <option value="3–5 Years">3–5 Years</option>
-                          <option value="5+ Years">5+ Years (Senior)</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-mono text-white/70 block mb-1">
-                        Current Location / City
-                      </label>
-                      <input
-                        type="text"
-                        value={applicantLocation}
-                        onChange={(e) => setApplicantLocation(e.target.value)}
-                        placeholder="e.g. Hyderabad, India / Bengaluru"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-[#00c9ff]"
-                      />
-                    </div>
-
-                    {/* Resume Upload: File + URL */}
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-mono text-white/70 block">
-                        Upload Resume (PDF, DOCX) or Provide Link <span className="text-[#00c9ff]">*</span>
-                      </label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <div className="border border-dashed border-white/20 rounded-xl p-2.5 bg-white/5 text-center relative hover:border-[#00c9ff] transition-colors cursor-pointer">
-                          <input
-                            type="file"
-                            accept=".pdf,.doc,.docx"
-                            onChange={(e) => {
-                              if (e.target.files && e.target.files[0]) {
-                                setApplicantResumeFile(e.target.files[0]);
-                              }
-                            }}
-                            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                          />
-                          <span className="text-xs font-mono text-[#00c9ff] block truncate">
-                            {applicantResumeFile ? applicantResumeFile.name : "📁 Choose Resume PDF File"}
-                          </span>
-                        </div>
-
-                        <input
-                          type="url"
-                          value={applicantResumeUrl}
-                          onChange={(e) => setApplicantResumeUrl(e.target.value)}
-                          placeholder="Or paste Drive / LinkedIn link"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-[#00c9ff]"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-mono text-white/70 block mb-1">
-                        Key Skills &amp; Qualifications
-                      </label>
-                      <input
-                        type="text"
-                        value={applicantSkills}
-                        onChange={(e) => setApplicantSkills(e.target.value)}
-                        placeholder="e.g. React.js, Python, AWS, Communication"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-[#00c9ff]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-mono text-white/70 block mb-1">
-                        Brief Cover Note / Why HRA Groups?
-                      </label>
-                      <textarea
-                        rows={2}
-                        value={applicantMessage}
-                        onChange={(e) => setApplicantMessage(e.target.value)}
-                        placeholder="Share a brief message regarding your background..."
-                        className="w-full px-3.5 py-2 rounded-xl bg-white/5 border border-white/15 text-xs text-white focus:outline-none focus:border-[#00c9ff] resize-none"
-                      />
-                    </div>
-
-                    <div className="pt-2 flex items-center gap-3">
-                      <button
-                        type="submit"
-                        disabled={submittingApp}
-                        className="flex-1 py-3 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-xs sm:text-sm transition-all shadow-md cursor-pointer disabled:opacity-50 hover:shadow-[0_0_20px_rgba(0,201,255,0.4)]"
-                      >
-                        {submittingApp ? "Submitting Application..." : "Submit Direct Application"}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setIsApplyModalOpen(false)}
-                        className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm transition-colors cursor-pointer"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </form>
-                )}
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       <Footer />
     </div>

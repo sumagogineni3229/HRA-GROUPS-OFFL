@@ -61,7 +61,7 @@ export default function AdminLayout({
           <div className="space-y-3.5 pt-2">
             <Link href="/" className="inline-block group">
               <img
-                src="/logo-white.png"
+                src="/logo2.png"
                 alt="HRA Groups"
                 className="h-9 w-auto object-contain transition-transform group-hover:scale-105"
               />
@@ -128,7 +128,7 @@ export default function AdminLayout({
               <div className="flex items-center justify-between pt-2">
                 <Link href="/" onClick={() => setMobileMenuOpen(false)}>
                   <img
-                    src="/logo-white.png"
+                    src="/logo2.png"
                     alt="HRA Groups"
                     className="h-8 w-auto object-contain"
                   />

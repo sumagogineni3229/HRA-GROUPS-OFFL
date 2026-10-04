@@ -22,6 +22,9 @@ import {
   Shield,
   Truck,
   Globe2,
+  Code2,
+  Cloud,
+  PenTool,
 } from "lucide-react";
 
 // Rotating typewriter phrases for HRA Groups
@@ -749,128 +752,120 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Full-width Internship Program Showcase matching Cybernetic layout */}
-          <div className="rounded-3xl bg-gradient-to-br from-[#06101c]/90 via-[#060a14]/90 to-[#04060c]/90 border border-white/10 backdrop-blur-2xl overflow-hidden relative p-8 sm:p-12 lg:p-16 mb-12">
+          {/* 1. Boxless Talent Acceleration Section */}
+          <div className="relative py-12 sm:py-16 lg:py-20 mb-16 overflow-hidden">
+            {/* Background Image (image2.jpeg) */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/image2.jpeg"
+              alt="Talent Acceleration"
+              className="absolute inset-0 w-full h-full object-cover object-[70%_center] md:object-[75%_center] lg:object-right pointer-events-none opacity-90"
+            />
+
+            {/* Seamless Edge Gradient Fades (Blends directly with page background) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#04060c] via-[#04060c]/95 via-45% md:via-[#04060c]/75 md:via-50% to-[#04060c]/20 lg:to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#04060c] via-transparent to-[#04060c] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#04060c] via-transparent to-[#04060c] pointer-events-none" />
+
             {/* Ambient Lighting */}
-            <div className="absolute top-1/2 -left-20 w-[500px] h-[500px] bg-[#00c9ff]/10 rounded-full blur-[160px] pointer-events-none" />
-            <div className="absolute top-1/2 -right-20 w-[500px] h-[500px] bg-[#3b82f6]/10 rounded-full blur-[160px] pointer-events-none" />
+            <div className="absolute top-1/2 -left-20 w-[450px] h-[450px] bg-[#00c9ff]/10 rounded-full blur-[140px] pointer-events-none" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
-              {/* Left Column: Text & Content */}
-              <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
-                <div>
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="w-8 h-[2px] bg-[#00c9ff]" />
-                    <span className="text-xs font-mono tracking-widest uppercase text-white/70">
-                      TALENT ACCELERATION
-                    </span>
-                    <span className="w-2 h-2 rounded-full bg-[#00c9ff] animate-pulse" />
+            <div className="relative z-10 max-w-2xl flex flex-col justify-between space-y-9 px-2 sm:px-4">
+              <div>
+                {/* Badge */}
+                <div className="flex items-center gap-2.5 mb-6">
+                  <span className="w-6 h-[2px] bg-[#00c9ff]" />
+                  <span className="text-xs font-mono tracking-widest uppercase text-white/80">
+                    TALENT ACCELERATION
+                  </span>
+                  <span className="w-2 h-2 rounded-full bg-[#00c9ff] animate-pulse" />
+                </div>
+
+                {/* Main Heading */}
+                <h3 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.08] mb-6">
+                  Learn by <span className="italic font-serif text-[#00c9ff]">building.</span>
+                  <br />
+                  Grow with real
+                  <br />
+                  projects.
+                </h3>
+
+                {/* Subtitle */}
+                <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-lg mb-8 font-light">
+                  Structured hands-on opportunities for students and early career professionals to gain practical industry exposure by building real-world digital applications, cloud platforms, and AI pipelines.
+                </p>
+
+                {/* 4 Skill Pills */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mb-9">
+                  <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/[0.04] backdrop-blur-md border border-white/10 text-xs sm:text-sm text-white/90 hover:border-[#00c9ff]/40 transition-colors">
+                    <Code2 className="w-4 h-4 text-[#00c9ff] shrink-0" />
+                    <span className="font-medium">Software Engineering</span>
                   </div>
-
-                  <h3 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1] mb-6">
-                    Learn by <span className="italic font-serif text-[#00c9ff]">building.</span><br />
-                    Grow with real<br />
-                    projects.
-                  </h3>
-
-                  <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl mb-8">
-                    Structured hands-on opportunities for students and early career professionals to gain practical industry exposure by building real-world digital applications, cloud platforms, and AI pipelines.
-                  </p>
-
-                  <div className="flex flex-wrap gap-2.5 mb-8">
-                    {["Software Engineering", "AI / ML Solutions", "Cloud & DevOps", "UI/UX Design"].map((pill) => (
-                      <span
-                        key={pill}
-                        className="text-xs font-mono px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80"
-                      >
-                        {pill}
-                      </span>
-                    ))}
+                  <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/[0.04] backdrop-blur-md border border-white/10 text-xs sm:text-sm text-white/90 hover:border-[#00c9ff]/40 transition-colors">
+                    <Cpu className="w-4 h-4 text-[#00c9ff] shrink-0" />
+                    <span className="font-medium">AI / ML Solutions</span>
                   </div>
-
-                  <div className="flex flex-wrap items-center gap-5">
-                    <Link
-                      href="/internship"
-                      className="ibase-btn-primary px-8 py-3.5 text-sm font-semibold flex items-center gap-2 group"
-                    >
-                      <span>Explore Internships</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
-                    </Link>
-                    <Link
-                      href="/services/courses"
-                      className="text-xs font-mono tracking-wider uppercase text-white/50 hover:text-white transition-colors flex items-center gap-1.5"
-                    >
-                      <span>View Training Tracks</span>
-                      <span className="text-xs">↓</span>
-                    </Link>
+                  <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/[0.04] backdrop-blur-md border border-white/10 text-xs sm:text-sm text-white/90 hover:border-[#00c9ff]/40 transition-colors">
+                    <Cloud className="w-4 h-4 text-[#00c9ff] shrink-0" />
+                    <span className="font-medium">Cloud &amp; DevOps</span>
+                  </div>
+                  <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/[0.04] backdrop-blur-md border border-white/10 text-xs sm:text-sm text-white/90 hover:border-[#00c9ff]/40 transition-colors">
+                    <PenTool className="w-4 h-4 text-[#00c9ff] shrink-0" />
+                    <span className="font-medium">UI/UX Design</span>
                   </div>
                 </div>
 
-                {/* Micro Meta Footer */}
-                <div className="pt-8 border-t border-white/10 flex items-center gap-6 sm:gap-10 text-[11px] font-mono tracking-wider uppercase text-white/40">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#00c9ff] font-bold">01</span>
-                    <span>HANDS-ON PROJECTS</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#00c9ff] font-bold">02</span>
-                    <span>MENTORSHIP</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#00c9ff] font-bold">03</span>
-                    <span>VERIFIED CERTIFICATES</span>
-                  </div>
+                {/* CTA Buttons */}
+                <div className="flex flex-wrap items-center gap-6">
+                  <Link
+                    href="/internship"
+                    className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#00c9ff] to-[#0072ff] text-white font-semibold text-sm flex items-center gap-2 shadow-[0_0_25px_rgba(0,201,255,0.4)] hover:shadow-[0_0_35px_rgba(0,201,255,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                  >
+                    <span>Explore Internships</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    href="/services/courses"
+                    className="text-xs font-mono tracking-wider uppercase text-white/70 hover:text-white transition-colors flex items-center gap-1.5"
+                  >
+                    <span>VIEW TRAINING TRACKS</span>
+                    <span className="text-xs">↓</span>
+                  </Link>
                 </div>
               </div>
 
-              {/* Right Column: Hackathon Winners Image with HUD Cyber Frame */}
-              <div className="lg:col-span-6 flex items-center justify-center">
-                <div className="relative w-full max-w-[540px] aspect-[4/3] sm:aspect-[1/1] rounded-2xl overflow-hidden border border-white/20 bg-[#080b14] shadow-2xl group flex items-center justify-center">
-                  {/* Top HUD Frame labels */}
-                  <div className="absolute top-2.5 left-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/50">
-                    HRA / INTERNSHIP / 01
-                  </div>
-                  <div className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-md px-1.5 py-0.5 rounded text-[8px] font-mono text-white/70 border border-white/10">
-                    01
-                  </div>
-
-                  {/* Image */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://hragroupswebsite-psi.vercel.app/assets/Hacakthon1winners-BIE5bY7A.png"
-                    alt="HRA Internship Programs"
-                    className="w-full h-full object-cover object-center filter contrast-[1.03] group-hover:scale-102 transition-transform duration-700"
-                  />
-
-                  {/* HUD Corner Elements & Overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060913]/80 via-transparent to-transparent opacity-60 pointer-events-none" />
-
-                  {/* Bottom HUD Frame labels */}
-                  <div className="absolute bottom-3 left-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/40">
-                    TALENT ACCELERATION × INDUSTRY READY
-                  </div>
-                  <div className="absolute bottom-3 right-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/40">
-                    SYSTEM / 2026
-                  </div>
-
-                  {/* Side Vertical HUD label */}
-                  <div className="hidden sm:block absolute right-2 top-1/2 -translate-y-1/2 rotate-90 origin-right text-[8px] font-mono tracking-[0.2em] uppercase text-white/30 pointer-events-none">
-                    LEARN — BUILD — ACCELERATE
-                  </div>
+              {/* Micro Meta Footer */}
+              <div className="pt-8 border-t border-white/10 flex flex-wrap items-center gap-4 sm:gap-6 text-[11px] sm:text-xs font-mono tracking-wider uppercase text-white/50">
+                <div className="flex items-center gap-2">
+                  <span className="text-[#00c9ff] font-bold">01</span>
+                  <span>HANDS-ON PROJECTS</span>
+                </div>
+                <span className="hidden sm:inline text-white/20">|</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#00c9ff] font-bold">02</span>
+                  <span>MENTORSHIP</span>
+                </div>
+                <span className="hidden sm:inline text-white/20">|</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#00c9ff] font-bold">03</span>
+                  <span>VERIFIED CERTIFICATES</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Full-width Founder Program Showcase matching reference */}
-          <div className="mt-12 rounded-3xl bg-gradient-to-br from-[#0a0d18]/90 via-[#060913]/90 to-[#04060c]/90 border border-white/10 backdrop-blur-2xl overflow-hidden relative p-8 sm:p-12 lg:p-16">
-            {/* Ambient Lighting */}
-            <div className="absolute top-1/2 -left-20 w-[500px] h-[500px] bg-[#00c9ff]/10 rounded-full blur-[160px] pointer-events-none" />
-            <div className="absolute top-1/2 -right-20 w-[500px] h-[500px] bg-[#3b82f6]/10 rounded-full blur-[160px] pointer-events-none" />
+          {/* Thin ambient divider between the two initiatives */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-6" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
+          {/* 2. Boxless Founder Program Section */}
+          <div className="relative py-12 sm:py-16 lg:py-20">
+            {/* Ambient Lighting */}
+            <div className="absolute top-1/2 -left-20 w-[500px] h-[500px] bg-[#00c9ff]/8 rounded-full blur-[160px] pointer-events-none" />
+            <div className="absolute top-1/2 -right-20 w-[500px] h-[500px] bg-[#3b82f6]/8 rounded-full blur-[160px] pointer-events-none" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10 px-2 sm:px-4">
               {/* Left Column: Text & Content */}
-              <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
+              <div className="lg:col-span-6 flex flex-col justify-between space-y-9">
                 <div>
                   <div className="flex items-center gap-3 mb-6">
                     <span className="w-8 h-[2px] bg-[#00c9ff]" />
@@ -925,9 +920,9 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Right Column: Founder Image with HUD Cyber Frame */}
+              {/* Right Column: Founder Image with subtle frame */}
               <div className="lg:col-span-6 flex items-center justify-center">
-                <div className="relative w-full max-w-[540px] aspect-[4/3] sm:aspect-[1/1] rounded-2xl overflow-hidden border border-white/20 bg-[#080b14] shadow-2xl group">
+                <div className="relative w-full max-w-[500px] aspect-[4/3] sm:aspect-[1/1] rounded-2xl overflow-hidden border border-white/15 bg-[#080b14]/80 shadow-2xl group">
                   {/* Top HUD Frame labels */}
                   <div className="absolute top-2.5 left-4 z-20 text-[9px] font-mono tracking-widest uppercase text-white/50">
                     HRA / FOUNDER / 01
@@ -1015,8 +1010,8 @@ export default function Home() {
                     key={cat}
                     onClick={() => setCollectionCategory(cat)}
                     className={`text-[11px] font-mono tracking-wider px-3.5 py-1.5 rounded-full transition-all duration-300 uppercase cursor-pointer ${isActive
-                        ? "bg-[#00c9ff] text-black font-semibold shadow-[0_0_15px_rgba(0,201,255,0.4)]"
-                        : "bg-white/5 border border-white/10 text-white/60 hover:text-white hover:border-white/30"
+                      ? "bg-[#00c9ff] text-black font-semibold shadow-[0_0_15px_rgba(0,201,255,0.4)]"
+                      : "bg-white/5 border border-white/10 text-white/60 hover:text-white hover:border-white/30"
                       }`}
                   >
                     {cat}

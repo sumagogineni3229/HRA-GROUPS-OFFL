@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -16,12 +16,60 @@ import {
   Layers,
   Award,
   ChevronRight,
+  ChevronDown,
   ShieldCheck,
   Building2,
   Star,
 } from "lucide-react";
 
+const OVERVIEW_HERO_PHRASES = [
+  "About HRA Groups.",
+  "Company Overview.",
+  "Shaping the Digital Era.",
+  "Technology & Talent.",
+  "Engineered for Growth.",
+];
+
 export default function CompanyOverviewPage() {
+  // Typewriter text animation state matching Work page
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(70);
+
+  useEffect(() => {
+    const fullText = OVERVIEW_HERO_PHRASES[phraseIndex];
+
+    const handleTyping = () => {
+      if (!isDeleting) {
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        setTypingSpeed(60);
+
+        if (currentText.length + 1 === fullText.length) {
+          setTimeout(() => setIsDeleting(true), 2200);
+        }
+      } else {
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        setTypingSpeed(35);
+
+        if (currentText.length === 0) {
+          setIsDeleting(false);
+          setPhraseIndex((prev) => (prev + 1) % OVERVIEW_HERO_PHRASES.length);
+        }
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, phraseIndex, typingSpeed]);
+
+  const scrollToCapabilities = () => {
+    const el = document.getElementById("core-capabilities");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const pillars = [
     {
       id: "01",
@@ -121,64 +169,68 @@ export default function CompanyOverviewPage() {
       </div>
 
       <main className="relative z-20">
-        {/* HERO SECTION */}
-        <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 lg:pb-16 overflow-hidden">
-          <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center min-h-[480px]">
-              {/* Hero Left Content */}
-              <div className="lg:col-span-6 xl:col-span-6 space-y-5 lg:space-y-6 z-10">
-                {/* Pill Tag / Subtitle */}
-                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs sm:text-sm font-mono tracking-[0.2em] text-[#00c9ff] uppercase">
-                  <span>INNOVATE</span>
-                  <span className="text-white/30">•</span>
-                  <span>TRANSFORM</span>
-                  <span className="text-white/30">•</span>
-                  <span>GROW</span>
-                </div>
+        {/* ===================== HERO SECTION (FULL-VIEWPORT CENTERED WITH SCROLL INDICATOR) ===================== */}
+        <section className="relative w-full min-h-screen flex flex-col justify-center items-center px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto overflow-hidden text-center pt-24 pb-16">
+          <div className="relative z-10 flex flex-col items-center justify-center max-w-4xl mx-auto space-y-8 my-auto">
+            {/* Centered Eyebrow Pill */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
+              <span className="text-xs font-mono tracking-widest uppercase text-[#00c9ff]">
+                ABOUT HRA GROUPS • OVERVIEW
+              </span>
+            </div>
 
-                {/* Heading Layout */}
-                <h1 className="text-[38px] sm:text-[50px] md:text-[58px] lg:text-[60px] xl:text-[70px] font-light tracking-[-0.035em] leading-[1.08] text-white font-serif">
-                  About HRA Groups &amp;{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                    Company Overview
-                  </span>
-                </h1>
+            {/* Typewriter Animated Display Headline */}
+            <div className="min-h-[110px] sm:min-h-[140px] md:min-h-[160px] flex items-center justify-center w-full px-2">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.03em] leading-[1.08] text-center font-serif">
+                <span className="text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.2)]">
+                  {currentText}
+                </span>
+                <span className="inline-block w-[3px] h-[0.9em] bg-[#00c9ff] ml-1.5 align-middle animate-pulse" />
+              </h1>
+            </div>
 
-                {/* Description text */}
-                <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-white/70 font-light leading-[1.65] max-w-[540px]">
-                  We are a future-driven organization delivering premium technology solutions, workforce management,
-                  branding excellence, and corporate services designed to empower businesses in the digital era. Our
-                  mission is to combine innovation, strategy, and execution to build scalable business success.
-                </p>
+            {/* Subtitle Paragraph */}
+            <p className="text-base sm:text-lg lg:text-xl text-white/70 font-light max-w-2xl mx-auto leading-relaxed">
+              We are a future-driven organization delivering premium technology solutions, workforce management, branding excellence, and corporate services designed to empower businesses in the digital era.
+            </p>
 
-                {/* Pill Action Button */}
-                <div className="pt-2">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center px-9 py-4 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-sm tracking-wide shadow-[0_0_30px_rgba(0,201,255,0.35)] hover:shadow-[0_0_45px_rgba(0,201,255,0.55)] transition-all duration-300 hover:scale-[1.02] group"
-                  >
-                    <span>Talk to an Expert</span>
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Hero Right: 3D Server, Cloud, and Laptop Architecture Graphic */}
-              <div className="lg:col-span-6 xl:col-span-6 flex items-center justify-center lg:justify-end relative">
-                <div className="relative w-full max-w-[640px] lg:max-w-[740px] xl:max-w-[820px]">
-                  <img
-                    src="/company-overview-hero-transparent.png"
-                    alt="HRA Groups 3D Digital Architecture & Systems"
-                    className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-[0_20px_60px_rgba(0,201,255,0.2)]"
-                  />
-                </div>
-              </div>
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-sm tracking-wide shadow-[0_0_30px_rgba(0,201,255,0.35)] hover:shadow-[0_0_45px_rgba(0,201,255,0.55)] transition-all duration-300 hover:scale-[1.02] group"
+              >
+                <span>Talk to an Expert</span>
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/about/team"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-white/5 border border-white/10 hover:border-white/25 text-white/80 hover:text-white text-sm font-medium transition-all duration-200"
+              >
+                <span>Meet Our Team</span>
+              </Link>
             </div>
           </div>
+
+          {/* Bottom Animated Scroll Indicator */}
+          <button
+            onClick={scrollToCapabilities}
+            className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/40 hover:text-[#00c9ff] transition-colors duration-300 cursor-pointer group"
+            aria-label="Scroll to explore core capabilities"
+          >
+            <span className="text-[10px] font-mono tracking-[0.25em] uppercase group-hover:tracking-[0.3em] transition-all">
+              Scroll to explore
+            </span>
+            <div className="w-5 h-8 rounded-full border border-white/20 group-hover:border-[#00c9ff]/60 flex items-start justify-center p-1 transition-colors">
+              <div className="w-1 h-2 bg-[#00c9ff] rounded-full animate-bounce" />
+            </div>
+            <ChevronDown className="w-4 h-4 -mt-1 text-[#00c9ff] animate-pulse" />
+          </button>
         </section>
 
-        {/* SECTION 2: THE 4 PILLARS */}
-        <section className="py-20 lg:py-24 border-t border-white/10">
+        {/* SECTION 2: THE 4 PILLARS (CORE CAPABILITIES) */}
+        <section id="core-capabilities" className="py-24 lg:py-28 border-t border-white/10 relative">
           <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             {/* Section Heading */}
             <div className="mb-14">

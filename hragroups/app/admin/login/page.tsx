@@ -50,7 +50,7 @@ export default function AdminLoginPage() {
           <div className="flex justify-center text-center">
             <Link href="/" className="inline-block group">
               <img
-                src="/logo-transparent.png"
+                src="/logo2.png"
                 alt="HRA Groups Logo"
                 className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
