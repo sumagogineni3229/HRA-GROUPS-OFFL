@@ -1021,269 +1021,76 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Video Moments Layout: 2 featured items in first row, then 3-per-row grid below */}
-          <div className="relative z-10 space-y-10">
-            {collectionCategory === "ALL" ? (
-              <>
-                {/* Row 1: 2 Big Featured Moments (Internship Experience & Founder Program) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-                  {COLLECTION_ITEMS.slice(0, 2).map((moment) => (
-                    <div
-                      key={moment.id}
-                      onClick={() => setActiveMoment(moment)}
-                      className="group relative flex flex-col justify-between cursor-pointer"
-                    >
-                      {/* Cinematic Video Box */}
-                      <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#06080e] border border-white/15 group-hover:border-[#00c9ff]/60 transition-all duration-500 shadow-2xl group-hover:shadow-[0_15px_40px_rgba(0,201,255,0.2)]">
-                        <video
-                          src={moment.media}
-                          autoPlay
-                          muted={isAudioMuted}
-                          loop
-                          playsInline
-                          preload="metadata"
-                          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 opacity-90 group-hover:opacity-100"
-                        />
+          {/* Video Moments Layout: 3 videos per line with compact sleek sizing */}
+          <div className="relative z-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+              {(collectionCategory === "ALL"
+                ? COLLECTION_ITEMS
+                : COLLECTION_ITEMS.filter((item) => item.category === collectionCategory)
+              ).map((moment) => (
+                <div
+                  key={moment.id}
+                  onClick={() => setActiveMoment(moment)}
+                  className="group relative flex flex-col justify-between cursor-pointer"
+                >
+                  {/* Cinematic Video Box */}
+                  <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-[#06080e] border border-white/15 group-hover:border-[#00c9ff]/60 transition-all duration-500 shadow-xl group-hover:shadow-[0_12px_35px_rgba(0,201,255,0.2)]">
+                    <video
+                      src={moment.media}
+                      autoPlay
+                      muted={isAudioMuted}
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                    />
 
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85 pointer-events-none" />
 
-                        {/* Top Overlay HUD Bar */}
-                        <div className="absolute top-5 left-6 right-6 flex items-center justify-between z-20 pointer-events-none">
-                          <span className="text-xs font-mono font-medium tracking-widest text-white/70">
-                            {moment.number}
-                          </span>
-                          <div className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
-                            <span className="text-[10px] font-mono tracking-widest uppercase text-white/70">
-                              SHORT FILM
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Play Button Icon on Hover */}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
-                          <div className="w-16 h-16 rounded-full bg-[#00c9ff]/90 text-black flex items-center justify-center shadow-[0_0_30px_rgba(0,201,255,0.6)] transform group-hover:scale-110 transition-transform">
-                            <span className="text-xl ml-1">▶</span>
-                          </div>
-                        </div>
-
-                        {/* In-Video Bottom Typography */}
-                        <div className="absolute bottom-6 left-6 right-6 z-20 pointer-events-none">
-                          <span className="text-[10px] font-mono tracking-[0.2em] text-[#00c9ff] uppercase block mb-1.5 font-semibold">
-                            {moment.category}
-                          </span>
-                          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight font-serif drop-shadow-md">
-                            {moment.title}
-                          </h3>
-                        </div>
-                      </div>
-
-                      {/* Bottom External Meta Strip */}
-                      <div className="pt-4 px-1 flex items-center justify-between gap-4 text-xs">
-                        <p className="text-white/50 leading-relaxed max-w-sm line-clamp-2">
-                          {moment.description}
-                        </p>
-                        <div className="flex items-center gap-1 font-mono text-[11px] tracking-wider uppercase text-white/60 group-hover:text-[#00c9ff] shrink-0 transition-colors">
-                          <span>VIEW</span>
-                          <span className="text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Row 2: 3 Moments in Next Line (Technology Workshop, HRA Hackathon, Team HRA) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                  {COLLECTION_ITEMS.slice(2, 5).map((moment) => (
-                    <div
-                      key={moment.id}
-                      onClick={() => setActiveMoment(moment)}
-                      className="group relative flex flex-col justify-between cursor-pointer"
-                    >
-                      {/* Cinematic Video Box */}
-                      <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#06080e] border border-white/15 group-hover:border-[#00c9ff]/60 transition-all duration-500 shadow-2xl group-hover:shadow-[0_15px_40px_rgba(0,201,255,0.2)]">
-                        <video
-                          src={moment.media}
-                          autoPlay
-                          muted={isAudioMuted}
-                          loop
-                          playsInline
-                          preload="metadata"
-                          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 opacity-90 group-hover:opacity-100"
-                        />
-
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
-
-                        {/* Top Overlay HUD Bar */}
-                        <div className="absolute top-4 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
-                          <span className="text-xs font-mono font-medium tracking-widest text-white/70">
-                            {moment.number}
-                          </span>
-                          <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
-                            <span className="text-[9px] font-mono tracking-widest uppercase text-white/70">
-                              SHORT FILM
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Play Button Icon on Hover */}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
-                          <div className="w-14 h-14 rounded-full bg-[#00c9ff]/90 text-black flex items-center justify-center shadow-[0_0_25px_rgba(0,201,255,0.6)] transform group-hover:scale-110 transition-transform">
-                            <span className="text-lg ml-0.5">▶</span>
-                          </div>
-                        </div>
-
-                        {/* In-Video Bottom Typography */}
-                        <div className="absolute bottom-5 left-5 right-5 z-20 pointer-events-none">
-                          <span className="text-[9px] font-mono tracking-[0.2em] text-[#00c9ff] uppercase block mb-1 font-semibold">
-                            {moment.category}
-                          </span>
-                          <h3 className="text-2xl sm:text-3xl font-light text-white tracking-tight leading-tight font-serif drop-shadow-md">
-                            {moment.title}
-                          </h3>
-                        </div>
-                      </div>
-
-                      {/* Bottom External Meta Strip */}
-                      <div className="pt-3 px-1 flex items-center justify-between gap-3 text-xs">
-                        <p className="text-white/50 leading-relaxed line-clamp-2 text-[11px]">
-                          {moment.description}
-                        </p>
-                        <div className="flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase text-white/60 group-hover:text-[#00c9ff] shrink-0 transition-colors">
-                          <span>VIEW</span>
-                          <span className="text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Row 3 (Remaining items if any, like Achievements): 3-column grid */}
-                {COLLECTION_ITEMS.length > 5 && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                    {COLLECTION_ITEMS.slice(5).map((moment) => (
-                      <div
-                        key={moment.id}
-                        onClick={() => setActiveMoment(moment)}
-                        className="group relative flex flex-col justify-between cursor-pointer"
-                      >
-                        <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#06080e] border border-white/15 group-hover:border-[#00c9ff]/60 transition-all duration-500 shadow-2xl group-hover:shadow-[0_15px_40px_rgba(0,201,255,0.2)]">
-                          <video
-                            src={moment.media}
-                            autoPlay
-                            muted={isAudioMuted}
-                            loop
-                            playsInline
-                            preload="metadata"
-                            className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 opacity-90 group-hover:opacity-100"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
-
-                          <div className="absolute top-4 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
-                            <span className="text-xs font-mono font-medium tracking-widest text-white/70">
-                              {moment.number}
-                            </span>
-                            <div className="flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
-                              <span className="text-[9px] font-mono tracking-widest uppercase text-white/70">
-                                SHORT FILM
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
-                            <div className="w-14 h-14 rounded-full bg-[#00c9ff]/90 text-black flex items-center justify-center shadow-[0_0_25px_rgba(0,201,255,0.6)] transform group-hover:scale-110 transition-transform">
-                              <span className="text-lg ml-0.5">▶</span>
-                            </div>
-                          </div>
-
-                          <div className="absolute bottom-5 left-5 right-5 z-20 pointer-events-none">
-                            <span className="text-[9px] font-mono tracking-[0.2em] text-[#00c9ff] uppercase block mb-1 font-semibold">
-                              {moment.category}
-                            </span>
-                            <h3 className="text-2xl sm:text-3xl font-light text-white tracking-tight leading-tight font-serif drop-shadow-md">
-                              {moment.title}
-                            </h3>
-                          </div>
-                        </div>
-
-                        <div className="pt-3 px-1 flex items-center justify-between gap-3 text-xs">
-                          <p className="text-white/50 leading-relaxed line-clamp-2 text-[11px]">
-                            {moment.description}
-                          </p>
-                          <div className="flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase text-white/60 group-hover:text-[#00c9ff] shrink-0 transition-colors">
-                            <span>VIEW</span>
-                            <span className="text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </>
-            ) : (
-              /* Filtered Results: Dynamic 2 or 3 column grid */
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                {COLLECTION_ITEMS.filter((item) => item.category === collectionCategory).map((moment) => (
-                  <div
-                    key={moment.id}
-                    onClick={() => setActiveMoment(moment)}
-                    className="group relative flex flex-col justify-between cursor-pointer"
-                  >
-                    <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#06080e] border border-white/15 group-hover:border-[#00c9ff]/60 transition-all duration-500 shadow-2xl group-hover:shadow-[0_15px_40px_rgba(0,201,255,0.2)]">
-                      <video
-                        src={moment.media}
-                        autoPlay
-                        muted={isAudioMuted}
-                        loop
-                        playsInline
-                        preload="metadata"
-                        className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 opacity-90 group-hover:opacity-100"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
-
-                      <div className="absolute top-4 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
-                        <span className="text-xs font-mono font-medium tracking-widest text-white/70">
-                          {moment.number}
+                    {/* Top Overlay HUD Bar */}
+                    <div className="absolute top-3.5 left-4 right-4 flex items-center justify-between z-20 pointer-events-none">
+                      <span className="text-[11px] font-mono font-medium tracking-widest text-white/75">
+                        {moment.number}
+                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
+                        <span className="text-[9px] font-mono tracking-widest uppercase text-white/70">
+                          SHORT FILM
                         </span>
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#00c9ff] animate-pulse" />
-                          <span className="text-[9px] font-mono tracking-widest uppercase text-white/70">
-                            SHORT FILM
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
-                        <div className="w-14 h-14 rounded-full bg-[#00c9ff]/90 text-black flex items-center justify-center shadow-[0_0_25px_rgba(0,201,255,0.6)] transform group-hover:scale-110 transition-transform">
-                          <span className="text-lg ml-0.5">▶</span>
-                        </div>
-                      </div>
-
-                      <div className="absolute bottom-5 left-5 right-5 z-20 pointer-events-none">
-                        <span className="text-[9px] font-mono tracking-[0.2em] text-[#00c9ff] uppercase block mb-1 font-semibold">
-                          {moment.category}
-                        </span>
-                        <h3 className="text-2xl sm:text-3xl font-light text-white tracking-tight leading-tight font-serif drop-shadow-md">
-                          {moment.title}
-                        </h3>
                       </div>
                     </div>
 
-                    <div className="pt-3 px-1 flex items-center justify-between gap-3 text-xs">
-                      <p className="text-white/50 leading-relaxed line-clamp-2 text-[11px]">
-                        {moment.description}
-                      </p>
-                      <div className="flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase text-white/60 group-hover:text-[#00c9ff] shrink-0 transition-colors">
-                        <span>VIEW</span>
-                        <span className="text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+                    {/* Play Button Icon on Hover */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+                      <div className="w-12 h-12 rounded-full bg-[#00c9ff]/95 text-black flex items-center justify-center shadow-[0_0_20px_rgba(0,201,255,0.6)] transform group-hover:scale-110 transition-transform">
+                        <span className="text-base ml-0.5">▶</span>
                       </div>
+                    </div>
+
+                    {/* In-Video Bottom Typography */}
+                    <div className="absolute bottom-4 left-4 right-4 z-20 pointer-events-none">
+                      <span className="text-[9px] font-mono tracking-[0.2em] text-[#00c9ff] uppercase block mb-1 font-semibold">
+                        {moment.category}
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-light text-white tracking-tight leading-snug font-serif drop-shadow-md line-clamp-1">
+                        {moment.title}
+                      </h3>
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
+
+                  {/* Bottom External Meta Strip */}
+                  <div className="pt-3 px-1 flex items-center justify-between gap-3 text-xs">
+                    <p className="text-white/50 leading-relaxed line-clamp-2 text-[11px]">
+                      {moment.description}
+                    </p>
+                    <div className="flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase text-white/60 group-hover:text-[#00c9ff] shrink-0 transition-colors">
+                      <span>VIEW</span>
+                      <span className="text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Interactive Lightbox Modal */}

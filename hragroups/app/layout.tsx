@@ -39,6 +39,7 @@ export const metadata: Metadata = {
 };
 
 import { ThemeProvider } from "@/components/ThemeProvider";
+import FloatingActions from "@/components/FloatingActions";
 
 export default function RootLayout({
   children,
@@ -61,6 +62,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans bg-[#070c18] text-slate-100 selection:bg-[#0052cc]/20 selection:text-[#003882] transition-colors duration-300">
         <ThemeProvider>
           {children}
+          <FloatingActions />
         </ThemeProvider>
       </body>
     </html>
