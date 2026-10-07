@@ -178,7 +178,7 @@ export default function AISolutionsPage() {
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.035em] leading-[1.05] font-serif">
                 Intelligence <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  with purpose.
+                  With Purpose
                 </span>
               </h1>
 

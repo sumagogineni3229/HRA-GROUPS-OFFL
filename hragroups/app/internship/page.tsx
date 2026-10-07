@@ -296,7 +296,7 @@ export default function InternshipPage() {
                 <span className="font-semibold text-white">Potential</span> <br />
                 Into{" "}
                 <span className="bg-gradient-to-r from-sky-200 via-sky-100 to-[#65acff] bg-clip-text text-transparent font-medium italic">
-                  Experience.
+                  Experience
                 </span>
               </h1>
 

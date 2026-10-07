@@ -25,10 +25,10 @@ import {
 } from "lucide-react";
 
 const CLIENTS_HERO_PHRASES = [
-  "Our Clients & Partnerships.",
-  "Trusted Industry Collaborations.",
-  "Accelerating Digital Growth.",
-  "Building Long-Term Value.",
+  "Our Clients & Partnerships",
+  "Trusted Industry Collaborations",
+  "Accelerating Digital Growth",
+  "Building Long-Term Value",
 ];
 
 export default function ClientsPage() {
@@ -178,6 +178,42 @@ export default function ClientsPage() {
     },
   ];
 
+  // State for dynamic clients added from Admin Console
+  const [dbClients, setDbClients] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    fetch("/api/clients")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.clients) {
+          setDbClients(data.clients);
+        }
+      })
+      .catch((err) => console.error("Error fetching dynamic clients:", err));
+  }, []);
+
+  // Merge dynamic admin clients with built-in default client logos (preserving all existing)
+  const allClientLogos = React.useMemo(() => {
+    const dynamicLogos = dbClients.map((c) => ({
+      name: c.name,
+      logo: c.logo,
+    }));
+    return [...dynamicLogos, ...clientLogos];
+  }, [dbClients]);
+
+  // Merge dynamic admin clients into collaborations section if they have categories/descriptions
+  const allClientCollaborations = React.useMemo(() => {
+    const dynamicCollabs = dbClients
+      .filter((c) => c.description || c.category)
+      .map((c) => ({
+        name: c.name,
+        category: c.category || "Enterprise Solutions",
+        desc: c.description || "Trusted enterprise collaboration and partnership delivering sustained growth and technology excellence.",
+        icon: <Building2 className="w-6 h-6 text-[#00c9ff]" />,
+      }));
+    return [...dynamicCollabs, ...clientCollaborations];
+  }, [dbClients]);
+
   return (
     <div className="ibase-landing-bg text-white min-h-screen selection:bg-[#00c9ff]/30 selection:text-[#00c9ff] relative overflow-hidden font-sans">
       <Navbar />
@@ -270,7 +306,7 @@ export default function ClientsPage() {
 
           <div className="relative w-full overflow-x-hidden py-2">
             <div className="animate-marquee flex items-center gap-8 sm:gap-10 whitespace-nowrap">
-              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, idx) => (
+              {[...allClientLogos, ...allClientLogos, ...allClientLogos].map((client, idx) => (
                 <div
                   key={idx}
                   className="h-28 sm:h-36 w-56 sm:w-72 bg-white/[0.03] rounded-3xl border border-white/10 p-5 sm:p-7 flex items-center justify-center shrink-0 backdrop-blur-md hover:border-[#00c9ff]/50 hover:bg-white/[0.06] hover:scale-105 transition-all duration-300 group cursor-pointer"
@@ -281,6 +317,10 @@ export default function ClientsPage() {
                     alt={client.name}
                     className="max-h-full max-w-full object-contain filter group-hover:scale-110 transition-transform duration-300 rounded-lg bg-white/95 p-1.5"
                     loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/abhitsolutions-YX4xMrgxxVulNQ5z.jpg";
+                    }}
                   />
                 </div>
               ))}
@@ -313,7 +353,7 @@ export default function ClientsPage() {
 
             {/* Logo Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
-              {clientLogos.map((client, idx) => (
+              {allClientLogos.map((client, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
@@ -330,6 +370,10 @@ export default function ClientsPage() {
                       alt={client.name}
                       className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300 rounded-lg bg-white/95 p-1.5"
                       loading="lazy"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/abhitsolutions-YX4xMrgxxVulNQ5z.jpg";
+                      }}
                     />
                   </div>
                   <div className="pt-2 border-t border-white/10 w-full">
@@ -412,7 +456,7 @@ export default function ClientsPage() {
 
             {/* Collaborations Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {clientCollaborations.map((collab, idx) => (
+              {allClientCollaborations.map((collab, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 25 }}

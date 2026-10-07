@@ -31,10 +31,10 @@ export default function InsideHraAchievementsPage() {
 
   // Typewriter text animation state
   const PHRASES = [
-    "Progress worth remembering.",
-    "Milestones that define us.",
-    "Innovation through collaboration.",
-    "Every milestone has a story.",
+    "Progress Worth Remembering",
+    "Milestones That Define Us",
+    "Innovation Through Collaboration",
+    "Every Milestone Has A Story",
   ];
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");

@@ -166,9 +166,9 @@ export default function SoftwareDevelopmentPage() {
 
               {/* Display Headline */}
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.035em] leading-[1.05] font-serif">
-                Software built for <br />
+                Software Built For <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  what comes next.
+                  What Comes Next
                 </span>
               </h1>
 

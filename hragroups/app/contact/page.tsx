@@ -19,10 +19,10 @@ import {
 } from "lucide-react";
 
 const CONTACT_HERO_PHRASES = [
-  "Contact HRA Groups.",
-  "Let's Build Something Great Together.",
-  "Start the Conversation Today.",
-  "Reach Our Global Tech Advisors.",
+  "Contact HRA Groups",
+  "Let's Build Something Great Together",
+  "Start The Conversation Today",
+  "Reach Our Global Tech Advisors",
 ];
 
 export default function ContactPage() {

@@ -99,10 +99,10 @@ const CAPABILITIES = [
 ];
 
 const WORK_HERO_PHRASES = [
-  "Ideas in action.",
-  "Engineered for Growth.",
-  "Intelligent Systems that Scale.",
-  "Digital Products that Deliver.",
+  "Ideas In Action",
+  "Engineered For Growth",
+  "Intelligent Systems That Scale",
+  "Digital Products That Deliver",
 ];
 
 export default function WorkPage() {

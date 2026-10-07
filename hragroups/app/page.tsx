@@ -29,11 +29,11 @@ import {
 
 // Rotating typewriter phrases for HRA Groups
 const TYPEWRITER_PHRASES = [
-  "Welcome to HRA Groups",
+  "Welcome To HRA Groups",
   "Hope + Resilience + Aspire",
-  "We specialize in IT Services & Consultancy",
+  "We Specialize In IT Services & Consultancy",
   "Driving Innovation & Excellence",
-  "Empowering Businesses in the Digital Era",
+  "Empowering Businesses In The Digital Era",
   "Next-Gen Digital & AI Solutions",
 ];
 

@@ -37,10 +37,10 @@ interface BlogPost {
 }
 
 const BLOG_HERO_PHRASES = [
-  "HRA Groups Blog & Insights.",
-  "Perspectives & Industry Trends.",
-  "Ideas, Systems & Innovation.",
-  "Knowledge Sharing & Solutions.",
+  "HRA Groups Blog & Insights",
+  "Perspectives & Industry Trends",
+  "Ideas, Systems & Innovation",
+  "Knowledge Sharing & Solutions",
 ];
 
 function NewsletterCard() {

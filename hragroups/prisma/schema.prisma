@@ -223,3 +223,15 @@ model Subscriber {
   updatedAt DateTime @updatedAt
 }
 
+model Client {
+  id          String   @id @default(uuid())
+  name        String
+  logo        String
+  category    String?  @default("Enterprise Solutions")
+  description String?
+  website     String?
+  orderIndex  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+

@@ -23,11 +23,11 @@ import {
 } from "lucide-react";
 
 const OVERVIEW_HERO_PHRASES = [
-  "About HRA Groups.",
-  "Company Overview.",
-  "Shaping the Digital Era.",
-  "Technology & Talent.",
-  "Engineered for Growth.",
+  "About HRA Groups",
+  "Company Overview",
+  "Shaping The Digital Era",
+  "Technology & Talent",
+  "Engineered For Growth",
 ];
 
 export default function CompanyOverviewPage() {

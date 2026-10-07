@@ -70,9 +70,9 @@ export default function FounderApplyPage() {
               <div>
                 <p className="apply-overline">APPLICATION</p>
                 <h1>
-                  Start your
+                  Start Your
                   <br />
-                  <em>founder journey.</em>
+                  <em>Founder Journey</em>
                 </h1>
                 <p className="apply-hero-text">
                   Tell us about yourself, your business and what you are looking to build. Our team will review your application and connect with you.
