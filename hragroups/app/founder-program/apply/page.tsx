@@ -98,9 +98,9 @@ export default function FounderApplyPage() {
                 APPLICATION DETAILS
               </div>
               <h2>
-                Let&apos;s get to
+                Let&apos;s Get To
                 <br />
-                <em>know you.</em>
+                <em>Know You</em>
               </h2>
               <p>
                 Please provide accurate information so we can understand your professional background and business journey.
@@ -123,9 +123,9 @@ export default function FounderApplyPage() {
                   <div className="success-icon">✓</div>
                   <p className="success-label">APPLICATION RECEIVED</p>
                   <h2>
-                    Thank you for
+                    Thank You For
                     <br />
-                    <em>connecting with us.</em>
+                    <em>Connecting With Us</em>
                   </h2>
                   <p>Your Founder Bridge application has been submitted successfully.</p>
                   <Link href="/founder-program">

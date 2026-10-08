@@ -295,9 +295,9 @@ export default function ITConsultancyPage() {
                 <span>WHAT WE ADVISE</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Practical direction. <br />
+                Practical Direction <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  Measurable impact.
+                  Measurable Impact
                 </span>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
@@ -398,9 +398,9 @@ export default function ITConsultancyPage() {
                 <span>OUR FOCUS</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Clarity across <br />
+                Clarity Across <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  every dimension.
+                  Every Dimension
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed max-w-md">
@@ -440,9 +440,9 @@ export default function ITConsultancyPage() {
                   <span>OUR APPROACH</span>
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                  A proven four-stage <br />
+                  A Proven Four-Stage <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                    advisory framework.
+                    Advisory Framework
                   </span>
                 </h2>
               </div>
@@ -493,9 +493,9 @@ export default function ITConsultancyPage() {
                 <span>HOW WE THINK</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                Technology choices <br />
+                Technology Choices <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                  rooted in business value.
+                  Rooted In Business Value
                 </span>
               </h2>
             </div>
@@ -531,9 +531,9 @@ export default function ITConsultancyPage() {
                 <span>WHAT YOU GET</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Tangible artefacts. <br />
+                Tangible Artefacts <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  Actionable plans.
+                  Actionable Plans
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed">

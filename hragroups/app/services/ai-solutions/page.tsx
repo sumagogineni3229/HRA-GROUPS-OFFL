@@ -309,9 +309,9 @@ export default function AISolutionsPage() {
                 <span>WHAT WE BUILD</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                AI that fits <br />
+                AI That Fits <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  the way you work.
+                  The Way You Work
                 </span>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
@@ -412,9 +412,9 @@ export default function AISolutionsPage() {
                 <span>CAPABILITIES</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                From intelligence <br />
+                From Intelligence <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  to execution.
+                  To Execution
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed max-w-md">
@@ -454,9 +454,9 @@ export default function AISolutionsPage() {
                   <span>PROCESS</span>
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                  How we approach <br />
+                  How We Approach <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                    AI implementation.
+                    AI Implementation
                   </span>
                 </h2>
               </div>
@@ -507,9 +507,9 @@ export default function AISolutionsPage() {
                 <span>OUR THINKING</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                Intelligence with <br />
+                Intelligence With <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                  responsibility.
+                  Responsibility
                 </span>
               </h2>
             </div>
@@ -545,9 +545,9 @@ export default function AISolutionsPage() {
                 <span>TECHNOLOGY</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Intelligence needs <br />
+                Intelligence Needs <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  a strong foundation.
+                  A Strong Foundation
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed">
@@ -578,9 +578,9 @@ export default function AISolutionsPage() {
                 <span>BUSINESS IMPACT</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Less repetition. <br />
+                Less Repetition <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] to-[#73bbff] italic font-normal">
-                  More intelligence.
+                  More Intelligence
                 </span>
               </h2>
             </div>
@@ -612,9 +612,9 @@ export default function AISolutionsPage() {
 
             <div className="lg:col-span-7 space-y-6">
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-[1.04] font-serif">
-                Have a workflow <br />
+                Have A Workflow <br />
                 <em className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white font-normal not-italic">
-                  worth automating?
+                  Worth Automating?
                 </em>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light max-w-xl">

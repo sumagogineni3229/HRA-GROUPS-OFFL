@@ -301,9 +301,9 @@ export default function SoftwareDevelopmentPage() {
                 <span>WHAT WE BUILD</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Built with precision. <br />
+                Built With Precision <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  Engineered to perform.
+                  Engineered To Perform
                 </span>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
@@ -404,9 +404,9 @@ export default function SoftwareDevelopmentPage() {
                 <span>CAPABILITIES</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                From architecture <br />
+                From Architecture <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  to deployment.
+                  To Deployment
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed max-w-md">
@@ -446,9 +446,9 @@ export default function SoftwareDevelopmentPage() {
                   <span>HOW WE WORK</span>
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                  A disciplined, <br />
+                  A Disciplined <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                    transparent process.
+                    Transparent Process
                   </span>
                 </h2>
               </div>
@@ -499,9 +499,9 @@ export default function SoftwareDevelopmentPage() {
                 <span>TECHNOLOGY</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Built with modern, <br />
+                Built With Modern <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  reliable tools.
+                  Reliable Tools
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed">
@@ -532,9 +532,9 @@ export default function SoftwareDevelopmentPage() {
                 <span>THE RESULT</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                Engineering with <br />
+                Engineering With <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                  measurable impact.
+                  Measurable Impact
                 </span>
               </h2>
             </div>
@@ -569,9 +569,9 @@ export default function SoftwareDevelopmentPage() {
 
             <div className="lg:col-span-7 space-y-6">
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-[1.04] font-serif">
-                Have a product <br />
+                Have A Product <br />
                 <em className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white font-normal not-italic">
-                  worth engineering?
+                  Worth Engineering?
                 </em>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light max-w-xl">

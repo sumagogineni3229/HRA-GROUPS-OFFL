@@ -188,8 +188,8 @@ export default function InsideHraAchievementsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
               <div className="lg:col-span-6">
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal font-serif text-white leading-[1.04] tracking-[-0.035em]">
-                  Every milestone <br />
-                  <span className="text-[#00c9ff]">has a story.</span>
+                  Every Milestone <br />
+                  <span className="text-[#00c9ff]">Has A Story</span>
                 </h2>
               </div>
 
@@ -246,7 +246,7 @@ export default function InsideHraAchievementsPage() {
                     NATIONAL HACKATHON
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-light font-serif text-white group-hover:text-[#00c9ff] transition-colors leading-snug">
-                    Innovation through <br /> collaboration.
+                    Innovation Through <br /> Collaboration
                   </h3>
                   <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
                     A national-level hackathon bringing together participants to work on practical problem statements with mentor guidance and final presentations.
@@ -277,7 +277,7 @@ export default function InsideHraAchievementsPage() {
                     HRA HACKATHON
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-light font-serif text-white group-hover:text-[#00c9ff] transition-colors leading-snug">
-                    Ideas becoming <br /> solutions.
+                    Ideas Becoming <br /> Solutions
                   </h3>
                   <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
                     A collaborative challenge designed to encourage creativity, technical thinking, teamwork and solution-oriented development.
@@ -302,8 +302,8 @@ export default function InsideHraAchievementsPage() {
                   <span>THE JOURNEY</span>
                 </div>
                 <h2 className="text-4xl sm:text-5xl font-normal font-serif text-white leading-tight">
-                  Moments that <br />
-                  <span className="text-[#00c9ff]">define us.</span>
+                  Moments That <br />
+                  <span className="text-[#00c9ff]">Define Us</span>
                 </h2>
               </div>
               <div className="lg:col-span-6 text-white/60 text-sm sm:text-base leading-relaxed">
@@ -497,8 +497,8 @@ export default function InsideHraAchievementsPage() {
                 HRA GROUPS
               </p>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light font-serif text-white tracking-tight">
-                The journey <br />
-                <em className="text-[#00c9ff] not-italic">continues.</em>
+                The Journey <br />
+                <em className="text-[#00c9ff] not-italic">Continues</em>
               </h2>
               <p className="text-white/60 text-sm sm:text-base max-w-xl leading-relaxed pt-2">
                 We continue to build programs, partnerships and opportunities that create meaningful impact across technology, education and business.

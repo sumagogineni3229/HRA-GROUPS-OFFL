@@ -622,7 +622,7 @@ export default function InternshipPage() {
                     The Experience
                   </div>
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">
-                    Learn by <span className="text-[#8dc2ff]">Doing.</span>
+                    Learn By <span className="text-[#8dc2ff]">Doing</span>
                   </h2>
                   <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
                     Your internship should give you something more valuable than a line on your resume — confidence gained through actually creating, solving and collaborating.
