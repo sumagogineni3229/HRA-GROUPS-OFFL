@@ -80,7 +80,7 @@ export default function GalleryPage() {
     {
       id: 1,
       title: "Future Ready Leadership Award",
-      desc: "CEO Hemanth Pulavarthi proudly receiving the prestigious Future Ready Leadership in IT Education & Placement award at the grand Mumbai leadership summit organized by TheCConnects. This recognition celebrates HRA Groups’ outstanding contribution toward innovation in technology education, professional training, internships, placements, and industry-driven skill development.",
+      desc: "CEO Hemanth Pulavarthi proudly receiving the prestigious Future Ready Leadership in IT Education & Placement award at the grand Mumbai leadership summit organized by TheCConnects. This recognition celebrates HRA Groups’ outstanding contribution toward innovation in technology education, professional training, internships, placements, and industry-driven skill development",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/ceo-A0xjR7b7QVtvl5W2.jpg",
       category: "Awards & Recognition",
       tag: "Leadership Award",
@@ -88,7 +88,7 @@ export default function GalleryPage() {
     {
       id: 2,
       title: "CEO Insights Address",
-      desc: "An inspiring and impactful leadership address delivered by CEO Hemanth Pulavarthi, where he shared the future vision, mission, and growth journey of HRA Groups. During the session, he spoke about the importance of innovation, technology-driven education, industry-focused learning, leadership development, and creating meaningful career opportunities for students and professionals.",
+      desc: "An inspiring and impactful leadership address delivered by CEO Hemanth Pulavarthi, where he shared the future vision, mission, and growth journey of HRA Groups. During the session, he spoke about the importance of innovation, technology-driven education, industry-focused learning, leadership development, and creating meaningful career opportunities for students and professionals",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/ceovoice-m7VbaR3ewpSX0KEp.jpg",
       category: "Leadership & Vision",
       tag: "Keynote Address",
@@ -96,7 +96,7 @@ export default function GalleryPage() {
     {
       id: 3,
       title: "Industry Recognition Award",
-      desc: "A proud recognition moment showcasing innovation, excellence, and leadership achievements.",
+      desc: "A proud recognition moment showcasing innovation, excellence, and leadership achievements",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/awards-mjEGnJG0bpf0NJ8Y.jpg",
       category: "Awards & Recognition",
       tag: "Excellence Award",
@@ -104,7 +104,7 @@ export default function GalleryPage() {
     {
       id: 4,
       title: "CEO Interview",
-      desc: "Exclusive media interview discussing leadership, innovation, and future opportunities.",
+      desc: "Exclusive media interview discussing leadership, innovation, and future opportunities",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/ceointerview-Yg2yRN4jjNSByMGb.jpg",
       category: "Leadership & Vision",
       tag: "Media Interview",
@@ -112,7 +112,7 @@ export default function GalleryPage() {
     {
       id: 5,
       title: "Leadership & Visionaries of HRA Groups",
-      desc: "CEO Hemanth Pulavarthi and Vice President Rajesh represent the leadership strength, innovation, and visionary direction of HRA Groups.",
+      desc: "CEO Hemanth Pulavarthi and Vice President Rajesh represent the leadership strength, innovation, and visionary direction of HRA Groups",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/1-m2WEZKgbQ6cL3EaE.jpg",
       category: "Leadership & Vision",
       tag: "Executive Leadership",
@@ -120,7 +120,7 @@ export default function GalleryPage() {
     {
       id: 6,
       title: "Excellence in IT Consulting & Innovation",
-      desc: "CEO Hemanth Pulavarthi and Director Praveen Kumar receiving the “Excellence in IT Consulting & Innovation” award.",
+      desc: "CEO Hemanth Pulavarthi and Director Praveen Kumar receiving the “Excellence in IT Consulting & Innovation” award",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-4-zhGWELSQNu8XsYf6.jpg",
       category: "Awards & Recognition",
       tag: "IT Consulting Award",
@@ -128,7 +128,7 @@ export default function GalleryPage() {
     {
       id: 7,
       title: "Team at the Event",
-      desc: "The HRA Groups team participating together at the industry recognition event, representing innovation, teamwork, and leadership.",
+      desc: "The HRA Groups team participating together at the industry recognition event, representing innovation, teamwork, and leadership",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-42-vgxDdCTsCw8mcYdt.jpg",
       category: "Team & Culture",
       tag: "Team Event",
@@ -136,7 +136,7 @@ export default function GalleryPage() {
     {
       id: 8,
       title: "Director’s Speech",
-      desc: "An impactful speech by Director Praveen Kumar highlighting the mission, growth, and future goals of HRA Groups.",
+      desc: "An impactful speech by Director Praveen Kumar highlighting the mission, growth, and future goals of HRA Groups",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-23-VEjOHz2zOG4PEi4W.jpg",
       category: "Leadership & Vision",
       tag: "Director Speech",
@@ -144,7 +144,7 @@ export default function GalleryPage() {
     {
       id: 9,
       title: "Team Discussion",
-      desc: "A collaborative discussion session focused on innovation and future opportunities.",
+      desc: "A collaborative discussion session focused on innovation and future opportunities",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/pic1-Y4LvGJKw3kFzeMRB.jpg",
       category: "Team & Culture",
       tag: "Strategy Session",
@@ -152,7 +152,7 @@ export default function GalleryPage() {
     {
       id: 10,
       title: "Featured Article",
-      desc: "A media article highlighting the achievements and impact of HRA Groups.",
+      desc: "A media article highlighting the achievements and impact of HRA Groups",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/about-A0xjMe9RDXh233Dv.jpg",
       category: "Awards & Recognition",
       tag: "Press Coverage",
@@ -160,7 +160,7 @@ export default function GalleryPage() {
     {
       id: 11,
       title: "Vice President Rajesh at the Event",
-      desc: "Vice President Rajesh representing HRA Groups at the leadership networking event.",
+      desc: "Vice President Rajesh representing HRA Groups at the leadership networking event",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/vice-president-mv0Jg69MKJCD4l7q.jpg",
       category: "Leadership & Vision",
       tag: "Networking Summit",
@@ -168,7 +168,7 @@ export default function GalleryPage() {
     {
       id: 12,
       title: "Award Ceremony",
-      desc: "Special recognition moments captured during the prestigious event.",
+      desc: "Special recognition moments captured during the prestigious event",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-111-dkAHxu7bNRyYUykR.jpeg",
       category: "Awards & Recognition",
       tag: "Celebration",
@@ -176,7 +176,7 @@ export default function GalleryPage() {
     {
       id: 13,
       title: "Event Glance of Rajesh",
-      desc: "A memorable glimpse of Vice President Rajesh during the leadership event.",
+      desc: "A memorable glimpse of Vice President Rajesh during the leadership event",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-30-gpUhev1VTLZ5eEPW.jpg",
       category: "Leadership & Vision",
       tag: "Event Highlight",
@@ -184,7 +184,7 @@ export default function GalleryPage() {
     {
       id: 14,
       title: "Leadership Glance at Summit",
-      desc: "Vice President Rajesh engaging with industry leaders during the prestigious leadership summit.",
+      desc: "Vice President Rajesh engaging with industry leaders during the prestigious leadership summit",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-55-iwGtvjzqnUhOIowd.jpg",
       category: "Leadership & Vision",
       tag: "Summit Moments",
@@ -192,7 +192,7 @@ export default function GalleryPage() {
     {
       id: 15,
       title: "Project Discussion",
-      desc: "The HRA Groups team collaborating together through planning and strategy discussions.",
+      desc: "The HRA Groups team collaborating together through planning and strategy discussions",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/4-YNq20v52rGC6WBWy.jpg",
       category: "Team & Culture",
       tag: "Project Planning",
@@ -200,7 +200,7 @@ export default function GalleryPage() {
     {
       id: 16,
       title: "Team Collaboration & Planning",
-      desc: "The HRA Groups team collaborating together through discussions, planning sessions, and idea sharing.",
+      desc: "The HRA Groups team collaborating together through discussions, planning sessions, and idea sharing",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-34-ACGpG5e7IlMGTrYy.jpg",
       category: "Team & Culture",
       tag: "Idea Sharing",
@@ -208,7 +208,7 @@ export default function GalleryPage() {
     {
       id: 17,
       title: "December 2025 Award Event",
-      desc: "Highlights and memorable moments from the December 2025 award celebration and recognition ceremony.",
+      desc: "Highlights and memorable moments from the December 2025 award celebration and recognition ceremony",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img222-j9fiRoFCTM5mW271.jpeg",
       category: "Awards & Recognition",
       tag: "Annual Award Gala",
@@ -216,7 +216,7 @@ export default function GalleryPage() {
     {
       id: 18,
       title: "Rajesh and Chinna Botla",
-      desc: "Vice President Rajesh with Chinna Botla, CEO of TheCConnects.",
+      desc: "Vice President Rajesh with Chinna Botla, CEO of TheCConnects",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-55-bloUeqJtFMmxXHp7.jpg",
       category: "Leadership & Vision",
       tag: "Executive Partnership",
@@ -224,7 +224,7 @@ export default function GalleryPage() {
     {
       id: 19,
       title: "Team Lunch & Celebration",
-      desc: "A joyful team lunch gathering celebrating teamwork, collaboration, and shared success at HRA Groups.",
+      desc: "A joyful team lunch gathering celebrating teamwork, collaboration, and shared success at HRA Groups",
       src: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/team-gHIAzdVSBOThAnrW.jpeg",
       category: "Team & Culture",
       tag: "Team Celebration",
@@ -255,29 +255,29 @@ export default function GalleryPage() {
       id: "emp-1",
       title: "Employee Experience",
       embedUrl: "https://www.youtube.com/embed/o0mTGPtKe4c",
-      desc: "Discover real stories, mentorship experiences, and everyday professional growth from our talented team members.",
+      desc: "Discover real stories, mentorship experiences, and everyday professional growth from our talented team members",
     },
     {
       id: "emp-2",
       title: "Life at HRA Groups",
       embedUrl: "https://www.youtube.com/embed/_zyzuKG5lZc",
-      desc: "A behind-the-scenes look into our collaborative, fast-paced, and innovation-led work culture.",
+      desc: "A behind-the-scenes look into our collaborative, fast-paced, and innovation-led work culture",
     },
   ];
 
   const leadershipQuotes = [
     {
-      quote: "Leadership is about aligning talent with purpose and opportunity.",
+      quote: "Leadership is about aligning talent with purpose and opportunity",
       author: "Hemanth Pulavarthi",
       role: "CEO, HRA Groups",
     },
     {
-      quote: "Innovation in HR begins with empathy, vision, and execution.",
+      quote: "Innovation in HR begins with empathy, vision, and execution",
       author: "Praveen Kumar",
       role: "Director, HRA Groups",
     },
     {
-      quote: "Every milestone reflects the collective strength of our people.",
+      quote: "Every milestone reflects the collective strength of our people",
       author: "Rajesh",
       role: "Vice President, HRA Groups",
     },
@@ -512,7 +512,7 @@ export default function GalleryPage() {
                 Leadership Videos
               </h2>
               <p className="text-white/60 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-                Exclusive interviews, leadership insights, and milestone media highlights from HRA Groups.
+                Exclusive interviews, leadership insights, and milestone media highlights from HRA Groups
               </p>
             </motion.div>
 
@@ -575,7 +575,7 @@ export default function GalleryPage() {
                   Recognitions &amp; Highlights
                 </h2>
                 <p className="text-sm sm:text-base text-white/60 leading-relaxed">
-                  Explore awards, leadership moments, networking events, team collaborations, achievements, and milestones of HRA Groups.
+                  Explore awards, leadership moments, networking events, team collaborations, achievements, and milestones of HRA Groups
                 </p>
               </motion.div>
 
@@ -690,7 +690,7 @@ export default function GalleryPage() {
                 Employee Voices
               </h2>
               <p className="text-white/60 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-                Stories straight from the people who power HRA Groups.
+                Stories straight from the people who power HRA Groups
               </p>
             </motion.div>
 

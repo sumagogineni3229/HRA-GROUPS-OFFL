@@ -384,7 +384,7 @@ export default function Home() {
                   Launch Your Tech Career &amp; Training
                 </h3>
                 <p className="text-sm text-white/60 max-w-sm">
-                  Join verified internships, courses, and hackathons.
+                  Join verified internships, courses, and hackathons
                 </p>
                 <div className="pt-2">
                   <Link

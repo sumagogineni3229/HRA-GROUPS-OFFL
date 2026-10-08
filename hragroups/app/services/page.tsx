@@ -23,7 +23,7 @@ export default function ServicesPage() {
     {
       number: "01",
       title: "Software Development",
-      desc: "Custom web applications, scalable business platforms, APIs, and enterprise cloud architecture.",
+      desc: "Custom web applications, scalable business platforms, APIs, and enterprise cloud architecture",
       href: "/services/software-development",
       icon: Code2,
       badge: "ENGINEERING",
@@ -31,7 +31,7 @@ export default function ServicesPage() {
     {
       number: "02",
       title: "IT Consultancy",
-      desc: "Strategic technical roadmapping, cloud modernization, security audits, and ROI-driven advice.",
+      desc: "Strategic technical roadmapping, cloud modernization, security audits, and ROI-driven advice",
       href: "/services/it-consultancy",
       icon: Compass,
       badge: "CONSULTING",
@@ -39,7 +39,7 @@ export default function ServicesPage() {
     {
       number: "03",
       title: "AI Solutions",
-      desc: "Practical generative AI, LLM applications, intelligent process automation, and predictive modeling.",
+      desc: "Practical generative AI, LLM applications, intelligent process automation, and predictive modeling",
       href: "/services/ai-solutions",
       icon: BrainCircuit,
       badge: "AI & ML",
@@ -47,7 +47,7 @@ export default function ServicesPage() {
     {
       number: "04",
       title: "Digital Experience",
-      desc: "Human-centered UI/UX design, motion systems, design architecture, and high-performance frontend.",
+      desc: "Human-centered UI/UX design, motion systems, design architecture, and high-performance frontend",
       href: "/services/digital-experiences",
       icon: Palette,
       badge: "DESIGN",
@@ -55,7 +55,7 @@ export default function ServicesPage() {
     {
       number: "05",
       title: "Blog & Insights",
-      desc: "Stay updated with industry trends, enterprise engineering best practices, and career advice.",
+      desc: "Stay updated with industry trends, enterprise engineering best practices, and career advice",
       href: "/services/blog",
       icon: Newspaper,
       badge: "PUBLICATIONS",
@@ -63,7 +63,7 @@ export default function ServicesPage() {
     {
       number: "06",
       title: "Training & Courses",
-      desc: "Industry-aligned IT training and courses covering Full-Stack, Cloud, AI, and DevOps.",
+      desc: "Industry-aligned IT training and courses covering Full-Stack, Cloud, AI, and DevOps",
       href: "/services/courses",
       icon: BookOpen,
       badge: "EDUCATION",
@@ -71,7 +71,7 @@ export default function ServicesPage() {
     {
       number: "07",
       title: "HRA Exam Portal",
-      desc: "Comprehensive online assessment platform for evaluating skills and readiness.",
+      desc: "Comprehensive online assessment platform for evaluating skills and readiness",
       href: "/services/exam-portal",
       icon: GraduationCap,
       badge: "ASSESSMENT",
@@ -79,7 +79,7 @@ export default function ServicesPage() {
     {
       number: "08",
       title: "Certificate Portal",
-      desc: "Verify and download your official HRA Groups certifications and credentials.",
+      desc: "Verify and download your official HRA Groups certifications and credentials",
       href: "/services/certificate-portal",
       icon: Award,
       badge: "CREDENTIALS",

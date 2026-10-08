@@ -124,37 +124,37 @@ export default function ClientsPage() {
     {
       name: "ABH IT Solutions",
       category: "Software & Operations",
-      desc: "Software development, recruitment, and operational support to improve efficiency and business growth.",
+      desc: "Software development, recruitment, and operational support to improve efficiency and business growth",
       icon: <Cpu className="w-6 h-6 text-[#00c9ff]" />,
     },
     {
       name: "RN Innovation Technologies",
       category: "Strategic Tech Partnership",
-      desc: "Strategic technology partnership focused on innovation, collaboration, and long-term business success.",
+      desc: "Strategic technology partnership focused on innovation, collaboration, and long-term business success",
       icon: <Layers className="w-6 h-6 text-[#00c9ff]" />,
     },
     {
       name: "Vectura Earthmoving Pvt. Ltd.",
       category: "Enterprise Solutions",
-      desc: "Custom software solutions that streamline operations and strengthen digital capabilities.",
+      desc: "Custom software solutions that streamline operations and strengthen digital capabilities",
       icon: <Building2 className="w-6 h-6 text-[#00c9ff]" />,
     },
     {
       name: "Madhurams Malikipuram",
       category: "Digital Growth & Operations",
-      desc: "Digital presence, workforce solutions, and process improvements to drive local and regional market presence.",
+      desc: "Digital presence, workforce solutions, and process improvements to drive local and regional market presence",
       icon: <BarChart3 className="w-6 h-6 text-[#00c9ff]" />,
     },
     {
       name: "TheCconnects",
       category: "Media & Digital Outreach",
-      desc: "Digital marketing, platform enhancements, and audience engagement strategies for media visibility.",
+      desc: "Digital marketing, platform enhancements, and audience engagement strategies for media visibility",
       icon: <Globe2 className="w-6 h-6 text-[#00c9ff]" />,
     },
     {
       name: "Shield Workz",
       category: "Security & Industrial Tech",
-      desc: "Workforce enablement and customized software architecture supporting specialized safety operations.",
+      desc: "Workforce enablement and customized software architecture supporting specialized safety operations",
       icon: <ShieldCheck className="w-6 h-6 text-[#00c9ff]" />,
     },
   ];
@@ -163,17 +163,17 @@ export default function ClientsPage() {
   const valuePillars = [
     {
       title: "Talent Enablement",
-      desc: "Structured training, workforce development, and capability-building programs designed to strengthen employee performance and organizational success.",
+      desc: "Structured training, workforce development, and capability-building programs designed to strengthen employee performance and organizational success",
       icon: <Users2 className="w-7 h-7 text-[#00c9ff]" />,
     },
     {
       title: "Operational Support",
-      desc: "Streamlined operational processes, recruitment solutions, and business support services that improve efficiency, productivity, and sustainable growth.",
+      desc: "Streamlined operational processes, recruitment solutions, and business support services that improve efficiency, productivity, and sustainable growth",
       icon: <Layers className="w-7 h-7 text-[#00c9ff]" />,
     },
     {
       title: "Strategic Collaboration",
-      desc: "Long-term partnerships focused on innovation, digital transformation, technology solutions, and delivering measurable business outcomes.",
+      desc: "Long-term partnerships focused on innovation, digital transformation, technology solutions, and delivering measurable business outcomes",
       icon: <Target className="w-7 h-7 text-[#00c9ff]" />,
     },
   ];
@@ -307,7 +307,7 @@ export default function ClientsPage() {
                 Organizations We Work With
               </h2>
               <p className="text-sm sm:text-base text-white/60 font-light leading-relaxed">
-                We collaborate with a diverse portfolio of organizations ranging from emerging enterprises to established industry leaders. Each partnership reflects our commitment to quality execution and consistent delivery.
+                We collaborate with a diverse portfolio of organizations ranging from emerging enterprises to established industry leaders. Each partnership reflects our commitment to quality execution and consistent delivery
               </p>
             </motion.div>
 
@@ -374,10 +374,10 @@ export default function ClientsPage() {
                 className="lg:col-span-6 space-y-4 text-white/70 font-light text-sm sm:text-base leading-relaxed"
               >
                 <p>
-                  At HRA Groups, our client relationships are built on trust, transparency, and consistent delivery. We invest time in understanding organizational challenges, industry context, and long-term objectives.
+                  At HRA Groups, our client relationships are built on trust, transparency, and consistent delivery. We invest time in understanding organizational challenges, industry context, and long-term objectives
                 </p>
                 <p>
-                  Our teams work closely with stakeholders to design solutions that are practical, scalable, and aligned with evolving business needs, ensuring long-term partnership success.
+                  Our teams work closely with stakeholders to design solutions that are practical, scalable, and aligned with evolving business needs, ensuring long-term partnership success
                 </p>
               </motion.div>
 
@@ -406,7 +406,7 @@ export default function ClientsPage() {
                 </h2>
               </div>
               <p className="text-sm sm:text-base text-white/60 font-light max-w-md leading-relaxed">
-                We deliver technology, recruitment, digital marketing, and business solutions through trusted partnerships that drive innovation and sustainable growth.
+                We deliver technology, recruitment, digital marketing, and business solutions through trusted partnerships that drive innovation and sustainable growth
               </p>
             </motion.div>
 
@@ -474,7 +474,7 @@ export default function ClientsPage() {
                 Comprehensive Partner Capabilities
               </h2>
               <p className="text-white/60 font-light text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-                Empowering organizations with high-impact talent enablement, operations excellence, and strategic consulting.
+                Empowering organizations with high-impact talent enablement, operations excellence, and strategic consulting
               </p>
             </motion.div>
 
@@ -531,7 +531,7 @@ export default function ClientsPage() {
                 Ready to Accelerate Your Business?
               </h2>
               <p className="text-white/60 font-light text-sm sm:text-base leading-relaxed">
-                Partner with HRA Groups for cutting-edge software development, talent acquisition, and digital transformation.
+                Partner with HRA Groups for cutting-edge software development, talent acquisition, and digital transformation
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-4">

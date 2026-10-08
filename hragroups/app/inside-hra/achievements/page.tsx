@@ -114,7 +114,7 @@ export default function InsideHraAchievementsPage() {
                 </div>
 
                 <p className="max-w-2xl text-sm sm:text-base text-white/60 leading-relaxed pt-2">
-                  A collection of milestones, programs, recognitions and initiatives that reflect the journey of HRA Groups and the communities we work with.
+                  A collection of milestones, programs, recognitions and initiatives that reflect the journey of HRA Groups and the communities we work with
                 </p>
               </div>
 
@@ -123,7 +123,7 @@ export default function InsideHraAchievementsPage() {
                   01 / MISSION SUMMARY
                 </div>
                 <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
-                  Building opportunities through technology, education, innovation and meaningful connections.
+                  Building opportunities through technology, education, innovation and meaningful connections
                 </p>
               </div>
             </div>
@@ -195,10 +195,10 @@ export default function InsideHraAchievementsPage() {
 
               <div className="lg:col-span-6 text-white/70 text-sm sm:text-base leading-relaxed space-y-5">
                 <p>
-                  From student-focused initiatives and hackathons to technology programs and founder conversations, HRA Groups continues to create platforms where people can learn, build and connect.
+                  From student-focused initiatives and hackathons to technology programs and founder conversations, HRA Groups continues to create platforms where people can learn, build and connect
                 </p>
                 <p>
-                  Our achievements represent the collective work of our team, partners, mentors, students and the communities that participate in our programs.
+                  Our achievements represent the collective work of our team, partners, mentors, students and the communities that participate in our programs
                 </p>
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function InsideHraAchievementsPage() {
               </div>
               <div className="lg:col-span-6 text-white/60 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Creating competitive platforms where students and emerging professionals can collaborate, solve problems and demonstrate their capabilities.
+                  Creating competitive platforms where students and emerging professionals can collaborate, solve problems and demonstrate their capabilities
                 </p>
               </div>
             </div>
@@ -246,10 +246,10 @@ export default function InsideHraAchievementsPage() {
                     NATIONAL HACKATHON
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-light font-serif text-white group-hover:text-[#00c9ff] transition-colors leading-snug">
-                    Innovation through <br /> collaboration.
+                    Innovation through <br /> collaboration
                   </h3>
                   <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
-                    A national-level hackathon bringing together participants to work on practical problem statements with mentor guidance and final presentations.
+                    A national-level hackathon bringing together participants to work on practical problem statements with mentor guidance and final presentations
                   </p>
                   <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/50 uppercase tracking-wider">
                     <span className="text-[#00c9ff]">WINNERS</span>
@@ -277,10 +277,10 @@ export default function InsideHraAchievementsPage() {
                     HRA HACKATHON
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-light font-serif text-white group-hover:text-[#00c9ff] transition-colors leading-snug">
-                    Ideas becoming <br /> solutions.
+                    Ideas becoming <br /> solutions
                   </h3>
                   <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
-                    A collaborative challenge designed to encourage creativity, technical thinking, teamwork and solution-oriented development.
+                    A collaborative challenge designed to encourage creativity, technical thinking, teamwork and solution-oriented development
                   </p>
                   <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/50 uppercase tracking-wider">
                     <span className="text-[#00c9ff]">WINNERS</span>
@@ -303,12 +303,12 @@ export default function InsideHraAchievementsPage() {
                 </div>
                 <h2 className="text-4xl sm:text-5xl font-normal font-serif text-white leading-tight">
                   Moments that <br />
-                  <span className="text-[#00c9ff]">define us.</span>
+                  <span className="text-[#00c9ff]">Define us</span>
                 </h2>
               </div>
               <div className="lg:col-span-6 text-white/60 text-sm sm:text-base leading-relaxed">
                 <p>
-                  A visual glimpse into HRA Groups initiatives, activities and the people behind them.
+                  A visual glimpse into HRA Groups initiatives, activities and the people behind them
                 </p>
               </div>
             </div>
@@ -347,7 +347,7 @@ export default function InsideHraAchievementsPage() {
               </div>
               <div className="lg:col-span-6 text-white/60 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Recognition reflects the work carried out with our students, partners, institutions and professional communities.
+                  Recognition reflects the work carried out with our students, partners, institutions and professional communities
                 </p>
               </div>
             </div>
@@ -361,7 +361,7 @@ export default function InsideHraAchievementsPage() {
                     AICTE Approved
                   </h3>
                   <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
-                    HRA Groups internship initiatives are presented with AICTE approval recognition.
+                    HRA Groups internship initiatives are presented with AICTE approval recognition
                   </p>
                 </div>
                 <div className="md:col-span-1 text-right text-lg text-white/30 group-hover:text-[#00c9ff] group-hover:translate-x-1 transition-all">
@@ -377,7 +377,7 @@ export default function InsideHraAchievementsPage() {
                     Institutional Collaborations
                   </h3>
                   <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
-                    Partnerships and programs conducted with educational institutions and training ecosystems.
+                    Partnerships and programs conducted with educational institutions and training ecosystems
                   </p>
                 </div>
                 <div className="md:col-span-1 text-right text-lg text-white/30 group-hover:text-[#00c9ff] group-hover:translate-x-1 transition-all">
@@ -393,7 +393,7 @@ export default function InsideHraAchievementsPage() {
                     Student Programs
                   </h3>
                   <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
-                    Workshops, hackathons, internships and career initiatives designed for student communities.
+                    Workshops, hackathons, internships and career initiatives designed for student communities
                   </p>
                 </div>
                 <div className="md:col-span-1 text-right text-lg text-white/30 group-hover:text-[#00c9ff] group-hover:translate-x-1 transition-all">
@@ -409,7 +409,7 @@ export default function InsideHraAchievementsPage() {
                     Industry Engagement
                   </h3>
                   <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
-                    Connecting professionals, founders, businesses and emerging talent through meaningful programs.
+                    Connecting professionals, founders, businesses and emerging talent through meaningful programs
                   </p>
                 </div>
                 <div className="md:col-span-1 text-right text-lg text-white/30 group-hover:text-[#00c9ff] group-hover:translate-x-1 transition-all">
@@ -437,7 +437,7 @@ export default function InsideHraAchievementsPage() {
                     Hackathons
                   </h3>
                   <p className="text-xs text-white/60 leading-relaxed">
-                    Competitive innovation experiences focused on practical problem solving.
+                    Competitive innovation experiences focused on practical problem solving
                   </p>
                 </div>
               </div>
@@ -450,7 +450,7 @@ export default function InsideHraAchievementsPage() {
                     Technology Workshops
                   </h3>
                   <p className="text-xs text-white/60 leading-relaxed">
-                    Practical learning sessions covering modern technologies and industry practices.
+                    Practical learning sessions covering modern technologies and industry practices
                   </p>
                 </div>
               </div>
@@ -463,7 +463,7 @@ export default function InsideHraAchievementsPage() {
                     Internship Programs
                   </h3>
                   <p className="text-xs text-white/60 leading-relaxed">
-                    Structured opportunities for students to gain practical professional exposure.
+                    Structured opportunities for students to gain practical professional exposure
                   </p>
                 </div>
               </div>
@@ -476,7 +476,7 @@ export default function InsideHraAchievementsPage() {
                     Founder Programs
                   </h3>
                   <p className="text-xs text-white/60 leading-relaxed">
-                    Platforms connecting founders with visibility, conversations and professional opportunities.
+                    Platforms connecting founders with visibility, conversations and professional opportunities
                   </p>
                 </div>
               </div>
@@ -498,10 +498,10 @@ export default function InsideHraAchievementsPage() {
               </p>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light font-serif text-white tracking-tight">
                 The journey <br />
-                <em className="text-[#00c9ff] not-italic">continues.</em>
+                <em className="text-[#00c9ff] not-italic">continues</em>
               </h2>
               <p className="text-white/60 text-sm sm:text-base max-w-xl leading-relaxed pt-2">
-                We continue to build programs, partnerships and opportunities that create meaningful impact across technology, education and business.
+                We continue to build programs, partnerships and opportunities that create meaningful impact across technology, education and business
               </p>
               <div className="pt-4">
                 <Link

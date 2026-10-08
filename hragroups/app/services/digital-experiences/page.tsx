@@ -29,28 +29,28 @@ const WHAT_WE_BUILD = [
   {
     number: "01",
     title: "Websites & Platforms",
-    subtitle: "High-quality digital platforms designed around your business, your audience and the way your organisation actually works.",
+    subtitle: "High-quality digital platforms designed around your business, your audience and the way your organisation actually works",
     tags: ["Corporate", "Marketing", "Platforms"],
     icon: Globe,
   },
   {
     number: "02",
     title: "Product Experiences",
-    subtitle: "Digital products that turn complicated workflows into simple, useful and intuitive experiences.",
+    subtitle: "Digital products that turn complicated workflows into simple, useful and intuitive experiences",
     tags: ["Web Apps", "Products", "SaaS"],
     icon: Layout,
   },
   {
     number: "03",
     title: "Experience Design",
-    subtitle: "Thoughtful interaction, information architecture and visual systems that make technology easier to understand.",
+    subtitle: "Thoughtful interaction, information architecture and visual systems that make technology easier to understand",
     tags: ["UI / UX", "Research", "Systems"],
     icon: Palette,
   },
   {
     number: "04",
     title: "Digital Transformation",
-    subtitle: "We modernise existing digital journeys and connect the systems behind them so businesses can operate with greater clarity.",
+    subtitle: "We modernise existing digital journeys and connect the systems behind them so businesses can operate with greater clarity",
     tags: ["Modernisation", "Integration", "Automation"],
     icon: Workflow,
   },
@@ -62,28 +62,28 @@ const APPROACH_STEPS = [
     tag: "UNDERSTAND",
     title: "Find the signal.",
     description:
-      "We start by understanding the business, the audience and the problem before deciding what needs to be built.",
+      "We start by understanding the business, the audience and the problem before deciding what needs to be built",
   },
   {
     number: "02",
     tag: "STRUCTURE",
     title: "Shape the experience.",
     description:
-      "Content, journeys, information and interactions are organised into a system that makes sense.",
+      "Content, journeys, information and interactions are organised into a system that makes sense",
   },
   {
     number: "03",
     tag: "DESIGN",
     title: "Give it character.",
     description:
-      "We create a visual language that feels distinctive, consistent and appropriate for the brand.",
+      "We create a visual language that feels distinctive, consistent and appropriate for the brand",
   },
   {
     number: "04",
     tag: "ENGINEER",
     title: "Make it real.",
     description:
-      "Design becomes a responsive, performant digital product built with scalable technology.",
+      "Design becomes a responsive, performant digital product built with scalable technology",
   },
 ];
 
@@ -98,22 +98,22 @@ const DESIGN_PRINCIPLES = [
   {
     number: "01",
     title: "Clarity",
-    description: "Remove unnecessary complexity. Make the next action obvious.",
+    description: "Remove unnecessary complexity. Make the next action obvious",
   },
   {
     number: "02",
     title: "Character",
-    description: "Create a distinctive experience without sacrificing usability.",
+    description: "Create a distinctive experience without sacrificing usability",
   },
   {
     number: "03",
     title: "Performance",
-    description: "Beautiful experiences should also be fast, responsive and reliable.",
+    description: "Beautiful experiences should also be fast, responsive and reliable",
   },
   {
     number: "04",
     title: "Purpose",
-    description: "Every interaction should have a reason to exist.",
+    description: "Every interaction should have a reason to exist",
   },
 ];
 
@@ -149,13 +149,13 @@ export default function DigitalExperiencesPage() {
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.035em] leading-[1.05] font-serif">
                 Digital experiences <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  with purpose.
+                  with purpose
                 </span>
               </h1>
 
               {/* Description */}
               <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl font-light">
-                We design and engineer digital experiences that feel clear, intelligent and effortless — from websites and products to platforms built around the people who use them.
+                We design and engineer digital experiences that feel clear, intelligent and effortless — from websites and products to platforms built around the people who use them
               </p>
 
               {/* Action CTAs */}
@@ -223,10 +223,10 @@ export default function DigitalExperiencesPage() {
                       DIGITAL SYSTEMS
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-light text-white font-serif">
-                      Built for <em className="text-[#00c9ff] not-italic">people.</em>
+                      Built for <em className="text-[#00c9ff] not-italic">people</em>
                     </h3>
                     <p className="text-xs text-white/60 leading-relaxed font-light">
-                      Strategy, design and technology working as one unified medium.
+                      Strategy, design and technology working as one unified medium
                     </p>
                     <div className="pt-2">
                       <span className="inline-flex items-center gap-2 text-[10px] font-mono text-white/80 hover:text-[#00c9ff] transition-colors">
@@ -342,7 +342,7 @@ export default function DigitalExperiencesPage() {
                 <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
                   Simple on the surface. <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                    Intelligent underneath.
+                    Intelligent underneath
                   </span>
                 </h2>
               </div>
@@ -404,7 +404,7 @@ export default function DigitalExperiencesPage() {
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
                 One experience. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  Every layer connected.
+                  Every layer connected
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed max-w-md">
@@ -448,7 +448,7 @@ export default function DigitalExperiencesPage() {
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
                 Digital should feel <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                  effortless.
+                  effortless
                 </span>
               </h2>
             </div>
@@ -485,11 +485,11 @@ export default function DigitalExperiencesPage() {
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-[1.04] font-serif">
                 Make your next <br />
                 <em className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white font-normal not-italic">
-                  digital experience matter.
+                  digital experience matter
                 </em>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light max-w-xl">
-                Tell us what you are building, improving or imagining. We will help turn the idea into a digital experience people actually want to use.
+                Tell us what you are building, improving or imagining. We will help turn the idea into a digital experience people actually want to use
               </p>
             </div>
 

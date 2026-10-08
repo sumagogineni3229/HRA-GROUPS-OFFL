@@ -19,10 +19,10 @@ import {
 } from "lucide-react";
 
 const CONTACT_HERO_PHRASES = [
-  "Contact HRA Groups.",
-  "Let's Build Something Great Together.",
-  "Start the Conversation Today.",
-  "Reach Our Global Tech Advisors.",
+  "Contact HRA Groups",
+  "Let's Build Something Great Together",
+  "Start the Conversation Today",
+  "Reach Our Global Tech Advisors",
 ];
 
 export default function ContactPage() {
@@ -152,7 +152,7 @@ export default function ContactPage() {
               className="space-y-4 max-w-2xl mx-auto"
             >
               <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
-                Feel free to contact us with any questions or concerns. You can use the form below or email us directly. We appreciate your interest and look forward to hearing from you.
+                Feel free to contact us with any questions or concerns. You can use the form below or email us directly. We appreciate your interest and look forward to hearing from you
               </p>
 
               {/* Action Buttons */}
@@ -217,7 +217,7 @@ export default function ContactPage() {
                       Let's Build Something Great Together
                     </h3>
                     <p className="text-white/60 text-xs sm:text-sm mt-3 leading-relaxed font-light">
-                      Contact HRA Groups for IT services, internships, training programs, web development solutions, certifications, and business inquiries.
+                      Contact HRA Groups for IT services, internships, training programs, web development solutions, certifications, and business inquiries
                     </p>
                   </div>
 
@@ -298,7 +298,7 @@ export default function ContactPage() {
                     <h4 className="font-serif font-light text-lg text-white">Guaranteed Fast Response</h4>
                   </div>
                   <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light relative z-10">
-                    Our engagement managers and technical teams review incoming inquiries promptly. You can expect a response within 24 business hours.
+                    Our engagement managers and technical teams review incoming inquiries promptly. You can expect a response within 24 business hours
                   </p>
                 </div>
               </div>
@@ -315,7 +315,7 @@ export default function ContactPage() {
                         Thank You!
                       </h3>
                       <p className="text-emerald-300/90 max-w-md mx-auto text-sm leading-relaxed font-light">
-                        Your message has been received successfully. A representative from HRA Groups will reach out to you shortly.
+                        Your message has been received successfully. A representative from HRA Groups will reach out to you shortly
                       </p>
                       <div className="pt-4">
                         <button
@@ -336,7 +336,7 @@ export default function ContactPage() {
                           Send Us a Message
                         </h3>
                         <p className="text-white/60 text-xs sm:text-sm font-light">
-                          Please fill out the form and our team will get back to you right away.
+                          Please fill out the form and our team will get back to you right away
                         </p>
                       </div>
 

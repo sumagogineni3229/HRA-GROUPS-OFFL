@@ -28,56 +28,56 @@ const SESSIONS = [
     number: "01",
     title: "Founder Introduction",
     description:
-      "Introduce your business, journey, expertise and vision to the right audience.",
+      "Introduce your business, journey, expertise and vision to the right audience",
     icon: Users,
   },
   {
     number: "02",
     title: "Client Interaction",
     description:
-      "Engage with potential clients, partners and business stakeholders.",
+      "Engage with potential clients, partners and business stakeholders",
     icon: Compass,
   },
   {
     number: "03",
     title: "Founder Interview",
     description:
-      "Share your founder journey, experiences, perspective and achievements.",
+      "Share your founder journey, experiences, perspective and achievements",
     icon: Video,
   },
   {
     number: "04",
     title: "Podcast Conversation",
     description:
-      "Take part in thoughtful conversations that showcase your ideas and expertise.",
+      "Take part in thoughtful conversations that showcase your ideas and expertise",
     icon: Mic,
   },
   {
     number: "05",
     title: "Digital Publications",
     description:
-      "Strengthen your professional presence through founder stories and business features.",
+      "Strengthen your professional presence through founder stories and business features",
     icon: FileText,
   },
   {
     number: "06",
     title: "Digital Presence",
     description:
-      "Build a stronger and more consistent digital identity for your personal and business brand.",
+      "Build a stronger and more consistent digital identity for your personal and business brand",
     icon: Globe,
   },
   {
     number: "07",
     title: "Strategic Advisory",
     description:
-      "Access meaningful conversations around positioning, direction and business growth.",
+      "Access meaningful conversations around positioning, direction and business growth",
     icon: TrendingUp,
   },
   {
     number: "08",
     title: "Founder Networking",
     description:
-      "Connect with founders, professionals and potential collaborators.",
+      "Connect with founders, professionals and potential collaborators",
     icon: Share2,
   },
 ];
@@ -87,25 +87,25 @@ const VALUE_GAINS = [
     number: "01",
     title: "Visibility",
     description:
-      "Present your story and work through professional digital channels.",
+      "Present your story and work through professional digital channels",
   },
   {
     number: "02",
     title: "Credibility",
     description:
-      "Establish a stronger professional identity through meaningful founder content.",
+      "Establish a stronger professional identity through meaningful founder content",
   },
   {
     number: "03",
     title: "Connections",
     description:
-      "Create opportunities to meet relevant people and businesses.",
+      "Create opportunities to meet relevant people and businesses",
   },
   {
     number: "04",
     title: "Opportunities",
     description:
-      "Open conversations around collaborations, partnerships and growth.",
+      "Open conversations around collaborations, partnerships and growth",
   },
 ];
 
@@ -114,25 +114,25 @@ const SUPPORT_PILLARS = [
     number: "01",
     title: "Business Visibility",
     description:
-      "Position your business in front of relevant professional audiences.",
+      "Position your business in front of relevant professional audiences",
   },
   {
     number: "02",
     title: "Founder Story",
     description:
-      "Turn your journey and experience into meaningful professional content.",
+      "Turn your journey and experience into meaningful professional content",
   },
   {
     number: "03",
     title: "Professional Network",
     description:
-      "Build relationships with founders, professionals and potential collaborators.",
+      "Build relationships with founders, professionals and potential collaborators",
   },
   {
     number: "04",
     title: "Strategic Growth",
     description:
-      "Create conversations that can lead to new possibilities.",
+      "Create conversations that can lead to new possibilities",
   },
 ];
 
@@ -205,13 +205,13 @@ export default function FounderProgramPage() {
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.035em] leading-[1.05] font-serif">
                 Where founders <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  connect with opportunity.
+                  connect with opportunity
                 </span>
               </h1>
 
               {/* Description */}
               <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl font-light">
-                A curated founder platform built around visibility, meaningful conversations, strategic connections and long-term growth.
+                A curated founder platform built around visibility, meaningful conversations, strategic connections and long-term growth
               </p>
 
               {/* Action CTAs */}
@@ -281,7 +281,7 @@ export default function FounderProgramPage() {
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.1] font-serif">
                 More than a <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] to-white italic font-normal">
-                  business connection.
+                  business connection
                 </span>
               </h2>
             </div>
@@ -289,10 +289,10 @@ export default function FounderProgramPage() {
             {/* Right Intro Description */}
             <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-white/70 leading-relaxed font-light">
               <p>
-                Founder Bridge creates a professional environment where founders can introduce their work, tell their story, build credibility and discover relevant opportunities.
+                Founder Bridge creates a professional environment where founders can introduce their work, tell their story, build credibility and discover relevant opportunities
               </p>
               <p className="text-white/60">
-                From conversations and interviews to publications, podcasts and strategic advisory, every touchpoint is designed to strengthen your presence.
+                From conversations and interviews to publications, podcasts and strategic advisory, every touchpoint is designed to strengthen your presence
               </p>
             </div>
           </div>
@@ -314,7 +314,7 @@ export default function FounderProgramPage() {
                 </h2>
               </div>
               <p className="text-sm sm:text-base text-white/60 max-w-md font-light">
-                A structured journey designed to give founders visibility, connections and meaningful opportunities.
+                A structured journey designed to give founders visibility, connections and meaningful opportunities
               </p>
             </div>
 
@@ -369,11 +369,11 @@ export default function FounderProgramPage() {
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
                 Build a presence <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  that travels.
+                  that travels
                 </span>
               </h2>
               <p className="text-sm sm:text-base text-white/70 max-w-md font-light leading-relaxed">
-                The program is designed to create several professional touchpoints around your founder journey.
+                The program is designed to create several professional touchpoints around your founder journey
               </p>
             </div>
 
@@ -411,7 +411,7 @@ export default function FounderProgramPage() {
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
                 One platform. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                  Multiple possibilities.
+                  Multiple possibilities
                 </span>
               </h2>
             </div>
@@ -448,11 +448,11 @@ export default function FounderProgramPage() {
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-[1.04] font-serif">
                 Bring your story <br />
                 <em className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white font-normal not-italic">
-                  to the right room.
+                  to the right room
                 </em>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light max-w-xl">
-                Start a conversation with HRA Groups and explore the Founder Bridge experience.
+                Start a conversation with HRA Groups and explore the Founder Bridge experience
               </p>
             </div>
 

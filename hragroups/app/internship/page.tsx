@@ -96,7 +96,7 @@ export default function InternshipPage() {
       number: "01 / TECHNOLOGY",
       category: "technology",
       title: "Web Development",
-      description: "Build responsive websites, interactive UI components, and modern web applications using cutting-edge technologies.",
+      description: "Build responsive websites, interactive UI components, and modern web applications using cutting-edge technologies",
       icon: <Code2 className="w-6 h-6 text-[#0052cc]" />,
       tags: ["React / Next.js", "JavaScript / TypeScript", "Tailwind CSS", "REST APIs"],
     },
@@ -105,7 +105,7 @@ export default function InternshipPage() {
       number: "02 / TECHNOLOGY",
       category: "technology",
       title: "AI & Machine Learning",
-      description: "Explore intelligent systems, predictive modeling, data pipelines, and practical applications of emerging AI technologies.",
+      description: "Explore intelligent systems, predictive modeling, data pipelines, and practical applications of emerging AI technologies",
       icon: <Sparkles className="w-6 h-6 text-[#0052cc]" />,
       tags: ["Python", "TensorFlow / PyTorch", "Deep Learning", "NLP"],
     },
@@ -114,7 +114,7 @@ export default function InternshipPage() {
       number: "03 / TECHNOLOGY",
       category: "technology",
       title: "Data & Analytics",
-      description: "Turn complex data into actionable business insights and develop analytical thinking through practical real-world datasets.",
+      description: "Turn complex data into actionable business insights and develop analytical thinking through practical real-world datasets",
       icon: <Layers className="w-6 h-6 text-[#0052cc]" />,
       tags: ["SQL & Data Modeling", "Power BI / Tableau", "Statistical Analysis", "ETL"],
     },
@@ -123,7 +123,7 @@ export default function InternshipPage() {
       number: "04 / CREATIVE",
       category: "creative",
       title: "UI / UX Design",
-      description: "Create intuitive digital product experiences with user research, comprehensive design systems, wireframes, and prototypes.",
+      description: "Create intuitive digital product experiences with user research, comprehensive design systems, wireframes, and prototypes",
       icon: <Palette className="w-6 h-6 text-[#0052cc]" />,
       tags: ["Figma & Prototyping", "Design Systems", "User Research", "Wireframing"],
     },
@@ -132,7 +132,7 @@ export default function InternshipPage() {
       number: "05 / CREATIVE",
       category: "creative",
       title: "Digital Marketing",
-      description: "Master digital audience growth, strategic content creation, social media campaigns, SEO ranking, and paid performance channels.",
+      description: "Master digital audience growth, strategic content creation, social media campaigns, SEO ranking, and paid performance channels",
       icon: <Megaphone className="w-6 h-6 text-[#0052cc]" />,
       tags: ["SEO & SEM", "Social Media Growth", "Content Strategy", "Google Ads"],
     },
@@ -141,7 +141,7 @@ export default function InternshipPage() {
       number: "06 / BUSINESS",
       category: "business",
       title: "Business & Management",
-      description: "Develop executive communication, strategic leadership, market research, and corporate operations execution skills.",
+      description: "Develop executive communication, strategic leadership, market research, and corporate operations execution skills",
       icon: <Briefcase className="w-6 h-6 text-[#0052cc]" />,
       tags: ["Operations", "Market Research", "Project Management", "Client Relations"],
     },
@@ -150,7 +150,7 @@ export default function InternshipPage() {
       number: "07 / TECHNOLOGY",
       category: "technology",
       title: "Cloud & DevOps",
-      description: "Understand modern cloud architecture, CI/CD automated pipelines, containerization, and production engineering workflows.",
+      description: "Understand modern cloud architecture, CI/CD automated pipelines, containerization, and production engineering workflows",
       icon: <Cloud className="w-6 h-6 text-[#0052cc]" />,
       tags: ["AWS Cloud", "Docker & Kubernetes", "CI/CD Pipelines", "Linux & Git"],
     },
@@ -159,7 +159,7 @@ export default function InternshipPage() {
       number: "08 / BUSINESS",
       category: "business",
       title: "Entrepreneurship",
-      description: "Explore product innovation, viable business models, market validation, venture development, and founder-level thinking.",
+      description: "Explore product innovation, viable business models, market validation, venture development, and founder-level thinking",
       icon: <Lightbulb className="w-6 h-6 text-[#0052cc]" />,
       tags: ["Business Modeling", "Product Strategy", "Growth Hacking", "Pitching"],
     },
@@ -185,23 +185,23 @@ export default function InternshipPage() {
   const faqs = [
     {
       q: "Who can apply for the internship?",
-      a: "Students and recent graduates from relevant academic backgrounds who are interested in developing practical skills and gaining professional experience can apply. Eligibility may vary depending on the selected domain.",
+      a: "Students and recent graduates from relevant academic backgrounds who are interested in developing practical skills and gaining professional experience can apply. Eligibility may vary depending on the selected domain",
     },
     {
       q: "Can I choose my internship domain?",
-      a: "Yes. Applicants can indicate their preferred domain during the application process. Final allocation may depend on programme requirements and team availability.",
+      a: "Yes. Applicants can indicate their preferred domain during the application process. Final allocation may depend on programme requirements and team availability",
     },
     {
       q: "Will I work on projects?",
-      a: "Yes! The programme is designed around practical learning and project-based assignments so that students can apply their knowledge in realistic working environments.",
+      a: "Yes! The programme is designed around practical learning and project-based assignments so that students can apply their knowledge in realistic working environments",
     },
     {
       q: "Is mentorship provided?",
-      a: "Students receive guidance, 1-on-1 feedback, and direction from experienced professionals and mentors as part of their comprehensive internship journey.",
+      a: "Students receive guidance, 1-on-1 feedback, and direction from experienced professionals and mentors as part of their comprehensive internship journey",
     },
     {
       q: "How do I apply?",
-      a: "Click the Apply Now button, complete the quick application form, and submit your details. Our HR team will review your application and connect with you on next steps.",
+      a: "Click the Apply Now button, complete the quick application form, and submit your details. Our HR team will review your application and connect with you on next steps",
     },
   ];
 
@@ -622,10 +622,10 @@ export default function InternshipPage() {
                     The Experience
                   </div>
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">
-                    Learn by <span className="text-[#8dc2ff]">Doing.</span>
+                    Learn by <span className="text-[#8dc2ff]">Doing</span>
                   </h2>
                   <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
-                    Your internship should give you something more valuable than a line on your resume — confidence gained through actually creating, solving and collaborating.
+                    Your internship should give you something more valuable than a line on your resume — confidence gained through actually creating, solving and collaborating
                   </p>
                 </div>
 
@@ -636,7 +636,7 @@ export default function InternshipPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-white text-base">Work on Practical Projects</h4>
-                      <p className="text-xs sm:text-sm text-slate-300">Apply your knowledge to meaningful project-based assignments.</p>
+                      <p className="text-xs sm:text-sm text-slate-300">Apply your knowledge to meaningful project-based assignments</p>
                     </div>
                   </div>
 
@@ -646,7 +646,7 @@ export default function InternshipPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-white text-base">Learn With Mentors</h4>
-                      <p className="text-xs sm:text-sm text-slate-300">Receive guidance, feedback and direction from experienced professionals.</p>
+                      <p className="text-xs sm:text-sm text-slate-300">Receive guidance, feedback and direction from experienced professionals</p>
                     </div>
                   </div>
 
@@ -656,7 +656,7 @@ export default function InternshipPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-white text-base">Collaborate With Teams</h4>
-                      <p className="text-xs sm:text-sm text-slate-300">Experience communication, teamwork and professional workflows.</p>
+                      <p className="text-xs sm:text-sm text-slate-300">Experience communication, teamwork and professional workflows</p>
                     </div>
                   </div>
 
@@ -666,7 +666,7 @@ export default function InternshipPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-white text-base">Build Your Portfolio</h4>
-                      <p className="text-xs sm:text-sm text-slate-300">Create work that demonstrates your skills and practical capabilities.</p>
+                      <p className="text-xs sm:text-sm text-slate-300">Create work that demonstrates your skills and practical capabilities</p>
                     </div>
                   </div>
                 </div>
@@ -683,7 +683,7 @@ export default function InternshipPage() {
                     <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight">
                       Start <br />
                       Something <br />
-                      Meaningful.
+                      Meaningful
                     </h3>
                   </div>
                   <p className="text-xs text-slate-300">
@@ -712,7 +712,7 @@ export default function InternshipPage() {
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-slate-100">
                 Four steps. <br />
                 <span className="bg-gradient-to-r from-[#0052cc] to-[#0284c7] dark:from-sky-300 dark:to-blue-400 bg-clip-text text-transparent">
-                  One transformation.
+                  One transformation
                 </span>
               </h2>
             </div>
@@ -722,7 +722,7 @@ export default function InternshipPage() {
                 <div className="text-2xl font-black text-[#0052cc] dark:text-sky-400">01</div>
                 <h3 className="text-xl font-bold text-[#001f4d] dark:text-slate-100">Apply</h3>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Tell us about yourself, academic background, and choose the domain that interests you.
+                  Tell us about yourself, academic background, and choose the domain that interests you
                 </p>
               </div>
 
@@ -730,7 +730,7 @@ export default function InternshipPage() {
                 <div className="text-2xl font-black text-[#0052cc] dark:text-sky-400">02</div>
                 <h3 className="text-xl font-bold text-[#001f4d] dark:text-slate-100">Onboard</h3>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Understand the programme structure, learning milestones, expectations, and project journey.
+                  Understand the programme structure, learning milestones, expectations, and project journey
                 </p>
               </div>
 
@@ -738,7 +738,7 @@ export default function InternshipPage() {
                 <div className="text-2xl font-black text-[#0052cc] dark:text-sky-400">03</div>
                 <h3 className="text-xl font-bold text-[#001f4d] dark:text-slate-100">Build</h3>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Learn with mentors, collaborate with team members, and work on practical assignments.
+                  Learn with mentors, collaborate with team members, and work on practical assignments
                 </p>
               </div>
 
@@ -746,7 +746,7 @@ export default function InternshipPage() {
                 <div className="text-2xl font-black text-[#0052cc] dark:text-sky-400">04</div>
                 <h3 className="text-xl font-bold text-[#001f4d] dark:text-slate-100">Grow</h3>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Complete your experience with recognized certifications, verifiable skills, and portfolio work.
+                  Complete your experience with recognized certifications, verifiable skills, and portfolio work
                 </p>
               </div>
             </div>
@@ -789,11 +789,11 @@ export default function InternshipPage() {
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-slate-100">
                   Everything you <br />
                   <span className="bg-gradient-to-r from-[#0052cc] to-[#0284c7] dark:from-sky-300 dark:to-blue-400 bg-clip-text text-transparent">
-                    need to know.
+                    need to know
                   </span>
                 </h2>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
-                  Have other questions? Feel free to reach out to our team via WhatsApp or phone.
+                  Have other questions? Feel free to reach out to our team via WhatsApp or phone
                 </p>
               </div>
 

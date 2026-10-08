@@ -36,7 +36,7 @@ const DEFAULT_EVENTS = [
     mediaType: "image",
     mediaUrl: "https://hragroupswebsite-psi.vercel.app/assets/Hacakthon1winners-BIE5bY7A.png",
     description:
-      "A high-energy, national-level engineering competition uniting student builders, developers, and visionary creators across India to solve real-world industry challenges.",
+      "A high-energy, national-level engineering competition uniting student builders, developers, and visionary creators across India to solve real-world industry challenges",
     format: "Live Experience & Hackathon",
     location: "Mumbai / Hybrid",
   },
@@ -48,7 +48,7 @@ const DEFAULT_EVENTS = [
     mediaType: "image",
     mediaUrl: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/ceo-A0xjR7b7QVtvl5W2.jpg",
     description:
-      "Prestigious executive summit featuring keynote talks by CEO Hemanth Pulavarthi and Director Praveen Kumar on workforce transformation and next-gen IT solutions.",
+      "Prestigious executive summit featuring keynote talks by CEO Hemanth Pulavarthi and Director Praveen Kumar on workforce transformation and next-gen IT solutions",
     format: "Keynote & Leadership Panel",
     location: "TheCConnects Summit, Mumbai",
   },
@@ -72,7 +72,7 @@ const DEFAULT_EVENTS = [
     mediaType: "image",
     mediaUrl: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/img-30-gpUhev1VTLZ5eEPW.jpg",
     description:
-      "A collaborative leadership networking gathering connecting enterprise leaders, institutional heads, founders, and industry strategists.",
+      "A collaborative leadership networking gathering connecting enterprise leaders, institutional heads, founders, and industry strategists",
     format: "Corporate Meetup",
     location: "Grand Hyatt, Hyderabad",
   },
@@ -84,7 +84,7 @@ const DEFAULT_EVENTS = [
     mediaType: "image",
     mediaUrl: "https://assets.zyrosite.com/Y4LvROeE7gfaLJG1/team-gHIAzdVSBOThAnrW.jpeg",
     description:
-      "A celebration of collective achievements, teamwork, shared milestones, and collaborative spirit across all divisions of HRA Groups.",
+      "A celebration of collective achievements, teamwork, shared milestones, and collaborative spirit across all divisions of HRA Groups",
     format: "Internal Gala",
     location: "HRA Headquarters",
   },
@@ -96,7 +96,7 @@ const DEFAULT_EVENTS = [
     mediaType: "video",
     mediaUrl: "https://www.youtube.com/embed/296LwinrIEE",
     description:
-      "CEO Hemanth Pulavarthi delivers an inspiring address on the future of technology education, placement empowerment, and industry-oriented innovation.",
+      "CEO Hemanth Pulavarthi delivers an inspiring address on the future of technology education, placement empowerment, and industry-oriented innovation",
     format: "Keynote Stream",
     location: "Mumbai Grand Stage",
   },
@@ -108,7 +108,7 @@ const DEFAULT_EVENTS = [
     mediaType: "video",
     mediaUrl: "https://www.youtube.com/embed/dTuePb-uua8",
     description:
-      "Highlights from the national recognition gala celebrating corporate excellence and pioneering contributions in IT talent development.",
+      "Highlights from the national recognition gala celebrating corporate excellence and pioneering contributions in IT talent development",
     format: "Event Highlights",
     location: "Leadership Summit",
   },
@@ -120,7 +120,7 @@ const DEFAULT_EVENTS = [
     mediaType: "video",
     mediaUrl: "https://www.youtube.com/embed/Jsc8Kq4i8z4",
     description:
-      "In-depth discussion on scalable system modernizations, software architecture frameworks, and enterprise IT strategy.",
+      "In-depth discussion on scalable system modernizations, software architecture frameworks, and enterprise IT strategy",
     format: "Panel Discussion",
     location: "Executive Studio",
   },

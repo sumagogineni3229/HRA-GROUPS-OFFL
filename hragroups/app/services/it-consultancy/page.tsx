@@ -28,28 +28,28 @@ const WHAT_WE_ADVISE = [
   {
     number: "01",
     title: "Technology Strategy",
-    text: "Turn business priorities into a practical technology roadmap with clear decisions, priorities and next steps.",
+    text: "Turn business priorities into a practical technology roadmap with clear decisions, priorities and next steps",
     tags: ["Roadmaps", "Architecture", "Planning"],
     icon: Compass,
   },
   {
     number: "02",
     title: "Digital Transformation",
-    text: "Modernise outdated processes and connect technology, people and operations into a more effective digital system.",
+    text: "Modernise outdated processes and connect technology, people and operations into a more effective digital system",
     tags: ["Modernisation", "Process", "Digital"],
     icon: Workflow,
   },
   {
     number: "03",
     title: "IT Architecture",
-    text: "Design technology foundations that are secure, maintainable and ready to support the next stage of growth.",
+    text: "Design technology foundations that are secure, maintainable and ready to support the next stage of growth.]",
     tags: ["Systems", "Cloud", "Infrastructure"],
     icon: Layers,
   },
   {
     number: "04",
     title: "Technology Optimisation",
-    text: "Identify friction, remove unnecessary complexity and make existing technology work harder for the business.",
+    text: "Identify friction, remove unnecessary complexity and make existing technology work harder for the business",
     tags: ["Audit", "Optimisation", "Efficiency"],
     icon: TrendingUp,
   },
@@ -70,22 +70,22 @@ const JOURNEY_STEPS = [
   {
     number: "01",
     title: "Listen",
-    text: "We understand the business, current systems, people and the problems that actually need solving.",
+    text: "We understand the business, current systems, people and the problems that actually need solving",
   },
   {
     number: "02",
     title: "Diagnose",
-    text: "We map the current technology landscape and identify the gaps, risks and opportunities.",
+    text: "We map the current technology landscape and identify the gaps, risks and opportunities",
   },
   {
     number: "03",
     title: "Direct",
-    text: "We create a focused technology direction with practical priorities rather than unnecessary complexity.",
+    text: "We create a focused technology direction with practical priorities rather than unnecessary complexity",
   },
   {
     number: "04",
     title: "Enable",
-    text: "We help your team move from strategy into implementation with clarity and confidence.",
+    text: "We help your team move from strategy into implementation with clarity and confidence",
   },
 ];
 
@@ -93,17 +93,17 @@ const PRINCIPLES = [
   {
     number: "01",
     title: "Business first",
-    text: "Technology decisions should support a business objective, not exist simply because the technology is available.",
+    text: "Technology decisions should support a business objective, not exist simply because the technology is available",
   },
   {
     number: "02",
     title: "Clarity over complexity",
-    text: "We simplify technical decisions so leadership teams can understand what matters and what comes next.",
+    text: "We simplify technical decisions so leadership teams can understand what matters and what comes next",
   },
   {
     number: "03",
     title: "Built for change",
-    text: "A good technology strategy should remain useful as customers, teams and markets evolve.",
+    text: "A good technology strategy should remain useful as customers, teams and markets evolve",
   },
 ];
 
@@ -297,11 +297,11 @@ export default function ITConsultancyPage() {
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
                 Practical direction. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  Measurable impact.
+                  Measurable impact
                 </span>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
-                We bridge the gap between business objectives and engineering reality, giving executive teams confidence in their technology investments.
+                We bridge the gap between business objectives and engineering reality, giving executive teams confidence in their technology investments
               </p>
             </div>
 
@@ -400,11 +400,11 @@ export default function ITConsultancyPage() {
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
                 Clarity across <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  every dimension.
+                  every dimension
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed max-w-md">
-                We assist leadership across key strategic pillars, providing clarity on infrastructure investments, software architecture, and modern delivery models.
+                We assist leadership across key strategic pillars, providing clarity on infrastructure investments, software architecture, and modern delivery models
               </p>
             </div>
 
@@ -531,13 +531,13 @@ export default function ITConsultancyPage() {
                 <span>WHAT YOU GET</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Tangible artefacts. <br />
+                Tangible artefacts <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  Actionable plans.
+                  Actionable plans
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed">
-                We deliver concrete documents, architectural blueprints, and step-by-step guides that give your internal team clarity on execution.
+                We deliver concrete documents, architectural blueprints, and step-by-step guides that give your internal team clarity on execution
               </p>
             </div>
 
@@ -574,7 +574,7 @@ export default function ITConsultancyPage() {
                 </em>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light max-w-xl">
-                Schedule a confidential advisory session with HRA Groups to evaluate your current architecture, eliminate risks, and accelerate your digital goals.
+                Schedule a confidential advisory session with HRA Groups to evaluate your current architecture, eliminate risks, and accelerate your digital goals
               </p>
             </div>
 

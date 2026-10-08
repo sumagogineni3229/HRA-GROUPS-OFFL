@@ -26,7 +26,7 @@ const WORK_PROJECTS = [
     category: "WEB PLATFORM",
     type: "SOFTWARE",
     description:
-      "A modern digital platform designed to bring content, users and business operations together through one seamless digital experience.",
+      "A modern digital platform designed to bring content, users and business operations together through one seamless digital experience",
     image: "https://hragroupswebsite-psi.vercel.app/assets/mediahubPic-C7zqN69E.png",
     tags: ["React", "Node.js", "Database"],
     link: "/services/software-development",
@@ -38,7 +38,7 @@ const WORK_PROJECTS = [
     category: "EDUCATION",
     type: "SOFTWARE",
     description:
-      "A structured digital platform connecting students, internships, projects and program operations in one connected environment.",
+      "A structured digital platform connecting students, internships, projects and program operations in one connected environment",
     image: "https://hragroupswebsite-psi.vercel.app/assets/HRA%20Internship%20Platform-CEce0vXc.png",
     tags: ["React", "Platform", "Automation"],
     link: "/internship",
@@ -50,7 +50,7 @@ const WORK_PROJECTS = [
     category: "BUSINESS",
     type: "SOFTWARE",
     description:
-      "A centralized business system created to simplify workflows, organize information and improve operational visibility.",
+      "A centralized business system created to simplify workflows, organize information and improve operational visibility",
     image: "https://hragroupswebsite-psi.vercel.app/assets/Business%20Management%20System-yEUPX7Gh.png",
     tags: ["Web App", "Dashboard", "Database"],
     link: "/services/software-development",
@@ -62,7 +62,7 @@ const WORK_PROJECTS = [
     category: "AI & AUTOMATION",
     type: "AI",
     description:
-      "An intelligent assistant concept designed to help businesses automate repetitive tasks, access information and work more efficiently.",
+      "An intelligent assistant concept designed to help businesses automate repetitive tasks, access information and work more efficiently",
     image: "https://hragroupswebsite-psi.vercel.app/assets/Business%20Assistant-CR4vqKpm.png",
     tags: ["AI", "Python", "Automation"],
     link: "/services/ai-solutions",
@@ -76,33 +76,33 @@ const CAPABILITIES = [
     number: "01",
     title: "DIGITAL ENGINEERING",
     description:
-      "Web platforms, business applications and scalable digital infrastructure designed around real operational needs.",
+      "Web platforms, business applications and scalable digital infrastructure designed around real operational needs",
   },
   {
     number: "02",
     title: "AI & INTELLIGENCE",
     description:
-      "Practical AI systems and automation that reduce repetitive work and give teams better access to information.",
+      "Practical AI systems and automation that reduce repetitive work and give teams better access to information",
   },
   {
     number: "03",
     title: "PRODUCT SYSTEMS",
     description:
-      "Connected products that bring interfaces, workflows, data and people together into one coherent system.",
+      "Connected products that bring interfaces, workflows, data and people together into one coherent system",
   },
   {
     number: "04",
     title: "EXPERIENCE DESIGN",
     description:
-      "Clear, refined digital experiences where design makes complex technology easier to understand and use.",
+      "Clear, refined digital experiences where design makes complex technology easier to understand and use",
   },
 ];
 
 const WORK_HERO_PHRASES = [
-  "Ideas in action.",
-  "Engineered for Growth.",
-  "Intelligent Systems that Scale.",
-  "Digital Products that Deliver.",
+  "Ideas in action",
+  "Engineered for Growth",
+  "Intelligent Systems that Scale",
+  "Digital Products that Deliver",
 ];
 
 export default function WorkPage() {
@@ -341,11 +341,11 @@ export default function WorkPage() {
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight font-serif">
                 Built for<br />
-                <em className="font-serif italic text-[#00c9ff]">what's next.</em>
+                <em className="font-serif italic text-[#00c9ff]">what's next</em>
               </h2>
             </div>
             <p className="text-sm text-white/60 max-w-md leading-relaxed">
-              Digital products require more than good visuals. They need a foundation that can evolve with the people and businesses using them.
+              Digital products require more than good visuals. They need a foundation that can evolve with the people and businesses using them
             </p>
           </div>
 
@@ -383,10 +383,10 @@ export default function WorkPage() {
             </span>
             <h2 className="text-4xl sm:text-6xl font-light text-white font-serif leading-tight">
               Have an idea in mind?<br />
-              <em className="italic text-[#00c9ff]">Let's build it together.</em>
+              <em className="italic text-[#00c9ff]">Let's build it together</em>
             </h2>
             <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl mx-auto">
-              Whether you need scalable software engineering, AI workflow automation, or digital product consultancy, we are here to bring it to life.
+              Whether you need scalable software engineering, AI workflow automation, or digital product consultancy, we are here to bring it to life
             </p>
             <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
               <Link href="/contact" className="ibase-btn-primary">

@@ -88,7 +88,7 @@ function NewsletterCard() {
         Get Weekly Tech &amp; Workforce Insights
       </h4>
       <p className="text-[11px] text-white/60 leading-relaxed">
-        Join 5,000+ tech leaders reading our monthly digest.
+        Join 5,000+ tech leaders reading our monthly digest
       </p>
 
       {status === "success" ? (

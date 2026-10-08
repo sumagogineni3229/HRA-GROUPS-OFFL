@@ -75,14 +75,14 @@ export default function FounderApplyPage() {
                   <em>founder journey.</em>
                 </h1>
                 <p className="apply-hero-text">
-                  Tell us about yourself, your business and what you are looking to build. Our team will review your application and connect with you.
+                  Tell us about yourself, your business and what you are looking to build. Our team will review your application and connect with you
                 </p>
               </div>
 
               <div className="apply-hero-side">
                 <div className="apply-side-number">01</div>
                 <p>
-                  A professional platform for founders seeking visibility, meaningful connections and growth opportunities.
+                  A professional platform for founders seeking visibility, meaningful connections and growth opportunities
                 </p>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function FounderApplyPage() {
                 <em>know you.</em>
               </h2>
               <p>
-                Please provide accurate information so we can understand your professional background and business journey.
+                Please provide accurate information so we can understand your professional background and business journey
               </p>
 
               <div className="apply-note">
@@ -111,7 +111,7 @@ export default function FounderApplyPage() {
                 <div>
                   <small>WHAT HAPPENS NEXT</small>
                   <p>
-                    Once your application is submitted, the HRA Groups team can review your details and follow up with you regarding the program.
+                    Once your application is submitted, the HRA Groups team can review your details and follow up with you regarding the program
                   </p>
                 </div>
               </div>
@@ -127,7 +127,7 @@ export default function FounderApplyPage() {
                     <br />
                     <em>connecting with us.</em>
                   </h2>
-                  <p>Your Founder Bridge application has been submitted successfully.</p>
+                  <p>Your Founder Bridge application has been submitted successfully</p>
                   <Link href="/founder-program">
                     Back to Founder Bridge
                     <span>↗</span>

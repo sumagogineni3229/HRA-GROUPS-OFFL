@@ -28,28 +28,28 @@ const AI_SOLUTIONS = [
   {
     number: "01",
     title: "AI Business Assistants",
-    text: "Intelligent assistants that help teams find information, automate repetitive work and respond faster.",
+    text: "Intelligent assistants that help teams find information, automate repetitive work and respond faster",
     tags: ["AI", "Automation", "Python"],
     icon: Bot,
   },
   {
     number: "02",
     title: "Intelligent Automation",
-    text: "Connect repetitive business workflows with intelligent systems that reduce manual effort and improve consistency.",
+    text: "Connect repetitive business workflows with intelligent systems that reduce manual effort and improve consistency",
     tags: ["Workflows", "APIs", "AI"],
     icon: Workflow,
   },
   {
     number: "03",
     title: "AI-Powered Products",
-    text: "Build products that use artificial intelligence as part of the experience instead of treating AI as an add-on.",
+    text: "Build products that use artificial intelligence as part of the experience instead of treating AI as an add-on",
     tags: ["ML", "LLMs", "Product"],
     icon: Cpu,
   },
   {
     number: "04",
     title: "Data & Intelligence",
-    text: "Turn business information into useful signals, recommendations and decision-support systems.",
+    text: "Turn business information into useful signals, recommendations and decision-support systems",
     tags: ["Data", "Analytics", "Insights"],
     icon: BarChart3,
   },
@@ -70,22 +70,22 @@ const PROCESS_STEPS = [
   {
     number: "01",
     title: "Understand",
-    text: "We identify where intelligence can create a genuine business advantage instead of adding AI simply for the sake of it.",
+    text: "We identify where intelligence can create a genuine business advantage instead of adding AI simply for the sake of it",
   },
   {
     number: "02",
     title: "Design",
-    text: "We define the experience, data flow and intelligence layer required to make the solution useful.",
+    text: "We define the experience, data flow and intelligence layer required to make the solution useful",
   },
   {
     number: "03",
     title: "Build",
-    text: "We connect models, software and automation into a reliable system designed around your workflow.",
+    text: "We connect models, software and automation into a reliable system designed around your workflow",
   },
   {
     number: "04",
     title: "Improve",
-    text: "We measure how the system performs and continuously refine it as your business and data evolve.",
+    text: "We measure how the system performs and continuously refine it as your business and data evolve",
   },
 ];
 
@@ -108,17 +108,17 @@ const PRINCIPLES = [
   {
     number: "01",
     title: "Useful before impressive",
-    text: "The best AI solution is the one that solves a real problem and becomes part of how people work.",
+    text: "The best AI solution is the one that solves a real problem and becomes part of how people work",
   },
   {
     number: "02",
     title: "Human in the loop",
-    text: "Automation should increase human capability, while important decisions remain understandable and controllable.",
+    text: "Automation should increase human capability, while important decisions remain understandable and controllable",
   },
   {
     number: "03",
     title: "Built for reality",
-    text: "We consider data quality, security, cost, reliability and adoption — not only the model.",
+    text: "We consider data quality, security, cost, reliability and adoption — not only the model",
   },
 ];
 
@@ -178,13 +178,13 @@ export default function AISolutionsPage() {
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.035em] leading-[1.05] font-serif">
                 Intelligence <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  with purpose.
+                  with purpose
                 </span>
               </h1>
 
               {/* Description */}
               <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl font-light">
-                We build practical AI systems that help businesses automate work, understand information and make better decisions.
+                We build practical AI systems that help businesses automate work, understand information and make better decisions
               </p>
 
               {/* Action CTAs */}
@@ -551,7 +551,7 @@ export default function AISolutionsPage() {
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed">
-                We combine AI models with software engineering, integrations and data systems to create solutions that work beyond the demo.
+                We combine AI models with software engineering, integrations and data systems to create solutions that work beyond the demo
               </p>
             </div>
 
@@ -580,7 +580,7 @@ export default function AISolutionsPage() {
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.08] font-serif">
                 Less repetition. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] to-[#73bbff] italic font-normal">
-                  More intelligence.
+                  More intelligence
                 </span>
               </h2>
             </div>
