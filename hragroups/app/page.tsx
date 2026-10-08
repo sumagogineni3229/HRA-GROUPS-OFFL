@@ -41,31 +41,31 @@ const CAPABILITIES = [
   {
     num: "01",
     title: "AI & Intelligent Automation",
-    desc: "Agentic systems, workflow automation, custom models, and LLM integrations across enterprise operations.",
+    desc: "Agentic systems, workflow automation, custom models, and LLM integrations across enterprise operations",
     bullets: ["Multi-agent solutions", "Custom LLM fine-tuning", "Workflow automation"],
   },
   {
     num: "02",
     title: "Cloud & Infrastructure",
-    desc: "Edge-to-cloud infrastructure, MLOps pipelines, and data orchestration built to scale with AI ambition.",
+    desc: "Edge-to-cloud infrastructure, MLOps pipelines, and data orchestration built to scale with AI ambition",
     bullets: ["MLOps pipelines", "Edge / multi-cloud", "Data orchestration"],
   },
   {
     num: "03",
     title: "Product Engineering",
-    desc: "Full lifecycle development, digital strategy, and AI-infused product builds — concept to production.",
+    desc: "Full lifecycle development, digital strategy, and AI-infused product builds — concept to production",
     bullets: ["Zero-to-one builds", "Digital strategy", "Quality engineering"],
   },
   {
     num: "04",
     title: "Data & Insights",
-    desc: "Pipelines, governance, decision intelligence — the foundation every AI initiative actually rests on.",
+    desc: "Pipelines, governance, decision intelligence — the foundation every AI initiative actually rests on",
     bullets: ["Data pipelines", "Governance", "Decision intelligence"],
   },
   {
     num: "05",
     title: "AI Strategy & Roadmap",
-    desc: "Readiness assessment, adoption strategy, responsible-AI guardrails — and a sequenced ROI roadmap.",
+    desc: "Readiness assessment, adoption strategy, responsible-AI guardrails — and a sequenced ROI roadmap",
     bullets: ["Readiness audits", "Adoption strategy", "Responsible AI"],
   },
 ];
@@ -79,7 +79,7 @@ const TESTIMONIALS = [
     linkedin: "https://www.linkedin.com/",
     featured: true,
     quote:
-      "IBaseIT's Quality Engineering services have been a game-changer for Boursa Kuwait. It helped to evolve the core by Automation, scaled Agile, and cloud platforms to evaluate application development, testing, and infrastructure. Their tailored solutions and rigorous testing boosted efficiency and client satisfaction. QATTS' automation features like data-driven testing, Multi Branch Support and CI/CD capabilities further enhanced our financial gains.",
+      "IBaseIT's Quality Engineering services have been a game-changer for Boursa Kuwait. It helped to evolve the core by Automation, scaled Agile, and cloud platforms to evaluate application development, testing, and infrastructure. Their tailored solutions and rigorous testing boosted efficiency and client satisfaction. QATTS' automation features like data-driven testing, Multi Branch Support and CI/CD capabilities further enhanced our financial gains",
   },
   {
     initials: "AR",
@@ -89,7 +89,7 @@ const TESTIMONIALS = [
     linkedin: "https://www.linkedin.com/",
     featured: false,
     quote:
-      "At ArrowStream, we prioritize supply chain optimization. IBaseIT mobile app integration was crucial, delivering a secure, feature-rich solution that empowers clients on-the-go. Their expertise and agile approach ensured timely delivery and adaptability, showcasing our commitment to quality.",
+      "At ArrowStream, we prioritize supply chain optimization. IBaseIT mobile app integration was crucial, delivering a secure, feature-rich solution that empowers clients on-the-go. Their expertise and agile approach ensured timely delivery and adaptability, showcasing our commitment to quality",
   },
   {
     initials: "EN",
@@ -99,7 +99,7 @@ const TESTIMONIALS = [
     linkedin: "https://www.linkedin.com/",
     featured: false,
     quote:
-      "As the CTO of Envoy Global, Inc., I am excited to endorse IBaseIT for their exceptional expertise in developing process automation software using Microsoft PowerApps and Power Automate. Their tailored solutions, including an internal automation technology for processing large PDFs seamlessly, have significantly improved our efficiency and productivity.",
+      "As the CTO of Envoy Global, Inc., I am excited to endorse IBaseIT for their exceptional expertise in developing process automation software using Microsoft PowerApps and Power Automate. Their tailored solutions, including an internal automation technology for processing large PDFs seamlessly, have significantly improved our efficiency and productivity",
   },
   {
     initials: "WI",

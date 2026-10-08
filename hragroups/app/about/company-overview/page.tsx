@@ -23,11 +23,11 @@ import {
 } from "lucide-react";
 
 const OVERVIEW_HERO_PHRASES = [
-  "About HRA Groups.",
-  "Company Overview.",
-  "Shaping the Digital Era.",
-  "Technology & Talent.",
-  "Engineered for Growth.",
+  "About HRA Groups",
+  "Company Overview",
+  "Shaping the Digital Era",
+  "Technology & Talent",
+  "Engineered for Growth",
 ];
 
 export default function CompanyOverviewPage() {
@@ -77,7 +77,7 @@ export default function CompanyOverviewPage() {
       title: "Web & App Development",
       accentBg: "from-[#00c9ff]/10 to-blue-500/10",
       accentColor: "#00c9ff",
-      desc: "Creating high-performance digital platforms, enterprise systems, modern websites, and mobile applications with scalable architecture and premium user experiences.",
+      desc: "Creating high-performance digital platforms, enterprise systems, modern websites, and mobile applications with scalable architecture and premium user experiences",
       items: [
         "Custom Web Applications",
         "Mobile App Development",
@@ -92,7 +92,7 @@ export default function CompanyOverviewPage() {
       title: "IT Staffing & Recruitment",
       accentBg: "from-sky-500/10 to-[#00c9ff]/10",
       accentColor: "#00c9ff",
-      desc: "Delivering workforce solutions through talent acquisition, staffing services, recruitment management, and professional hiring strategies.",
+      desc: "Delivering workforce solutions through talent acquisition, staffing services, recruitment management, and professional hiring strategies",
       items: [
         "Permanent Staffing",
         "Contract Hiring",
@@ -107,7 +107,7 @@ export default function CompanyOverviewPage() {
       title: "Digital Marketing",
       accentBg: "from-indigo-500/10 to-purple-500/10",
       accentColor: "#00c9ff",
-      desc: "Driving brand visibility and business growth through innovative marketing campaigns, digital branding, and audience engagement strategies.",
+      desc: "Driving brand visibility and business growth through innovative marketing campaigns, digital branding, and audience engagement strategies",
       items: [
         "SEO & Search Visibility",
         "Social Media Marketing",
@@ -122,7 +122,7 @@ export default function CompanyOverviewPage() {
       title: "Corporate Services",
       accentBg: "from-blue-500/10 to-sky-500/10",
       accentColor: "#00c9ff",
-      desc: "Helping organizations optimize operations, improve performance, and scale efficiently through strategic consulting and transformation services.",
+      desc: "Helping organizations optimize operations, improve performance, and scale efficiently through strategic consulting and transformation services",
       items: [
         "Corporate Training",
         "Business Consulting",
@@ -320,7 +320,7 @@ export default function CompanyOverviewPage() {
                   With expertise across technology, recruitment, digital branding, and corporate transformation, we create
                   innovative ecosystems that help businesses achieve sustainable growth and long-term success. Our
                   commitment to quality, creativity, and strategic execution enables organizations to stay ahead in an
-                  evolving market.
+                  evolving market
                 </p>
 
                 {/* Stats Grid */}
