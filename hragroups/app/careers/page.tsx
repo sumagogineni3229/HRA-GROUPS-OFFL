@@ -149,22 +149,22 @@ export default function CareersPage() {
   const whyWorkItems = [
     {
       title: "Structured Career Growth & Mentorship",
-      desc: "Personalized roadmaps, one-on-one leadership guidance, and clear progression opportunities across multiple domains.",
+      desc: "Personalized roadmaps, one-on-one leadership guidance, and clear progression opportunities across multiple domains",
       icon: <TrendingUp className="w-6 h-6 text-[#00c9ff]" />,
     },
     {
       title: "Professional & Collaborative Work Culture",
-      desc: "A vibrant, team-first environment celebrating innovative ideas, peer collaboration, and inclusive synergy.",
+      desc: "A vibrant, team-first environment celebrating innovative ideas, peer collaboration, and inclusive synergy",
       icon: <Users2 className="w-6 h-6 text-[#00c9ff]" />,
     },
     {
       title: "Continuous Learning & Upskilling",
-      desc: "Regular workshops, hands-on enterprise projects, access to industry certifications, and domain masterclasses.",
+      desc: "Regular workshops, hands-on enterprise projects, access to industry certifications, and domain masterclasses",
       icon: <GraduationCap className="w-6 h-6 text-[#00c9ff]" />,
     },
     {
       title: "Balanced & Flexible Work Environment",
-      desc: "A healthy work-life balance with modern hybrid possibilities, transparent communication, and supportive teams.",
+      desc: "A healthy work-life balance with modern hybrid possibilities, transparent communication, and supportive teams",
       icon: <Shield className="w-6 h-6 text-[#00c9ff]" />,
     },
   ];
@@ -294,7 +294,7 @@ export default function CareersPage() {
               </h1>
 
               <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
-                Submit your credentials directly to the HRA Groups talent acquisition team for review.
+                Submit your credentials directly to the HRA Groups talent acquisition team for review
               </p>
             </div>
 
@@ -309,7 +309,7 @@ export default function CareersPage() {
                     Application Received Successfully!
                   </h2>
                   <p className="text-sm sm:text-base text-emerald-300 font-light leading-relaxed">
-                    Thank you for applying to HRA Groups. Our HR recruitment team will review your qualifications and contact you regarding the next interview stages.
+                    Thank you for applying to HRA Groups. Our HR recruitment team will review your qualifications and contact you regarding the next interview stages
                   </p>
                 </div>
 
@@ -500,7 +500,7 @@ export default function CareersPage() {
                   {/* Actions */}
                   <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10">
                     <p className="text-xs text-white/50 font-mono">
-                      ✦ All applications are kept confidential and reviewed directly by our recruitment department.
+                      ✦ All applications are kept confidential and reviewed directly by our recruitment department
                     </p>
 
                     <div className="flex items-center gap-4 w-full sm:w-auto">
@@ -706,7 +706,7 @@ export default function CareersPage() {
                   Explore Open Positions
                 </h2>
                 <p className="text-sm sm:text-base text-white/60 font-light leading-relaxed">
-                  Discover active openings and submit your application to join our growing team in Hyderabad or remotely.
+                  Discover active openings and submit your application to join our growing team in Hyderabad or remotely
                 </p>
               </motion.div>
 
@@ -747,7 +747,7 @@ export default function CareersPage() {
                     No Current Openings {selectedDept !== "All" ? `in ${selectedDept}` : ""}
                   </h3>
                   <p className="text-sm sm:text-base text-white/50 font-light max-w-lg mx-auto">
-                    We are not actively recruiting for this category at the moment. New job positions added by the admin will appear here in real time.
+                    We are not actively recruiting for this category at the moment. New job positions added by the admin will appear here in real time
                   </p>
                   <div className="pt-2">
                     <button
@@ -872,7 +872,7 @@ export default function CareersPage() {
                 How to Apply
               </h2>
               <p className="text-white/60 font-light text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-                Complete our online application form with accurate details. Our HR team will review your profile and connect with shortlisted candidates promptly.
+                Complete our online application form with accurate details. Our HR team will review your profile and connect with shortlisted candidates promptly
               </p>
             </motion.div>
 
@@ -915,7 +915,7 @@ export default function CareersPage() {
                 </div>
 
                 <div className="pt-4 border-t border-white/10 text-xs text-white/50 font-mono flex items-center gap-2">
-                  <span>📁 Applications are reviewed on a rolling basis by our talent team.</span>
+                  <span>📁 Applications are reviewed on a rolling basis by our talent team</span>
                 </div>
               </motion.div>
 
@@ -939,7 +939,7 @@ export default function CareersPage() {
                       Need Assistance?
                     </h3>
                     <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed">
-                      Have questions about the application process, domain prerequisites, or onboarding timelines? Reach out to our HR representative.
+                      Have questions about the application process, domain prerequisites, or onboarding timelines? Reach out to our HR representative
                     </p>
                   </div>
 
@@ -998,7 +998,7 @@ export default function CareersPage() {
                 Ready to Shape the Future?
               </h2>
               <p className="text-white/60 font-light text-sm sm:text-base leading-relaxed">
-                Grow with HRA Groups through purposeful work, collaboration, and continuous innovation.
+                Grow with HRA Groups through purposeful work, collaboration, and continuous innovation
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
