@@ -25,10 +25,10 @@ import {
 } from "lucide-react";
 
 const CAREER_HERO_PHRASES = [
-  "Build a Career That Makes an Impact.",
-  "Shape the Future of Technology.",
-  "Innovate, Transform & Grow.",
-  "Join a Team Driven by Purpose.",
+  "Build a Career That Makes an Impact",
+  "Shape the Future of Technology",
+  "Innovate, Transform & Grow",
+  "Join a Team Driven by Purpose",
 ];
 
 export default function CareersPage() {
