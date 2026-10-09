@@ -25,9 +25,9 @@ import {
 const OVERVIEW_HERO_PHRASES = [
   "About HRA Groups",
   "Company Overview",
-  "Shaping the Digital Era",
+  "Shaping The Digital Era",
   "Technology & Talent",
-  "Engineered for Growth",
+  "Engineered For Growth",
 ];
 
 export default function CompanyOverviewPage() {

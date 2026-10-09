@@ -296,7 +296,7 @@ export default function MeetTheTeamPage() {
 
             {/* Slim Heading in Clean White & Sky Blue */}
             <h1 className="text-[38px] sm:text-[50px] md:text-[58px] lg:text-[66px] xl:text-[74px] font-normal tracking-[-0.025em] leading-[1.1] text-white drop-shadow-sm">
-              Meet the People Behind <br className="hidden sm:inline" />
+              Meet The People Behind <br className="hidden sm:inline" />
               <span className="bg-gradient-to-r from-white via-sky-100 to-[#65acff] bg-clip-text text-transparent font-medium">HRA Groups</span>
             </h1>
 
@@ -413,7 +413,7 @@ export default function MeetTheTeamPage() {
                 WE ARE GROWING
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
-                Want to Join the HRA Groups Team?
+                Want To Join The HRA Groups Team?
               </h2>
               <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
                 We are always seeking passionate engineers, designers, HR experts, and marketing innovators to join our team in Hyderabad and beyond.

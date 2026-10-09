@@ -203,9 +203,9 @@ export default function FounderProgramPage() {
 
               {/* Display Headline */}
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.035em] leading-[1.05] font-serif">
-                Where founders <br />
+                Where Founders <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  connect with opportunity
+                  Connect With Opportunity
                 </span>
               </h1>
 
@@ -279,9 +279,9 @@ export default function FounderProgramPage() {
                 <span>THE PROGRAM</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.1] font-serif">
-                More than a <br />
+                More Than A <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] to-white italic font-normal">
-                  business connection
+                  Business Connection
                 </span>
               </h2>
             </div>
@@ -367,9 +367,9 @@ export default function FounderProgramPage() {
                 <span>WHAT YOU GAIN</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Build a presence <br />
+                Build A Presence <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  that travels
+                  That Travels
                 </span>
               </h2>
               <p className="text-sm sm:text-base text-white/70 max-w-md font-light leading-relaxed">
@@ -409,9 +409,9 @@ export default function FounderProgramPage() {
                 <span>HRA GROUPS</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                One platform. <br />
+                One Platform <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                  Multiple possibilities
+                  Multiple Possibilities
                 </span>
               </h2>
             </div>
@@ -446,9 +446,9 @@ export default function FounderProgramPage() {
 
             <div className="lg:col-span-7 space-y-6">
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-[1.04] font-serif">
-                Bring your story <br />
+                Bring Your Story <br />
                 <em className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white font-normal not-italic">
-                  to the right room
+                  To The Right Room
                 </em>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light max-w-xl">
@@ -493,8 +493,8 @@ export default function FounderProgramPage() {
                   APPLICATION RECEIVED
                 </div>
                 <h3 className="text-3xl sm:text-4xl font-light font-serif">
-                  Thank you for <br />
-                  <em className="text-[#73bbff] not-italic">connecting with us.</em>
+                  Thank You For <br />
+                  <em className="text-[#73bbff] not-italic">Connecting With Us</em>
                 </h3>
                 <p className="text-sm text-white/70 max-w-md mx-auto">
                   Your Founder Bridge application has been submitted successfully. Our team will review your details and reach out.
@@ -516,7 +516,7 @@ export default function FounderProgramPage() {
                     <span>FOUNDER BRIDGE APPLICATION</span>
                   </div>
                   <h3 className="text-2xl sm:text-4xl font-light font-serif">
-                    Start your <em className="text-[#73bbff] not-italic">founder journey.</em>
+                    Start Your <em className="text-[#73bbff] not-italic">Founder Journey</em>
                   </h3>
                   <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
                     Tell us about yourself, your business, and what you are looking to build.

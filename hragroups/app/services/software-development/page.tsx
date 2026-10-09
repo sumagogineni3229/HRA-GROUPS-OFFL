@@ -166,9 +166,9 @@ export default function SoftwareDevelopmentPage() {
 
               {/* Display Headline */}
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.035em] leading-[1.05] font-serif">
-                Software built for <br />
+                Software Built For <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  what comes next.
+                  What Comes Next
                 </span>
               </h1>
 
@@ -301,9 +301,9 @@ export default function SoftwareDevelopmentPage() {
                 <span>WHAT WE BUILD</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Built with precision. <br />
+                Built With Precision <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  Engineered to perform.
+                  Engineered To Perform
                 </span>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
@@ -323,11 +323,10 @@ export default function SoftwareDevelopmentPage() {
                       key={item.number}
                       type="button"
                       onClick={() => setActiveBuildTab(idx)}
-                      className={`w-full p-5 sm:p-6 rounded-2xl border text-left transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer ${
-                        isActive
+                      className={`w-full p-5 sm:p-6 rounded-2xl border text-left transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer ${isActive
                           ? "bg-white/[0.08] border-[#00c9ff]/60 shadow-[0_0_30px_rgba(0,201,255,0.15)]"
                           : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-4">
                         <span className={`text-xs font-mono tracking-widest ${isActive ? "text-[#00c9ff]" : "text-white/40"}`}>
@@ -383,9 +382,8 @@ export default function SoftwareDevelopmentPage() {
                     <button
                       key={i}
                       onClick={() => setActiveBuildTab(i)}
-                      className={`h-1 flex-1 rounded-full transition-all duration-300 ${
-                        activeBuildTab === i ? "bg-[#00c9ff]" : "bg-white/15 hover:bg-white/30"
-                      }`}
+                      className={`h-1 flex-1 rounded-full transition-all duration-300 ${activeBuildTab === i ? "bg-[#00c9ff]" : "bg-white/15 hover:bg-white/30"
+                        }`}
                     />
                   ))}
                 </div>
@@ -404,9 +402,9 @@ export default function SoftwareDevelopmentPage() {
                 <span>CAPABILITIES</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                From architecture <br />
+                From Architecture <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  to deployment.
+                  To Deployment
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed max-w-md">
@@ -446,9 +444,9 @@ export default function SoftwareDevelopmentPage() {
                   <span>HOW WE WORK</span>
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                  A disciplined, <br />
+                  A Disciplined <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                    transparent process.
+                    Transparent Process
                   </span>
                 </h2>
               </div>
@@ -462,11 +460,10 @@ export default function SoftwareDevelopmentPage() {
                 <div
                   key={step.number}
                   onClick={() => setActiveProcessStep(idx)}
-                  className={`p-7 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[260px] ${
-                    activeProcessStep === idx
+                  className={`p-7 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[260px] ${activeProcessStep === idx
                       ? "bg-white/[0.08] border-[#00c9ff]/60 shadow-[0_0_30px_rgba(0,201,255,0.12)]"
                       : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
-                  }`}
+                    }`}
                 >
                   <div>
                     <span className="text-xs font-mono text-[#00c9ff] tracking-widest block mb-6">
@@ -499,9 +496,9 @@ export default function SoftwareDevelopmentPage() {
                 <span>TECHNOLOGY</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Built with modern, <br />
+                Built With Modern <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  reliable tools.
+                  Reliable Tools
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed">
@@ -532,9 +529,9 @@ export default function SoftwareDevelopmentPage() {
                 <span>THE RESULT</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                Engineering with <br />
+                Engineering With <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                  measurable impact.
+                  Measurable Impact
                 </span>
               </h2>
             </div>
@@ -569,9 +566,9 @@ export default function SoftwareDevelopmentPage() {
 
             <div className="lg:col-span-7 space-y-6">
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-[1.04] font-serif">
-                Have a product <br />
+                Have A Product <br />
                 <em className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white font-normal not-italic">
-                  worth engineering?
+                  Worth Engineering?
                 </em>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light max-w-xl">

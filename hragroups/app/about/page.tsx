@@ -57,7 +57,7 @@ export default function AboutPage() {
               <Users className="w-6 h-6" />
             </div>
             <h3 className="text-2xl font-bold text-[#172947] dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
-              Meet the HRA Team
+              Meet The HRA Team
             </h3>
             <p className="text-slate-500 dark:text-slate-400 text-sm mt-3 leading-relaxed">
               Meet our passionate engineers, architects, managers, and mentors shaping next-generation tech talent.

@@ -297,8 +297,8 @@ export default function InsideHraEventsPage() {
                 01 / GATHERINGS &amp; PROGRAMS
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight font-serif leading-tight">
-                More than <br />
-                <span className="text-[#00c9ff] italic">an event.</span>
+                More Than <br />
+                <span className="text-[#00c9ff] italic">An Event</span>
               </h2>
             </div>
             <div className="lg:col-span-7 text-white/70 text-base sm:text-lg leading-relaxed space-y-4">

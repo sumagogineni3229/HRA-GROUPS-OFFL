@@ -364,7 +364,7 @@ export default function Home() {
             <div className="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 pt-16 border-t border-white/10 mt-12 text-center">
               <div className="flex flex-col items-center space-y-3">
                 <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                  Scale Enterprise Technology with HRA
+                  Scale Enterprise Technology With HRA
                 </h3>
                 <p className="text-sm text-white/60 max-w-sm">
                   Build reliable software, cloud systems, and AI.
@@ -451,7 +451,7 @@ export default function Home() {
             <div>
               <div className="ibase-eyebrow">WHAT WE BUILD</div>
               <h2 className="ibase-h-display">
-                Services designed for <em>growth & scale.</em>
+                Services Designed For <em>Growth & Scale</em>
               </h2>
             </div>
             <p className="text-sm text-white/50 max-w-sm">
@@ -562,7 +562,7 @@ export default function Home() {
             <div>
               <div className="ibase-eyebrow">SELECTED WORK</div>
               <h2 className="ibase-h-display">
-                Ideas in <em>action.</em>
+                Ideas In <em>Action</em>
               </h2>
             </div>
             <p className="text-sm text-white/50 max-w-sm">
@@ -669,8 +669,8 @@ export default function Home() {
             <div>
               <div className="ibase-eyebrow">THE HRA APPROACH</div>
               <h2 className="ibase-h-display">
-                Technology. Talent.<br />
-                <em>Entrepreneurship.</em>
+                Technology Talent<br />
+                <em>Entrepreneurship</em>
               </h2>
             </div>
             <p className="text-sm text-white/50 max-w-sm">
@@ -744,7 +744,7 @@ export default function Home() {
             <div>
               <div className="ibase-eyebrow">ECOSYSTEM INITIATIVES</div>
               <h2 className="ibase-h-display">
-                Talent &amp; Founder <em>Programs.</em>
+                Talent &amp; Founder <em>Programs</em>
               </h2>
             </div>
             <p className="text-sm text-white/50 max-w-sm">
@@ -783,11 +783,11 @@ export default function Home() {
 
                 {/* Main Heading */}
                 <h3 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.08] mb-6">
-                  Learn by <span className="italic font-serif text-[#00c9ff]">building.</span>
+                  Learn By <span className="italic font-serif text-[#00c9ff]">Building</span>
                   <br />
-                  Grow with real
+                  Grow With Real
                   <br />
-                  projects.
+                  Projects
                 </h3>
 
                 {/* Subtitle */}
@@ -876,9 +876,9 @@ export default function Home() {
                   </div>
 
                   <h3 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1] mb-6">
-                    Don't just have<br />
-                    an <span className="italic font-serif text-[#00c9ff]">idea.</span><br />
-                    Build it.
+                    Don't Just Have<br />
+                    An <span className="italic font-serif text-[#00c9ff]">Idea</span><br />
+                    Build It
                   </h3>
 
                   <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl mb-8">
@@ -976,7 +976,7 @@ export default function Home() {
               </div>
               <h2 className="ibase-h-display text-4xl sm:text-5xl lg:text-6xl font-light">
                 Inside<br />
-                <em>HRA.</em>
+                <em>HRA</em>
               </h2>
             </div>
             <div className="flex items-start gap-4 max-w-md lg:border-l lg:border-white/10 lg:pl-6">
@@ -1174,7 +1174,7 @@ export default function Home() {
           <div className="mb-14 relative z-10">
             <div className="ibase-eyebrow">CLIENT PERSPECTIVE</div>
             <h2 className="ibase-h-display">
-              Built together. <em>Trusted together.</em>
+              Built Together <em>Trusted Together</em>
             </h2>
             <p className="text-sm text-white/50 max-w-sm mt-3">
               Strong digital products come from strong collaboration. Here's what our partners say about working with HRA Groups.
@@ -1240,9 +1240,9 @@ export default function Home() {
 
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-tight">
-              Have an idea or requirement?<br />
+              Have An Idea Or Requirement?<br />
               <em className="bg-gradient-to-r from-[#00c9ff] to-[#1e1cb0] text-transparent bg-clip-text not-italic">
-                Let's build it together.
+                Let's Build It Together
               </em>
             </h2>
             <p className="text-sm sm:text-base text-white/70 max-w-xl mx-auto leading-relaxed">

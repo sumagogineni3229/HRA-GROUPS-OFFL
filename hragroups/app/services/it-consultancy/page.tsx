@@ -160,9 +160,9 @@ export default function ITConsultancyPage() {
 
               {/* Display Headline */}
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.035em] leading-[1.05] font-serif">
-                Technology strategy <br />
+                Technology Strategy <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  that drives progress.
+                  That Drives Progress
                 </span>
               </h1>
 
@@ -317,11 +317,10 @@ export default function ITConsultancyPage() {
                       key={item.number}
                       type="button"
                       onClick={() => setActiveAdvisoryTab(idx)}
-                      className={`w-full p-5 sm:p-6 rounded-2xl border text-left transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer ${
-                        isActive
+                      className={`w-full p-5 sm:p-6 rounded-2xl border text-left transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer ${isActive
                           ? "bg-white/[0.08] border-[#00c9ff]/60 shadow-[0_0_30px_rgba(0,201,255,0.15)]"
                           : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-4">
                         <span className={`text-xs font-mono tracking-widest ${isActive ? "text-[#00c9ff]" : "text-white/40"}`}>
@@ -377,9 +376,8 @@ export default function ITConsultancyPage() {
                     <button
                       key={i}
                       onClick={() => setActiveAdvisoryTab(i)}
-                      className={`h-1 flex-1 rounded-full transition-all duration-300 ${
-                        activeAdvisoryTab === i ? "bg-[#00c9ff]" : "bg-white/15 hover:bg-white/30"
-                      }`}
+                      className={`h-1 flex-1 rounded-full transition-all duration-300 ${activeAdvisoryTab === i ? "bg-[#00c9ff]" : "bg-white/15 hover:bg-white/30"
+                        }`}
                     />
                   ))}
                 </div>
@@ -440,9 +438,9 @@ export default function ITConsultancyPage() {
                   <span>OUR APPROACH</span>
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                  A proven four-stage <br />
+                  A Proven Four-Stage <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                    advisory framework.
+                    Advisory Framework
                   </span>
                 </h2>
               </div>
@@ -456,11 +454,10 @@ export default function ITConsultancyPage() {
                 <div
                   key={step.number}
                   onClick={() => setActiveJourneyStep(idx)}
-                  className={`p-7 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[260px] ${
-                    activeJourneyStep === idx
+                  className={`p-7 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[260px] ${activeJourneyStep === idx
                       ? "bg-white/[0.08] border-[#00c9ff]/60 shadow-[0_0_30px_rgba(0,201,255,0.12)]"
                       : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
-                  }`}
+                    }`}
                 >
                   <div>
                     <span className="text-xs font-mono text-[#00c9ff] tracking-widest block mb-6">
@@ -493,9 +490,9 @@ export default function ITConsultancyPage() {
                 <span>HOW WE THINK</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                Technology choices <br />
+                Technology Choices <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                  rooted in business value.
+                  Rooted In Business Value
                 </span>
               </h2>
             </div>
@@ -568,9 +565,9 @@ export default function ITConsultancyPage() {
 
             <div className="lg:col-span-7 space-y-6">
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-[1.04] font-serif">
-                Ready to clarify your <br />
+                Ready To Clarify Your <br />
                 <em className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white font-normal not-italic">
-                  technology roadmap?
+                  Technology Roadmap?
                 </em>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light max-w-xl">

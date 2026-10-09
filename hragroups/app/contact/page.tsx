@@ -333,7 +333,7 @@ export default function ContactPage() {
                           DIRECT INQUIRY
                         </span>
                         <h3 className="text-2xl sm:text-3xl font-light font-serif text-white">
-                          Send Us a Message
+                          Send Us A Message
                         </h3>
                         <p className="text-white/60 text-xs sm:text-sm font-light">
                           Please fill out the form and our team will get back to you right away

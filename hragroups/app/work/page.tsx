@@ -99,10 +99,10 @@ const CAPABILITIES = [
 ];
 
 const WORK_HERO_PHRASES = [
-  "Ideas in action",
-  "Engineered for Growth",
-  "Intelligent Systems that Scale",
-  "Digital Products that Deliver",
+  "Ideas In Action",
+  "Engineered For Growth",
+  "Intelligent Systems That Scale",
+  "Digital Products That Deliver",
 ];
 
 export default function WorkPage() {
@@ -214,8 +214,8 @@ export default function WorkPage() {
                 02 / SELECTED PROJECTS
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight font-serif">
-                Things we've<br />
-                <em className="font-serif italic text-[#00c9ff]">built.</em>
+                Things We've<br />
+                <em className="font-serif italic text-[#00c9ff]">Built</em>
               </h2>
             </div>
 
@@ -340,8 +340,8 @@ export default function WorkPage() {
                 03 / CAPABILITIES
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight font-serif">
-                Built for<br />
-                <em className="font-serif italic text-[#00c9ff]">what's next</em>
+                Built For<br />
+                <em className="font-serif italic text-[#00c9ff]">What's Next</em>
               </h2>
             </div>
             <p className="text-sm text-white/60 max-w-md leading-relaxed">
@@ -382,8 +382,8 @@ export default function WorkPage() {
               START A PROJECT
             </span>
             <h2 className="text-4xl sm:text-6xl font-light text-white font-serif leading-tight">
-              Have an idea in mind?<br />
-              <em className="italic text-[#00c9ff]">Let's build it together</em>
+              Have An Idea In Mind?<br />
+              <em className="italic text-[#00c9ff]">Let's Build It Together</em>
             </h2>
             <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl mx-auto">
               Whether you need scalable software engineering, AI workflow automation, or digital product consultancy, we are here to bring it to life

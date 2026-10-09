@@ -25,10 +25,10 @@ import {
 } from "lucide-react";
 
 const CLIENTS_HERO_PHRASES = [
-  "Our Clients & Partnerships.",
-  "Trusted Industry Collaborations.",
-  "Accelerating Digital Growth.",
-  "Building Long-Term Value.",
+  "Our Clients & Partnerships",
+  "Trusted Industry Collaborations",
+  "Accelerating Digital Growth",
+  "Building Long-Term Value",
 ];
 
 export default function ClientsPage() {
@@ -361,7 +361,7 @@ export default function ClientsPage() {
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white font-serif leading-tight tracking-tight">
                   Long-Term Partnerships <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                    Driven by Value
+                    Driven By Value
                   </span>
                 </h2>
               </motion.div>
@@ -528,7 +528,7 @@ export default function ClientsPage() {
                 Work With Us
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white font-serif tracking-tight">
-                Ready to Accelerate Your Business?
+                Ready To Accelerate Your Business?
               </h2>
               <p className="text-white/60 font-light text-sm sm:text-base leading-relaxed">
                 Partner with HRA Groups for cutting-edge software development, talent acquisition, and digital transformation

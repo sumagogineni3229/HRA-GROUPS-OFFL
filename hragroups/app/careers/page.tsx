@@ -290,7 +290,7 @@ export default function CareersPage() {
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-light font-serif text-white tracking-tight leading-[1.12]">
-                Apply for {selectedJobTitle}
+                Apply For {selectedJobTitle}
               </h1>
 
               <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
@@ -652,7 +652,7 @@ export default function CareersPage() {
                 <span>Why Work With Us</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white font-serif tracking-tight">
-                Grow with HRA Groups
+                Grow With HRA Groups
               </h2>
               <p className="text-white/60 font-light text-sm sm:text-base max-w-xl mx-auto">
                 We empower our people with the resources, mentorship, and opportunities they need to reach their highest potential.
@@ -869,7 +869,7 @@ export default function CareersPage() {
                 <span>Application Guide</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white font-serif tracking-tight">
-                How to Apply
+                How To Apply
               </h2>
               <p className="text-white/60 font-light text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
                 Complete our online application form with accurate details. Our HR team will review your profile and connect with shortlisted candidates promptly
@@ -995,7 +995,7 @@ export default function CareersPage() {
                 Join Our Team
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white font-serif tracking-tight">
-                Ready to Shape the Future?
+                Ready To Shape The Future?
               </h2>
               <p className="text-white/60 font-light text-sm sm:text-base leading-relaxed">
                 Grow with HRA Groups through purposeful work, collaboration, and continuous innovation

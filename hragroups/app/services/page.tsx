@@ -162,8 +162,8 @@ export default function ServicesPage() {
                 02 / SERVICE DIRECTORY
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight font-serif">
-                What we<br />
-                <em className="font-serif italic text-[#00c9ff]">offer.</em>
+                What We<br />
+                <em className="font-serif italic text-[#00c9ff]">Offer</em>
               </h2>
             </div>
             <div className="text-xs font-mono text-white/40 pb-2">
@@ -226,8 +226,8 @@ export default function ServicesPage() {
               START A CONVERSATION
             </span>
             <h2 className="text-4xl sm:text-6xl font-light text-white font-serif leading-tight">
-              Have a project in mind?<br />
-              <em className="italic text-[#00c9ff]">Let's build it together.</em>
+              Have A Project In Mind?<br />
+              <em className="italic text-[#00c9ff]">Let's Build It Together</em>
             </h2>
             <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl mx-auto">
               From enterprise software engineering and AI solutions to training and assessment certifications.

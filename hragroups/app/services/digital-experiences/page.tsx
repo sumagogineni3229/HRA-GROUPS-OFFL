@@ -147,9 +147,9 @@ export default function DigitalExperiencesPage() {
 
               {/* Display Headline */}
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-white tracking-[-0.035em] leading-[1.05] font-serif">
-                Digital experiences <br />
+                Digital Experiences <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  with purpose
+                  With Purpose
                 </span>
               </h1>
 
@@ -223,7 +223,7 @@ export default function DigitalExperiencesPage() {
                       DIGITAL SYSTEMS
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-light text-white font-serif">
-                      Built for <em className="text-[#00c9ff] not-italic">people</em>
+                      Built For <em className="text-[#00c9ff] not-italic">People</em>
                     </h3>
                     <p className="text-xs text-white/60 leading-relaxed font-light">
                       Strategy, design and technology working as one unified medium
@@ -270,9 +270,9 @@ export default function DigitalExperiencesPage() {
                 <span>WHAT WE BUILD</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                Interfaces are only <br />
+                Interfaces Are Only <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic font-normal">
-                  the beginning.
+                  The Beginning
                 </span>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed">
@@ -340,9 +340,9 @@ export default function DigitalExperiencesPage() {
                   <span>OUR APPROACH</span>
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                  Simple on the surface. <br />
+                  Simple On The Surface <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                    Intelligent underneath
+                    Intelligent Underneath
                   </span>
                 </h2>
               </div>
@@ -356,11 +356,10 @@ export default function DigitalExperiencesPage() {
                 <div
                   key={step.number}
                   onClick={() => setActiveStep(idx)}
-                  className={`p-7 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[280px] ${
-                    activeStep === idx
+                  className={`p-7 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[280px] ${activeStep === idx
                       ? "bg-white/[0.08] border-[#00c9ff]/60 shadow-[0_0_30px_rgba(0,201,255,0.12)]"
                       : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
-                  }`}
+                    }`}
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
@@ -402,9 +401,9 @@ export default function DigitalExperiencesPage() {
                 <span>DIGITAL SYSTEM</span>
               </div>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08] font-serif">
-                One experience. <br />
+                One Experience <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#73bbff] via-white to-white italic font-normal">
-                  Every layer connected
+                  Every Layer Connected
                 </span>
               </h2>
               <p className="text-base text-white/70 font-light leading-relaxed max-w-md">
@@ -446,9 +445,9 @@ export default function DigitalExperiencesPage() {
                 <span>DESIGN PRINCIPLES</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight font-serif">
-                Digital should feel <br />
+                Digital Should Feel <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white italic">
-                  effortless
+                  Effortless
                 </span>
               </h2>
             </div>
@@ -483,9 +482,9 @@ export default function DigitalExperiencesPage() {
 
             <div className="lg:col-span-7 space-y-6">
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-[1.04] font-serif">
-                Make your next <br />
+                Make Your Next <br />
                 <em className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c9ff] via-[#73bbff] to-white font-normal not-italic">
-                  digital experience matter
+                  Digital Experience Matter
                 </em>
               </h2>
               <p className="text-base sm:text-lg text-white/70 font-light max-w-xl">

@@ -389,7 +389,7 @@ export default function CoursesPage() {
 
       {/* EXACT 1:1 SDI ENTERPRISE DATA & AI HERO DESIGN WITH INVISIBLE IMAGE BACKGROUND */}
       <section className="sticky top-0 z-0 bg-white dark:bg-[#050b17] min-h-[500px] sm:min-h-[560px] lg:min-h-[620px] pt-24 pb-36 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-44 flex items-center overflow-hidden transition-colors duration-300">
-        
+
         {/* Dark Mode Background Radial Ambient Glow */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 dark:bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
 
@@ -517,8 +517,8 @@ export default function CoursesPage() {
                                   }))
                                 }
                                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentImgIdx === dotIdx
-                                    ? "bg-[#0052cc] w-6"
-                                    : "bg-white/60 hover:bg-white"
+                                  ? "bg-[#0052cc] w-6"
+                                  : "bg-white/60 hover:bg-white"
                                   }`}
                                 aria-label={`Go to slide ${dotIdx + 1}`}
                               />
@@ -731,11 +731,10 @@ export default function CoursesPage() {
               return (
                 <div
                   key={idx}
-                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                    isOpen
+                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${isOpen
                       ? "bg-white dark:bg-[#0c1427] border-[#0052cc]/40 dark:border-sky-500/40 shadow-lg shadow-blue-500/5"
                       : "bg-white/60 dark:bg-[#080e1c]/60 border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700"
-                  }`}
+                    }`}
                 >
                   <button
                     type="button"
@@ -747,11 +746,10 @@ export default function CoursesPage() {
                       {faq.q}
                     </span>
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
-                        isOpen
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${isOpen
                           ? "bg-[#0052cc]/10 dark:bg-sky-500/15 text-[#0052cc] dark:text-sky-400 rotate-180"
                           : "bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:text-slate-800 dark:group-hover:text-white"
-                      }`}
+                        }`}
                     >
                       <ChevronDown className="w-4 h-4" />
                     </div>
@@ -779,7 +777,7 @@ export default function CoursesPage() {
           {/* Quick CTA below FAQ */}
           <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-blue-900/20 via-[#0052cc]/15 to-indigo-900/20 border border-[#0052cc]/30 text-center space-y-4">
             <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-              Have customized training requirements for your team?
+              Have Customized Training Requirements For Your Team?
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
               Get in touch with our learning advisors for customized enterprise curricula and flexible corporate batch schedules.

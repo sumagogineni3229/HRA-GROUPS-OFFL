@@ -296,7 +296,7 @@ export default function InternshipPage() {
                 <span className="font-semibold text-white">Potential</span> <br />
                 Into{" "}
                 <span className="bg-gradient-to-r from-sky-200 via-sky-100 to-[#65acff] bg-clip-text text-transparent font-medium italic">
-                  Experience.
+                  Experience
                 </span>
               </h1>
 
@@ -452,9 +452,9 @@ export default function InternshipPage() {
                   <span>The HRA Approach</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-slate-100 leading-tight tracking-tight">
-                  Not just an internship. <br />
+                  Not Just An Internship <br />
                   <span className="bg-gradient-to-r from-[#0052cc] via-[#0070f3] to-[#0284c7] dark:from-sky-300 dark:via-blue-400 dark:to-indigo-300 bg-clip-text text-transparent">
-                    A career experience.
+                    A Career Experience
                   </span>
                 </h2>
               </motion.div>
@@ -491,7 +491,7 @@ export default function InternshipPage() {
                   <span>Explore Opportunities</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-slate-100 tracking-tight">
-                  Choose Your Direction.
+                  Choose Your Direction
                 </h2>
               </div>
               <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-md leading-relaxed">
@@ -710,9 +710,9 @@ export default function InternshipPage() {
                 Your Journey
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-slate-100">
-                Four steps. <br />
+                Four Steps <br />
                 <span className="bg-gradient-to-r from-[#0052cc] to-[#0284c7] dark:from-sky-300 dark:to-blue-400 bg-clip-text text-transparent">
-                  One transformation
+                  One Transformation
                 </span>
               </h2>
             </div>
@@ -787,9 +787,9 @@ export default function InternshipPage() {
                   FAQ
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#001f4d] dark:text-slate-100">
-                  Everything you <br />
+                  Everything You <br />
                   <span className="bg-gradient-to-r from-[#0052cc] to-[#0284c7] dark:from-sky-300 dark:to-blue-400 bg-clip-text text-transparent">
-                    need to know
+                    Need To Know
                   </span>
                 </h2>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
@@ -836,9 +836,9 @@ export default function InternshipPage() {
                 Your Journey Starts Here
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold max-w-2xl mx-auto leading-tight">
-                Don&apos;t wait for experience. <br />
+                Don&apos;t Wait For Experience <br />
                 <span className="bg-gradient-to-r from-sky-200 via-sky-100 to-[#65acff] bg-clip-text text-transparent">
-                  Create it.
+                  Create It
                 </span>
               </h2>
               <p className="text-sm sm:text-base text-slate-200 max-w-xl mx-auto">

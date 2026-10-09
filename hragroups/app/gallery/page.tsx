@@ -800,7 +800,7 @@ export default function GalleryPage() {
                 Join the Movement
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight font-serif">
-                Be Part of Our Next Milestone
+                Be Part Of Our Next Milestone
               </h2>
               <p className="text-white/60 text-sm sm:text-base leading-relaxed">
                 Whether you are an ambitious student, experienced professional, or corporate partner, collaborate with HRA Groups to shape the future.

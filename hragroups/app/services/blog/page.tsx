@@ -708,7 +708,7 @@ Deploying dual-active multi-region cloud topologies with automated BGP anycast r
             >
               {/* Outer pulsing ring radar indicator */}
               <span className="absolute -inset-1 rounded-full bg-[#00c9ff]/40 blur-md animate-ping pointer-events-none opacity-75" />
-              
+
               <button
                 onClick={scrollToPosts}
                 className="relative inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-[#00c9ff] to-[#0070f3] text-black font-semibold text-sm tracking-wide shadow-[0_0_35px_rgba(0,201,255,0.6)] hover:shadow-[0_0_50px_rgba(0,201,255,0.9)] animate-pulse transition-all duration-300 hover:scale-[1.05] active:scale-[0.98] cursor-pointer"
@@ -732,7 +732,7 @@ Deploying dual-active multi-region cloud topologies with automated BGP anycast r
         >
           <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-              
+
               {/* LEFT SIDEBAR (SEARCH + CATEGORIES PANEL + NEWSLETTER) */}
               <div className="lg:col-span-3 space-y-4 lg:sticky lg:top-28">
                 {/* Rounded Search Bar */}
@@ -768,19 +768,17 @@ Deploying dual-active multi-region cloud topologies with automated BGP anycast r
                         setSelectedService("All");
                         setSelectedIndustry("All");
                       }}
-                      className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${
-                        selectedService === "All" && selectedIndustry === "All"
+                      className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${selectedService === "All" && selectedIndustry === "All"
                           ? "bg-[#00c9ff]/20 text-[#00c9ff] font-semibold border border-[#00c9ff]/40"
                           : "text-white/70 hover:bg-white/5 hover:text-white"
-                      }`}
+                        }`}
                     >
                       <span>View all</span>
                       <span
-                        className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${
-                          selectedService === "All" && selectedIndustry === "All"
+                        className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${selectedService === "All" && selectedIndustry === "All"
                             ? "bg-[#00c9ff] text-black font-bold"
                             : "bg-white/10 text-white/60"
-                        }`}
+                          }`}
                       >
                         {allBlogPosts.length}
                       </span>
@@ -837,19 +835,17 @@ Deploying dual-active multi-region cloud topologies with automated BGP anycast r
                           onClick={() => {
                             setSelectedService(isActive ? "All" : cat.id);
                           }}
-                          className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${
-                            isActive
+                          className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${isActive
                               ? "bg-[#00c9ff]/20 text-[#00c9ff] font-semibold border border-[#00c9ff]/40"
                               : "text-white/70 hover:bg-white/5 hover:text-white"
-                          }`}
+                            }`}
                         >
                           <span className="truncate pr-2">{cat.label}</span>
                           <span
-                            className={`px-2 py-0.5 rounded-full text-[11px] font-mono shrink-0 ${
-                              isActive
+                            className={`px-2 py-0.5 rounded-full text-[11px] font-mono shrink-0 ${isActive
                                 ? "bg-[#00c9ff] text-black font-bold"
                                 : "bg-white/10 text-white/60"
-                            }`}
+                              }`}
                           >
                             {count}
                           </span>
