@@ -450,6 +450,39 @@ Deploying dual-active multi-region cloud topologies with automated BGP anycast r
       <div className="ibase-landing-bg text-white min-h-screen selection:bg-[#00c9ff]/30 selection:text-[#00c9ff] relative overflow-x-hidden font-sans">
         <Navbar />
 
+        {/* Blog Article Schema Markup */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "headline": activeArticle.title,
+              "description": activeArticle.excerpt,
+              "image": activeArticle.image.startsWith("http")
+                ? activeArticle.image
+                : `https://hragroups.com${activeArticle.image}`,
+              "author": {
+                "@type": "Organization",
+                "name": "HRA Groups"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "HRA Groups",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://hragroups.com/images/hra-logo.png"
+                }
+              },
+              "datePublished": activeArticle.date,
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://hragroups.com/services/blog"
+              }
+            }),
+          }}
+        />
+
         {/* Global Background Layer with Big Polygons (Exact match to all pages) */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-black">
           <BigPolygonBackground opacityClass="opacity-75" />

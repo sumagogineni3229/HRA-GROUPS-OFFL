@@ -24,6 +24,8 @@ import {
   BookOpen,
   X,
   MessageCircle,
+  ChevronDown,
+  HelpCircle,
 } from "lucide-react";
 
 interface CourseDetail {
@@ -64,6 +66,88 @@ export default function CoursesPage() {
     fullstack: 0,
     devops: 0,
   });
+
+  // FAQ Accordion State
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const CORPORATE_FAQS = [
+    {
+      q: "1. What corporate training programs does HRA Groups offer?",
+      a: "We offer customized technical, professional, soft-skill, and industry-focused training programs.",
+    },
+    {
+      q: "2. Is the training completely online?",
+      a: "Yes. All corporate training sessions are conducted online.",
+    },
+    {
+      q: "3. Can the training be customized for our company?",
+      a: "Yes. Training can be customized based on your organization's goals, requirements, and employee skill levels.",
+    },
+    {
+      q: "4. Who can attend the training?",
+      a: "Programs can be designed for employees, freshers, teams, managers, and leadership professionals.",
+    },
+    {
+      q: "5. Are practical sessions included?",
+      a: "Yes. Training can include live demonstrations, hands-on activities, projects, case studies, and interactive sessions.",
+    },
+    {
+      q: "6. Can you train multiple employees at the same time?",
+      a: "Yes. We conduct online sessions for teams and larger employee groups.",
+    },
+    {
+      q: "7. What platforms are used for online training?",
+      a: "Sessions can be conducted through commonly used online meeting and learning platforms based on organizational requirements.",
+    },
+    {
+      q: "8. Can we choose the training schedule?",
+      a: "Yes. Training schedules can be planned according to your organization's availability and requirements.",
+    },
+    {
+      q: "9. Can training be conducted on weekends or after working hours?",
+      a: "Yes. Flexible scheduling can be discussed based on trainer and organization availability.",
+    },
+    {
+      q: "10. Do you provide training materials?",
+      a: "Yes. Relevant learning resources and training materials can be provided as part of the program.",
+    },
+    {
+      q: "11. Do participants receive certificates?",
+      a: "Yes. Certificates can be provided to eligible participants upon successful completion.",
+    },
+    {
+      q: "12. Can we request a specific technology or topic?",
+      a: "Yes. Organizations can request training based on specific technologies, tools, skills, or business requirements.",
+    },
+    {
+      q: "13. Do you provide assessments?",
+      a: "Yes. Assessments, assignments, quizzes, or practical evaluations can be included depending on the program.",
+    },
+    {
+      q: "14. Can the training be conducted for different skill levels?",
+      a: "Yes. Training can be structured for beginner, intermediate, or advanced-level participants.",
+    },
+    {
+      q: "15. How long does a corporate training program take?",
+      a: "The duration depends on the topic, number of participants, learning objectives, and training requirements.",
+    },
+    {
+      q: "16. Do you provide a training plan before starting?",
+      a: "Yes. We can provide a structured training plan covering topics, duration, delivery format, and learning objectives.",
+    },
+    {
+      q: "17. How can we get a quotation?",
+      a: "Share your training requirements with HRA Groups, and our team will discuss the program and provide a suitable quotation.",
+    },
+    {
+      q: "18. How can we book an online corporate training program?",
+      a: "Contact HRA Groups with your requirements, preferred topic, number of participants, and expected schedule.",
+    },
+  ];
 
   const courses: CourseDetail[] = [
     {
@@ -262,6 +346,46 @@ export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#070c18] text-[#172947] dark:text-slate-100 font-sans selection:bg-[#0052cc]/20 selection:text-[#003882]">
       <Navbar />
+
+      {/* Course & FAQ Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "ItemList",
+                "itemListElement": courses.map((course, idx) => ({
+                  "@type": "ListItem",
+                  "position": idx + 1,
+                  "item": {
+                    "@type": "Course",
+                    "name": course.title,
+                    "description": course.description,
+                    "provider": {
+                      "@type": "Organization",
+                      "name": "HRA Groups",
+                      "sameAs": "https://hragroups.com"
+                    }
+                  }
+                }))
+              },
+              {
+                "@type": "FAQPage",
+                "mainEntity": CORPORATE_FAQS.map((faq) => ({
+                  "@type": "Question",
+                  "name": faq.q.replace(/^\d+\.\s*/, ""),
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": faq.a
+                  }
+                }))
+              }
+            ]
+          }),
+        }}
+      />
 
       {/* EXACT 1:1 SDI ENTERPRISE DATA & AI HERO DESIGN WITH INVISIBLE IMAGE BACKGROUND */}
       <section className="sticky top-0 z-0 bg-white dark:bg-[#050b17] min-h-[500px] sm:min-h-[560px] lg:min-h-[620px] pt-24 pb-36 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-44 flex items-center overflow-hidden transition-colors duration-300">
@@ -583,6 +707,94 @@ export default function CoursesPage() {
               </div>
             </div>
 
+          </div>
+        </section>
+
+        {/* ===================== CORPORATE TRAINING FAQS ACCORDION SECTION ===================== */}
+        <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0052cc]/10 dark:bg-sky-500/10 border border-[#0052cc]/20 dark:border-sky-500/20 text-[#0052cc] dark:text-sky-400 text-xs font-mono uppercase tracking-widest mb-4">
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>Got Questions?</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#001f4d] dark:text-white tracking-tight mb-4">
+              Corporate Training – FAQs
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
+              Find instant answers to frequently asked questions about our online enterprise upskilling programs.
+            </p>
+          </div>
+
+          <div className="space-y-3.5">
+            {CORPORATE_FAQS.map((faq, idx) => {
+              const isOpen = openFaqIndex === idx;
+              return (
+                <div
+                  key={idx}
+                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                    isOpen
+                      ? "bg-white dark:bg-[#0c1427] border-[#0052cc]/40 dark:border-sky-500/40 shadow-lg shadow-blue-500/5"
+                      : "bg-white/60 dark:bg-[#080e1c]/60 border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(idx)}
+                    className="w-full text-left px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-4 cursor-pointer group"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 group-hover:text-[#0052cc] dark:group-hover:text-sky-400 transition-colors">
+                      {faq.q}
+                    </span>
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                        isOpen
+                          ? "bg-[#0052cc]/10 dark:bg-sky-500/15 text-[#0052cc] dark:text-sky-400 rotate-180"
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:text-slate-800 dark:group-hover:text-white"
+                      }`}
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                      >
+                        <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/50">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Quick CTA below FAQ */}
+          <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-blue-900/20 via-[#0052cc]/15 to-indigo-900/20 border border-[#0052cc]/30 text-center space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              Have customized training requirements for your team?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
+              Get in touch with our learning advisors for customized enterprise curricula and flexible corporate batch schedules.
+            </p>
+            <div className="pt-2 flex flex-wrap justify-center gap-3">
+              <a
+                href="https://wa.me/919676272283?text=Hi%20HRA%20Groups,%20we%20are%20interested%20in%20an%20online%20Corporate%20Training%20program"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>Chat on WhatsApp</span>
+              </a>
+            </div>
           </div>
         </section>
 

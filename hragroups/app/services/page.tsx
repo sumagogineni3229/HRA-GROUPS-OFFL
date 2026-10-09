@@ -16,6 +16,7 @@ import {
   Compass,
   BrainCircuit,
   Palette,
+  HelpCircle,
 } from "lucide-react";
 
 export default function ServicesPage() {
@@ -62,7 +63,7 @@ export default function ServicesPage() {
     },
     {
       number: "06",
-      title: "Training & Courses",
+      title: "Corporate Training",
       desc: "Industry-aligned IT training and courses covering Full-Stack, Cloud, AI, and DevOps",
       href: "/services/courses",
       icon: BookOpen,
@@ -83,6 +84,14 @@ export default function ServicesPage() {
       href: "/services/certificate-portal",
       icon: Award,
       badge: "CREDENTIALS",
+    },
+    {
+      number: "09",
+      title: "Services FAQs",
+      desc: "Find quick answers regarding our IT staffing, web development, marketing, and FounderBridge.",
+      href: "/services/faqs",
+      icon: HelpCircle,
+      badge: "KNOWLEDGE BASE",
     },
   ];
 

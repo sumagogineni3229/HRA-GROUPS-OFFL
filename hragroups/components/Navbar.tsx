@@ -440,6 +440,16 @@ export default function Navbar() {
                             Tech articles, enterprise updates &amp; architecture notes
                           </span>
                         </Link>
+                        <Link
+                          href="/services/exam-portal"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          HRA Exam Portal
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Online candidate evaluations & timed assessments
+                          </span>
+                        </Link>
                       </div>
                     </div>
 
@@ -451,16 +461,6 @@ export default function Navbar() {
                       </div>
                       <div className="space-y-1.5">
                         <Link
-                          href="/services/exam-portal"
-                          onClick={() => setActiveMega(null)}
-                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
-                        >
-                          HRA Exam Portal
-                          <span className="block text-xs font-normal text-white/50 mt-0.5">
-                            Online candidate evaluations & timed assessments
-                          </span>
-                        </Link>
-                        <Link
                           href="/services/certificate-portal"
                           onClick={() => setActiveMega(null)}
                           className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
@@ -468,6 +468,16 @@ export default function Navbar() {
                           Certificate Portal
                           <span className="block text-xs font-normal text-white/50 mt-0.5">
                             Instant verification & official credentials download
+                          </span>
+                        </Link>
+                        <Link
+                          href="/services/faqs"
+                          onClick={() => setActiveMega(null)}
+                          className="block text-sm font-semibold text-white hover:text-[#00c9ff] hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+                        >
+                          Services FAQs
+                          <span className="block text-xs font-normal text-white/50 mt-0.5">
+                            Answers regarding staffing, development &amp; FounderBridge
                           </span>
                         </Link>
                         <Link
@@ -610,11 +620,11 @@ export default function Navbar() {
                           className="block p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#00c9ff]/40 hover:bg-white/5 transition-all"
                         >
                           <div className="flex items-center justify-between">
-                            <div className="text-sm font-semibold text-white">Training &amp; Courses</div>
+                            <div className="text-sm font-semibold text-white">Corporate Training</div>
                             <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-white/70">Certified</span>
                           </div>
                           <div className="text-xs text-white/50 mt-0.5">
-                            Structured modules in Full-Stack, AI, Cloud, Python, and Enterprise IT Systems.
+                            Structured enterprise modules in Full-Stack, AI, Cloud, Python, and Enterprise IT Systems.
                           </div>
                         </Link>
                       </div>
@@ -868,6 +878,13 @@ export default function Navbar() {
                         >
                           HRA Certificate Portal
                         </Link>
+                        <Link
+                          href="/services/faqs"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-white hover:text-[#00c9ff]"
+                        >
+                          Services FAQs
+                        </Link>
                       </div>
                     )}
                   </div>
@@ -954,7 +971,7 @@ export default function Navbar() {
                           onClick={() => setMobileMenuOpen(false)}
                           className="block py-1 text-white hover:text-[#00c9ff]"
                         >
-                          Training &amp; Courses
+                          Corporate Training
                         </Link>
                         <Link
                           href="/services/exam-portal"
