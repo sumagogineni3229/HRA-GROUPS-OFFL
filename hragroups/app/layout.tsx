@@ -33,9 +33,48 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.hragroups.com"),
   title: "HRA Groups | IT Consulting, Web Development & IT Training in Hyderabad",
   description:
     "HRA Groups offers enterprise IT consultancy, custom web development, and certified IT training programs in Hyderabad. Build scalable tech solutions today.",
+  keywords: [
+    "HRA Groups",
+    "IT Consulting Hyderabad",
+    "Web Development Hyderabad",
+    "IT Training in Hyderabad",
+    "Software Development Company Hyderabad",
+    "AI Solutions",
+    "Internships in Hyderabad",
+  ],
+  alternates: {
+    canonical: "https://www.hragroups.com",
+  },
+  openGraph: {
+    title: "HRA Groups | IT Consulting, Web Development & IT Training in Hyderabad",
+    description:
+      "HRA Groups offers enterprise IT consultancy, custom web development, and certified IT training programs in Hyderabad. Build scalable tech solutions today.",
+    url: "https://www.hragroups.com",
+    siteName: "HRA Groups",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HRA Groups | IT Consulting, Web Development & IT Training in Hyderabad",
+    description:
+      "HRA Groups offers enterprise IT consultancy, custom web development, and certified IT training programs in Hyderabad. Build scalable tech solutions today.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 import { ThemeProvider } from "@/components/ThemeProvider";
