@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     "HRA Groups offers enterprise IT consultancy, custom web development, and certified IT training programs in Hyderabad. Build scalable tech solutions today.",
   openGraph: {
     title:
-      "HRA Groups | IT Consulting, Web Development & IT Training in Hyderabad",
+      "HRA Groups | IT Consulting Services",
     description:
       "Enterprise IT consultancy, custom web and software development, AI solutions, and IT training programs.",
     url: "https://hragroups.com",
